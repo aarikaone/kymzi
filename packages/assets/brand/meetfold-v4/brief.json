@@ -1,0 +1,22 @@
+{
+  "name": "Rymzi",
+  "business": "Meet an unknown pal through matching answers, explore their city through places and photos, and plan public meetings when visiting.",
+  "audience": "10–24; age-separated modes remain unchanged.",
+  "style": "Black, purple and blue. Bold small-screen silhouette with transparent favicon. Avoid map-pin/airplane clichés, tiny detail and a baked favicon background.",
+  "selected": "Meetfold",
+  "generation": "Original repo-native SVG geometry, not image generation.",
+  "directions": {
+    "meetfold": {
+      "name": "Meetfold",
+      "description": "Two paths. One unexpected connection."
+    },
+    "waywave": {
+      "name": "Waywave",
+      "description": "A wandering Z, drawn in one flowing gesture."
+    },
+    "elsewhere": {
+      "name": "Elsewhere",
+      "description": "An open doorway, with somewhere new just beyond."
+    }
+  }
+}

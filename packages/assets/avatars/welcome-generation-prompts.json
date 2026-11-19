@@ -1,0 +1,8 @@
+{
+  "mode": "built-in image_gen.imagegen",
+  "intent": "precise-object-edit",
+  "reference": "packages/assets/avatars/cloud.png",
+  "asset": "packages/assets/avatars/cloud-glasses-v1.png",
+  "webAsset": "apps/web/public/avatars/cloud-glasses-v1.webp",
+  "prompt": "Use case: precise-object-edit. Asset type: Kymzi mobile app welcome mascot, transparent cutout. Input image: edit target, the existing lavender fluffy Cloud mascot wearing cobalt headphones. Primary request: add one pair of stylish oversized round black eyeglasses over its eyes. Clear transparent lenses, chunky satin black frames, confident friendly expression. Preserve the existing lavender fluffy body, little horns, cobalt headphones, small feet, smile, front-facing pose, proportions and plush 3D material. Keep the eyes visible through the glasses. Keep the full character centered with a small transparent margin. A premium playful teen travel app mascot against a genuinely transparent background, lit so the lavender fur and black eyeglasses read clearly when placed on a near-black app screen. No text, no backdrop, no other characters, no props, no added symbols."
+}

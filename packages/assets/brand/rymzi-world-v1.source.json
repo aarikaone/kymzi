@@ -1,0 +1,9 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "generatedOn": "2026-11-18",
+  "prompt": "Use case: stylized-concept. Asset type: vibrant hero illustration inside a black travel discovery mobile app named Rymzi. Create a premium playful tactile 3D miniature travel world, a small colorful globe with lush turquoise ocean, pistachio and emerald continents, coral and sunshine yellow tiny houses, a pink torii gateway, warm terracotta arches, tiny palm trees, and an electric lilac mountain. A few tiny sunburst shapes, dreamy yet clean. Studio quality soft clay and satin resin materials with subtle glossy highlights, crisp warm lighting, bold saturated colors. The whole miniature floats centrally against a pure near-black #050505 background, with a very soft subtle cyan and magenta halo that fades fully into black at the edges. Wide horizontal composition, hero uses middle 80% width and 85% height with generous plain black margins. No text, no letters, no R, no logo, no airplane, no flight icon, no UI, no people, no faces, no photography. It should feel like discovering a whole colorful world in your pocket, polished imaginative editorial app art.",
+  "original": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-ead93db4-577d-483b-8b80-410b952abb93.png",
+  "source": "rymzi-world-v1.png",
+  "web": "apps/web/public/brand/rymzi-world-v1.webp",
+  "preparation": "Format conversion and proportional downsize for web; artwork content unchanged."
+}

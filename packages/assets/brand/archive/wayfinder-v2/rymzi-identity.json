@@ -1,0 +1,37 @@
+{
+  "name": "Rymzi",
+  "concept": "Wayfinder R",
+  "logo": "A rounded R with a folded paper-plane counter.",
+  "palette": {
+    "ground": "#050509",
+    "surface": "#121020",
+    "ink": "#c4b7df",
+    "muted": "#9690ad",
+    "line": "#302744",
+    "accent": "#a18bd8",
+    "blue": "#8f9aca",
+    "action": "#3e326b",
+    "actionBlue": "#304273",
+    "actionInk": "#c9b7e6"
+  },
+  "typography": {
+    "body": "DM Sans",
+    "display": "DM Sans Medium",
+    "handwritten": "Caveat, used sparingly"
+  },
+  "source": "Original code-native SVG geometry. Wordmark outlined from bundled DM Sans Semibold.",
+  "directions": {
+    "route-r": "A route origin and directional R.",
+    "fold-r": "A solid departure monogram.",
+    "wayfinder": "A rounded R with a paper plane, selected for small-size clarity."
+  },
+  "applications": [
+    "Web header",
+    "Native header",
+    "Welcome and Home travel graphic",
+    "PWA icons",
+    "iOS/Android icon"
+  ],
+  "reviewed_assets": "All three concepts inspected at 16, 24, 48 and 240px; selected icon and wordmark visually reviewed. Live app visual QA remains blocked.",
+  "theme": "Restrained black, violet and indigo. No white UI surfaces or white interface text."
+}

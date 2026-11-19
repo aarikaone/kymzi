@@ -1,0 +1,55 @@
+{
+  "name": "Rymzi",
+  "concept": "Meetfold",
+  "logo": "Two folded paths crossing into one connection.",
+  "palette": {
+    "ground": "#080810",
+    "surface": "#17152C",
+    "ink": "#F0E8FF",
+    "muted": "#BBB3D6",
+    "line": "#51406F",
+    "accent": "#BB8FFF",
+    "blue": "#9EB6FF",
+    "action": "#7135E8",
+    "actionBlue": "#3453D9",
+    "actionInk": "#F5EDFF"
+  },
+  "typography": {
+    "body": "DM Sans",
+    "display": "DM Sans Semibold",
+    "handwritten": "Caveat, used sparingly",
+    "wordmark": "Outlined lowercase lettering with a rounded rectangular i dot."
+  },
+  "source": "Code-native vector design; the dedicated generate_logo tool was unavailable.",
+  "directions": {
+    "meetfold": {
+      "name": "Meetfold",
+      "description": "Two paths. One unexpected connection."
+    },
+    "waywave": {
+      "name": "Waywave",
+      "description": "A wandering Z, drawn in one flowing gesture."
+    },
+    "elsewhere": {
+      "name": "Elsewhere",
+      "description": "An open doorway, with somewhere new just beyond."
+    }
+  },
+  "applications": [
+    "Web header",
+    "Native header",
+    "PWA icon",
+    "iOS/Android app icon",
+    "Browser favicon"
+  ],
+  "reviewed_assets": "Three vector directions rendered and compared. Review includes favicon sizes 16–96px, monochrome, light and dark browser tabs, mobile header and phone home-screen icon previews. These are rendered design previews; live browser and physical-device review are not claimed.",
+  "theme": "Black, luminous lavender and electric violet-blue. Brighter foregrounds, semibold headings and distinct action fills. No pure-white UI surfaces.",
+  "logoPalette": {
+    "ground": "#080810",
+    "purple": "#B66BFF",
+    "light": "#D7ABFF",
+    "blue": "#679DFF",
+    "ink": "#E7D8FF",
+    "muted": "#BBB3D6"
+  }
+}

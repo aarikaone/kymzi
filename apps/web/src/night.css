@@ -1,0 +1,89 @@
+/* Kymzi night palette: black, quiet green surfaces and original logo lime. */
+:root,.app-shell,.game-home-theme,.welcome-theme{--paper:#090C0A;--surface:#151B16;--selected:#243026;--ink:#F1F5EB;--muted:#B1BCA8;--line:#3E5140;--blue:#D5F88F;--action:#284C32;--action-blue:#23442E;--action-ink:#EAF6D9;background:var(--paper);color:var(--ink);color-scheme:dark}
+.desktop-stage{background:radial-gradient(ellipse at 50% 0,#18221A,transparent 68%),#090C0A}
+.app-shell{border-color:#3E5140;box-shadow:0 35px 100px #00000099}
+.app-header,.device-statusbar,.app-main,.bottom-nav,.game-home-theme .app-header,.game-home-theme .device-statusbar,.game-home-theme .app-main,.game-home-theme .bottom-nav,.welcome-theme .app-header,.welcome-theme .device-statusbar{background:#090C0A;color:#F1F5EB}
+.button,.minimal-play-actions>.button,.welcome-night-actions>.button,.monthly-tasks .task-camera-button{background:linear-gradient(115deg,#284C32,#23442E);color:#EAF6D9;border:1px solid #5F8257;box-shadow:inset 0 1px #D5F88F14}
+.button.secondary{background:#243026;color:#D0DEC3;border-color:#374C3A}
+.button:focus-visible,.text-button:focus-visible,.icon-button:focus-visible,.masonry-moment:focus-visible{outline-color:#D5F88F}
+.text-button,.icon-button,.back,.action-row svg,.app-header>.back{color:#D5F88F}
+.bottom-nav>button,.game-home-theme .bottom-nav>button{color:#9DA994}
+.bottom-nav>button[aria-current=page],.game-home-theme .bottom-nav>button[aria-current=page]{color:#D0DEC3}
+.bottom-nav>button[aria-current=page]:after{background:#D5F88F}
+.minimal-play-home h1,.rymzi-welcome h1,.task-intro>h1,.question-block h1{color:#F1F5EB}
+.minimal-play-home h1 em,.rymzi-welcome h1>em,.task-intro>h1>em{color:#D5F88F}
+.minimal-play-counter,.minimal-play-explainer{color:#B1BCA8}
+.home-monthly-goal,.home-monthly-goal.is-done{background:linear-gradient(115deg,#1A241B,#141C15);border-color:#57704B}
+.home-monthly-copy>small{color:#B1BCA8}.home-monthly-copy>strong{color:#F1F5EB}
+.home-monthly-bars>i{background:#3E5140}.home-monthly-bars>i.filled{background:#D5F88F}
+.home-monthly-total{color:#D5F88F}.home-monthly-total>small{color:#9DA994}
+.home-monthly-frames>span{background:#1D271E;border-color:#445D3E;color:#D5F88F}
+.home-updates-bell{background:#151D16;border-color:#52644B}.home-updates-bell>b{background:#284C32;color:#D0DEC3}
+.task-nav-icon{background:linear-gradient(135deg,#284C32,#23442E);color:#D5F88F;border-color:#608257;box-shadow:0 3px 16px #5D7F551a}
+.task-nav-icon:after{background:#374C3A;border-color:#090C0A;color:#D5F88F}
+.bottom-nav>button.task-tab[aria-current=page] .task-nav-icon{outline-color:#70996655}
+.task-profile-status{color:#D5F88F}.task-profile-status.is-paused{color:#BDE68C}
+.task-photo-slot{border-color:#BDE68C66;background:#BDE68C0c;color:#BDE68C}
+.task-photo-slot.slot-1{border-color:#D5F88F66;background:#D5F88F0c;color:#D0DEC3}
+.task-photo-slot.slot-2{border-color:#D5F88F66;background:#D5F88F0c;color:#D0DEC3}
+.task-progress-bars>i{background:#233125}.task-progress-bars>i.is-filled:first-child{background:#BDE68C}.task-progress-bars>i.is-filled:nth-child(2){background:#D5F88F}.task-progress-bars>i.is-filled:nth-child(3){background:#D5F88F}
+.task-topline,.task-progress small,.task-progress>span:last-child,.task-status-note,.task-intro>p{color:#B1BCA8}
+.profile-activity,.profile-activity.is-paused{background:#172419;border-color:#57704B;color:#D5F88F}
+.profile-activity>span{color:#D0DEC3}.profile-activity i{color:#D5F88F}.profile-activity>small{color:#B1BCA8}
+.profile-activity.is-paused i{color:#BDE68C}
+.discovery-trail-step:first-child{color:#D0DEC3}.discovery-trail-step{color:#B1BCA8}
+.discovery-trail-step:first-child .discovery-trail-number{background:#2B3C2D;border-color:#53714B;color:#D5F88F}
+.discovery-trail-number{border-color:#3D5440}.discovery-trail-arrow{color:#63885A}
+.city-gallery-screen>.gallery-tabs{background:linear-gradient(180deg,#172018,#0F1510);border-color:#2D3E2F}
+.gallery-tabs>.gallery-tab-indicator{background:linear-gradient(115deg,#3B513E,#3B523F);border-color:#587850;box-shadow:0 2px 7px #00000055}
+.city-gallery-screen>.gallery-tabs>button{color:#B1BCA8}.city-gallery-screen>.gallery-tabs>button[aria-pressed=true]{color:#F1F5EB}
+.gallery-controls>.gallery-view-buttons>.icon-button[aria-pressed=true],.update-filters>button[aria-pressed=true]{background:#284C32;color:#F1F5EB;border-color:#55744E}
+.gallery-city-rail>button[aria-pressed=true]{background:#243026;border-color:#516F4A;color:#D0DEC3}
+.moment-actions>.moment-save.is-saved,.moment-save.is-saved{background:#354A38;color:#F1F5EB;border-color:#5A7B52}
+.update-photo-front{background:#2A3B2D}.update-art-badge{background:#364B39;color:#D5F88F;border-color:#151D16}
+.home-community>.home-pal-preview.update-preview-card{background:linear-gradient(115deg,#161E17,#121913);border-color:#304232;color:#F1F5EB;box-shadow:inset 0 1px #D5F88F05}
+.home-community .update-preview-card .update-preview-copy>strong{color:#F1F5EB}.update-preview-kicker>i,.pal-unread-dot{background:#D5F88F}
+.pal-inbox .pal-update-item.update-message-card{background:#0F140F;border-color:#28372A;color:#B1BCA8}
+.pal-inbox .update-message-card.unread{background:linear-gradient(125deg,#1A231B,#131A14);border-color:#435C3D}
+.update-photo-front,.moment-postcard-edge,.moment-cover,.moment-author,.moment-postmark,.masonry-moment{border-color:#B1BCA836}
+.next-stop-postmark{color:#D5F88F;border-color:#B1BCA8aa;background:#131A1499}.next-stop-caption{color:#D5F88F}
+.collection-city-code{background:#131A149c;border-color:#B1BCA84a;color:#D5F88F}.collection-place-progress>i.is-saved{background:#D5F88F}
+.place-saved-status{color:#D0DEC3}.place-saved-status>span{color:#B1BCA8}
+.shutter{border-color:#B1BCA8}.shutter>span{background:#4E6B47}
+.category-tile-label{color:#F1F5EB}.text-field,.visit-form input,.visit-form select,.capture-city-select>select{background:#151B16;border-color:#52644B;color:#F1F5EB}
+.text-field:focus,.visit-form input:focus{border-color:#6C9463}
+@media(prefers-reduced-motion:reduce){.task-nav-icon{transition:none}}
+
+/* Meetfold: a crisp 40px lockup for mobile headers. */
+.wordmark>.brand-lockup{display:block;height:40px;max-width:154px;width:auto;object-fit:contain}
+
+/* Readability: bright text, distinct controls and a stronger type hierarchy. */
+:root{font-weight:500}
+h1,h2,.gallery-heading>h1,.anonymous-result .result-attractions h2{font-weight:600}
+.minimal-play-home h1,.rymzi-welcome h1,.question-block h1,.category-intro>h1{font-weight:600}
+.minimal-play-home h1 em,.rymzi-welcome h1>em,.task-intro>h1>em{color:#D5F88F;font-weight:600}
+.button,.minimal-play-actions>.button,.monthly-tasks .task-camera-button{background:linear-gradient(110deg,#284C32,#23442E);color:#EAF6D9;border:1px solid #D5F88F;font-size:21px;font-weight:600;box-shadow:0 5px 24px #284C3244,inset 0 1px #F1F5EB22}
+.button.secondary{background:#243026;color:#D0DEC3;border-color:#729B68;box-shadow:none}
+.button:disabled{opacity:.5}
+.text-button{color:#D0DEC3;font-weight:600}
+.header-title,.creative-app-header .header-title{color:#D0DEC3;font-size:17px;font-weight:600}
+.small,.flow-note,.input-meta,.question-daily-label{font-size:14px;color:#B1BCA8}
+.minimal-play-counter{font-size:16px;font-weight:600;color:#D0DEC3}
+.answer-input{color:#F1F5EB;font-weight:600;border-color:#D5F88F}
+.answer-input::placeholder,.text-field::placeholder{color:#B1BCA8;opacity:1}
+.home-monthly-copy>strong,.home-community .update-preview-card .update-preview-copy>strong{font-weight:600;color:#F1F5EB}
+.home-monthly-goal,.home-monthly-goal.is-done{background:linear-gradient(115deg,#29392B,#222F24);border-color:#709966}
+.home-community>.home-pal-preview.update-preview-card{background:linear-gradient(115deg,#1F2A20,#1C261D);border-color:#56764E}
+.city-gallery-screen>.gallery-tabs>.gallery-tab-indicator{background:linear-gradient(110deg,#284C32,#23442E);border-color:#D5F88F}
+.city-gallery-screen>.gallery-tabs>button[aria-pressed=true],.gallery-controls>.gallery-view-buttons>.icon-button[aria-pressed=true],.update-filters>button[aria-pressed=true]{color:#EAF6D9;font-weight:600}
+.gallery-controls>.gallery-view-buttons>.icon-button[aria-pressed=true],.update-filters>button[aria-pressed=true]{background:#284C32;border-color:#D5F88F}
+.gallery-toolbar-label,.pal-update-text>small,.moment-author-copy>small{color:#B1BCA8}
+.moment-author-copy>strong,.masonry-caption>strong,.moment-story>h2{font-weight:600}
+.moment-author-copy>small{font-size:11px}
+.moment-country,.moment-scroll-cue,.moment-navigation>span{color:#D0DEC3}
+.moment-actions>.moment-save.is-saved{background:#284C32;color:#EAF6D9;border-color:#D5F88F}
+.moment-story>.moment-city-link{background:#18221ACC;border-color:#D5F88F;color:#F1F5EB;font-weight:600;font-size:15px}
+.profile-activity,.profile-activity.is-paused{background:#1E291F;border-color:#709966}
+
+/* City Places/Pals selection must keep a readable foreground on its active fill. */
+.social-segments>button[aria-pressed=true]{background:#284C32;color:#EAF6D9;border-color:#D5F88F;font-weight:600}

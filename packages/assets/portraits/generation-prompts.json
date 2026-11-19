@@ -1,0 +1,16 @@
+{
+  "tool": "Built-in image_gen.imagegen",
+  "asset": "fictional-atlas.png",
+  "prompt": "Use case: photorealistic-natural. Asset type: a single square 4 by 4 portrait atlas for a clearly fictional social travel app demo, to be displayed as individual circular profile photos with CSS cropping. Sixteen completely fictional, different people, one centered head-and-shoulders candid portrait in each equally sized square cell. STRICT 4 columns x 4 rows, no gutters, no dividers, no text, no labels, no watermark. Row 1: four teenagers age 14, casual age-appropriate hoodies or T-shirts. Row 2: four teenagers age 17. Row 3: four young adults age 19. Row 4: four adults age 23. Each row has four diverse people with different skin tones, hairstyles and genders; friendly relaxed natural expressions, fully clothed, shoulders visible, head centered and never crossing cell boundary, generous headroom within each cell. Contemporary editorial profile photography, believable skin texture, soft window light, plain backgrounds cycling pale lilac, light sage, cream and pale blue in each row. Natural healthy people, no beauty retouching, no suggestive poses, no brand marks. The whole atlas edge-to-edge is exactly sixteen equal photographic portraits, each subject occupies their own quadrant cell, clean 4x4 geometry.",
+  "transparent_background": false,
+  "layout": {
+    "columns": 4,
+    "rows": [
+      "13-15",
+      "16-17",
+      "18-20",
+      "21-24"
+    ]
+  },
+  "use": "Fictional demo portraits. Reused across profiles; not photos of real users."
+}

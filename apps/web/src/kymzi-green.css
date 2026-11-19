@@ -1,0 +1,15 @@
+/* Restored Kymzi: original logo lime, black pages, consistent high-contrast controls. */
+:root,.app-shell,.game-home-theme,.welcome-theme{--brand-green:#D5F88F;--brand-on-green:#172116;--paper:#090C0A;--surface:#151B16;--selected:#243026;--ink:#F1F5EB;--muted:#B1BCA8;--line:#3E5140;--blue:#D5F88F;--action:#D5F88F;--action-blue:#C1E875;--action-ink:#172116;background:var(--paper);color:var(--ink);color-scheme:dark}
+.button:not(.secondary),.minimal-play-actions>.button:not(.secondary),.welcome-night-actions>.button:not(.secondary),.monthly-tasks .task-camera-button{background:#D5F88F;color:#172116;border-color:#D5F88F;box-shadow:inset 0 1px #ECFFCD55}
+.button:not(.secondary)>svg,.monthly-tasks .task-camera-button>svg{color:inherit}
+.button.secondary{background:#243026;border-color:#57704B;color:#D5F88F}
+.button:not(.secondary):active{background:#C1E875;border-color:#C1E875}
+.text-button,.icon-button,.action-row svg,.app-header>.back{color:#D5F88F}
+.standard-bottom-nav>button[aria-current=page]{color:#D5F88F;background:#D5F88F14}
+.bottom-nav>button[aria-current=page],.game-home-theme .bottom-nav>button[aria-current=page]{color:#D5F88F}
+.bottom-nav>button[aria-current=page]:after{background:#D5F88F}
+.home-monthly-bars>i.filled,.activity-strip-heading i,.question-progress>div>i.filled{background:#D5F88F}
+.city-section-switcher>.city-section[aria-pressed=true]{background:#D5F88F;color:#172116;border-color:#D5F88F;box-shadow:inset 0 1px #ECFFCD55,0 3px 10px #090C0A44}
+.city-section-switcher>.city-section[aria-pressed=true]:active{background:#C1E875}
+.city-section-switcher>.city-section[aria-pressed=true] .city-section-count{background:#1721161A;border-color:#17211655;color:#172116}
+.app-header .brand-lockup{height:40px;max-width:154px;width:auto}

@@ -1,0 +1,2 @@
+import React from 'react';
+export function VisitDateField({label,value,onChange,mode}:{label:string;value:string;onChange:(value:string)=>void;mode:'date'|'time'}){return <label style={{display:'flex',flexDirection:'column',gap:9,flex:1,fontSize:16,color:'#B1BCA8'}}>{label}<input type={mode} value={value} onChange={e=>{if(e.target.value)onChange(e.target.value);}} style={{fontSize:18,minHeight:54,padding:13,borderRadius:13,background:'#151B16',color:'#F1F5EB',border:'1px solid #3E5140',colorScheme:'dark',minWidth:0,width:'100%',boxSizing:'border-box'}}/></label>;}

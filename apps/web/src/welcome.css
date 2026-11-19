@@ -1,0 +1,25 @@
+/* The first hello: midnight, lavender and our glasses-wearing Cloud. */
+.welcome-theme{--paper:#090C0A;--ink:#F1F5EB;--muted:#B1BCA8;--blue:#F1F5EB;background:#090C0A;color:var(--ink)}
+.welcome-theme .device-statusbar,.welcome-theme .app-header{background:#090C0A;color:#F1F5EB}
+.welcome-theme .wordmark{color:#F1F5EB}
+.welcome-theme .app-main{padding:10px 24px 23px;overflow-y:auto}
+.welcome-theme .screen[data-page=welcome]{height:100%;min-height:0}
+.welcome-night{height:100%;min-height:0;display:flex;flex-direction:column;gap:12px}
+.welcome-night-copy{display:flex;flex-direction:column;gap:13px;flex-shrink:0}
+.welcome-night h1{font-size:clamp(37px,10.6cqw,45px);line-height:1.03;font-weight:700;letter-spacing:-1.5px;white-space:normal;color:#F1F5EB}
+.welcome-night h1>span{display:block}
+.welcome-night h1>span:nth-child(2){color:#F1F5EB}
+.welcome-night h1>.welcome-story{font-family:Caveat,cursive;font-size:1.25em;line-height:1.02;font-weight:600;letter-spacing:-.9px;color:#F1F5EB}
+.welcome-night-copy>p{font-size:16px;line-height:1.4;color:#B1BCA8}
+.welcome-mascot-stage{position:relative;isolation:isolate;display:flex;align-items:center;justify-content:center;flex:1;min-height:110px;max-height:340px}
+.welcome-mascot-halo{position:absolute;inset:0 -10%;z-index:-1;pointer-events:none;background:radial-gradient(ellipse,#9DA99438 0%,#53624B1c 35%,transparent 68%)}
+.welcome-mascot{display:block;object-fit:contain;width:89%;height:100%;max-height:340px;filter:drop-shadow(0 15px 22px #090C0A55);animation:welcome-cloud-float 6s ease-in-out infinite;user-select:none;pointer-events:none}
+.welcome-mascot-spark{position:absolute;top:15%;right:10%;color:#F1F5EB;font-size:24px;transform:rotate(12deg)}
+.welcome-night-actions{gap:12px;padding-top:3px}
+.welcome-night-actions>.button{min-height:58px;border-radius:18px;background:#243026;color:#F1F5EB;font-size:19px;font-weight:700;box-shadow:none}
+.welcome-night-actions>p{text-align:center;color:#B1BCA8;font-size:11px;line-height:1.4}
+@keyframes welcome-cloud-float{50%{transform:translateY(-5px) rotate(-1deg)}}
+@container rymzi-app (max-height:740px){.welcome-theme .app-main{padding-top:5px;padding-bottom:18px}.welcome-night{gap:10px}.welcome-night h1{font-size:37px}.welcome-night-copy{gap:10px}.welcome-night-copy>p{font-size:15px}.welcome-mascot-stage{max-height:245px}.welcome-mascot{max-height:245px}}
+@container rymzi-app (max-height:620px){.welcome-theme .app-main{padding:3px 23px 16px}.welcome-night{gap:7px}.welcome-night h1{font-size:33px;line-height:1.02}.welcome-night-copy{gap:8px}.welcome-night-copy>p{font-size:14px}.welcome-mascot-stage{min-height:90px;max-height:195px}.welcome-mascot{max-height:195px}.welcome-night-actions{gap:9px}.welcome-night-actions>.button{min-height:54px}.welcome-night-actions>p{font-size:10px}}
+@container rymzi-app (max-height:480px){.welcome-theme .screen[data-page=welcome]{height:auto;min-height:410px}.welcome-mascot-stage{flex:0 0 140px}}
+@media(prefers-reduced-motion:reduce){.welcome-mascot{animation:none}}

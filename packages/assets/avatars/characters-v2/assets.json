@@ -1,0 +1,808 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "count": 40,
+  "nativeExport": "PNG, maximum dimension 512 px, genuine alpha",
+  "webExport": "WebP, width 384 px, genuine alpha",
+  "characters": [
+    {
+      "id": "mochi",
+      "name": "Mochi",
+      "tag": "Soft landing",
+      "family": "Fuzzy",
+      "color": "#CAB4EF",
+      "subject": "a pearl-lilac round mochi-shaped plush creature, tiny crescent ear tufts, small indigo travel backpack straps, calm curved smile",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Mochi (do not write its name). Subject: a pearl-lilac round mochi-shaped plush creature, tiny crescent ear tufts, small indigo travel backpack straps, calm curved smile. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/mochi.png",
+      "nativeImage": "packages/assets/avatars/mochi.png",
+      "webImage": "apps/web/public/avatars/mochi.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-a188caec-da19-4441-b5be-9f83e2ec4383.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 307986,
+      "webBytes": 33372,
+      "sha256": "f2619af4855fde336b45d74bfbeed183ce9c0ded525b1fc31eea610d31604898"
+    },
+    {
+      "id": "comet",
+      "name": "Comet",
+      "tag": "Always taking off",
+      "family": "Cosmic",
+      "color": "#8EAFFF",
+      "subject": "a periwinkle little comet creature with a thick fluffy swept-back tail tuft, two stubby feet, cobalt sneakers and a curious smiling face",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Comet (do not write its name). Subject: a periwinkle little comet creature with a thick fluffy swept-back tail tuft, two stubby feet, cobalt sneakers and a curious smiling face. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/comet.png",
+      "nativeImage": "packages/assets/avatars/comet.png",
+      "webImage": "apps/web/public/avatars/comet.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-390bd292-f89b-43f6-8bf7-09715caa2bea.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 299634,
+      "webBytes": 36506,
+      "sha256": "be8062d6869176aacf9ebf88fcda9f2d3b8d3a9868cae35cae9778851854a645"
+    },
+    {
+      "id": "pebble",
+      "name": "Pebble",
+      "tag": "Down for the detour",
+      "family": "Oddballs",
+      "color": "#9BD8CD",
+      "subject": "a squat rounded teal pebble creature with little mitten hands, lavender knitted beanie and a cheeky asymmetrical smile",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Pebble (do not write its name). Subject: a squat rounded teal pebble creature with little mitten hands, lavender knitted beanie and a cheeky asymmetrical smile. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/pebble.png",
+      "nativeImage": "packages/assets/avatars/pebble.png",
+      "webImage": "apps/web/public/avatars/pebble.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-65c385d3-b770-4ae6-81d1-6c7e6fa7a514.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 354926,
+      "webBytes": 34980,
+      "sha256": "5c2cf7193e4113884f6e96e731734651f5935e5c67a51e25ba1b87986b667504"
+    },
+    {
+      "id": "pip",
+      "name": "Pip",
+      "tag": "Small but everywhere",
+      "family": "Critters",
+      "color": "#AFE4C6",
+      "subject": "a mint-green pea-shaped critter with big round ears, peach crossbody satchel and a wide-eyed friendly expression",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Pip (do not write its name). Subject: a mint-green pea-shaped critter with big round ears, peach crossbody satchel and a wide-eyed friendly expression. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/pip.png",
+      "nativeImage": "packages/assets/avatars/pip.png",
+      "webImage": "apps/web/public/avatars/pip.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-690e03de-6a10-4f6c-8934-275fd7202c62.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 366486,
+      "webBytes": 38362,
+      "sha256": "e5741f5d4f73711ea238b9c5c14cdf34f1e175818e3b0203763722f07eb4153c"
+    },
+    {
+      "id": "nova",
+      "name": "Nova",
+      "tag": "Bright ideas only",
+      "family": "Critters",
+      "color": "#BE9BF3",
+      "subject": "a fluffy bright-lavender fox-like monster with oversized rounded pointed ears, cobalt blue sneakers, gentle confident smile",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Nova (do not write its name). Subject: a fluffy bright-lavender fox-like monster with oversized rounded pointed ears, cobalt blue sneakers, gentle confident smile. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/nova.png",
+      "nativeImage": "packages/assets/avatars/nova.png",
+      "webImage": "apps/web/public/avatars/nova.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-c4c8974d-329a-480b-ad1d-bc2b71fedeb7.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 329988,
+      "webBytes": 36376,
+      "sha256": "e90552d2ec7a5cbdef333acfeee7753ccd2a3084759b817999b26601676d943c"
+    },
+    {
+      "id": "boba",
+      "name": "Boba",
+      "tag": "Bubble energy",
+      "family": "Oddballs",
+      "color": "#CDB0EF",
+      "subject": "a lilac round bouncy bubble creature with a soft denim-blue cap, dark glossy oval eyes, tiny arms and feet, cheerful grin",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Boba (do not write its name). Subject: a lilac round bouncy bubble creature with a soft denim-blue cap, dark glossy oval eyes, tiny arms and feet, cheerful grin. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/boba.png",
+      "nativeImage": "packages/assets/avatars/boba.png",
+      "webImage": "apps/web/public/avatars/boba.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-8fca5424-0627-4879-8f12-6d0ae8f801f4.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 334832,
+      "webBytes": 37658,
+      "sha256": "9b94f89780216c762b7073d75cb7de786774f19e3aa48bc7e445fddbae2a5209"
+    },
+    {
+      "id": "taro",
+      "name": "Taro",
+      "tag": "Curious by nature",
+      "family": "Critters",
+      "color": "#BCA1E6",
+      "subject": "a lavender plush chubby cat creature with tiny triangular ears and chunky round cobalt eyeglasses, little feet, confident friendly face",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Taro (do not write its name). Subject: a lavender plush chubby cat creature with tiny triangular ears and chunky round cobalt eyeglasses, little feet, confident friendly face. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/taro.png",
+      "nativeImage": "packages/assets/avatars/taro.png",
+      "webImage": "apps/web/public/avatars/taro.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-8a9ac314-705a-414d-9897-ce0bfa159188.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 365025,
+      "webBytes": 39856,
+      "sha256": "6ad4df22baa1d53db6bc79029a6bb876e738c25670cfe9bd65f5bfcbd875f407"
+    },
+    {
+      "id": "nimbus",
+      "name": "Nimbus",
+      "tag": "Cloud nine, always",
+      "family": "Fuzzy",
+      "color": "#A5DFF2",
+      "subject": "a fluffy cyan cloud-shaped little monster with tiny rounded horns, violet bucket hat and a mellow smile",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Nimbus (do not write its name). Subject: a fluffy cyan cloud-shaped little monster with tiny rounded horns, violet bucket hat and a mellow smile. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/nimbus.png",
+      "nativeImage": "packages/assets/avatars/nimbus.png",
+      "webImage": "apps/web/public/avatars/nimbus.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-ee3752fc-c739-4271-8259-791bcea5c970.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 320235,
+      "webBytes": 35212,
+      "sha256": "72e29de9417958bb566298a2b687d6cdf48281f476f6b614d2518afaa39a80c0"
+    },
+    {
+      "id": "dune",
+      "name": "Dune",
+      "tag": "Take the scenic way",
+      "family": "Oddballs",
+      "color": "#F4BE9D",
+      "subject": "a peach fuzzy cactus-inspired creature with rounded soft nubs instead of sharp spines, a tiny violet backpack, friendly dark oval eyes",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Dune (do not write its name). Subject: a peach fuzzy cactus-inspired creature with rounded soft nubs instead of sharp spines, a tiny violet backpack, friendly dark oval eyes. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/dune.png",
+      "nativeImage": "packages/assets/avatars/dune.png",
+      "webImage": "apps/web/public/avatars/dune.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-57d7a39b-e640-4cb6-b9b8-3ada187ccfc6.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 330957,
+      "webBytes": 32158,
+      "sha256": "27d91b025c1d0deab7b53b93d8d5255e665e3fc205cdd9e56f597938e3ffeac7"
+    },
+    {
+      "id": "cove",
+      "name": "Cove",
+      "tag": "Ocean state of mind",
+      "family": "Critters",
+      "color": "#B0DFD5",
+      "subject": "a seafoam chubby otter plush creature with rounded ears and a cobalt blue bandana, hands resting on belly, a warm smile",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Cove (do not write its name). Subject: a seafoam chubby otter plush creature with rounded ears and a cobalt blue bandana, hands resting on belly, a warm smile. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/cove.png",
+      "nativeImage": "packages/assets/avatars/cove.png",
+      "webImage": "apps/web/public/avatars/cove.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-c4e56eff-8635-4cfb-934e-f8a0a32d02b2.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 283512,
+      "webBytes": 25408,
+      "sha256": "605a5d2fbdc8bbc769f6eeb0893358e6caac0951804473b14ec6cef4026d9ecb"
+    },
+    {
+      "id": "astro",
+      "name": "Astro",
+      "tag": "Out of this world",
+      "family": "Cosmic",
+      "color": "#91ACF3",
+      "subject": "a cobalt-blue little astronaut-inspired bean monster with a soft padded periwinkle hood framing its face, tiny feet and hands, no hard glass visor",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Astro (do not write its name). Subject: a cobalt-blue little astronaut-inspired bean monster with a soft padded periwinkle hood framing its face, tiny feet and hands, no hard glass visor. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/astro.png",
+      "nativeImage": "packages/assets/avatars/astro.png",
+      "webImage": "apps/web/public/avatars/astro.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-575ddf41-3684-47eb-a2ff-2349191de59d.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 380217,
+      "webBytes": 52092,
+      "sha256": "a30f3013c33a2a14036112ef3052967bf435945a6c257aec28bee932cf21d768"
+    },
+    {
+      "id": "cosmo",
+      "name": "Cosmo",
+      "tag": "One big point of view",
+      "family": "Cosmic",
+      "color": "#BF98EE",
+      "subject": "a soft violet cyclops plush monster with one large friendly glossy eye, two tiny rounded horns, short arms, little blue shoes and a smiling mouth",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Cosmo (do not write its name). Subject: a soft violet cyclops plush monster with one large friendly glossy eye, two tiny rounded horns, short arms, little blue shoes and a smiling mouth. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/cosmo.png",
+      "nativeImage": "packages/assets/avatars/cosmo.png",
+      "webImage": "apps/web/public/avatars/cosmo.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-778b92d7-238e-47e4-bc07-03fb6e3bf27b.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 336976,
+      "webBytes": 35998,
+      "sha256": "180123c39834d56816fc313f162d25391e223db6549eea7d31db32f34e092627"
+    },
+    {
+      "id": "pixel",
+      "name": "Pixel",
+      "tag": "Little moments, big mood",
+      "family": "Oddballs",
+      "color": "#A6C4EF",
+      "subject": "a powder-blue softly rounded cube creature with a lavender crossbody pouch, two glossy eyes, raised eyebrow and tiny rounded feet",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Pixel (do not write its name). Subject: a powder-blue softly rounded cube creature with a lavender crossbody pouch, two glossy eyes, raised eyebrow and tiny rounded feet. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/pixel.png",
+      "nativeImage": "packages/assets/avatars/pixel.png",
+      "webImage": "apps/web/public/avatars/pixel.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-3e2d8aa5-8ff9-49f4-bbc8-ed2f4d2ebd9a.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 350995,
+      "webBytes": 37848,
+      "sha256": "c98f1245fd4a660497342d61a06af15f8051e697978dde8ad85e791da3c490b8"
+    },
+    {
+      "id": "ziggy",
+      "name": "Ziggy",
+      "tag": "Good vibes on repeat",
+      "family": "Fuzzy",
+      "color": "#D9A1D3",
+      "subject": "a raspberry-purple fuzzy round creature with a soft zigzag tuft of hair, chunky cobalt headphones and a cheeky friendly smile",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Ziggy (do not write its name). Subject: a raspberry-purple fuzzy round creature with a soft zigzag tuft of hair, chunky cobalt headphones and a cheeky friendly smile. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/ziggy.png",
+      "nativeImage": "packages/assets/avatars/ziggy.png",
+      "webImage": "apps/web/public/avatars/ziggy.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-a0368e1f-5edd-469c-b6fe-c095cb8b4251.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 370179,
+      "webBytes": 42086,
+      "sha256": "41f108f7a9b9eb3f26677eac73b30f6cace9ac40d980dbed2921b220a3714a56"
+    },
+    {
+      "id": "miso",
+      "name": "Miso",
+      "tag": "Low-key explorer",
+      "family": "Critters",
+      "color": "#CCBBEB",
+      "subject": "a lilac chubby panda-like plush monster with cobalt blue soft eye patches and round ears, tiny lavender scarf, a peaceful smile",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Miso (do not write its name). Subject: a lilac chubby panda-like plush monster with cobalt blue soft eye patches and round ears, tiny lavender scarf, a peaceful smile. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/miso.png",
+      "nativeImage": "packages/assets/avatars/miso.png",
+      "webImage": "apps/web/public/avatars/miso.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-332eb996-260b-4bac-a2c6-9454cf97c44b.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 387218,
+      "webBytes": 50840,
+      "sha256": "6d0cd34eafd73309833781e434cb810c3c69737dd3af458d5b2474856e12fa14"
+    },
+    {
+      "id": "kiko",
+      "name": "Kiko",
+      "tag": "Hop into something new",
+      "family": "Critters",
+      "color": "#ACA8EC",
+      "subject": "a periwinkle bunny-like plush with short floppy ears, little blue sneakers, a pale apricot bandana and a happy relaxed face",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Kiko (do not write its name). Subject: a periwinkle bunny-like plush with short floppy ears, little blue sneakers, a pale apricot bandana and a happy relaxed face. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/kiko.png",
+      "nativeImage": "packages/assets/avatars/kiko.png",
+      "webImage": "apps/web/public/avatars/kiko.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-60b23f40-de8a-4ac7-9b55-10b9add4d580.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 342863,
+      "webBytes": 47880,
+      "sha256": "24872950047bf6a4eff39aa43029f8caef517c15d0f30950562480473ee0796e"
+    },
+    {
+      "id": "echo",
+      "name": "Echo",
+      "tag": "Same wavelength",
+      "family": "Cosmic",
+      "color": "#96D7DD",
+      "subject": "an aqua teardrop-shaped alien plush creature with two small rounded antennae, a violet backpack and curious oval eyes",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Echo (do not write its name). Subject: an aqua teardrop-shaped alien plush creature with two small rounded antennae, a violet backpack and curious oval eyes. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/echo.png",
+      "nativeImage": "packages/assets/avatars/echo.png",
+      "webImage": "apps/web/public/avatars/echo.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-ca18f4bf-5b9c-4e06-93ae-9bd7483b76ed.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 297705,
+      "webBytes": 31772,
+      "sha256": "22caac879a7b40c6eb8d157a3219a0d006795c1cc11706649af2308c70c3d152"
+    },
+    {
+      "id": "wisp",
+      "name": "Wisp",
+      "tag": "Quiet little magic",
+      "family": "Cosmic",
+      "color": "#D3C5EE",
+      "subject": "a pearly lavender friendly ghost-shaped plush with a wavy rounded bottom and tiny visible feet, blue headphones, absolutely cute and not scary",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Wisp (do not write its name). Subject: a pearly lavender friendly ghost-shaped plush with a wavy rounded bottom and tiny visible feet, blue headphones, absolutely cute and not scary. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/wisp.png",
+      "nativeImage": "packages/assets/avatars/wisp.png",
+      "webImage": "apps/web/public/avatars/wisp.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-c3788982-8bbd-4883-b495-b306adf3c5be.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 318276,
+      "webBytes": 36750,
+      "sha256": "da93ce7584c2dd2662d511d8331f33426ab00adf34efff0583d6cc53cf83947b"
+    },
+    {
+      "id": "pogo",
+      "name": "Pogo",
+      "tag": "One more tiny adventure",
+      "family": "Critters",
+      "color": "#B39CDE",
+      "subject": "a violet chubby penguin-inspired creature with a pale lilac belly, aqua knitted beanie, stubby wings and a playful smile",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Pogo (do not write its name). Subject: a violet chubby penguin-inspired creature with a pale lilac belly, aqua knitted beanie, stubby wings and a playful smile. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/pogo.png",
+      "nativeImage": "packages/assets/avatars/pogo.png",
+      "webImage": "apps/web/public/avatars/pogo.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-e69d1e40-55c9-486f-9c3a-ac67ffd2eae3.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 342401,
+      "webBytes": 35810,
+      "sha256": "fe94038deb87f3aabc0a364bbb237de19adf200e8b84d102cfd294c5c3dce37c"
+    },
+    {
+      "id": "yuzu",
+      "name": "Yuzu",
+      "tag": "A little zest",
+      "family": "Oddballs",
+      "color": "#EEB49E",
+      "subject": "a warm coral chubby citrus-inspired plush creature with a tiny soft leaf on top, periwinkle waist bag, dark oval eyes and a cheerful grin",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Yuzu (do not write its name). Subject: a warm coral chubby citrus-inspired plush creature with a tiny soft leaf on top, periwinkle waist bag, dark oval eyes and a cheerful grin. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/yuzu.png",
+      "nativeImage": "packages/assets/avatars/yuzu.png",
+      "webImage": "apps/web/public/avatars/yuzu.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-965a43b2-2f64-4f8f-8b64-56cbe3697a2d.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 330401,
+      "webBytes": 36372,
+      "sha256": "4fb682da4af113548b901f30c71cf16e506db8f2716d0534d3b9b3683766685a"
+    },
+    {
+      "id": "juniper",
+      "name": "Juniper",
+      "tag": "Go where you grow",
+      "family": "Fuzzy",
+      "color": "#B0D8CA",
+      "subject": "a mint leaf-shaped fuzzy sprite with two small rounded leaf ears, lavender headphones, little arms and feet, a friendly confident face",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Juniper (do not write its name). Subject: a mint leaf-shaped fuzzy sprite with two small rounded leaf ears, lavender headphones, little arms and feet, a friendly confident face. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/juniper.png",
+      "nativeImage": "packages/assets/avatars/juniper.png",
+      "webImage": "apps/web/public/avatars/juniper.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-96010256-2960-4a14-ab24-3513647effcf.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 338357,
+      "webBytes": 42712,
+      "sha256": "75e2756e11bc956aa3c9b1cccce9748f88852c00b32580a0b9834af65c107974"
+    },
+    {
+      "id": "luma",
+      "name": "Luma",
+      "tag": "Follow the glow",
+      "family": "Cosmic",
+      "color": "#ECC7B8",
+      "subject": "a soft peach crescent-moon plush creature with a thick rounded crescent silhouette, a cobalt mini pouch, two glossy eyes and stubby legs",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Luma (do not write its name). Subject: a soft peach crescent-moon plush creature with a thick rounded crescent silhouette, a cobalt mini pouch, two glossy eyes and stubby legs. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/luma.png",
+      "nativeImage": "packages/assets/avatars/luma.png",
+      "webImage": "apps/web/public/avatars/luma.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-ba39f0a1-5a3c-4125-80e0-4ebfe63cc87e.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 311136,
+      "webBytes": 33412,
+      "sha256": "94ed910e480ad367d58198d3992d355f6dd75edf120731193de02c75d19cf7cc"
+    },
+    {
+      "id": "basil",
+      "name": "Basil",
+      "tag": "Pond-side daydreams",
+      "family": "Critters",
+      "color": "#ABD3B8",
+      "subject": "a sage-green squat frog plush creature with softly bulging round eyes, blue padded hoodie and little round feet, a serene smile",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Basil (do not write its name). Subject: a sage-green squat frog plush creature with softly bulging round eyes, blue padded hoodie and little round feet, a serene smile. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/basil.png",
+      "nativeImage": "packages/assets/avatars/basil.png",
+      "webImage": "apps/web/public/avatars/basil.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-9a4b7bd0-bacb-4273-acda-55743386a957.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 339401,
+      "webBytes": 36912,
+      "sha256": "c9848a8d4c11bc94c80a020cee9880e9204bcf6178d740aadf4e77107d3e9856"
+    },
+    {
+      "id": "nori",
+      "name": "Nori",
+      "tag": "Make a splash",
+      "family": "Critters",
+      "color": "#91CDD4",
+      "subject": "a teal chubby axolotl plush creature with rounded lavender external gills, short limbs and a little cobalt scarf, an adorable curious face",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Nori (do not write its name). Subject: a teal chubby axolotl plush creature with rounded lavender external gills, short limbs and a little cobalt scarf, an adorable curious face. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/nori.png",
+      "nativeImage": "packages/assets/avatars/nori.png",
+      "webImage": "apps/web/public/avatars/nori.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-73cfa3ff-a3db-45a6-b205-564e537b995e.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 320983,
+      "webBytes": 38952,
+      "sha256": "255445e2c324748125f779bf565fec9e3804ea0fc0b263001b5a5c97fa6127ed"
+    },
+    {
+      "id": "opal",
+      "name": "Opal",
+      "tag": "A rare little find",
+      "family": "Cosmic",
+      "color": "#C9B2EA",
+      "subject": "a lilac rounded crystal-inspired creature with soft cushion-like facets, a cobalt cheek star patch and tiny arms and feet, friendly glossy eyes",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Opal (do not write its name). Subject: a lilac rounded crystal-inspired creature with soft cushion-like facets, a cobalt cheek star patch and tiny arms and feet, friendly glossy eyes. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/opal.png",
+      "nativeImage": "packages/assets/avatars/opal.png",
+      "webImage": "apps/web/public/avatars/opal.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-a1b7523f-f825-48da-a707-962cde0445b7.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 388520,
+      "webBytes": 52728,
+      "sha256": "9d3b87d0b6c47f4fdc74399e4bd4fe533f7f826070c71455ed81c6140da37c3a"
+    },
+    {
+      "id": "indigo",
+      "name": "Indigo",
+      "tag": "Midnight wanderer",
+      "family": "Fuzzy",
+      "color": "#899DE0",
+      "subject": "a deep periwinkle-blue shaggy little monster with light-lavender rounded horns, a violet star-shaped crossbody bag and a sly kind smile",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Indigo (do not write its name). Subject: a deep periwinkle-blue shaggy little monster with light-lavender rounded horns, a violet star-shaped crossbody bag and a sly kind smile. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/indigo.png",
+      "nativeImage": "packages/assets/avatars/indigo.png",
+      "webImage": "apps/web/public/avatars/indigo.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-bbcecabb-c813-4b19-8097-d888ead9102d.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 334747,
+      "webBytes": 34220,
+      "sha256": "a043eb897c6c5f3262b703faa407b7635feceb4371a09d51cefa5777ec9d7cf8"
+    },
+    {
+      "id": "suki",
+      "name": "Suki",
+      "tag": "Stay a little curious",
+      "family": "Critters",
+      "color": "#D8ACDB",
+      "subject": "a dusty pink-violet fox-like round plush with big rounded ears, soft pale-lilac muzzle and a cobalt neck scarf, a kind smile",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Suki (do not write its name). Subject: a dusty pink-violet fox-like round plush with big rounded ears, soft pale-lilac muzzle and a cobalt neck scarf, a kind smile. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/suki.png",
+      "nativeImage": "packages/assets/avatars/suki.png",
+      "webImage": "apps/web/public/avatars/suki.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-06a45233-774b-4076-a7b9-051a688c5e31.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 390058,
+      "webBytes": 42624,
+      "sha256": "af89b85a653000542d224e4ecc15fc743321f899b3ce7108239a6e6bc70124a0"
+    },
+    {
+      "id": "fenn",
+      "name": "Fenn",
+      "tag": "Ears open, world ready",
+      "family": "Critters",
+      "color": "#A1CDE3",
+      "subject": "a pale cyan fennec-fox plush with very large rounded ears and a cobalt mini backpack, small hands and feet, bright curious eyes",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Fenn (do not write its name). Subject: a pale cyan fennec-fox plush with very large rounded ears and a cobalt mini backpack, small hands and feet, bright curious eyes. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/fenn.png",
+      "nativeImage": "packages/assets/avatars/fenn.png",
+      "webImage": "apps/web/public/avatars/fenn.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-216cf30b-7101-4011-88f2-c660b4ab7495.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 319707,
+      "webBytes": 32880,
+      "sha256": "35c04a901484ac9b899ed739c0867d31f34857ea61aa0a6f0885bd84f5ecd4df"
+    },
+    {
+      "id": "otto",
+      "name": "Otto",
+      "tag": "Eight ways to explore",
+      "family": "Critters",
+      "color": "#C3A2E3",
+      "subject": "a soft purple octopus plush creature with eight short clearly separated rounded tentacles, small round teal glasses and friendly smiling eyes",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Otto (do not write its name). Subject: a soft purple octopus plush creature with eight short clearly separated rounded tentacles, small round teal glasses and friendly smiling eyes. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/otto.png",
+      "nativeImage": "packages/assets/avatars/otto.png",
+      "webImage": "apps/web/public/avatars/otto.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-addf0c60-d9c4-4ffa-990d-b701bec63853.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 314130,
+      "webBytes": 33832,
+      "sha256": "d8257ee3afefcf8c57fba808722f192b98e4f8595ee5cee964b49144937f14ca"
+    },
+    {
+      "id": "puddle",
+      "name": "Puddle",
+      "tag": "Just go with the flow",
+      "family": "Oddballs",
+      "color": "#A2C8EE",
+      "subject": "a blue rounded puddle-shaped plush blob with two floppy ear-like lobes, a violet bucket hat and little feet, a playful gentle face",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Puddle (do not write its name). Subject: a blue rounded puddle-shaped plush blob with two floppy ear-like lobes, a violet bucket hat and little feet, a playful gentle face. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/puddle.png",
+      "nativeImage": "packages/assets/avatars/puddle.png",
+      "webImage": "apps/web/public/avatars/puddle.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-bf00f2b5-442a-4419-81da-c2328225d97b.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 320472,
+      "webBytes": 36566,
+      "sha256": "f63a5fea021f8d8377d60f3c95a8b0aa7dabe4cb1c557e8a38f67020ac171365"
+    },
+    {
+      "id": "flint",
+      "name": "Flint",
+      "tag": "Solid travel buddy",
+      "family": "Oddballs",
+      "color": "#A3ACC7",
+      "subject": "a slate-blue oval pebble plush creature with soft rounded ridges, purple headphones, tiny mitten hands and a confident small grin",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Flint (do not write its name). Subject: a slate-blue oval pebble plush creature with soft rounded ridges, purple headphones, tiny mitten hands and a confident small grin. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/flint.png",
+      "nativeImage": "packages/assets/avatars/flint.png",
+      "webImage": "apps/web/public/avatars/flint.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-e1b1cfa2-56eb-41a0-8770-72dd2b4d9b34.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 341300,
+      "webBytes": 34836,
+      "sha256": "a7e1940292326777ab1e072f5272af8227c00540e54c9207c6b5d42da83a2c89"
+    },
+    {
+      "id": "halo",
+      "name": "Halo",
+      "tag": "Orbiting good things",
+      "family": "Cosmic",
+      "color": "#B2A6E3",
+      "subject": "a periwinkle fuzzy planet-shaped little creature with one padded lavender Saturn ring around its middle, cobalt sneakers and a friendly smiling face",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Halo (do not write its name). Subject: a periwinkle fuzzy planet-shaped little creature with one padded lavender Saturn ring around its middle, cobalt sneakers and a friendly smiling face. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/halo.png",
+      "nativeImage": "packages/assets/avatars/halo.png",
+      "webImage": "apps/web/public/avatars/halo.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-e5dd3664-80f3-4d39-9913-f6654af2efb0.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 339164,
+      "webBytes": 45286,
+      "sha256": "f3ada7925b7959f32ecae02d61b56bdd37af96fd0c676a944bf37a29419e57d2"
+    },
+    {
+      "id": "loop",
+      "name": "Loop",
+      "tag": "Always another way",
+      "family": "Fuzzy",
+      "color": "#C9A0D8",
+      "subject": "a raspberry-lilac fluffy bean creature with two soft loop-shaped upright ears, a blue crossbody pouch and a cheeky smile",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Loop (do not write its name). Subject: a raspberry-lilac fluffy bean creature with two soft loop-shaped upright ears, a blue crossbody pouch and a cheeky smile. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/loop.png",
+      "nativeImage": "packages/assets/avatars/loop.png",
+      "webImage": "apps/web/public/avatars/loop.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-73055e05-82ab-4784-8e9a-93d253d95b58.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 356069,
+      "webBytes": 45588,
+      "sha256": "fdcc1ac9ce4136200e3bb0aaeac0be1b868b61dd6799f52d85becfab444060e8"
+    },
+    {
+      "id": "bumble",
+      "name": "Bumble",
+      "tag": "Buzzing for the next stop",
+      "family": "Critters",
+      "color": "#E7D096",
+      "subject": "a warm golden-yellow and violet rounded bumblebee plush creature with tiny soft wings, a cobalt cap, little feet and a cheerful non-insect-like friendly face",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Bumble (do not write its name). Subject: a warm golden-yellow and violet rounded bumblebee plush creature with tiny soft wings, a cobalt cap, little feet and a cheerful non-insect-like friendly face. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/bumble.png",
+      "nativeImage": "packages/assets/avatars/bumble.png",
+      "webImage": "apps/web/public/avatars/bumble.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-0c852491-0de0-4acd-a333-d62d1564bb21.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 407042,
+      "webBytes": 55862,
+      "sha256": "23209d72af0bf67d95f3eba02be4dd6294031e8e94465c41ea0f1fa46ef016a8"
+    },
+    {
+      "id": "tizzy",
+      "name": "Tizzy",
+      "tag": "Tiny chaos, great company",
+      "family": "Fuzzy",
+      "color": "#9CD9DA",
+      "subject": "a turquoise fuzzy round monster with a rose-like soft tuft on its head, purple round eyeglasses and a happy grin",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Tizzy (do not write its name). Subject: a turquoise fuzzy round monster with a rose-like soft tuft on its head, purple round eyeglasses and a happy grin. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/tizzy.png",
+      "nativeImage": "packages/assets/avatars/tizzy.png",
+      "webImage": "apps/web/public/avatars/tizzy.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-f28c7fcf-160f-4a4d-8bfd-86bb9c0ca099.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 320395,
+      "webBytes": 33724,
+      "sha256": "6e0bc8559c322cf0cd522f5ae6ad7ade48cf55cc599021dd773b4abfd17755dc"
+    },
+    {
+      "id": "quill",
+      "name": "Quill",
+      "tag": "Soft on the inside",
+      "family": "Critters",
+      "color": "#B7A2D2",
+      "subject": "a lavender hedgehog-like chubby plush creature with soft fluffy rounded spines, a cobalt waist bag and a gentle curious smile",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Quill (do not write its name). Subject: a lavender hedgehog-like chubby plush creature with soft fluffy rounded spines, a cobalt waist bag and a gentle curious smile. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/quill.png",
+      "nativeImage": "packages/assets/avatars/quill.png",
+      "webImage": "apps/web/public/avatars/quill.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-2545ed50-30ad-491a-85da-90f2a2b51ffa.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 374494,
+      "webBytes": 49368,
+      "sha256": "cc5c82927bee4f175233f15506ed9d953bbec5c6b54b5053f36e14c0a0a1c2d1"
+    },
+    {
+      "id": "roo",
+      "name": "Roo",
+      "tag": "Pocket-sized adventure",
+      "family": "Critters",
+      "color": "#E8C0B0",
+      "subject": "a peach kangaroo-like plush creature with short rounded ears, a periwinkle belly pouch and blue little shoes, warm glossy eyes",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Roo (do not write its name). Subject: a peach kangaroo-like plush creature with short rounded ears, a periwinkle belly pouch and blue little shoes, warm glossy eyes. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/roo.png",
+      "nativeImage": "packages/assets/avatars/roo.png",
+      "webImage": "apps/web/public/avatars/roo.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-652a0857-f245-4f90-b024-fb39cbea1664.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 293593,
+      "webBytes": 36700,
+      "sha256": "396c4d6e9a276144c1b1364a0d2c52f625e8f1a94699e567dc7f5a16c8f38871"
+    },
+    {
+      "id": "zuzu",
+      "name": "Zuzu",
+      "tag": "A little legendary",
+      "family": "Critters",
+      "color": "#ACE0C9",
+      "subject": "a mint-green baby-dragon-like plush monster with tiny rounded wings and soft blunt horns, a cobalt blue bandana and a friendly smile",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Zuzu (do not write its name). Subject: a mint-green baby-dragon-like plush monster with tiny rounded wings and soft blunt horns, a cobalt blue bandana and a friendly smile. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/zuzu.png",
+      "nativeImage": "packages/assets/avatars/zuzu.png",
+      "webImage": "apps/web/public/avatars/zuzu.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-3d008b4c-0c4f-4152-b1ab-4f7211215489.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 326105,
+      "webBytes": 34124,
+      "sha256": "d0ac8a53a95281947e52bbb68fbc8167dff38c02352c6ac1c0fa5db937f9e4b8"
+    },
+    {
+      "id": "mello",
+      "name": "Mello",
+      "tag": "Chill is a destination",
+      "family": "Fuzzy",
+      "color": "#EDC4B2",
+      "subject": "an apricot rounded marshmallow plush creature with oversized soft black headphones, tiny mitten hands and a relaxed half-smile",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Mello (do not write its name). Subject: an apricot rounded marshmallow plush creature with oversized soft black headphones, tiny mitten hands and a relaxed half-smile. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/mello.png",
+      "nativeImage": "packages/assets/avatars/mello.png",
+      "webImage": "apps/web/public/avatars/mello.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-fa3f271d-a600-471d-8fe8-111b4cd45e99.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 358773,
+      "webBytes": 39036,
+      "sha256": "92ce0247917edfe44a6f007ce30b193c6310ccb1b3a006065779161e3f6b99c5"
+    },
+    {
+      "id": "cleo",
+      "name": "Cleo",
+      "tag": "Curiosity looks good",
+      "family": "Critters",
+      "color": "#C3A4E1",
+      "subject": "a violet chubby cat-like plush creature with short rounded ears, silver-blue puffy scarf and small feet, a calm confident smile",
+      "prompt": "Use case: stylized-concept. Asset type: original Rymzi mobile app profile character, one transparent cutout. Primary request: create ONE new collectible character named Cleo (do not write its name). Subject: a violet chubby cat-like plush creature with short rounded ears, silver-blue puffy scarf and small feet, a calm confident smile. Style/medium: premium playful 3D plush and soft clay character; rounded toy-like silhouette, fine tactile velvety fabric or fuzzy fur, small black glossy oval eyes with tiny highlights, expressive brows and simple smile; matches a family of lavender fluffy headphone monsters, cobalt antenna aliens, mint bunny creatures and orange star plush characters. Composition: front-facing full body, centered in a square, camera at the character eye level, whole head/ears/accessories/feet fully visible, about 80% of frame height, even 10% transparent safe margin. One coherent body, readable at 64 pixels. Lighting: generous soft studio light, lilac/cobalt rim light, clear face and silhouette on a near-black app background. Scene/backdrop: genuinely transparent alpha, no ground, no checkerboard, no background and no heavy cast shadow. Constraints: exactly one character, no people, no text, no logo, no border, no extra loose objects, no collage, no duplicates, no watermark. Friendly cool teen personality; not scary or realistic animal anatomy.",
+      "sourceImage": "packages/assets/avatars/characters-v2/originals/cleo.png",
+      "nativeImage": "packages/assets/avatars/cleo.png",
+      "webImage": "apps/web/public/avatars/cleo.webp",
+      "toolImage": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-d86249e8-6474-40b4-b80a-c2e9a7acebd9.png",
+      "nativeSize": [
+        512,
+        512
+      ],
+      "nativeBytes": 359304,
+      "webBytes": 36166,
+      "sha256": "0fe8ef3cd982f81e3b31512ac9fdaebd3427a58b2d245cf095f6b329936a2e9c"
+    }
+  ]
+}

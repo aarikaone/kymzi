@@ -1,0 +1,36 @@
+{
+  "method": "built-in image_gen",
+  "transparent_background": true,
+  "prompt_set_description": "Final character design briefs for reproducing the generated asset family.",
+  "shared_brief": "Original collectible 3D designer-toy avatar for Kymzi, a playful teen friendship game for ages 13\u201320. Full character centered, isolated on a genuinely transparent background, soft tactile clay/vinyl material, premium studio lighting, crisp silhouette and generous padding. Expressive and cool with simple dark eyes. No text, logo, watermark or existing franchise character.",
+  "assets": [
+    {
+      "id": "cloud",
+      "prompt": "Original collectible 3D designer-toy avatar for Kymzi, a playful teen friendship game for ages 13\u201320. Full character centered, isolated on a genuinely transparent background, soft tactile clay/vinyl material, premium studio lighting, crisp silhouette and generous padding. Expressive and cool with simple dark eyes. No text, logo, watermark or existing franchise character. A lavender fluffy round cloud creature with two small horns, glossy black eyes, a subtle mischievous smile, cobalt-blue headphones and tiny feet.",
+      "original": "packages/assets/avatars/cloud.png",
+      "optimized": "packages/assets/avatars/cloud.webp",
+      "web_copy": "apps/web/public/avatars/cloud.webp"
+    },
+    {
+      "id": "orbit",
+      "prompt": "Original collectible 3D designer-toy avatar for Kymzi, a playful teen friendship game for ages 13\u201320. Full character centered, isolated on a genuinely transparent background, soft tactile clay/vinyl material, premium studio lighting, crisp silhouette and generous padding. Expressive and cool with simple dark eyes. No text, logo, watermark or existing franchise character. A cobalt-blue bean-shaped alien with asymmetric antennae, glossy dark eyes and one raised eyebrow, wearing a lime-green crossbody bag.",
+      "original": "packages/assets/avatars/orbit.png",
+      "optimized": "packages/assets/avatars/orbit.webp",
+      "web_copy": "apps/web/public/avatars/orbit.webp"
+    },
+    {
+      "id": "sunny",
+      "prompt": "Original collectible 3D designer-toy avatar for Kymzi, a playful teen friendship game for ages 13\u201320. Full character centered, isolated on a genuinely transparent background, soft tactile clay/vinyl material, premium studio lighting, crisp silhouette and generous padding. Expressive and cool with simple dark eyes. No text, logo, watermark or existing franchise character. A tangerine-orange rounded five-point star creature with a cheeky smile, a lilac neck bandana and tiny feet.",
+      "original": "packages/assets/avatars/sunny.png",
+      "optimized": "packages/assets/avatars/sunny.webp",
+      "web_copy": "apps/web/public/avatars/sunny.webp"
+    },
+    {
+      "id": "sprout",
+      "prompt": "Original collectible 3D designer-toy avatar for Kymzi, a playful teen friendship game for ages 13\u201320. Full character centered, isolated on a genuinely transparent background, soft tactile clay/vinyl material, premium studio lighting, crisp silhouette and generous padding. Expressive and cool with simple dark eyes. No text, logo, watermark or existing franchise character. A mint-green pill-shaped rabbit creature with tilted ears, calm dark eyes and cobalt-blue chunky sneakers.",
+      "original": "packages/assets/avatars/sprout.png",
+      "optimized": "packages/assets/avatars/sprout.webp",
+      "web_copy": "apps/web/public/avatars/sprout.webp"
+    }
+  ]
+}

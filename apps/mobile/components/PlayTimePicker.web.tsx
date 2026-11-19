@@ -1,0 +1,2 @@
+import React from 'react';
+export function PlayTimePicker({value,onChange}:{value:string;onChange:(value:string)=>void}){return <input aria-label="Daily play time" type="time" value={value} onChange={e=>{if(e.target.value)onChange(e.target.value);}} style={{colorScheme:'dark',fontSize:44,fontWeight:500,letterSpacing:-2,padding:'14px 0',border:0,borderBottom:'2px solid #D0DEC3',background:'transparent',color:'#F1F5EB',width:'100%',maxWidth:290,textAlign:'center'}}/>;}

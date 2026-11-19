@@ -1,0 +1,46 @@
+{
+  "name": "Rymzi",
+  "concept": "Discovery Spark",
+  "logo": "A filled travel pin with a four-point star cutout; the wordmark repeats the star over the i.",
+  "palette": {
+    "ground": "#080810",
+    "surface": "#17152C",
+    "ink": "#F0E8FF",
+    "muted": "#BBB3D6",
+    "line": "#51406F",
+    "accent": "#BB8FFF",
+    "blue": "#9EB6FF",
+    "action": "#7135E8",
+    "actionBlue": "#3453D9",
+    "actionInk": "#F5EDFF"
+  },
+  "typography": {
+    "body": "DM Sans",
+    "display": "DM Sans Semibold",
+    "handwritten": "Caveat, used sparingly",
+    "wordmark": "Outlined DM Sans Bold with a custom star over the dotless i."
+  },
+  "source": "Original code-native SVG geometry; editable mark and outlined DM Sans Bold lettering. Dedicated generate_logo tool was unavailable.",
+  "directions": {
+    "sparkpin": "A discovery pin with a negative-space star; selected for clear small-size silhouette.",
+    "cityfold": "Three folded map panels and a discovery window.",
+    "roamloop": "A bold folded R with a blue departure leg."
+  },
+  "applications": [
+    "Web header",
+    "Native header",
+    "PWA icon",
+    "iOS/Android app icon",
+    "Browser favicon"
+  ],
+  "reviewed_assets": "Three original directions compared. Selected mark visually reviewed at 16, 24, 48 and 240px, plus header lockup, app icon and one-color version. Live browser and physical-device verification remain pending.",
+  "theme": "Black, luminous lavender and electric violet-blue. Brighter foregrounds, semibold headings and distinct action fills. No pure-white UI surfaces.",
+  "logoPalette": {
+    "highlight": "#C799FF",
+    "purple": "#B66BFF",
+    "blue": "#648BFF",
+    "wordStart": "#C18DFF",
+    "wordEnd": "#7EA5FF",
+    "ground": "#050509"
+  }
+}

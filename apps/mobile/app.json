@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "Kymzi",
+    "slug": "rymzi",
+    "version": "0.1.0",
+    "orientation": "portrait",
+    "scheme": "rymzi",
+    "userInterfaceStyle": "dark",
+    "newArchEnabled": true,
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.rymzi.app"
+    },
+    "android": {
+      "package": "com.rymzi.app",
+      "edgeToEdgeEnabled": true,
+      "adaptiveIcon": {
+        "foregroundImage": "../../packages/assets/brand/kymzi-adaptive.png",
+        "backgroundColor": "#171624",
+        "monochromeImage": "../../packages/assets/brand/kymzi-monochrome.png"
+      }
+    },
+    "web": {
+      "bundler": "metro"
+    },
+    "icon": "../../packages/assets/brand/kymzi-app-icon.png",
+    "backgroundColor": "#090C0A",
+    "plugins": [
+      [
+        "expo-camera",
+        {
+          "cameraPermission": "Allow Kymzi to take city photos. Photos are reviewed before you add them.",
+          "microphonePermission": false,
+          "recordAudioAndroid": false
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Choose an optional profile photo. It becomes eligible for a pal after three matches.",
+          "cameraPermission": "Allow Kymzi to take city photos. Photos are reviewed before you add them.",
+          "microphonePermission": false
+        }
+      ]
+    ]
+  }
+}

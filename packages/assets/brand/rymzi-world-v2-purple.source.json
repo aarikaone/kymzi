@@ -1,0 +1,11 @@
+{
+  "tool": "built-in image_gen.imagegen",
+  "mode": "edit",
+  "generatedOn": "2026-11-18",
+  "prompt": "Use case: lighting-weather / style-transfer. Edit target: the attached Rymzi miniature travel-world illustration. Keep the globe, miniature architecture, mountain, trees, landmarks, composition, proportions, material detail and black background. Change ONLY the palette and lighting to an elegant restrained black, deep purple and blue theme. Oceans in deep sapphire and indigo; land in muted violet and periwinkle; miniature architecture in twilight plum, dusky lavender and cobalt; vegetation in midnight blue and desaturated purple. Very subtle violet-blue rim light. Mid-to-low luminance, soft shadows and satin clay materials. Snow and clouds should be lavender-blue, never white. The ground/background stays almost black #050509 with no bright halo. No white, no lime, no green, no yellow, no orange, no coral, no pink, no cyan, no rainbow or neon saturation. Preserve clear shapes and depth while making the overall image calm and moody. No words, letters, logos, airplane or UI. Keep wide composition and the entire floating globe fully visible.",
+  "reference": "packages/assets/brand/rymzi-world-v1.png",
+  "original": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-c5c62036-0c20-42b3-9c55-44f8b36e084b.png",
+  "source": "packages/assets/brand/rymzi-world-v2-purple.png",
+  "web": "apps/web/public/brand/rymzi-world-v2-purple.webp",
+  "preparation": "Proportional downsize and WebP format conversion for web; edited artwork content otherwise unchanged."
+}

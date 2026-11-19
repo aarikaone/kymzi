@@ -1,0 +1,43 @@
+import type { CSSProperties } from 'react';
+export function Icon({name,size=22,className='',style}:{name:string;size?:number;className?:string;style?:CSSProperties}){
+ const paths:Record<string,React.ReactNode>={
+  heart:<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/>,
+  grid:<><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></>,
+  layers:<><rect x="6" y="3" width="12" height="15" rx="2"/><path d="M3 7v13a1 1 0 0 0 1 1h11M10 7h4M10 11h4"/></>,
+  camera:<><path d="M4 6h4l2-3h4l2 3h4a2 2 0 0 1 2 2v11H2V8a2 2 0 0 1 2-2Z"/><circle cx="12" cy="12" r="4"/></>,
+  trash:<><path d="M4 6h16M9 6V3h6v3M6 6l1 15h10l1-15M10 10v7m4-7v7"/></>,
+  bell:<><path d="M5 16h14l-2-3V8a5 5 0 0 0-10 0v5l-2 3Zm5 4h4"/></>,
+  pin:<><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></>,
+  plus:<path d="M12 5v14M5 12h14"/>,
+  play:<><circle cx="12" cy="12" r="9"/><path d="m10 8 6 4-6 4V8Z"/></>,
+  bookmark:<path d="M6 4h12v17l-6-4-6 4Z"/>,
+  chat:<><path d="M21 11a8 8 0 0 1-8 8H6l-4 3V9a7 7 0 0 1 7-7h4a8 8 0 0 1 8 9Z"/><path d="M7 9h9m-9 4h6"/></>,
+  link:<><path d="m9 15-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m0 12a4 4 0 0 0 6 0l4-4a4 4 0 0 0-6-6l-1 1M8 16l8-8"/></>,
+  palette:<><path d="M12 3a9 9 0 1 0 0 18h2a2 2 0 0 0 1-4c-1-1 0-3 2-3h2a3 3 0 0 0 3-3 10 10 0 0 0-10-8Z"/><circle cx="7" cy="9" r="1"/><circle cx="11" cy="6" r="1"/><circle cx="16" cy="8" r="1"/><circle cx="6" cy="14" r="1"/></>,
+  plane:<><path d="m21 3-7 18-4-7-7-4 18-7Z"/><path d="m10 14 5-5"/></>,
+  stamp:<><path d="M4 3h16v18H4z" strokeDasharray="2 2"/><path d="M8 7h8v10H8z"/><path d="m9 14 2-3 2 2 2-3"/></>,
+  globe:<><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="4" ry="9"/><path d="M3 12h18M5 7h14M5 17h14"/></>,
+  trophy:<><path d="M7 3h10v6a5 5 0 0 1-10 0V3ZM12 14v6m-4 1h8M7 5H3v2c0 3 2 5 5 5m9-7h4v2c0 3-2 5-5 5"/></>,
+  crown:<path d="m3 6 5 4 4-7 4 7 5-4-2 13H5L3 6Zm2 9h14"/>,
+  lock:<><rect x="6" y="10" width="12" height="11" rx="3"/><path d="M9 10V7a3 3 0 0 1 6 0v3m-3 5v2"/></>,
+  ink:<><path d="M12 2c-2 5-8 9-8 14a8 8 0 0 0 16 0c0-5-6-9-8-14Z"/><path d="M8 15c0 2 1 3 3 4"/></>,
+  flip:<><path d="M4 8h13l-3-3m3 3-3 3M20 16H7l3 3m-3-3 3-3"/><path d="M4 12V8m16 0v8"/></>,
+  clock:<><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></>,calendar:<><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M7 3v4m10-4v4M3 10h18"/></>,people:<><circle cx="9" cy="8" r="3"/><path d="M3 21v-2a6 6 0 0 1 12 0v2m1-16a3 3 0 0 1 0 6m3 10v-2a6 6 0 0 0-3-5"/></>,home:<><path d="m3 10 9-7 9 7v10H6V10"/><path d="M9 20v-7h6v7"/></>,user:<><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></>,arrow:<><path d="M5 12h14m-6-6 6 6-6 6"/></>,back:<path d="m14 5-7 7 7 7"/>,close:<path d="m6 6 12 12M6 18 18 6"/>,check:<path d="m5 12 4 4L19 6"/>,
+  spark:<><path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5Z"/></>,
+  planet:<><circle cx="12" cy="12" r="7"/><ellipse cx="12" cy="12" rx="11" ry="4" transform="rotate(-30 12 12)"/></>,
+  compass:<><circle cx="12" cy="12" r="9"/><path d="m16 8-2.5 5.5L8 16l2.5-5.5Z"/></>,
+  orbit:<><circle cx="12" cy="12" r="3"/><circle cx="12" cy="12" r="9"/><circle cx="19" cy="6" r="2" fill="currentColor"/></>,
+  shuffle:<><path d="M4 6h3c4 0 6 12 10 12h3m-4-4 4 4-4 4M4 18h3c1.5 0 3-2 4-4m2-4c1-2 2.5-4 4-4h3m-4-4 4 4-4 4"/></>,
+  search:<><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></>,
+  share:<><path d="M12 15V3m-4 4 4-4 4 4M5 11v8a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-8"/></>,
+  save:<path d="M6 4h12v17l-6-4-6 4Z"/>,info:<><circle cx="12" cy="12" r="9"/><path d="M12 11v6m0-10v.1"/></>,
+  smile:<><circle cx="12" cy="12" r="9"/><path d="M8 14c1 3 7 3 8 0M8 9h.1M16 9h.1"/></>,
+  shield:<><path d="m12 3 8 3v6c0 5-8 9-8 9s-8-4-8-9V6Z"/><path d="m8 12 3 3 5-6"/></>,
+  settings:<><path d="M4 7h16M4 17h16"/><circle cx="9" cy="7" r="3" fill="currentColor"/><circle cx="15" cy="17" r="3" fill="currentColor"/></>,
+  more:<><circle cx="5" cy="12" r="1" fill="currentColor"/><circle cx="12" cy="12" r="1" fill="currentColor"/><circle cx="19" cy="12" r="1" fill="currentColor"/></>,
+  download:<><path d="M12 3v12m-4-4 4 4 4-4M4 17v4h16v-4"/></>,
+  bolt:<path d="m13 2-9 12h7l-1 8 10-13h-7Z"/>,
+ };
+ return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className} style={style}>{paths[name]??paths.spark}</svg>;
+}
+export function Wordmark(){return <span className="wordmark"><img className="brand-lockup" src="/brand/kymzi-wordmark.svg?v=softline6" alt="Kymzi"/></span>}

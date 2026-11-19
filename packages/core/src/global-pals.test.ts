@@ -1,0 +1,30 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {emptyPreview,emptyLaunch,simulatePalUnlock,seedGlobalPals,readPreview,palSummaries,worldStats,comingHomeVisit,palVisitLabels,palUpdates,readPalUpdates,readGlobalPals,type PreviewState,type AgeBand} from './index.ts';
+const NOW=new Date('2026-11-19T05:00:00Z'),ZONE='Asia/Kolkata';
+function active(band:AgeBand='16-17'):PreviewState{return simulatePalUnlock({...emptyPreview(NOW),profile:{name:'123456',avatar:'cloud',ageBand:band,city:'Chennai',country:'India'},launch:emptyLaunch(NOW)},NOW);}
+test('the global showcase adds three distinct one-match pals without spending plays or changing real referral progress',()=>{
+ const original=active(),s=seedGlobalPals(original,NOW,ZONE),pals=palSummaries(s);assert.equal(pals.length,3);assert.equal(new Set(pals.map(p=>p.countryId)).size,3);assert.equal(pals.every(p=>p.matches===1&&!p.photoUnlocked&&!p.chatUnlocked),true);assert.equal(s.social.proofs.every(p=>p.simulated===true&&p.playId.startsWith('global-starter:')),true);assert.deepEqual(s.daily,original.daily);assert.deepEqual(s.answers,original.answers);assert.deepEqual(s.profile,original.profile);assert.deepEqual(s.launch!.friendCredits,original.launch!.friendCredits);assert.deepEqual(s.visits,original.visits);assert.deepEqual(s.social.meetups,original.social.meetups);assert.equal(worldStats(s).cities,3);assert.equal(s.launch!.tickets.length,0);
+ assert.equal(seedGlobalPals(s,new Date(NOW.getTime()+3600000),ZONE),s);const copy=readPreview(JSON.parse(JSON.stringify(s)),NOW);assert.deepEqual(copy.launch!.globalPals,s.launch!.globalPals);assert.equal(seedGlobalPals(copy,NOW,ZONE),copy);
+});
+test('one pal has a saved planned visit to the profile city, with an explicit local date and time',()=>{
+ const s=seedGlobalPals(active(),NOW,ZONE),visit=comingHomeVisit(s,NOW)!;assert.equal(s.launch!.globalPals!.homeVisits.length,1);assert.equal(visit.city,'Chennai');assert.equal(visit.country,'India');assert.equal(visit.timeZone,ZONE);assert.equal(visit.arrivesAt,'2026-11-20T11:00:00.000Z');assert.equal(visit.simulated,true);assert.equal(palVisitLabels(visit).time,'4:30 PM');assert.match(palVisitLabels(visit).date,/Nov 20, 2026/);assert.equal(comingHomeVisit(s,NOW,visit.peerId)!.id,visit.id);assert.equal(comingHomeVisit(s,NOW,'unrelated-pal'),undefined);
+ const later=seedGlobalPals(s,new Date(NOW.getTime()+5*86400000),ZONE);assert.equal(later,s);assert.equal(comingHomeVisit(later,new Date(NOW.getTime()+5*86400000)),undefined);assert.equal(later.launch!.globalPals!.homeVisits[0].arrivesAt,visit.arrivesAt);assert.equal(s.visits.visits.length,0);
+});
+test('seeding tops up existing pals once and never resurrects blocked visitors or alters paid drafts',()=>{
+ const base=seedGlobalPals(active(),NOW,ZONE),one={...base,launch:{...base.launch!,globalPals:undefined},social:{...base.social,proofs:base.social.proofs.slice(0,1)}};const draft={...one.daily,usageDay:'2026-11-19',playsToday:3,playTime:'19:00',nextUnlockAt:'2026-11-20T19:00:00Z'};
+ const topped=seedGlobalPals({...one,daily:draft},NOW,ZONE);assert.equal(palSummaries(topped).length,3);assert.equal(topped.social.proofs.filter(p=>p.peerId===one.social.proofs[0].peerId).length,1);assert.deepEqual(topped.daily,draft);
+ const id=comingHomeVisit(base,NOW)!.peerId,blocked={...base,blocked:[id]};assert.equal(seedGlobalPals(blocked,NOW,ZONE),blocked);assert.equal(palSummaries(blocked).length,2);assert.equal(comingHomeVisit(blocked,NOW),undefined);
+});
+test('visit notifications carry the date/time and open the pal rather than claiming live presence in a city board',()=>{
+ const s=seedGlobalPals(active(),NOW,ZONE),visit=comingHomeVisit(s,NOW)!,note=palUpdates(s,NOW).find(n=>n.target==='pal')!;assert.equal(note.peerId,visit.peerId);assert.equal(note.title,'Pal 01 is coming to Chennai');assert.match(note.detail,/4:30 PM/);assert.match(note.detail,/Asia\/Kolkata/);assert.equal(note.demo,true);assert.equal(note.read,false);const read=readPalUpdates(s,[note.id],NOW);assert.equal(palUpdates(read,NOW).find(n=>n.id===note.id)!.read,true);assert.ok(comingHomeVisit(read,NOW));
+});
+test('home location and cohort boundaries prevent stale or unrelated coming badges',()=>{
+ const s=seedGlobalPals(active(),NOW,ZONE);assert.equal(comingHomeVisit({...s,profile:{...s.profile!,city:'Paris'}},NOW),undefined);assert.equal(comingHomeVisit({...s,profile:{...s.profile!,ageBand:'13-15'}},NOW),undefined);assert.equal(comingHomeVisit({...s,profile:{...s.profile!,ageBand:'10-12'}},NOW),undefined);
+ const locked={...s,launch:{...s.launch!,globalPlay:undefined}};const restored=seedGlobalPals(locked,NOW,ZONE);assert.ok(restored.launch!.globalPlay);assert.deepEqual(restored.social,locked.social);assert.deepEqual(restored.daily,locked.daily);assert.ok(comingHomeVisit(restored,NOW));assert.equal(comingHomeVisit(locked,NOW),undefined);
+ const missing={...active(),profile:{name:'123456',avatar:'cloud' as const,ageBand:'16-17' as const}};const seeded=seedGlobalPals(missing,NOW,ZONE);assert.equal(palSummaries(seeded).length,3);assert.equal(comingHomeVisit(seeded,NOW),undefined);const located=seedGlobalPals({...seeded,profile:{...seeded.profile!,city:'Chennai',country:'India'}},NOW,ZONE);assert.ok(comingHomeVisit(located,NOW));assert.equal(located.social.proofs.length,3);
+});
+test('arrival is based on the stored timezone and corrupt metadata cannot create public presence or personal-photo access',()=>{
+ const s=seedGlobalPals(active(),new Date('2026-11-19T02:00:00Z'),'America/New_York');assert.equal(s.launch!.globalPals!.homeVisits[0].arrivesAt,'2026-11-19T21:30:00.000Z');
+ const raw=JSON.parse(JSON.stringify(s.launch!.globalPals));raw.homeVisits[0].latitude=1;raw.homeVisits[0].realPhoto='private';const clean=readGlobalPals(raw)!;assert.equal(JSON.stringify(clean).includes('latitude'),false);assert.equal(JSON.stringify(clean).includes('realPhoto'),false);raw.homeVisits[0].timeZone='not/a-zone';assert.equal(readGlobalPals(raw)!.homeVisits.length,0);assert.equal(readGlobalPals({version:1,seededBands:['10-12'],homeVisits:[]})!.seededBands.length,0);
+});

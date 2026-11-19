@@ -1,0 +1,39 @@
+/* Kymzi — a little curiosity, a bigger world. */
+.discovery-trail{display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex-shrink:0}
+.discovery-trail-step{display:flex;align-items:center;gap:6px;color:#B1BCA8;font-size:14px;line-height:21px;white-space:nowrap}
+.discovery-trail-step:first-child{color:#F1F5EB}
+.discovery-trail-number{display:flex;align-items:center;justify-content:center;width:22px;height:22px;border:1px solid #53624B;border-radius:50%;font-size:12px;font-weight:600}
+.discovery-trail-step:first-child .discovery-trail-number{background:#243026;color:#F1F5EB;border-color:#F1F5EB}
+.discovery-trail-arrow{color:#F1F5EB;flex-shrink:0}
+.minimal-play-home .home-heading-with-updates h1{font-size:clamp(39px,10.7cqw,46px)}
+.minimal-play-home h1 em{font-size:1.25em;letter-spacing:-1.4px}
+.rymzi-welcome h1{font-size:clamp(43px,12cqw,53px)}
+.rymzi-welcome h1>em{font-size:1.25em;letter-spacing:-1.5px}
+.category-intro>.flow-note{font-size:16px;color:#B1BCA8}
+.next-stop-card{position:relative;overflow:hidden;isolation:isolate;flex:1;min-height:110px;max-height:200px;border-radius:20px;border:1px solid #52644B;background:#151B16}
+.next-stop-card>.attraction-image{width:100%;height:100%;min-height:110px;aspect-ratio:auto;display:block;border-radius:0}
+.next-stop-card:after{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(180deg,#090C0A33,transparent 40%,#090C0Aaa)}
+.next-stop-postmark{position:absolute;top:12px;right:12px;z-index:1;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:58px;padding:8px 10px;border:1px solid #F1F5EBaa;border-radius:50%;color:#F1F5EB;background:#0A0E0A66;transform:rotate(8deg)}
+.next-stop-postmark>strong{font-size:21px;letter-spacing:1px;font-weight:500;line-height:1.2}
+.next-stop-postmark>small{font-size:9px;letter-spacing:1.3px}
+.next-stop-caption{position:absolute;bottom:13px;left:15px;z-index:1;display:flex;align-items:center;gap:8px;color:#F1F5EB;font-size:14px}
+.anonymous-result.clear-result{gap:13px}
+.anonymous-result>.visit-status{font-size:13px;color:#B1BCA8}
+.anonymous-result>h1{font-size:48px;line-height:1.03}
+.anonymous-result>.result-attractions{gap:9px}
+.anonymous-result .result-attractions h2{font-size:21px;font-weight:500}
+.anonymous-result .result-attractions>div>button>.attraction-image{max-height:90px}
+.city-collection-kicker{font-size:12px;line-height:18px;letter-spacing:1.6px;text-transform:uppercase;color:#B1BCA8;margin-bottom:6px}
+.collection-image-wrap{position:relative;display:block;flex:1;min-height:65px;max-height:220px;border-radius:20px;overflow:hidden}
+.collection-image-wrap>.attraction-image{height:100%;width:100%;max-height:none;display:block;object-fit:cover}
+.collection-city-code{position:absolute;bottom:12px;left:13px;font-size:15px;font-weight:500;letter-spacing:2px;color:#F1F5EB;text-shadow:0 1px 8px #090C0A;background:#090C0A9c;border:1px solid #F1F5EB4a;border-radius:7px;padding:5px 8px}
+.collection-place-progress{display:flex;align-items:center;gap:4px;margin-top:7px}
+.collection-place-progress>i{height:3px;width:17px;border-radius:3px;background:#3E5140}
+.collection-place-progress>i.is-saved{background:#243026}
+.gallery-tabs>.gallery-tab-indicator{width:calc((100% - 8px)/2)}
+@container rymzi-app (max-width:360px){.discovery-trail{gap:5px}.discovery-trail-step{font-size:13px;gap:5px}.discovery-trail-number{width:20px;height:20px}.discovery-trail-arrow{width:11px}.minimal-play-home .home-heading-with-updates h1{font-size:38px}}
+@container rymzi-app (max-height:680px){.minimal-play-home .home-heading-with-updates h1{font-size:37px}.anonymous-result>h1{font-size:43px}.next-stop-card{max-height:155px}.anonymous-result .result-attractions>div>button>.attraction-image{max-height:78px}.anonymous-result.clear-result{gap:10px}}
+@container rymzi-app (max-height:540px){.minimal-play-home .home-heading-with-updates h1{font-size:33px}.next-stop-card{min-height:85px;max-height:115px}.next-stop-card>.attraction-image{min-height:85px}.anonymous-result.clear-result{gap:8px}.anonymous-result .result-attractions>div>button>.attraction-image{max-height:65px}}
+
+.place-saved-status{display:flex;align-items:center;gap:7px;min-height:30px;font-size:15px;color:#F1F5EB}
+.place-saved-status>span{margin-left:auto;font-size:14px;color:#B1BCA8}

@@ -1,0 +1,68 @@
+{
+  "mode": "built-in image_gen",
+  "selectedDirection": "Echo: two chatting shapes form a K. Rebuilt as clean SVG for small screens.",
+  "palette": {
+    "ground": "#171624",
+    "surface": "#302b46",
+    "ink": "#f8f6ff",
+    "muted": "#aaa2be",
+    "accent": "#d5f88f",
+    "secondary": "#c8beff"
+  },
+  "assets": [
+    {
+      "id": "logo-echo",
+      "path": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-87ee3adf-1835-46d5-b326-05c844ae3e67.png",
+      "prompt": "Use case: logo-brand. Asset: standalone app brand symbol, no text. Design a distinctive bold K monogram built from two rounded interlocking chat bubbles, expressing same answers and connection. Flat vector-like silhouette, friendly asymmetric rounded geometry, lime #d5f88f with one lavender #c8beff inset. Crisp large negative spaces, unmistakable at 24px. Transparent background. No mockup, no shadows, no gradients, no lettering. Kymzi palette: midnight #171624, lime #d5f88f, lavender #c8beff, off-white #f8f6ff. Youthful, original, calm confidence, premium playful design.",
+      "transparent": true
+    },
+    {
+      "id": "logo-spark",
+      "path": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-73030e43-38bd-44b6-ad46-0d8f472ad8c0.png",
+      "prompt": "Use case: logo-brand. Alternative logo direction, standalone symbol, no text. Two mirrored soft four-point spark shapes meet into a dynamic butterfly-like K silhouette. Bold rounded geometry, lavender and lime, one clever negative-space connection. Flat graphic, legible at 24px. Transparent background, no mockup or text. Kymzi palette: midnight #171624, lime #d5f88f, lavender #c8beff, off-white #f8f6ff. Youthful, original, calm confidence, premium playful design.",
+      "transparent": true
+    },
+    {
+      "id": "logo-orbit",
+      "path": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-9a3917e2-73bd-4d07-95b9-4965fdd1aafa.png",
+      "prompt": "Use case: logo-brand. Alternative logo direction, standalone symbol, no text. Two chunky interlocking offset rounded loops form an abstract lowercase k and a shared orbit. A tiny lime dot anchors the symbol. Flat monochrome lavender with lime dot, very clean youthful silhouette. Transparent background, no mockup or text. Kymzi palette: midnight #171624, lime #d5f88f, lavender #c8beff, off-white #f8f6ff. Youthful, original, calm confidence, premium playful design.",
+      "transparent": true
+    },
+    {
+      "id": "food",
+      "path": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-fec8f9df-9ff6-4cf4-89e1-688a2c5b6b35.png",
+      "prompt": "Use case: stylized-concept. Asset: category tile illustration for Kymzi mobile game, square. a plump peach, a striped tub of popcorn and one floating cherry, juicy soft coral and apricot accents. Kymzi palette: midnight #171624, lime #d5f88f, lavender #c8beff, off-white #f8f6ff. Youthful, original, calm confidence, premium playful design. Sculptural 3D soft resin toys with smooth glossy highlights and tactile matte details, sophisticated joyful editorial art, coherent small composition, no text or logos, no humans, no UI. Center the objects occupying 68% of image, lots of breathing room, studio lighting, solid pastel peach background, gentle soft contact shadows.",
+      "transparent": false
+    },
+    {
+      "id": "animals",
+      "path": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-1c7ce272-b56e-42ee-8555-dca7f53c4e56.png",
+      "prompt": "Use case: stylized-concept. Asset: category tile illustration for Kymzi mobile game, square. a friendly lavender cat and a small lime frog leaning together, charming stylized creature faces. Kymzi palette: midnight #171624, lime #d5f88f, lavender #c8beff, off-white #f8f6ff. Youthful, original, calm confidence, premium playful design. Sculptural 3D soft resin toys with smooth glossy highlights and tactile matte details, sophisticated joyful editorial art, coherent small composition, no text or logos, no humans, no UI. Center the objects occupying 68% of image, lots of breathing room, studio lighting, solid pastel lavender background, gentle soft contact shadows.",
+      "transparent": false
+    },
+    {
+      "id": "what-if",
+      "path": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-4f759436-2d77-45e9-a424-26d1cfa505ed.png",
+      "prompt": "Use case: stylized-concept. Asset: category tile illustration for Kymzi mobile game, square. a magical lavender doorway floating through a lime ring with a tiny pearly planet and two little stars. Kymzi palette: midnight #171624, lime #d5f88f, lavender #c8beff, off-white #f8f6ff. Youthful, original, calm confidence, premium playful design. Sculptural 3D soft resin toys with smooth glossy highlights and tactile matte details, sophisticated joyful editorial art, coherent small composition, no text or logos, no humans, no UI. Center the objects occupying 68% of image, lots of breathing room, studio lighting, solid pastel mint background, gentle soft contact shadows.",
+      "transparent": false
+    },
+    {
+      "id": "your-world",
+      "path": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-8dbc6549-255d-46f9-99ec-226ae261fac6.png",
+      "prompt": "Use case: stylized-concept. Asset: category tile illustration for Kymzi mobile game, square. a tiny blue-green planet with a lavender mountain, a winding path and a small lime sun. Kymzi palette: midnight #171624, lime #d5f88f, lavender #c8beff, off-white #f8f6ff. Youthful, original, calm confidence, premium playful design. Sculptural 3D soft resin toys with smooth glossy highlights and tactile matte details, sophisticated joyful editorial art, coherent small composition, no text or logos, no humans, no UI. Center the objects occupying 68% of image, lots of breathing room, studio lighting, solid pastel sky blue background, gentle soft contact shadows.",
+      "transparent": false
+    },
+    {
+      "id": "play",
+      "path": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-656453bf-7d55-45f7-8557-0320dfccdf7b.png",
+      "prompt": "Use case: stylized-concept. Asset: category tile illustration for Kymzi mobile game, square. a glossy lavender handheld game controller, soft lime dice and chunky coral headphones. Kymzi palette: midnight #171624, lime #d5f88f, lavender #c8beff, off-white #f8f6ff. Youthful, original, calm confidence, premium playful design. Sculptural 3D soft resin toys with smooth glossy highlights and tactile matte details, sophisticated joyful editorial art, coherent small composition, no text or logos, no humans, no UI. Center the objects occupying 68% of image, lots of breathing room, studio lighting, solid pastel pale coral background, gentle soft contact shadows.",
+      "transparent": false
+    },
+    {
+      "id": "future-you",
+      "path": "/Users/aarika/.codex/generated_images/01a1e084-55e6-7c12-83e7-abf404ce0ee6/exec-69d94381-ef33-4350-bf06-789637741637.png",
+      "prompt": "Use case: stylized-concept. Asset: category tile illustration for Kymzi mobile game, square. a lavender mini rocket launching beside a lime plant sprout and a small pearly light bulb. Kymzi palette: midnight #171624, lime #d5f88f, lavender #c8beff, off-white #f8f6ff. Youthful, original, calm confidence, premium playful design. Sculptural 3D soft resin toys with smooth glossy highlights and tactile matte details, sophisticated joyful editorial art, coherent small composition, no text or logos, no humans, no UI. Center the objects occupying 68% of image, lots of breathing room, studio lighting, solid pastel pale lavender background, gentle soft contact shadows.",
+      "transparent": false
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "name": "Kymzi",
+  "concept": "Original two-pal K",
+  "logo": "The original lime and lavender two-pal K symbol, restored from the existing editable SVG.",
+  "palette": {
+    "ground": "#090C0A",
+    "surface": "#151B16",
+    "raised": "#243026",
+    "line": "#3E5140",
+    "ink": "#F1F5EB",
+    "muted": "#B1BCA8",
+    "accent": "#D5F88F",
+    "blue": "#BDE68C",
+    "action": "#284C32",
+    "actionBlue": "#23442E",
+    "actionInk": "#EAF6D9",
+    "primary": "#D5F88F",
+    "primaryPressed": "#C1E875",
+    "primaryInk": "#172116",
+    "lavender": "#C8BEFF"
+  },
+  "typography": {
+    "body": "DM Sans",
+    "display": "DM Sans Semibold",
+    "handwritten": "Caveat, used sparingly",
+    "wordmark": "Custom rounded lowercase vector strokes, open m arches, curved y tail and lavender i dot."
+  },
+  "source": "packages/assets/brand/kymzi-symbol.svg",
+  "applications": [
+    "Web and native headers",
+    "Transparent browser favicon",
+    "Original iOS icon",
+    "Android adaptive and monochrome icons",
+    "Lime accents across Explore, Cities, Task, Profile and related screens"
+  ],
+  "verification": "Rendered asset QA and automated app checks; live browser/physical-device review is not claimed.",
+  "wordmark": "Softline v6"
+}

@@ -1,0 +1,43 @@
+/* A bright world on black, and one unmistakable monthly camera task. */
+.rymzi-travel-hero.is-vibrant{position:relative;isolation:isolate;overflow:hidden}
+.rymzi-travel-hero.is-vibrant>img{display:block;width:100%;height:100%;object-fit:contain;max-height:340px;user-select:none;pointer-events:none}
+.minimal-play-mascot .rymzi-travel-hero{width:calc(100% + 28px);margin-left:-14px;margin-right:-14px}
+.minimal-play-home h1 em,.rymzi-welcome h1>em{color:#D5F88F}
+.home-monthly-goal,.home-monthly-goal.is-done{background:linear-gradient(115deg,#1A241B,#141C15);border-color:#57704B}
+.home-monthly-copy>small{color:#B1BCA8}
+.home-monthly-bars>i{background:#3E5140}.home-monthly-bars>i.filled{background:#243026}
+.home-monthly-total{color:#D5F88F}.home-monthly-total>small{color:#9DA994}
+.home-monthly-frames>span{background:#1D271E;border-color:#445D3E;color:#D5F88F}
+.bottom-nav>button.task-tab,.game-home-theme .bottom-nav>button.task-tab{gap:4px;overflow:visible;color:#F1F5EB}
+.task-nav-icon{position:relative;display:flex;align-items:center;justify-content:center;flex-shrink:0;width:46px;height:42px;margin-top:-11px;border:1px solid #608257;border-radius:15px;background:#243026;color:#F1F5EB;box-shadow:0 3px 16px #64895B1a}
+.task-nav-icon:after{content:attr(data-progress);position:absolute;right:-10px;top:-6px;min-width:25px;padding:2px 4px;border:2px solid #090C0A;border-radius:7px;background:#243026;color:#F1F5EB;font:600 10px/1.1 'DM Sans',sans-serif;letter-spacing:-.2px}
+.bottom-nav>button.task-tab[aria-current=page]:after{display:none}
+.bottom-nav>button.task-tab[aria-current=page] .task-nav-icon{outline:2px solid #D5F88F55;outline-offset:3px}
+.monthly-tasks{display:flex;flex-direction:column;gap:12px;height:100%;min-height:0}
+.task-topline{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;color:#B1BCA8;font-size:13px;line-height:20px}
+.task-profile-status{display:flex;align-items:center;gap:6px;font-size:12px;color:#D5F88F}.task-profile-status.is-paused{color:#BDE68C}
+.task-profile-status>i,.profile-activity i{height:5px;width:5px;border-radius:50%;background:currentColor}
+.task-intro{display:flex;flex-direction:column;gap:12px;flex-shrink:0}
+.task-intro>h1{font-size:43px;line-height:1.02;letter-spacing:-1.6px;white-space:normal}
+.task-intro>h1>em{font:600 1.36em/.98 Caveat,cursive;letter-spacing:-.8px;color:#D5F88F}
+.task-intro>p{font-size:18px;line-height:1.4;color:#D0DEC3;max-width:320px}
+.task-photo-slots{display:flex;gap:9px;align-items:center;flex:1;min-height:100px;max-height:220px;padding:12px 0}
+.task-photo-slot{position:relative;display:flex;align-items:center;justify-content:center;flex:1;min-width:0;height:90%;min-height:100px;max-height:170px;padding:5px;border:1px solid #BDE68C77;background:#BDE68C14;border-radius:16px;color:#BDE68C;transform:rotate(-6deg) translateY(5px);overflow:hidden}
+.task-photo-slot.slot-1{border-color:#D5F88F77;background:#D5F88F14;color:#D5F88F;transform:rotate(2deg) translateY(-9px)}
+.task-photo-slot.slot-2{border-color:#D5F88F77;background:#D5F88F14;color:#D5F88F;transform:rotate(7deg) translateY(5px)}
+.task-photo-slot>img{height:100%;width:100%;object-fit:cover;border-radius:11px;display:block}
+.task-photo-slot>span{position:absolute;bottom:10px;left:11px;padding:4px;font-size:13px;background:#090C0Aaa;border-radius:5px}
+.task-progress{display:flex;justify-content:space-between;align-items:center;gap:13px;flex-shrink:0}
+.task-progress>span:first-child{display:flex;align-items:baseline;gap:5px}.task-progress strong{font-size:39px;font-weight:500;line-height:1;letter-spacing:-1px}.task-progress small{font-size:18px;color:#B1BCA8}.task-progress>span:last-child{font-size:14px;color:#B1BCA8}
+.task-progress-bars{display:flex;gap:6px;flex-shrink:0}.task-progress-bars>i{height:5px;border-radius:4px;flex:1;background:#3E5140}.task-progress-bars>i.is-filled:first-child{background:#243026}.task-progress-bars>i.is-filled:nth-child(2){background:#243026}.task-progress-bars>i.is-filled:nth-child(3){background:#243026}
+.task-status-note{font-size:16px;line-height:1.4;color:#B1BCA8;flex-shrink:0}
+.monthly-tasks>.footer-actions{margin-top:auto;padding-top:4px;gap:10px}
+.monthly-tasks .task-camera-button{background:#243026;color:#F1F5EB;font-size:19px}
+.profile-activity{width:100%;padding:12px;min-height:52px;border:1px solid #57704B;border-radius:14px;background:#172419;display:grid;grid-template-columns:1fr auto;gap:6px 10px;text-align:left;color:#D5F88F}
+.profile-activity>span{display:flex;align-items:center;gap:7px;font-size:16px;color:#D0DEC3}.profile-activity i{color:#D5F88F}
+.profile-activity>small{grid-column:1;font-size:13px;color:#B1BCA8}.profile-activity>svg{grid-column:2;grid-row:1/3;align-self:center}
+.profile-activity.is-paused{background:#172419;border-color:#57704B;color:#BDE68C}.profile-activity.is-paused i{color:#BDE68C}
+.profile-night-hero>.profile-activity{max-width:330px;margin-top:3px}
+@container rymzi-app (max-height:680px){.monthly-tasks{gap:10px}.task-intro>h1{font-size:36px}.task-intro>p{font-size:17px}.task-photo-slots{max-height:155px;min-height:100px}.task-photo-slot{max-height:125px;min-height:90px}.task-status-note{font-size:15px}.task-progress strong{font-size:33px}}
+@container rymzi-app (max-height:540px){.monthly-tasks{gap:11px}.task-photo-slots{min-height:90px;max-height:115px}.task-photo-slot{min-height:80px}.task-intro>h1{font-size:34px}.task-intro>p{font-size:16px}.task-intro{gap:9px}}
+@media(prefers-reduced-motion:reduce){.monthly-tasks *,.rymzi-travel-hero.is-vibrant>img{animation:none;transition:none}}

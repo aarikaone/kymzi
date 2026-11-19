@@ -1,0 +1,2 @@
+import {attractionArtwork,attractionById} from '@rymzi/core';
+export function AttractionImage({id,className=''}:{id:string;className?:string}){const art=attractionArtwork(id),a=attractionById(id);if(!art||!a)return null;return <span className={`attraction-image ${className}`} role="img" aria-label={`Illustration of ${a.name}`}><svg width="100%" height="100%" viewBox={`${art.column*512} ${art.row*384} 512 384`} preserveAspectRatio="xMidYMid slice" aria-hidden="true"><image href={`/attractions/${art.file}.webp`} width="1024" height="1536"/></svg></span>;}

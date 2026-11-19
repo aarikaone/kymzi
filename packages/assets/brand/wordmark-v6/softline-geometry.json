@@ -1,0 +1,21 @@
+{
+  "name": "Softline",
+  "description": "Custom round-ended lowercase strokes, an open m, a curved y tail, and a lavender i dot.",
+  "width": 347,
+  "height": 100,
+  "stroke": "#F1F5EB",
+  "strokeWidth": 10.5,
+  "paths": [
+    "M119 21V75 M145 40L122 57 M123 56L147 75",
+    "M162 40L174 65Q179 76 186 62L197 40 M197 40L178 84Q173 95 164 92",
+    "M214 75V42 M214 52C214 35 237 35 237 52V75 M237 52C237 35 260 35 260 52V75",
+    "M280 41H310L280 74H312",
+    "M332 43V75"
+  ],
+  "dot": {
+    "x": 332,
+    "y": 23,
+    "r": 6,
+    "fill": "#C8BEFF"
+  }
+}

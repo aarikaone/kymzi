@@ -155,3 +155,72 @@ vite.config.ts.timestamp-*
 .nx/cache
 .nx/workspace-data
 .nx/migrate-runs
+
+# Kymzi: generated web/native output and local preview artifacts
+build/
+web-build/
+/qa/
+/tmp/
+/temp/
+
+# Expo and Metro local state (keep nativewind-env.d.ts in Git)
+.expo/
+.expo-shared/
+.metro-cache/
+.metro-health-check*
+expo-env.d.ts
+
+# Native dependency caches, builds, and machine-specific settings
+**/android/.gradle/
+**/android/.cxx/
+**/android/local.properties
+**/ios/Pods/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+*.xccheckout
+*.apk
+*.aab
+*.ipa
+*.hbc
+
+# Local signing credentials
+credentials.json
+*.jks
+*.keystore
+*.p12
+*.p8
+*.mobileprovision
+
+# Python tooling caches and virtual environments
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Test reports
+playwright-report/
+test-results/
+blob-report/
+
+# Operating system and editor-generated files
+.DS_Store
+._*
+Thumbs.db
+Desktop.ini
+.idea/
+.history/
+*.swp
+*.swo
+*~
+
+# Share environment templates, never real environment values
+!.env.sample
+!.env.template
+!.env.*.example
+
+# Keep source, packages/assets, apps/web/public, docs,
+# package-lock.json, and patches/ versioned.

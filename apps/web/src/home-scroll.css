@@ -1,0 +1,12 @@
+/* Explore is a single page: the main app viewport owns all vertical scrolling. */
+.app-main:has(.city-gallery-screen.explore-feed){overflow-x:hidden;overflow-y:auto}
+.game-home-theme .screen.home-screen:has(.explore-feed){height:auto;min-height:100%}
+.city-gallery-screen.explore-feed{height:auto;min-height:0;gap:16px}
+.explore-feed>*{flex-shrink:0}
+.explore-feed .moment-feed-shell{flex:none;min-height:0;margin:0;border:0;border-radius:0;overflow:visible;background:transparent}
+.explore-feed .moment-snap-feed{display:flex;flex-direction:column;gap:18px;height:auto;overflow:visible;scroll-snap-type:none;overscroll-behavior:auto;touch-action:auto}
+.explore-feed .moment-slide{flex:none;height:clamp(400px,65cqh,560px);min-height:400px;border:1px solid #52644B;border-radius:23px;scroll-snap-align:none;scroll-snap-stop:normal}
+.explore-feed .moment-end{flex:none;height:auto;min-height:310px;border:1px solid #3E5140;border-radius:23px;scroll-snap-align:none;padding:30px 22px}
+.explore-feed .moment-grid-scroll{flex:none;overflow:visible;height:auto;min-height:0}
+.explore-feed .moment-masonry{overflow:visible}
+.explore-feed .moment-scroll-cue{font-size:11px}

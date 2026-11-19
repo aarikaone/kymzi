@@ -1,0 +1,1046 @@
+{
+  "reviewed": "2026-11-17",
+  "scope": "Short original educational summaries, not opening hours, availability or travel bookings.",
+  "attractions": [
+    {
+      "id": "jp-1",
+      "countryId": "JP",
+      "name": "Sensō-ji",
+      "emoji": "🏮",
+      "kind": "Culture",
+      "fact": "A temple in Asakusa, approached through the shops of Nakamise.",
+      "question": "What little detail should I look for at Sensō-ji?",
+      "sourceUrl": "https://global.jr-central.co.jp/en/onlinebooking/contents/hello_tokyo/"
+    },
+    {
+      "id": "jp-2",
+      "countryId": "JP",
+      "name": "Shibuya Crossing",
+      "emoji": "🚦",
+      "kind": "City life",
+      "fact": "Pedestrian crossings meet outside Shibuya Station.",
+      "question": "What does Shibuya Crossing feel like in real life?",
+      "sourceUrl": "https://global.jr-central.co.jp/en/onlinebooking/contents/hello_tokyo/"
+    },
+    {
+      "id": "jp-3",
+      "countryId": "JP",
+      "name": "Tokyo Tower",
+      "emoji": "🗼",
+      "kind": "Skyline",
+      "fact": "The red-and-white tower is one of Tokyo’s familiar skyline landmarks.",
+      "question": "Where would you go to see Tokyo Tower?",
+      "sourceUrl": "https://global.jr-central.co.jp/en/onlinebooking/contents/hello_tokyo/"
+    },
+    {
+      "id": "jp-4",
+      "countryId": "JP",
+      "name": "Ueno Park",
+      "emoji": "🌸",
+      "kind": "Nature",
+      "fact": "A green city park surrounded by museums and cultural spaces.",
+      "question": "What would you show me first around Ueno Park?",
+      "sourceUrl": "https://global.jr-central.co.jp/en/onlinebooking/contents/hello_tokyo/"
+    },
+    {
+      "id": "br-1",
+      "countryId": "BR",
+      "name": "Christ the Redeemer",
+      "emoji": "⛰️",
+      "kind": "Landmark",
+      "fact": "The statue stands above Rio on Corcovado mountain.",
+      "question": "What is your favourite view of Christ the Redeemer?",
+      "sourceUrl": "https://riotur.rio/en/que_fazer/rio-highlights/"
+    },
+    {
+      "id": "br-2",
+      "countryId": "BR",
+      "name": "Sugarloaf Mountain",
+      "emoji": "🚡",
+      "kind": "Skyline",
+      "fact": "Cable cars connect the hills overlooking Guanabara Bay.",
+      "question": "Would you pick a mountain view or a beach day in Rio?",
+      "sourceUrl": "https://riotur.rio/en/que_fazer/rio-highlights/"
+    },
+    {
+      "id": "br-3",
+      "countryId": "BR",
+      "name": "Copacabana",
+      "emoji": "🏖️",
+      "kind": "Coast",
+      "fact": "A long Atlantic beach with a patterned waterfront promenade.",
+      "question": "What do you love about the Copacabana waterfront?",
+      "sourceUrl": "https://riotur.rio/en/que_fazer/rio-highlights/"
+    },
+    {
+      "id": "br-4",
+      "countryId": "BR",
+      "name": "Selarón Steps",
+      "emoji": "🎨",
+      "kind": "Art",
+      "fact": "A mosaic staircase connects the Lapa and Santa Teresa areas.",
+      "question": "Which colours would you look for on the Selarón Steps?",
+      "sourceUrl": "https://riotur.rio/en/que_fazer/rio-highlights/"
+    },
+    {
+      "id": "gb-1",
+      "countryId": "GB",
+      "name": "Tower Bridge",
+      "emoji": "🌉",
+      "kind": "Landmark",
+      "fact": "Two towers and a lifting roadway span the River Thames.",
+      "question": "What is your favourite way to see Tower Bridge?",
+      "sourceUrl": "https://www.visitlondon.com/things-to-do/best-things-to-do-in-london"
+    },
+    {
+      "id": "gb-2",
+      "countryId": "GB",
+      "name": "British Museum",
+      "emoji": "🏛️",
+      "kind": "Culture",
+      "fact": "Collections explore human history and cultures from around the world.",
+      "question": "Which British Museum gallery would you explore first?",
+      "sourceUrl": "https://www.visitlondon.com/things-to-do/best-things-to-do-in-london"
+    },
+    {
+      "id": "gb-3",
+      "countryId": "GB",
+      "name": "Hyde Park",
+      "emoji": "🌳",
+      "kind": "Nature",
+      "fact": "A large royal park brings open green space to central London.",
+      "question": "What is your perfect afternoon in Hyde Park?",
+      "sourceUrl": "https://www.visitlondon.com/things-to-do/best-things-to-do-in-london"
+    },
+    {
+      "id": "gb-4",
+      "countryId": "GB",
+      "name": "Camden Market",
+      "emoji": "🛍️",
+      "kind": "City life",
+      "fact": "A collection of markets sits around Camden’s streets and canal.",
+      "question": "What would you look for at Camden Market?",
+      "sourceUrl": "https://www.visitlondon.com/things-to-do/best-things-to-do-in-london"
+    },
+    {
+      "id": "kr-1",
+      "countryId": "KR",
+      "name": "Gyeongbokgung",
+      "emoji": "🏯",
+      "kind": "Culture",
+      "fact": "A Joseon royal palace sits near Gwanghwamun in central Seoul.",
+      "question": "What detail at Gyeongbokgung would you show a friend?",
+      "sourceUrl": "https://english.visitseoul.net/AboutSeoul"
+    },
+    {
+      "id": "kr-2",
+      "countryId": "KR",
+      "name": "N Seoul Tower",
+      "emoji": "🗼",
+      "kind": "Skyline",
+      "fact": "The tower rises above the city on Namsan mountain.",
+      "question": "What do you like about the view from Namsan?",
+      "sourceUrl": "https://english.visitseoul.net/AboutSeoul"
+    },
+    {
+      "id": "kr-3",
+      "countryId": "KR",
+      "name": "Bukchon Hanok Village",
+      "emoji": "🏘️",
+      "kind": "Heritage",
+      "fact": "Traditional hanok homes line the lanes of this residential neighbourhood.",
+      "question": "What makes Bukchon’s streets special to you?",
+      "sourceUrl": "https://english.visitseoul.net/AboutSeoul"
+    },
+    {
+      "id": "kr-4",
+      "countryId": "KR",
+      "name": "Dongdaemun Design Plaza",
+      "emoji": "🛸",
+      "kind": "Design",
+      "fact": "Flowing contemporary architecture houses design and exhibition spaces.",
+      "question": "What does Dongdaemun Design Plaza remind you of?",
+      "sourceUrl": "https://english.visitseoul.net/AboutSeoul"
+    },
+    {
+      "id": "in-1",
+      "countryId": "IN",
+      "name": "Gateway of India",
+      "emoji": "🏛️",
+      "kind": "Landmark",
+      "fact": "The waterfront arch faces Mumbai Harbour.",
+      "question": "What is it like around the Gateway of India?",
+      "sourceUrl": "https://www.incredibleindia.gov.in/en/trips/trip-listing/mumbai-marvels-journey"
+    },
+    {
+      "id": "in-2",
+      "countryId": "IN",
+      "name": "Marine Drive",
+      "emoji": "🌊",
+      "kind": "Coast",
+      "fact": "A curved promenade follows the edge of the Arabian Sea.",
+      "question": "What makes a Marine Drive evening feel like Mumbai?",
+      "sourceUrl": "https://www.incredibleindia.gov.in/en/trips/trip-listing/mumbai-marvels-journey"
+    },
+    {
+      "id": "in-3",
+      "countryId": "IN",
+      "name": "Elephanta Caves",
+      "emoji": "🗿",
+      "kind": "Heritage",
+      "fact": "Rock-cut caves lie on an island in Mumbai Harbour.",
+      "question": "What would you want to learn about the Elephanta Caves?",
+      "sourceUrl": "https://www.incredibleindia.gov.in/en/trips/trip-listing/mumbai-marvels-journey"
+    },
+    {
+      "id": "in-4",
+      "countryId": "IN",
+      "name": "CSMT station",
+      "emoji": "🚉",
+      "kind": "Architecture",
+      "fact": "A historic railway terminus brings elaborate architecture into daily city life.",
+      "question": "What detail on CSMT station would you point out?",
+      "sourceUrl": "https://www.incredibleindia.gov.in/en/trips/trip-listing/mumbai-marvels-journey"
+    },
+    {
+      "id": "ca-1",
+      "countryId": "CA",
+      "name": "CN Tower",
+      "emoji": "🗼",
+      "kind": "Skyline",
+      "fact": "The landmark observation tower stands near Toronto’s waterfront.",
+      "question": "What would you point out in the Toronto skyline?",
+      "sourceUrl": "https://www.toronto.ca/wp-content/uploads/2024/06/9763-2024-Visitors-Map.pdf"
+    },
+    {
+      "id": "ca-2",
+      "countryId": "CA",
+      "name": "Royal Ontario Museum",
+      "emoji": "🦕",
+      "kind": "Culture",
+      "fact": "The museum brings together natural history, art and world cultures.",
+      "question": "Which museum topic could you explore for hours?",
+      "sourceUrl": "https://www.toronto.ca/wp-content/uploads/2024/06/9763-2024-Visitors-Map.pdf"
+    },
+    {
+      "id": "ca-3",
+      "countryId": "CA",
+      "name": "Distillery District",
+      "emoji": "🧱",
+      "kind": "Heritage",
+      "fact": "Former industrial buildings now frame pedestrian streets and cultural spaces.",
+      "question": "What would you notice while walking the Distillery District?",
+      "sourceUrl": "https://www.toronto.ca/wp-content/uploads/2024/06/9763-2024-Visitors-Map.pdf"
+    },
+    {
+      "id": "ca-4",
+      "countryId": "CA",
+      "name": "Toronto Islands",
+      "emoji": "⛴️",
+      "kind": "Nature",
+      "fact": "A group of islands sits across the harbour from downtown.",
+      "question": "Would you pick a city skyline view or an island walk?",
+      "sourceUrl": "https://www.toronto.ca/wp-content/uploads/2024/06/9763-2024-Visitors-Map.pdf"
+    },
+    {
+      "id": "us-1",
+      "countryId": "US",
+      "name": "Central Park",
+      "emoji": "🌳",
+      "kind": "Nature",
+      "fact": "A large landscape of paths, lawns and lakes sits in Manhattan.",
+      "question": "What would your perfect Central Park afternoon look like?",
+      "sourceUrl": "https://www.nyctourism.com/"
+    },
+    {
+      "id": "us-2",
+      "countryId": "US",
+      "name": "Brooklyn Bridge",
+      "emoji": "🌉",
+      "kind": "Landmark",
+      "fact": "The bridge spans the East River between Brooklyn and Manhattan.",
+      "question": "What do you notice when you look at the Brooklyn Bridge?",
+      "sourceUrl": "https://www.nyctourism.com/"
+    },
+    {
+      "id": "us-3",
+      "countryId": "US",
+      "name": "Statue of Liberty",
+      "emoji": "🗽",
+      "kind": "Heritage",
+      "fact": "The statue stands on Liberty Island in New York Harbor.",
+      "question": "What does the Statue of Liberty mean to you?",
+      "sourceUrl": "https://www.nyctourism.com/"
+    },
+    {
+      "id": "us-4",
+      "countryId": "US",
+      "name": "The Met",
+      "emoji": "🖼️",
+      "kind": "Art",
+      "fact": "An art museum with collections from many cultures and eras.",
+      "question": "Which kind of art would you hunt for at The Met?",
+      "sourceUrl": "https://www.nyctourism.com/"
+    },
+    {
+      "id": "fr-1",
+      "countryId": "FR",
+      "name": "Eiffel Tower",
+      "emoji": "🗼",
+      "kind": "Skyline",
+      "fact": "An iron landmark rises beside the Seine and Champ de Mars.",
+      "question": "Where would you pause to look at the Eiffel Tower?",
+      "sourceUrl": "https://parisjetaime.com/eng/article/the-essentials-a264"
+    },
+    {
+      "id": "fr-2",
+      "countryId": "FR",
+      "name": "Louvre Museum",
+      "emoji": "🖼️",
+      "kind": "Art",
+      "fact": "A former palace houses a wide-ranging art collection.",
+      "question": "Which kind of artwork would you want to find at the Louvre?",
+      "sourceUrl": "https://parisjetaime.com/eng/article/the-essentials-a264"
+    },
+    {
+      "id": "fr-3",
+      "countryId": "FR",
+      "name": "Montmartre",
+      "emoji": "🎨",
+      "kind": "City life",
+      "fact": "A hillside neighbourhood is known for its artists and winding streets.",
+      "question": "What would you draw after a walk in Montmartre?",
+      "sourceUrl": "https://parisjetaime.com/eng/article/the-essentials-a264"
+    },
+    {
+      "id": "fr-4",
+      "countryId": "FR",
+      "name": "Luxembourg Gardens",
+      "emoji": "🌷",
+      "kind": "Nature",
+      "fact": "Formal gardens and tree-lined paths surround the Luxembourg Palace.",
+      "question": "What would you bring for a garden afternoon in Paris?",
+      "sourceUrl": "https://parisjetaime.com/eng/article/the-essentials-a264"
+    },
+    {
+      "id": "de-1",
+      "countryId": "DE",
+      "name": "Brandenburg Gate",
+      "emoji": "🏛️",
+      "kind": "Heritage",
+      "fact": "A monumental gateway stands by Pariser Platz.",
+      "question": "What does the Brandenburg Gate mean to Berlin?",
+      "sourceUrl": "https://www.visitberlin.de/en/sights-berlin"
+    },
+    {
+      "id": "de-2",
+      "countryId": "DE",
+      "name": "Museum Island",
+      "emoji": "🏺",
+      "kind": "Culture",
+      "fact": "A group of museums occupies an island in the River Spree.",
+      "question": "Which story would you explore on Museum Island?",
+      "sourceUrl": "https://www.visitberlin.de/en/sights-berlin"
+    },
+    {
+      "id": "de-3",
+      "countryId": "DE",
+      "name": "East Side Gallery",
+      "emoji": "🎨",
+      "kind": "Art",
+      "fact": "An outdoor gallery covers a surviving stretch of the Berlin Wall.",
+      "question": "What kind of mural would make you stop and look?",
+      "sourceUrl": "https://www.visitberlin.de/en/sights-berlin"
+    },
+    {
+      "id": "de-4",
+      "countryId": "DE",
+      "name": "Tiergarten",
+      "emoji": "🌳",
+      "kind": "Nature",
+      "fact": "A broad green park sits near Berlin’s central landmarks.",
+      "question": "What is your favourite kind of city-park escape?",
+      "sourceUrl": "https://www.visitberlin.de/en/sights-berlin"
+    },
+    {
+      "id": "it-1",
+      "countryId": "IT",
+      "name": "Colosseum",
+      "emoji": "🏟️",
+      "kind": "Heritage",
+      "fact": "The ancient amphitheatre forms part of Rome’s archaeological landscape.",
+      "question": "What would you want to know before seeing the Colosseum?",
+      "sourceUrl": "https://www.turismoroma.it/en/itineraries/rome-four-days-four-faces-eternal-city"
+    },
+    {
+      "id": "it-2",
+      "countryId": "IT",
+      "name": "Pantheon",
+      "emoji": "🏛️",
+      "kind": "Architecture",
+      "fact": "A circular ancient building has a domed roof with an open oculus.",
+      "question": "What would you notice first inside the Pantheon?",
+      "sourceUrl": "https://www.turismoroma.it/en/itineraries/rome-four-days-four-faces-eternal-city"
+    },
+    {
+      "id": "it-3",
+      "countryId": "IT",
+      "name": "Trevi Fountain",
+      "emoji": "⛲",
+      "kind": "Art",
+      "fact": "A theatrical sculpted fountain fills a small city square.",
+      "question": "What detail would you look for at the Trevi Fountain?",
+      "sourceUrl": "https://www.turismoroma.it/en/itineraries/rome-four-days-four-faces-eternal-city"
+    },
+    {
+      "id": "it-4",
+      "countryId": "IT",
+      "name": "Villa Borghese",
+      "emoji": "🌳",
+      "kind": "Nature",
+      "fact": "Gardens, paths and museums make a green retreat in Rome.",
+      "question": "Would you pick the gardens or an art museum in Rome?",
+      "sourceUrl": "https://www.turismoroma.it/en/itineraries/rome-four-days-four-faces-eternal-city"
+    },
+    {
+      "id": "es-1",
+      "countryId": "ES",
+      "name": "Sagrada Família",
+      "emoji": "⛪",
+      "kind": "Architecture",
+      "fact": "Gaudí’s basilica brings sculptural forms to Barcelona’s skyline.",
+      "question": "What catches your eye about the Sagrada Família?",
+      "sourceUrl": "https://www.barcelonaturisme.com/"
+    },
+    {
+      "id": "es-2",
+      "countryId": "ES",
+      "name": "Park Güell",
+      "emoji": "🦎",
+      "kind": "Art",
+      "fact": "Gaudí’s park combines colourful mosaics with playful architecture.",
+      "question": "Which colour would you add to a Park Güell mosaic?",
+      "sourceUrl": "https://www.barcelonaturisme.com/"
+    },
+    {
+      "id": "es-3",
+      "countryId": "ES",
+      "name": "Casa Batlló",
+      "emoji": "🏠",
+      "kind": "Design",
+      "fact": "A Gaudí-designed house has an undulating, richly decorated façade.",
+      "question": "What does Casa Batlló’s shape remind you of?",
+      "sourceUrl": "https://www.barcelonaturisme.com/"
+    },
+    {
+      "id": "es-4",
+      "countryId": "ES",
+      "name": "La Boqueria",
+      "emoji": "🍓",
+      "kind": "City life",
+      "fact": "A food market sits just off La Rambla.",
+      "question": "What would you want to discover at La Boqueria?",
+      "sourceUrl": "https://www.barcelonaturisme.com/"
+    },
+    {
+      "id": "pt-1",
+      "countryId": "PT",
+      "name": "Belém Tower",
+      "emoji": "🏰",
+      "kind": "Heritage",
+      "fact": "A fortified tower stands beside the Tagus estuary.",
+      "question": "What would you ask about Belém Tower’s story?",
+      "sourceUrl": "https://www.visitlisboa.com/"
+    },
+    {
+      "id": "pt-2",
+      "countryId": "PT",
+      "name": "Jerónimos Monastery",
+      "emoji": "🏛️",
+      "kind": "Architecture",
+      "fact": "An ornate monastery is a landmark of the Belém district.",
+      "question": "Which architectural detail would you sketch in Belém?",
+      "sourceUrl": "https://www.visitlisboa.com/"
+    },
+    {
+      "id": "pt-3",
+      "countryId": "PT",
+      "name": "Alfama",
+      "emoji": "🚋",
+      "kind": "City life",
+      "fact": "Hillside lanes weave through one of Lisbon’s historic neighbourhoods.",
+      "question": "What would you listen for on a walk through Alfama?",
+      "sourceUrl": "https://www.visitlisboa.com/"
+    },
+    {
+      "id": "pt-4",
+      "countryId": "PT",
+      "name": "Oceanário de Lisboa",
+      "emoji": "🐟",
+      "kind": "Nature",
+      "fact": "An aquarium explores ocean habitats in Parque das Nações.",
+      "question": "Which ocean animal could you watch for hours?",
+      "sourceUrl": "https://www.visitlisboa.com/"
+    },
+    {
+      "id": "nl-1",
+      "countryId": "NL",
+      "name": "Canal ring",
+      "emoji": "🚲",
+      "kind": "Heritage",
+      "fact": "Canals frame historic houses and bridges around the city centre.",
+      "question": "What would you notice on a walk beside the canals?",
+      "sourceUrl": "https://www.iamsterdam.com/en/see-and-do/top-20-things-to-do-in-amsterdam"
+    },
+    {
+      "id": "nl-2",
+      "countryId": "NL",
+      "name": "Rijksmuseum",
+      "emoji": "🖼️",
+      "kind": "Art",
+      "fact": "The museum explores centuries of Dutch art and history.",
+      "question": "What kind of painting would you look for at the Rijksmuseum?",
+      "sourceUrl": "https://www.iamsterdam.com/en/see-and-do/top-20-things-to-do-in-amsterdam"
+    },
+    {
+      "id": "nl-3",
+      "countryId": "NL",
+      "name": "Vondelpark",
+      "emoji": "🌳",
+      "kind": "Nature",
+      "fact": "A city park has lawns, ponds and winding paths.",
+      "question": "What is your ideal slow day in Vondelpark?",
+      "sourceUrl": "https://www.iamsterdam.com/en/see-and-do/top-20-things-to-do-in-amsterdam"
+    },
+    {
+      "id": "nl-4",
+      "countryId": "NL",
+      "name": "NEMO Science Museum",
+      "emoji": "🔬",
+      "kind": "Science",
+      "fact": "Hands-on exhibits explore science in a striking waterfront building.",
+      "question": "What experiment would you want to try at NEMO?",
+      "sourceUrl": "https://www.iamsterdam.com/en/see-and-do/top-20-things-to-do-in-amsterdam"
+    },
+    {
+      "id": "se-1",
+      "countryId": "SE",
+      "name": "Vasa Museum",
+      "emoji": "⛵",
+      "kind": "Heritage",
+      "fact": "The museum preserves the Vasa, a seventeenth-century ship.",
+      "question": "What would you ask about the Vasa’s story?",
+      "sourceUrl": "https://www.visitstockholm.com/see-do/attractions/stockholm-highlights/"
+    },
+    {
+      "id": "se-2",
+      "countryId": "SE",
+      "name": "Gamla Stan",
+      "emoji": "🏘️",
+      "kind": "City life",
+      "fact": "Stockholm’s old town has narrow streets and historic buildings.",
+      "question": "Which tiny detail would you look for in Gamla Stan?",
+      "sourceUrl": "https://www.visitstockholm.com/see-do/attractions/stockholm-highlights/"
+    },
+    {
+      "id": "se-3",
+      "countryId": "SE",
+      "name": "Skansen",
+      "emoji": "🦌",
+      "kind": "Culture",
+      "fact": "An open-air museum explores Swedish buildings, traditions and wildlife.",
+      "question": "Which part of everyday history would you explore at Skansen?",
+      "sourceUrl": "https://www.visitstockholm.com/see-do/attractions/stockholm-highlights/"
+    },
+    {
+      "id": "se-4",
+      "countryId": "SE",
+      "name": "City Hall",
+      "emoji": "🧱",
+      "kind": "Architecture",
+      "fact": "The red-brick waterfront building hosts Stockholm’s city government.",
+      "question": "What would you sketch on Stockholm’s waterfront?",
+      "sourceUrl": "https://www.visitstockholm.com/see-do/attractions/stockholm-highlights/"
+    },
+    {
+      "id": "no-1",
+      "countryId": "NO",
+      "name": "Oslo Opera House",
+      "emoji": "🎭",
+      "kind": "Architecture",
+      "fact": "A sloping marble roof meets the waterfront.",
+      "question": "What do you notice about the Opera House’s shape?",
+      "sourceUrl": "https://www.visitoslo.com/activities-and-attractions"
+    },
+    {
+      "id": "no-2",
+      "countryId": "NO",
+      "name": "Vigeland Park",
+      "emoji": "🗿",
+      "kind": "Art",
+      "fact": "Sculptures by Gustav Vigeland fill part of Frogner Park.",
+      "question": "What feeling would you want a sculpture to show?",
+      "sourceUrl": "https://www.visitoslo.com/activities-and-attractions"
+    },
+    {
+      "id": "no-3",
+      "countryId": "NO",
+      "name": "MUNCH",
+      "emoji": "🖼️",
+      "kind": "Art",
+      "fact": "The waterfront museum explores the work of Edvard Munch.",
+      "question": "What emotion would you turn into a painting?",
+      "sourceUrl": "https://www.visitoslo.com/activities-and-attractions"
+    },
+    {
+      "id": "no-4",
+      "countryId": "NO",
+      "name": "Akershus Fortress",
+      "emoji": "🏰",
+      "kind": "Heritage",
+      "fact": "A historic fortress overlooks Oslo’s harbour.",
+      "question": "What story would you want to hear about Akershus?",
+      "sourceUrl": "https://www.visitoslo.com/activities-and-attractions"
+    },
+    {
+      "id": "gr-1",
+      "countryId": "GR",
+      "name": "Acropolis",
+      "emoji": "🏛️",
+      "kind": "Heritage",
+      "fact": "Ancient monuments crown a rocky hill above Athens.",
+      "question": "What would you want to learn about the Acropolis?",
+      "sourceUrl": "https://www.thisisathens.org/"
+    },
+    {
+      "id": "gr-2",
+      "countryId": "GR",
+      "name": "Plaka",
+      "emoji": "🏘️",
+      "kind": "City life",
+      "fact": "Lanes and neoclassical buildings sit below the Acropolis.",
+      "question": "What would make you stop on a walk through Plaka?",
+      "sourceUrl": "https://www.thisisathens.org/"
+    },
+    {
+      "id": "gr-3",
+      "countryId": "GR",
+      "name": "Ancient Agora",
+      "emoji": "🏺",
+      "kind": "History",
+      "fact": "The archaeological site preserves part of ancient Athens’ civic centre.",
+      "question": "What would you ask someone from ancient Athens?",
+      "sourceUrl": "https://www.thisisathens.org/"
+    },
+    {
+      "id": "gr-4",
+      "countryId": "GR",
+      "name": "National Garden",
+      "emoji": "🌿",
+      "kind": "Nature",
+      "fact": "A former royal garden offers green paths near Syntagma.",
+      "question": "What would your perfect garden escape look like?",
+      "sourceUrl": "https://www.thisisathens.org/"
+    },
+    {
+      "id": "au-1",
+      "countryId": "AU",
+      "name": "Sydney Opera House",
+      "emoji": "🎭",
+      "kind": "Architecture",
+      "fact": "Sail-like roofs form a familiar landmark on Sydney Harbour.",
+      "question": "What do the Opera House roofs remind you of?",
+      "sourceUrl": "https://www.sydney.com/articles/top-attractions-in-sydney"
+    },
+    {
+      "id": "au-2",
+      "countryId": "AU",
+      "name": "Harbour Bridge",
+      "emoji": "🌉",
+      "kind": "Landmark",
+      "fact": "A steel arch spans the harbour beside the city centre.",
+      "question": "Would you choose a bridge view or a ferry view of Sydney?",
+      "sourceUrl": "https://www.sydney.com/articles/top-attractions-in-sydney"
+    },
+    {
+      "id": "au-3",
+      "countryId": "AU",
+      "name": "Bondi Beach",
+      "emoji": "🏄",
+      "kind": "Coast",
+      "fact": "An ocean beach sits on Sydney’s eastern coastline.",
+      "question": "What makes a beach day feel perfect to you?",
+      "sourceUrl": "https://www.sydney.com/articles/top-attractions-in-sydney"
+    },
+    {
+      "id": "au-4",
+      "countryId": "AU",
+      "name": "Royal Botanic Garden",
+      "emoji": "🌿",
+      "kind": "Nature",
+      "fact": "Gardens sit beside the harbour and the Opera House.",
+      "question": "Which plant would you look for in Sydney’s gardens?",
+      "sourceUrl": "https://www.sydney.com/articles/top-attractions-in-sydney"
+    },
+    {
+      "id": "nz-1",
+      "countryId": "NZ",
+      "name": "Sky Tower",
+      "emoji": "🗼",
+      "kind": "Skyline",
+      "fact": "The tower is a familiar landmark above central Auckland.",
+      "question": "What would you point out in Auckland’s skyline?",
+      "sourceUrl": "https://www.aucklandnz.com/"
+    },
+    {
+      "id": "nz-2",
+      "countryId": "NZ",
+      "name": "Maungawhau / Mount Eden",
+      "emoji": "🌋",
+      "kind": "Nature",
+      "fact": "A volcanic cone has a crater and views across Auckland.",
+      "question": "What would you want to learn about Auckland’s volcanic landscape?",
+      "sourceUrl": "https://www.aucklandnz.com/"
+    },
+    {
+      "id": "nz-3",
+      "countryId": "NZ",
+      "name": "Auckland Museum",
+      "emoji": "🏛️",
+      "kind": "Culture",
+      "fact": "The museum explores natural history and the stories of Aotearoa.",
+      "question": "Which museum story would you want to hear first?",
+      "sourceUrl": "https://www.aucklandnz.com/"
+    },
+    {
+      "id": "nz-4",
+      "countryId": "NZ",
+      "name": "Waiheke Island",
+      "emoji": "⛴️",
+      "kind": "Coast",
+      "fact": "An island in the Hauraki Gulf has beaches and coastal landscapes.",
+      "question": "What would you bring for a Waiheke island day?",
+      "sourceUrl": "https://www.aucklandnz.com/"
+    },
+    {
+      "id": "sg-1",
+      "countryId": "SG",
+      "name": "Gardens by the Bay",
+      "emoji": "🌳",
+      "kind": "Nature",
+      "fact": "Gardens and conservatories sit near Marina Bay.",
+      "question": "Which garden landscape would you explore first?",
+      "sourceUrl": "https://www.visitsingapore.com/"
+    },
+    {
+      "id": "sg-2",
+      "countryId": "SG",
+      "name": "Merlion Park",
+      "emoji": "🦁",
+      "kind": "Landmark",
+      "fact": "The waterfront Merlion statue combines a lion’s head and a fish’s body.",
+      "question": "What story would you invent for the Merlion?",
+      "sourceUrl": "https://www.visitsingapore.com/"
+    },
+    {
+      "id": "sg-3",
+      "countryId": "SG",
+      "name": "Botanic Gardens",
+      "emoji": "🌺",
+      "kind": "Nature",
+      "fact": "Tropical gardens include the National Orchid Garden.",
+      "question": "What colour orchid would you look for?",
+      "sourceUrl": "https://www.visitsingapore.com/"
+    },
+    {
+      "id": "sg-4",
+      "countryId": "SG",
+      "name": "Jewel Changi",
+      "emoji": "💧",
+      "kind": "Design",
+      "fact": "A garden-filled complex at Changi Airport features an indoor waterfall.",
+      "question": "What would make an airport feel like a little adventure?",
+      "sourceUrl": "https://www.visitsingapore.com/"
+    },
+    {
+      "id": "th-1",
+      "countryId": "TH",
+      "name": "Grand Palace",
+      "emoji": "🏯",
+      "kind": "Heritage",
+      "fact": "A royal complex sits in Bangkok’s historic centre.",
+      "question": "What detail would you look for at the Grand Palace?",
+      "sourceUrl": "https://www.tourismthailand.org/Destinations/Provinces/Bangkok/219"
+    },
+    {
+      "id": "th-2",
+      "countryId": "TH",
+      "name": "Wat Arun",
+      "emoji": "🛕",
+      "kind": "Architecture",
+      "fact": "The temple stands beside the Chao Phraya River.",
+      "question": "What do you notice about Wat Arun’s towers?",
+      "sourceUrl": "https://www.tourismthailand.org/Destinations/Provinces/Bangkok/219"
+    },
+    {
+      "id": "th-3",
+      "countryId": "TH",
+      "name": "Wat Pho",
+      "emoji": "🛕",
+      "kind": "Culture",
+      "fact": "A temple complex is known for its reclining Buddha.",
+      "question": "What would you ask about the art at Wat Pho?",
+      "sourceUrl": "https://www.tourismthailand.org/Destinations/Provinces/Bangkok/219"
+    },
+    {
+      "id": "th-4",
+      "countryId": "TH",
+      "name": "Chatuchak Market",
+      "emoji": "🛍️",
+      "kind": "City life",
+      "fact": "A sprawling market brings many kinds of stalls together.",
+      "question": "What tiny treasure would you look for at Chatuchak?",
+      "sourceUrl": "https://www.tourismthailand.org/Destinations/Provinces/Bangkok/219"
+    },
+    {
+      "id": "id-1",
+      "countryId": "ID",
+      "name": "Monas",
+      "emoji": "🗼",
+      "kind": "Heritage",
+      "fact": "The National Monument commemorates Indonesia’s independence.",
+      "question": "What would you ask about the story behind Monas?",
+      "sourceUrl": "https://www.indonesia.travel/id/id/destination/java/jakarta/dki-jakarta"
+    },
+    {
+      "id": "id-2",
+      "countryId": "ID",
+      "name": "Kota Tua",
+      "emoji": "🧱",
+      "kind": "History",
+      "fact": "Jakarta’s old-town district holds traces of its trading-port past.",
+      "question": "What detail would you photograph in Kota Tua?",
+      "sourceUrl": "https://www.indonesia.travel/id/id/destination/java/jakarta/dki-jakarta"
+    },
+    {
+      "id": "id-3",
+      "countryId": "ID",
+      "name": "Istiqlal Mosque",
+      "emoji": "🕌",
+      "kind": "Architecture",
+      "fact": "A major mosque stands in central Jakarta near the cathedral.",
+      "question": "What would you want to learn about Istiqlal’s design?",
+      "sourceUrl": "https://www.indonesia.travel/id/id/destination/java/jakarta/dki-jakarta"
+    },
+    {
+      "id": "id-4",
+      "countryId": "ID",
+      "name": "Taman Mini",
+      "emoji": "🏘️",
+      "kind": "Culture",
+      "fact": "A cultural park introduces traditions and places across Indonesia.",
+      "question": "Which Indonesian tradition would you love to learn about?",
+      "sourceUrl": "https://www.indonesia.travel/id/id/destination/java/jakarta/dki-jakarta"
+    },
+    {
+      "id": "ae-1",
+      "countryId": "AE",
+      "name": "Burj Khalifa",
+      "emoji": "🏙️",
+      "kind": "Skyline",
+      "fact": "A slender skyscraper is a landmark of Downtown Dubai.",
+      "question": "What would you look for in a view over Dubai?",
+      "sourceUrl": "https://www.visitdubai.com/-/media/Images/pdf/2026/dubai-city-guide-en-2026.pdf"
+    },
+    {
+      "id": "ae-2",
+      "countryId": "AE",
+      "name": "Al Fahidi",
+      "emoji": "🏘️",
+      "kind": "Heritage",
+      "fact": "Historic lanes and wind-tower buildings sit near Dubai Creek.",
+      "question": "What catches your eye in Al Fahidi’s old streets?",
+      "sourceUrl": "https://www.visitdubai.com/en/articles/discover-dubais-old-town"
+    },
+    {
+      "id": "ae-3",
+      "countryId": "AE",
+      "name": "Dubai Creek",
+      "emoji": "⛵",
+      "kind": "City life",
+      "fact": "Traditional abra boats are part of the creek’s waterfront story.",
+      "question": "What do you notice about life beside Dubai Creek?",
+      "sourceUrl": "https://www.visitdubai.com/en/articles/discover-dubais-old-town"
+    },
+    {
+      "id": "ae-4",
+      "countryId": "AE",
+      "name": "Dubai Frame",
+      "emoji": "🖼️",
+      "kind": "Design",
+      "fact": "A frame-shaped landmark stands in Zabeel Park.",
+      "question": "Which two sides of a city would you put inside a frame?",
+      "sourceUrl": "https://www.visitdubai.com/-/media/Images/pdf/2026/dubai-city-guide-en-2026.pdf"
+    },
+    {
+      "id": "za-1",
+      "countryId": "ZA",
+      "name": "Table Mountain",
+      "emoji": "⛰️",
+      "kind": "Nature",
+      "fact": "A flat-topped mountain forms Cape Town’s dramatic backdrop.",
+      "question": "What does Table Mountain look like from your favourite viewpoint?",
+      "sourceUrl": "https://www.capetown.travel/10-must-see-experiences-in-and-around-cape-town/"
+    },
+    {
+      "id": "za-2",
+      "countryId": "ZA",
+      "name": "Bo-Kaap",
+      "emoji": "🏘️",
+      "kind": "Heritage",
+      "fact": "A historic neighbourhood is known for colourful houses and Cape Malay heritage.",
+      "question": "What would you like people to learn about Bo-Kaap?",
+      "sourceUrl": "https://www.capetown.travel/10-must-see-experiences-in-and-around-cape-town/"
+    },
+    {
+      "id": "za-3",
+      "countryId": "ZA",
+      "name": "Kirstenbosch",
+      "emoji": "🌺",
+      "kind": "Nature",
+      "fact": "A botanical garden sits on the slopes of Table Mountain.",
+      "question": "Which kind of plant would you love to discover here?",
+      "sourceUrl": "https://www.capetown.travel/10-must-see-experiences-in-and-around-cape-town/"
+    },
+    {
+      "id": "za-4",
+      "countryId": "ZA",
+      "name": "V&A Waterfront",
+      "emoji": "⛵",
+      "kind": "City life",
+      "fact": "A working harbour meets public spaces, shops and cultural attractions.",
+      "question": "What makes a harbour walk memorable to you?",
+      "sourceUrl": "https://www.capetown.travel/10-must-see-experiences-in-and-around-cape-town/"
+    },
+    {
+      "id": "ke-1",
+      "countryId": "KE",
+      "name": "Nairobi National Park",
+      "emoji": "🦒",
+      "kind": "Nature",
+      "fact": "Wildlife lives in a national park beside the city’s skyline.",
+      "question": "What would you want to learn about Nairobi’s wildlife?",
+      "sourceUrl": "https://kws.go.ke/park/nairobi-national-park/"
+    },
+    {
+      "id": "ke-2",
+      "countryId": "KE",
+      "name": "Giraffe Centre",
+      "emoji": "🦒",
+      "kind": "Conservation",
+      "fact": "The centre focuses on giraffe conservation and education.",
+      "question": "What would you ask someone who helps protect giraffes?",
+      "sourceUrl": "https://www.giraffecentre.org/faqs/"
+    },
+    {
+      "id": "ke-3",
+      "countryId": "KE",
+      "name": "Karura Forest",
+      "emoji": "🌳",
+      "kind": "Nature",
+      "fact": "An urban forest has paths, streams and woodland habitats.",
+      "question": "What sounds would you listen for in Karura Forest?",
+      "sourceUrl": "https://friendsofkarura.org/essential-information/"
+    },
+    {
+      "id": "ke-4",
+      "countryId": "KE",
+      "name": "Nairobi National Museum",
+      "emoji": "🏛️",
+      "kind": "Culture",
+      "fact": "The museum explores Kenya’s natural and cultural heritage.",
+      "question": "Which story about Kenya would you want to learn first?",
+      "sourceUrl": "https://museums.or.ke/wp-content/uploads/2023/12/Heritage-Tour.pdf"
+    },
+    {
+      "id": "mx-1",
+      "countryId": "MX",
+      "name": "Chapultepec",
+      "emoji": "🌳",
+      "kind": "Nature",
+      "fact": "A large urban park includes lakes, museums and a hilltop castle.",
+      "question": "What would your perfect Chapultepec afternoon look like?",
+      "sourceUrl": "https://mexicocity.cdmx.gob.mx/7-easy-going-days-in-mexico-city/?lang=en"
+    },
+    {
+      "id": "mx-2",
+      "countryId": "MX",
+      "name": "Bellas Artes",
+      "emoji": "🎭",
+      "kind": "Art",
+      "fact": "A prominent cultural palace brings art and performances together.",
+      "question": "What kind of performance would you want to see here?",
+      "sourceUrl": "https://mexicocity.cdmx.gob.mx/7-easy-going-days-in-mexico-city/?lang=en"
+    },
+    {
+      "id": "mx-3",
+      "countryId": "MX",
+      "name": "Zócalo",
+      "emoji": "🏛️",
+      "kind": "History",
+      "fact": "A large square anchors the city’s historic centre.",
+      "question": "What would you notice first around the Zócalo?",
+      "sourceUrl": "https://mexicocity.cdmx.gob.mx/7-easy-going-days-in-mexico-city/?lang=en"
+    },
+    {
+      "id": "mx-4",
+      "countryId": "MX",
+      "name": "Frida Kahlo Museum",
+      "emoji": "🎨",
+      "kind": "Art",
+      "fact": "The Blue House in Coyoacán preserves the artist’s home and story.",
+      "question": "What would you want to learn about Frida Kahlo’s world?",
+      "sourceUrl": "https://mexicocity.cdmx.gob.mx/7-easy-going-days-in-mexico-city/?lang=en"
+    },
+    {
+      "id": "ar-1",
+      "countryId": "AR",
+      "name": "Caminito",
+      "emoji": "🎨",
+      "kind": "Art",
+      "fact": "Colourful buildings line a street-museum in La Boca.",
+      "question": "Which colour would you choose for a house on Caminito?",
+      "sourceUrl": "https://turismo.buenosaires.gob.ar/es/24-48-72/tradicional"
+    },
+    {
+      "id": "ar-2",
+      "countryId": "AR",
+      "name": "Teatro Colón",
+      "emoji": "🎭",
+      "kind": "Culture",
+      "fact": "A historic opera house stands near the city centre.",
+      "question": "What would you listen for inside Teatro Colón?",
+      "sourceUrl": "https://turismo.buenosaires.gob.ar/es/24-48-72/tradicional"
+    },
+    {
+      "id": "ar-3",
+      "countryId": "AR",
+      "name": "Recoleta",
+      "emoji": "🏛️",
+      "kind": "Heritage",
+      "fact": "A historic district brings architecture, museums and public spaces together.",
+      "question": "What catches your eye on a walk around Recoleta?",
+      "sourceUrl": "https://turismo.buenosaires.gob.ar/es/24-48-72/tradicional"
+    },
+    {
+      "id": "ar-4",
+      "countryId": "AR",
+      "name": "Bosques de Palermo",
+      "emoji": "🌹",
+      "kind": "Nature",
+      "fact": "A network of parks includes lakes and a rose garden.",
+      "question": "What would you do with a slow afternoon in Palermo’s parks?",
+      "sourceUrl": "https://turismo.buenosaires.gob.ar/es/24-48-72/tradicional"
+    }
+  ]
+}

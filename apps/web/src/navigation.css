@@ -1,0 +1,41 @@
+/* Legacy floating-navigation layout; the current palette uses black and Kymzi lime. */
+.floating-nav{position:relative;isolation:isolate;z-index:8;height:calc(84px + max(10px,env(safe-area-inset-bottom)));flex:0 0 auto;margin:0 12px;background:transparent;color:#B1BCA8}
+.nav-surface{position:absolute;left:0;right:0;top:0;width:100%;height:84px;overflow:visible;filter:drop-shadow(0 7px 13px #00000066);pointer-events:none;z-index:-2}
+.nav-items{position:relative;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));height:84px;align-items:stretch;gap:0}
+.nav-tab{position:relative;appearance:none;display:flex;align-items:center;justify-content:flex-start;flex-direction:column;gap:5px;min-width:0;min-height:64px;padding:31px 2px 0;border:0;border-radius:18px;background:transparent;color:#B1BCA8;touch-action:manipulation;-webkit-tap-highlight-color:transparent;user-select:none;transition:color .18s ease,transform .18s ease}
+.nav-tab[aria-current=page]{color:#D0DEC3}.nav-tab:active{transform:scale(.94)}
+.nav-tab:focus-visible{outline:2px solid #B1BCA8;outline-offset:-4px}
+.nav-tab-icon{flex-shrink:0;transition:transform .24s cubic-bezier(.2,.8,.2,1)}
+.nav-tab[aria-current=page]>.nav-tab-icon{transform:translateY(-2px)}
+.nav-tab-label{font-size:14px;line-height:18px;font-weight:600;letter-spacing:.05px;white-space:nowrap}
+.nav-tab[aria-current=page]>.nav-tab-label{font-weight:600}
+.nav-selection{position:absolute;left:0;top:25px;width:calc(100% / 3);height:35px;transform:translateX(calc(var(--nav-index)*100%));transition:transform .32s cubic-bezier(.2,.8,.2,1),opacity .18s ease;pointer-events:none;z-index:-1}
+.nav-selection:before{content:'';position:absolute;inset:0 8px;background:linear-gradient(135deg,#B1BCA842,#B1BCA830);border:1px solid #D5F88F30;border-radius:14px;box-shadow:inset 0 1px #B1BCA80B}
+.floating-nav[data-active="1"]>.nav-selection{opacity:0}
+.nav-tab.nav-task-tab{padding-top:0;gap:0;overflow:visible}
+.nav-camera-orb{position:relative;display:block;width:72px;height:72px;flex:0 0 72px;filter:drop-shadow(0 4px 10px #41593B4D);transition:transform .28s cubic-bezier(.2,.8,.2,1),filter .28s ease}
+.nav-camera-orb>svg:first-child{display:block;width:72px;height:72px;overflow:visible}
+.nav-camera-orb>svg:first-child>path{stroke:#374C3A;stroke-width:2.4;transition:stroke .25s ease}
+.nav-camera-orb>svg:first-child>path.is-filled{stroke:#D5F88F}
+.nav-camera-orb>.nav-camera-icon{position:absolute;left:24px;top:22px;color:#F1F5EB}
+.nav-camera-orb.is-selected{transform:translateY(-2px);filter:drop-shadow(0 5px 13px #4F6B474D)}
+.nav-camera-count{position:absolute;top:51px;right:0;display:flex;align-items:center;justify-content:center;min-width:28px;height:17px;padding:1px 5px;border:1px solid #D5F88F;border-radius:7px;background:#1C271E;color:#D0DEC3;box-shadow:0 2px 5px #090C0A66}
+.nav-camera-count:after{content:attr(data-count);font-size:9px;line-height:12px;font-weight:600;letter-spacing:.2px}
+.nav-task-tab>.nav-tab-label{margin-top:-6px;color:#D0DEC3}
+.nav-task-tab[aria-current=page]>.nav-tab-label{color:#F1F5EB}
+.nav-profile-picture{height:24px;width:24px;flex:0 0 24px;display:flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid #4C6745;background:#1D281F;transition:transform .24s ease,border-color .24s ease}
+.nav-profile-picture>img{display:block;height:24px;width:24px;object-fit:contain;pointer-events:none;filter:drop-shadow(0 1px 2px #090C0A66)}
+.nav-tab[aria-current=page]>.nav-profile-picture{border-color:#B1BCA8;transform:translateY(-2px)}
+/* The top bar uses the same materials, with updates beside the brand. */
+.app-header.creative-app-header{position:relative;isolation:isolate;background:radial-gradient(ellipse at 16% 0,#23302555,transparent 64%),#090C0A}
+.creative-app-header:after{content:'';position:absolute;bottom:0;left:24px;right:24px;height:1px;background:linear-gradient(90deg,#668B5D3D,#3B513E1F,#4C674526);pointer-events:none}
+.header-root-actions{display:flex;align-items:center;gap:9px;flex-shrink:0}
+.creative-app-header .home-mode-badge{display:flex;align-items:center;gap:5px;font-size:11px;line-height:15px;padding:4px 7px;border:1px solid #304233;border-radius:8px;background:#141B15;color:#B1BCA8;letter-spacing:.15px}
+.creative-app-header .home-mode-badge:before{content:'';height:4px;width:4px;border-radius:50%;background:#B1BCA8}
+.creative-app-header .home-updates-bell{width:44px;height:44px;border-radius:15px;background:linear-gradient(145deg,#1C271E,#141B15);border:1px solid #394F3C;color:#D0DEC3}
+.creative-app-header .home-updates-bell>svg{width:22px;height:22px}
+.creative-app-header .home-updates-bell>b{height:17px;min-width:17px;right:-3px;top:-3px;font-size:9px;background:#445D3E;border:2px solid #090C0A;color:#F1F5EB}
+.creative-app-header .header-title{color:#D0DEC3}
+@media(hover:hover){.nav-tab:hover{color:#D0DEC3}.nav-tab:hover>.nav-tab-icon{transform:translateY(-2px)}.nav-task-tab:hover>.nav-camera-orb{transform:translateY(-3px)}}
+@container rymzi-app (max-width:350px){.floating-nav{margin-left:8px;margin-right:8px}.nav-selection:before{left:5px;right:5px}.nav-camera-orb,.nav-camera-orb>svg:first-child{width:68px;height:68px}.nav-camera-orb{flex-basis:72px}.nav-camera-orb>.nav-camera-icon{left:22px;top:20px}.nav-camera-count{top:49px;right:-1px}.header-root-actions{gap:7px}.creative-app-header .home-mode-badge{padding:3px 5px}}
+@media(prefers-reduced-motion:reduce){.floating-nav *{transition:none!important;animation:none!important}.nav-tab:active{transform:none}}

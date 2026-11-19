@@ -1,0 +1,84 @@
+{
+  "name": "Kymzi",
+  "selected": "original-two-pals-restored-v5",
+  "description": "The original lime and lavender two-pal K symbol, restored from the existing editable SVG.",
+  "mark": {
+    "viewBox": "0 0 96 96",
+    "paths": [
+      {
+        "fill": "#d5f88f",
+        "d": "M13 25A15 15 0 0 1 28 10h4a15 15 0 0 1 15 15v13l23-23a13 13 0 0 1 18 18L51 70a17 17 0 0 1-12 5h-9L13 88V25Z"
+      },
+      {
+        "fill": "#c8beff",
+        "d": "m54 45 30 26a12 12 0 0 1-8 21H65L51 82H40a15 15 0 0 1-10-26l4-4a15 15 0 0 1 20-7Z"
+      }
+    ],
+    "eyes": {
+      "fill": "#171624",
+      "radius": 3.5,
+      "centres": [
+        [
+          26,
+          30
+        ],
+        [
+          36,
+          30
+        ],
+        [
+          54,
+          68
+        ],
+        [
+          64,
+          68
+        ]
+      ]
+    }
+  },
+  "wordmark": {
+    "style": "Softline v6",
+    "width": 347,
+    "height": 100,
+    "paths": [
+      "M119 21V75 M145 40L122 57 M123 56L147 75",
+      "M162 40L174 65Q179 76 186 62L197 40 M197 40L178 84Q173 95 164 92",
+      "M214 75V42 M214 52C214 35 237 35 237 52V75 M237 52C237 35 260 35 260 52V75",
+      "M280 41H310L280 74H312",
+      "M332 43V75"
+    ],
+    "stroke": "#F1F5EB",
+    "strokeWidth": 10.5,
+    "strokeLinecap": "round",
+    "strokeLinejoin": "round",
+    "dot": {
+      "x": 332,
+      "y": 23,
+      "r": 6,
+      "fill": "#C8BEFF"
+    },
+    "font": "Original custom vector lettering; not a runtime font",
+    "description": "Custom round-ended lowercase strokes, an open m, a curved y tail, and a lavender i dot."
+  },
+  "palette": {
+    "ground": "#090C0A",
+    "surface": "#151B16",
+    "raised": "#243026",
+    "line": "#3E5140",
+    "ink": "#F1F5EB",
+    "muted": "#B1BCA8",
+    "accent": "#D5F88F",
+    "blue": "#BDE68C",
+    "action": "#284C32",
+    "actionBlue": "#23442E",
+    "actionInk": "#EAF6D9",
+    "primary": "#D5F88F",
+    "primaryPressed": "#C1E875",
+    "primaryInk": "#172116",
+    "lavender": "#C8BEFF"
+  },
+  "source": "packages/assets/brand/kymzi-symbol.svg",
+  "nativeIcon": "Original kymzi-app-icon.png preserved byte for byte",
+  "rendering": "Editable SVG; derived PNG/ICO exports. Favicons and Android foregrounds have alpha. Opaque home-screen icon retains the original midnight ground."
+}
