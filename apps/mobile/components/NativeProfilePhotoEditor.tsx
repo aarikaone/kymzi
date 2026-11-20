@@ -19,7 +19,7 @@ export function NativeProfilePhotoEditor({value,band,onChange,onBusy,portraitHei
    <View style={{position:'absolute',bottom:9,right:9,width:34,height:34,borderWidth:1,borderColor:'#4A6345',borderRadius:17,backgroundColor:'#090C0A',alignItems:'center',justifyContent:'center'}}><Ionicons name="camera-outline" size={18} color="#D5F88F"/></View>
   </Pressable>
   {value&&<Pressable accessibilityRole="button" accessibilityLabel="Remove photo" disabled={busy} onPress={()=>{setError('');onChange(undefined);}} style={{position:'absolute',top:3,right:3,width:44,height:44,alignItems:'center',justifyContent:'center'}}><View style={{width:28,height:28,borderRadius:14,backgroundColor:'#090C0AD9',alignItems:'center',justifyContent:'center'}}><Ionicons name="close" size={18} color="#F1F5EB"/></View></Pressable>}
-  <Text style={{fontSize:18,lineHeight:24,fontWeight:'600',color:'#F1F5EB'}}>Real photo</Text><Text style={{fontSize:12,lineHeight:18,color:'#B1BCA8',textAlign:'center'}}>Optional · On this device</Text>
+  <Text style={{fontSize:18,lineHeight:24,fontWeight:'600',color:'#F1F5EB'}}>Real photo</Text><Text style={{fontSize:12,lineHeight:18,color:'#B1BCA8',textAlign:'center'}}>Optional · Private</Text>
   {!!error&&<Text accessibilityRole="alert" style={{fontSize:13,lineHeight:19,color:'#F0C5A5',textAlign:'center',marginTop:5}}>{error}</Text>}
  </View>;
 }

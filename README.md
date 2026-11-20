@@ -2,7 +2,7 @@
 
 Kymzi is a local web and React Native prototype: **bring five friends → unlock pal finding → answer three questions → match all three → connect with an unknown pal → discover their city through places and photos → meet anonymously when visiting**.
 
-The normal bottom navigation is **Explore / Cities / Task / Profile**. Notifications sit at the top right of every eligible root tab. There are no Demo chips. About, illustration labels and the chat/meeting explanations identify the local preview without adding a global badge.
+On iPhone, the bottom navigation is **Home / Explore / Task / Favs**. The app bar pairs your anonymous character and personal photo on the left, the original K logo in the center and notifications on the right. Tap the paired avatars to open Profile. Notifications sit at the top right of every eligible root tab. There are no Demo chips. About, illustration labels and the chat/meeting explanations identify the local preview without adding a global badge.
 
 ## Five-friend unlock
 
@@ -12,7 +12,7 @@ Preparing the three-question invite is free and kept separately from daily globa
 
 Five completion credits survive postcard/invitation history retention and reloads; existing owned completed postcards migrate into progress. These remain local challenge-completion records, not authenticated registrations or automatic cross-device referral tracking. Public matchmaking and push still need the service described below. Guides, the home passport and the camera task remain available without inviting anyone. Ages 10–12 retain private exploration and are not asked to recruit friends.
 
-Use the small **Demo** link in the app bar to play the five-friend unlock animation. Activation is saved in `launch.globalPlay` with its time/source and survives reloads, navigation and app restarts. **Explore** leaves the animation without revoking activation. Replaying the animation does not reset quotas, drafts, photos, pals or city progress. Existing temporary unlock previews migrate into the durable mode while retaining the current daily game. The real distinct-friend count stays separate. Replay, skip, cancel and reduced-motion behavior remain available on web and native.
+On iPhone, use **Profile → Global play preview** to play the five-friend unlock animation. Activation is saved in `launch.globalPlay` with its time/source and survives reloads, navigation and app restarts. **Explore** leaves the animation without revoking activation. Replaying the animation does not reset quotas, drafts, photos, pals or city progress. Existing temporary unlock previews migrate into the durable mode while retaining the current daily game. The real distinct-friend count stays separate. Replay, skip, cancel and reduced-motion behavior remain available on web and native.
 
 ## Day-one launch flow
 
@@ -126,6 +126,8 @@ The original Kymzi two-pal K logo is restored from `packages/assets/brand/kymzi-
 
 The catalog and state logic are shared by `@rymzi/core`; clients are `@rymzi/web` (React/Vite) and `@rymzi/mobile` (Expo/React Native/NativeWind). The checkout remains `/Users/aarika/Documents/workspace/kymzi`.
 
+Inline native Pressables with callback styles opt out of NativeWind interop (`cssInterop={false}`), which preserves their layout, backgrounds and pressed feedback. This includes the illustrated topic grid and onboarding buttons. The top app bar pairs two personal identities on the left with a centered K logo and a notification bell on black, without a divider. Home omits upcoming travel cards and visit badges; these remain available in Profile. The Home feed begins with a circular Unlock action in the pal-avatar row, followed by connected pals. It replaces the separate Explore heading and Play button, keeps daily waiting limits, and resumes saved answers. Photo overlays use a light lower fade with compact location labels.
+
 ## Profile characters
 
 Edit Profile includes **44 character avatars**: the original Cloud, Orbit, Sunny and Sprout plus 40 original plush-style characters. **Change character** opens a searchable collection with Fuzzy, Critters, Cosmic and Oddballs filters, a large live preview and **Use [name]**. Returning without applying discards the picker preview. Applying returns to the edit form; **Save changes** commits the avatar and returns to Profile without resetting plays, photos, discoveries or connections.
@@ -148,7 +150,7 @@ npm exec --workspace @rymzi/mobile -- expo export --platform all --output-dir ..
 
 `Start-Rymzi.command` starts the existing local preview at **http://localhost:4178/**. Desktop uses a mobile frame; phones use their viewport. Small screens and larger text can scroll to keep controls reachable.
 
-Preserve the existing Expo dependency overrides and `patches/metro+0.83.3.patch`; `patch-package` applies the image-parser compatibility fix. No new runtime dependency was added for this change.
+Preserve the existing Expo dependency overrides and `patches/metro+0.83.3.patch`; `patch-package` applies the image-parser compatibility fix. The Expo-compatible `expo-system-ui` module configures the native dark surfaces.
 
 Shared tests cover progression, five-game limits, drafts, age boundaries, meeting privacy/expiry and existing play/photo behavior. UI tests cover the five tabs, first-use introduction, connected feed, city photos, avatar/chat gates, camera tasks, notification navigation and both anonymous meeting flows. Browser visual review remains unavailable because Computer Use blocked this local URL; no browser-control workaround was used. Physical-device runtime and broader accessibility review remain pending.
 
@@ -165,6 +167,29 @@ Explore uses one continuous vertical scroll for its title, Play action, pal avat
 
 ## Favorite city photos and task badge
 
-The five bottom tabs are Explore, Cities, Task, Favs and Profile. Task always shows the actual current-month photo count, capped at **3/3**, including home camera credits; it resets at the local calendar-month boundary.
+Web retains Explore, Cities, Task, Favs and Profile. On iPhone, Profile opens from the app-bar avatars, leaving four bottom tabs: Home, Explore, Task and Favs. Task always shows the actual current-month photo count, capped at **3/3**, including home camera credits; it resets at the local calendar-month boundary.
 
 Heart actions on feed photos, gallery thumbnails and own city moments toggle the same persistent local favorites. Existing saved photos appear in Favs automatically. The Favs tab has a photo grid and a larger photo viewer, with removal in either view. Own home moments keep their saved city/country label. Hidden photos, blocked or ineligible connections, deleted source photos and other age cohorts are excluded. Favorites do not count toward the camera task, create matches or spend plays.
+
+### Live iPhone edits
+
+Run `npm run ios:dev` once to install the Debug development client on the connected iPhone. Later, use `npm run mobile`, open Kymzi on the phone, and save a UI file to see Fast Refresh. Keep the Mac and phone on the same network. Native dependency and permission changes need another native build. The installed Release app must be replaced by the development client for live edits.
+
+Native meetup screens use one main action per step: **city → public place → pal → pin**. The visiting-pal flow shows a single check-in form, a visual waiting state and same-city chat. City stories and longer privacy explanations are expandable. Shorter labels cover onboarding, play, cities, monthly tasks, profiles and updates; check-in expiry, public-location consent and simulated-presence notices remain visible.
+
+## Native release builds
+
+Kymzi’s iOS bundle identifier and Android package are **com.kymzi.app**. Local build helpers follow the neighboring Medinest workflow, with matching platform build numbers, per-step logs and collected artifacts. They do not upload or publish.
+
+iOS uses Medinest's Apple Developer team **5Y3QHYUW35**, configured in `apps/mobile/app.json`. Native helpers automatically select an installed compatible Node runtime if the shell uses Node 23/25; `.nvmrc` selects Node 24 for other project commands. Check iOS setup with `npm run build:ios -- --preflight-only`.
+
+```sh
+npm run build:doctor
+npm run release:stores -- --dry-run
+npm run release:stores             # Android AAB + iOS IPA
+npm run build:all                  # web + Android + iOS
+npm run build:android:debug        # debug APK
+npm run build:ios:simulator        # unsigned Release simulator app
+```
+
+See [the mobile build guide](docs/MOBILE_BUILDS.md) and `.env.build.example` for local Xcode, SDK and signing setup. Copy the template to `.env.build.local`; credentials and generated native projects/artifacts are ignored by Git.

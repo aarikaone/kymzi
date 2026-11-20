@@ -3,7 +3,7 @@ import {Image,Pressable,ScrollView,Text,useWindowDimensions,View} from 'react-na
 import {SafeAreaView,useSafeAreaInsets} from 'react-native-safe-area-context';
 import {StatusBar} from 'expo-status-bar';
 import Svg,{Defs,LinearGradient,Rect,Stop} from 'react-native-svg';
-import {JOURNEY_COPY,WELCOME_DESCRIPTION} from '@rymzi/core';
+import {JOURNEY_COPY} from '@rymzi/core';
 import {NIGHT_THEME as C} from './theme';
 import {Brand} from './Brand';
 import {Hand} from './Typography';
@@ -26,16 +26,16 @@ export function NativeWelcome({onStart}:{onStart:()=>void}){
     <Image source={require('../../../packages/assets/avatars/cloud-glasses-v1.png')} accessible={false} style={{
      position:'absolute',top:0,left:'-3%',width:'200%',height:'100%',resizeMode:'contain',
     }}/>
-    <Svg width="100%" height="100%" style={{position:'absolute',top:0,left:0}}><Defs><LinearGradient id={fadeId} x1="0" y1="0" x2="0" y2="1"><Stop offset=".58" stopColor={C.ground} stopOpacity={0}/><Stop offset="1" stopColor={C.ground}/></LinearGradient></Defs><Rect width="100%" height="100%" fill={'url(#'+fadeId+')'}/></Svg>
+    <Svg width="100%" height="100%" style={{position:'absolute',top:0,left:0}}><Defs><LinearGradient id={fadeId} x1="0" y1="0" x2="0" y2="1"><Stop offset="0.58" stopColor={C.ground} stopOpacity={0}/><Stop offset="1" stopColor={C.ground}/></LinearGradient></Defs><Rect width="100%" height="100%" fill={'url(#'+fadeId+')'}/></Svg>
    </View>
    <View style={{height:48,justifyContent:'center'}}><Brand dark/></View>
    <View style={{gap:compact?12:14,marginTop:'auto'}}>
     <Text accessibilityRole="header" style={{fontSize:titleSize,lineHeight:titleSize*1.05,fontWeight:'600',letterSpacing:-1.6,color:C.ink}}>
      {JOURNEY_COPY.title}{'\n'}<Hand style={{fontSize:titleSize*1.18,lineHeight:titleSize*1.22,color:C.accent}}>{JOURNEY_COPY.titleAccent}</Hand>
     </Text>
-    <Text style={{maxWidth:330,fontSize:compact?16:17,lineHeight:compact?23:25,color:C.muted}}>{WELCOME_DESCRIPTION}</Text>
+    <Text style={{maxWidth:330,fontSize:compact?16:17,lineHeight:compact?23:25,color:C.muted}}>5 friends unlock your next pal.</Text>
    </View>
-   <Pressable accessibilityRole="button" onPress={onStart} style={({pressed})=>({
+   <Pressable cssInterop={false} accessibilityRole="button" onPress={onStart} style={({pressed})=>({
     minHeight:small?56:compact?58:60,padding:14,borderRadius:20,backgroundColor:pressed?C.primaryPressed:C.primary,
     alignItems:'center',justifyContent:'center',
    })}>

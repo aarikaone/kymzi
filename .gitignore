@@ -224,3 +224,8 @@ Desktop.ini
 
 # Keep source, packages/assets, apps/web/public, docs,
 # package-lock.json, and patches/ versioned.
+
+# Local release artifacts and Expo-generated native projects (CNG)
+/artifacts/
+/apps/mobile/ios/
+/apps/mobile/android/

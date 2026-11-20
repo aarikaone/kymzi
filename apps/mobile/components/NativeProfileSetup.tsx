@@ -17,7 +17,7 @@ export function NativeProfileSetup({profile,editing,busy,error,onAvatar,onLocati
  return <View style={{flex:1,minHeight:short?510:compact?530:560,gap:short?14:compact?17:22}}>
   <View style={{gap:compact?5:8}}>
    <Text accessibilityRole="header" style={{fontSize:short?31:compact?33:36,lineHeight:short?37:compact?39:42,fontWeight:'600',letterSpacing:-1.4,color:C.ink}}>{PROFILE_SETUP_COPY.title}</Text>
-   <View style={{flexDirection:'row',alignItems:'center',gap:11}}><Text style={{fontSize:13,lineHeight:22,color:C.muted}}>Your number</Text><Text accessibilityLabel="Your assigned nickname" style={{fontSize:18,lineHeight:22,fontWeight:'500',fontVariant:['tabular-nums'],letterSpacing:1,color:C.accent}}>#{profile.name}</Text></View>
+   <View style={{flexDirection:'row',alignItems:'center',gap:11}}><Text style={{fontSize:13,lineHeight:22,color:C.muted}}>Your ID</Text><Text accessibilityLabel="Your assigned nickname" style={{fontSize:18,lineHeight:22,fontWeight:'500',fontVariant:['tabular-nums'],letterSpacing:1,color:C.accent}}>#{profile.name}</Text></View>
   </View>
   <View accessibilityLabel="Your character and real photo" style={{flexDirection:'row',alignItems:'flex-start',gap:16}}>
    <View style={{flex:1,alignItems:'center',gap:4}}>
@@ -31,7 +31,7 @@ export function NativeProfileSetup({profile,editing,busy,error,onAvatar,onLocati
   </View>
   <View style={{flexDirection:'row',alignItems:'flex-start',gap:12,paddingHorizontal:2}}>
    <Ionicons name={privateOnly?'shield-checkmark-outline':'lock-closed-outline'} size={20} color={C.lavender} style={{marginTop:2}}/>
-   <View style={{flex:1,gap:4}}><Text style={{fontSize:15,lineHeight:22,fontWeight:'500',color:C.ink}}>{privateOnly?'Only you can see this.':PROFILE_SETUP_COPY.revealTitle}</Text><Text style={{fontSize:13,lineHeight:19,color:C.muted}}>{privateOnly?'Your profile stays private.':PROFILE_SETUP_COPY.revealDetail}</Text></View>
+   <View style={{flex:1,gap:4}}><Text style={{fontSize:15,lineHeight:22,fontWeight:'500',color:C.ink}}>{privateOnly?'Only you can see this.':'Your photo unlocks after 3 matches.'}</Text><Text style={{fontSize:13,lineHeight:19,color:C.muted}}>{privateOnly?'Your profile stays private.':'Only for that pal.'}</Text></View>
   </View>
   <View style={{flexDirection:'row',gap:12}}>
    <View style={{flex:1,gap:9}}><Text style={{fontSize:14,lineHeight:20,fontWeight:'500',color:C.muted}}>City</Text><TextInput accessibilityLabel="City" value={profile.city??''} onChangeText={value=>onLocation('city',value)} placeholder="Your city" placeholderTextColor={C.muted} maxLength={60} autoCapitalize="words" autoCorrect={false} returnKeyType="next" onSubmitEditing={()=>countryInput.current?.focus()} style={{minHeight:52,paddingHorizontal:13,paddingVertical:12,borderWidth:1,borderColor:C.line,borderRadius:16,backgroundColor:C.surface,color:C.ink,fontSize:17,lineHeight:24}}/></View>
@@ -39,7 +39,7 @@ export function NativeProfileSetup({profile,editing,busy,error,onAvatar,onLocati
   </View>
   <View style={{marginTop:'auto',paddingTop:4,gap:12}}>
    {!!error&&<Text accessibilityRole="alert" style={{fontSize:13,lineHeight:19,color:'#F0C5A5'}}>{error}</Text>}
-   <Pressable accessibilityRole="button" disabled={busy} onPress={onSave} style={({pressed})=>({minHeight:short?55:58,borderRadius:20,padding:14,backgroundColor:pressed?C.primaryPressed:C.primary,alignItems:'center',justifyContent:'center',opacity:busy?.4:1})}><Text style={{fontSize:20,fontWeight:'600',color:C.primaryInk}}>{editing?'Save changes':'Let’s go'}</Text></Pressable>
+   <Pressable cssInterop={false} accessibilityRole="button" disabled={busy} onPress={onSave} style={({pressed})=>({minHeight:short?55:58,borderRadius:20,padding:14,backgroundColor:pressed?C.primaryPressed:C.primary,alignItems:'center',justifyContent:'center',opacity:busy?.4:1})}><Text style={{fontSize:20,fontWeight:'600',color:C.primaryInk}}>{editing?'Save changes':'Let’s go'}</Text></Pressable>
   </View>
  </View>;
 }

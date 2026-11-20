@@ -9,16 +9,19 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.rymzi.app"
+      "bundleIdentifier": "com.kymzi.app",
+      "appleTeamId": "5Y3QHYUW35",
+      "buildNumber": "2"
     },
     "android": {
-      "package": "com.rymzi.app",
+      "package": "com.kymzi.app",
       "edgeToEdgeEnabled": true,
       "adaptiveIcon": {
         "foregroundImage": "../../packages/assets/brand/kymzi-adaptive.png",
         "backgroundColor": "#171624",
         "monochromeImage": "../../packages/assets/brand/kymzi-monochrome.png"
-      }
+      },
+      "versionCode": 2
     },
     "web": {
       "bundler": "metro"
@@ -41,7 +44,8 @@
           "cameraPermission": "Allow Kymzi to take city photos. Photos are reviewed before you add them.",
           "microphonePermission": false
         }
-      ]
+      ],
+      "./plugins/withReleaseSigning.cjs"
     ]
   }
 }
