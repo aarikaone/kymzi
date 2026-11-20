@@ -167,7 +167,7 @@ Explore uses one continuous vertical scroll for its title, Play action, pal avat
 
 ## Favorite city photos and task badge
 
-Web retains Explore, Cities, Task, Favs and Profile. On iPhone, Profile opens from the app-bar avatars, leaving four bottom tabs: Home, Explore, Task and Favs. Task always shows the actual current-month photo count, capped at **3/3**, including home camera credits; it resets at the local calendar-month boundary.
+Web retains Explore, Cities, Task, Favs and Profile. On iPhone, Profile opens from the app-bar avatars, leaving four bottom tabs: Home, Explore, Task and Favs. Explore begins with an achievement summary derived from saved progress: places unlocked and eligible pals connected. Flag stamps trace the collection, and each place card shows its own pal count, character previews and new-photo indicator. Counts follow actual state rather than fixed example values; private child profiles show saved places instead of pals. Task always shows the actual current-month photo count, capped at **3/3**, including home camera credits; it resets at the local calendar-month boundary.
 
 Heart actions on feed photos, gallery thumbnails and own city moments toggle the same persistent local favorites. Existing saved photos appear in Favs automatically. The Favs tab has a photo grid and a larger photo viewer, with removal in either view. Own home moments keep their saved city/country label. Hidden photos, blocked or ineligible connections, deleted source photos and other age cohorts are excluded. Favorites do not count toward the camera task, create matches or spend plays.
 
