@@ -20,10 +20,11 @@ function subscribeMotion(listener:()=>void) {
 }
 
 export const NativeImage=forwardRef<SystemImage,NativeImageProps>(function NativeImage(props,ref) {
-  const source=props.source;
+  const deferred=props.source;
+  const source=typeof deferred==='number'?deferred:Array.isArray(deferred)?deferred.map(item=>({...item,uri:item.uri})):deferred?{...deferred,uri:deferred.uri}:undefined;
   const raw=typeof source==='number'?source:Array.isArray(source)?source.map(item=>item.uri??'').join('|'):source?.uri??'';
   const identity=useMemo(()=>imageIdentity(raw),[raw]);
-  return <ImageFrame key={`${identity}:${props.showLoader?'loader':'auto'}`} {...props} identity={identity} ref={ref}/>;
+  return <ImageFrame key={`${identity}:${props.showLoader?'loader':'auto'}`} {...props} source={source} identity={identity} ref={ref}/>;
 });
 
 const ImageFrame=forwardRef<SystemImage,NativeImageProps&{identity:string}>(function ImageFrame({

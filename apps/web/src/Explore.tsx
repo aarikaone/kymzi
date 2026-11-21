@@ -1,3 +1,4 @@
+import {publicCdnImage} from '@rymzi/core';
 import {JOURNEY_COPY} from '@rymzi/core';
 import {useState,type CSSProperties} from 'react';
 import {unseenCityPhotos,COUNTRIES,attractionsForCountry,cityById,countryById,worldPlaces,worldStats,uncoveredPlace,attractionById,connections,connectionFor,canChat,canPlanMeetup,portraitRevealed,portraitFrame,latestPlayConnections,playCountry,hasDailyProgress,latestJourney,type Country,type CountryId,type PreviewState,type DemoPeer} from '@rymzi/core';
@@ -9,7 +10,7 @@ import {CityArt,WorldMap} from './Passport';
 
 export function PeerFace({state,peer,size=48}:{state:PreviewState;peer:DemoPeer;size?:number}){
  const revealed=portraitRevealed(state.social,peer.id,state.profile!.ageBand,state.blocked),frame=portraitFrame(peer);
- return revealed?<span className="peer-photo" role="img" aria-label={`Fictional portrait of ${peer.name}`} style={{width:size,height:size,backgroundPosition:`${frame.x}% ${frame.y}%`}}/>:<img className="social-face" src={`/avatars/${peer.avatar}.webp`} style={{width:size,height:size}} alt="" draggable="false"/>;
+ return revealed?<span className="peer-photo" role="img" aria-label={`Fictional portrait of ${peer.name}`} style={{width:size,height:size,backgroundPosition:`${frame.x}% ${frame.y}%`}}/>:<img className="social-face" src={publicCdnImage(`/avatars/${peer.avatar}.webp`)} style={{width:size,height:size}} alt="" draggable="false"/>;
 }
 export function PlaceArt({country,className=''}:{country:Country;className?:string}){const city=cityById(country.cityId)!;return <div className={`place-art ${className}`} style={{'--place-tint':country.color,'--place-ink':country.ink} as CSSProperties}><span className="place-art-orbit"/>{country.artId?<CityArt city={city}/>:<span className="city-cutout-collage"><i>{attractionsForCountry(country.id)[1].emoji}</i><strong>{attractionsForCountry(country.id)[0].emoji}</strong><b>{attractionsForCountry(country.id)[2].emoji}</b></span>}<i>✦</i><b>{country.code}</b></div>;}
 function EmptyWorld({onPlay,privatePlay=false}:{onPlay?:()=>void;privatePlay?:boolean}){return <div className="explore-empty"><Icon name="globe" size={70}/><h2>{privatePlay?'Your first city.':JOURNEY_COPY.emptyCity}</h2><p>{privatePlay?'3 answers. Discover a city.':JOURNEY_COPY.emptyHint}</p>{onPlay&&<button className="button" onClick={onPlay}>{privatePlay?JOURNEY_COPY.privateStart:JOURNEY_COPY.start}<Icon name="arrow"/></button>}</div>;}

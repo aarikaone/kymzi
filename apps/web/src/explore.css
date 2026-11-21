@@ -1,5 +1,5 @@
 /* Discovery is the reward: no destination appears before a match. */
-.peer-photo{display:block;flex-shrink:0;border-radius:50%;background-image:url('/portraits/fictional-atlas.webp');background-size:400% 400%;background-repeat:no-repeat;box-shadow:0 0 0 3px #F1F5EB,0 5px 18px #52644B1a}
+.peer-photo{display:block;flex-shrink:0;border-radius:50%;background-image:var(--kymzi-portrait-url);background-size:400% 400%;background-repeat:no-repeat;box-shadow:0 0 0 3px #F1F5EB,0 5px 18px #52644B1a}
 .explore-world,.explore-city,.attraction-detail,.friends-world,.place-reveal{height:100%;min-height:0;display:flex;flex-direction:column;gap:13px}
 .app-main:has(.explore-world),.app-main:has(.explore-city),.app-main:has(.friends-world){overflow:hidden}
 .explore-heading{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-shrink:0}.explore-heading h1{font-size:31px;letter-spacing:-1px;white-space:normal}.explore-heading h1 em{font-size:1.3em}.explore-heading p{font-size:12px;margin-top:7px;color:#B1BCA8}

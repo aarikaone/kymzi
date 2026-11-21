@@ -1,3 +1,4 @@
+import './cloud-test-setup';
 import { afterEach, vi } from 'vitest';
 import { cleanup } from '@testing-library/react';
 Object.defineProperty(HTMLElement.prototype,'scrollTo',{value:vi.fn(),writable:true});

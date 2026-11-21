@@ -47,3 +47,5 @@
 @import './home-scroll.css';
 
 @import './favorites.css';
+
+.cloud-start{min-height:100dvh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px;background:#090c0a;color:#f1f5eb;font:600 22px system-ui}.cloud-start-mark{font-size:82px;font-weight:900;color:#d5f88f}.cloud-start button{border:0;border-radius:24px;padding:16px 28px;background:#d5f88f;color:#090c0a;font:inherit}.cloud-start-spinner{width:28px;height:28px;border:3px solid #343b30;border-top-color:#d5f88f;border-radius:50%;animation:cloud-spin 1s linear infinite}@keyframes cloud-spin{to{transform:rotate(360deg)}}@media(prefers-reduced-motion:reduce){.cloud-start-spinner{animation:none}}

@@ -1,3 +1,4 @@
+import {publicCdnImage} from '@rymzi/core';
 import {useEffect,useRef,type ReactNode} from 'react';
 import type {AvatarId} from '@rymzi/core';
 import {Icon} from './icons';
@@ -21,19 +22,19 @@ export function ChatRoom({alias,avatar,yourAvatar,city,mode,messages,draft,onDra
  const ideas=mode==='meetup'?['Hey, roamie 👋','See you at the entrance?','Coffee nearby?']:['Hey, roamie 👋','Your city’s hidden gem?','What should I try first?'];
  return <div className="chat-room">
   <header className="room-header">
-   <div className="room-avatar"><img src={`/avatars/${avatar}.webp`} alt={`${alias}’s chosen character`}/><i aria-hidden="true"><Icon name="spark" size={12}/></i></div>
+   <div className="room-avatar"><img src={publicCdnImage(`/avatars/${avatar}.webp`)} alt={`${alias}’s chosen character`}/><i aria-hidden="true"><Icon name="spark" size={12}/></i></div>
    <div className="room-identity"><span>YOUR PAL, A NEW STORY</span><h1 tabIndex={-1}>{alias}</h1><p><Icon name="pin" size={13}/>{city}</p></div>
    {remaining!==undefined?<div className="room-timer" aria-label={`${remaining} minutes of shared check-in left`}><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21"/><circle cx="24" cy="24" r="21" strokeDasharray={`${Math.max(0,Math.min(1,remaining/60))*132} 132`}/></svg><strong>{remaining}<small>min</small></strong></div>:<span className="room-match-mark" aria-label="Five matches together">5<Icon name="spark" size={13}/></span>}
   </header>
   <div className="room-status"><span aria-hidden="true"/><p>{status}</p>{previewLabel&&<small>{previewLabel}</small>}</div>
   {context&&<button className="room-context" onClick={context.onAction} aria-label={context.actionLabel}><span className="room-map" aria-hidden="true"><i/><b/><Icon name="pin" size={23}/></span><span><small>{context.label}</small><strong>{context.detail}</strong></span><Icon name="arrow" size={18}/></button>}
   <div className="room-messages" ref={log} role="log" aria-label={logLabel} aria-live="polite" aria-relevant="additions text">
-   <div className="room-hello" aria-hidden="true"><span><img src={`/avatars/${yourAvatar}.webp`} alt=""/><img src={`/avatars/${avatar}.webp`} alt=""/></span><em>A hello. A whole new story.</em></div>
+   <div className="room-hello" aria-hidden="true"><span><img src={publicCdnImage(`/avatars/${yourAvatar}.webp`)} alt=""/><img src={publicCdnImage(`/avatars/${avatar}.webp`)} alt=""/></span><em>A hello. A whole new story.</em></div>
    {messages.map((message,i)=>{
     const previous=messages[i-1],newDay=!previous||day(previous.at)!==day(message.at);
     return <MessageGroup key={message.id} divider={newDay?day(message.at):undefined}>
      <div className={`room-message-row ${message.from==='you'?'is-you':''}`}>
-      {message.from==='pal'&&<img className="room-message-avatar" src={`/avatars/${avatar}.webp`} alt=""/>}
+      {message.from==='pal'&&<img className="room-message-avatar" src={publicCdnImage(`/avatars/${avatar}.webp`)} alt=""/>}
       <div className="room-message"><p>{message.text}</p><time dateTime={message.at}>{time(message.at)}</time></div>
      </div>
     </MessageGroup>;

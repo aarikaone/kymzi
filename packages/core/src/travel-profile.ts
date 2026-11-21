@@ -13,26 +13,27 @@ export function cleanCitySelection(value:unknown):CitySelection|undefined {
 const selections=(value:unknown,max:number)=>{const out:CitySelection[]=[];for(const raw of Array.isArray(value)?value:[]){const city=cleanCitySelection(raw);if(city&&!out.some(c=>c.cityId===city.cityId))out.push(city);if(out.length===max)break;}return out;};
 export function readTravelProfile(value:unknown):TravelProfile {
  const p=value as Partial<TravelProfile>|null,s=emptyTravel();if(!p)return s;
- s.visited=selections(p.visited,TRAVEL_CITIES.length);s.wishlist=selections(p.wishlist,3);
+ s.visited=selections(p.visited,TRAVEL_CITIES.length);s.wishlist=selections(p.wishlist,TRAVEL_CITIES.length);
  if(typeof p.completedAt==='string'&&Number.isFinite(Date.parse(p.completedAt)))s.completedAt=p.completedAt;
  for(const a of Array.isArray(p.arrivals)?p.arrivals:[]){if(!a||!travelCityById(a.cityId)||!['device','demo'].includes(a.source)||!Number.isFinite(Date.parse(a.at))||s.arrivals.some(e=>e.cityId===a.cityId))continue;s.arrivals.push({id:`arrival:${a.cityId}:${a.source}:${a.at}`,cityId:a.cityId,at:a.at,source:a.source,wishFulfilled:a.wishFulfilled===true});}
  return s;
 }
+export function travelWishCount(value:unknown):number {return readTravelProfile(value).wishlist.reduce((total,city)=>total+city.attractionIds.length,0);}
 export function completeTravelProfile(value:unknown,now=new Date()):TravelProfile {
- const s=readTravelProfile(value);if(s.wishlist.length!==3)throw new Error('Pick three wishlist cities.');return {...s,completedAt:s.completedAt??now.toISOString()};
+ const s=readTravelProfile(value);if(travelWishCount(s)<3)throw new Error('Pick at least three wishlist places.');return {...s,completedAt:s.completedAt??now.toISOString()};
 }
 export function setTravelCity(travel:TravelProfile,kind:'visited'|'wishlist',selection:CitySelection):TravelProfile {
  const city=cleanCitySelection(selection);if(!city)throw new Error('Choose a city.');
- const items=travel[kind];if(kind==='wishlist'&&items.length>=3&&!items.some(c=>c.cityId===city.cityId))throw new Error('Your three wishes are full. Remove a city first.');
+ const items=travel[kind];
  return {...travel,[kind]:items.some(c=>c.cityId===city.cityId)?items.map(c=>c.cityId===city.cityId?city:c):[...items,city]};
 }
 export function removeTravelCity(travel:TravelProfile,kind:'visited'|'wishlist',id:TravelCityId):TravelProfile{return {...travel,[kind]:travel[kind].filter(c=>c.cityId!==id)};}
 export function sharedTravel(value:unknown):SharedTravel|undefined {
- if(!value)return;const s=readTravelProfile(value);return {visited:s.visited.map(c=>c.cityId).slice(0,26),wishlist:s.wishlist.map(c=>c.cityId),fulfilled:s.arrivals.filter(a=>a.wishFulfilled).map(a=>({cityId:a.cityId,source:a.source,at:a.at})).slice(-3)};
+ if(!value)return;const s=readTravelProfile(value);return {visited:s.visited.map(c=>c.cityId).slice(0,26),wishlist:s.wishlist.map(c=>c.cityId).slice(0,26),fulfilled:s.arrivals.filter(a=>a.wishFulfilled).map(a=>({cityId:a.cityId,source:a.source,at:a.at})).slice(-3)};
 }
 export function readSharedTravel(value:unknown):SharedTravel|undefined {
  if(!value||typeof value!=='object')return;const p=value as Partial<SharedTravel>,ids=(v:unknown,max:number)=>[...new Set((Array.isArray(v)?v:[]).filter((id):id is TravelCityId=>!!travelCityById(id)))].slice(0,max);
- const visited=ids(p.visited,26),wishlist=ids(p.wishlist,3),fulfilled=(Array.isArray(p.fulfilled)?p.fulfilled:[]).filter(a=>a&&visited.includes(a.cityId)&&['device','demo'].includes(a.source)&&Number.isFinite(Date.parse(a.at))).slice(-3).map(a=>({cityId:a.cityId,source:a.source,at:a.at}));return {visited,wishlist,fulfilled};
+ const visited=ids(p.visited,26),wishlist=ids(p.wishlist,26),fulfilled=(Array.isArray(p.fulfilled)?p.fulfilled:[]).filter(a=>a&&visited.includes(a.cityId)&&['device','demo'].includes(a.source)&&Number.isFinite(Date.parse(a.at))).slice(-3).map(a=>({cityId:a.cityId,source:a.source,at:a.at}));return {visited,wishlist,fulfilled};
 }
 export function recordCityArrival(state:PreviewState,id:TravelCityId,evidence:CityEvidence,now=new Date()):PreviewState {
  const city=travelCityById(id);if(!state.profile||!city||!['device','demo'].includes(evidence.source))throw new Error('Choose a city to check in.');

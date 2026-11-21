@@ -38,3 +38,18 @@ npm run catalog:build -- --refresh
 The build command uses Python 3 and the project's supported Node runtime. Public source snapshots are cached under `artifacts/world-catalogue-cache/` and are excluded from Git and app bundles. `--fetch` downloads missing snapshots; `--refresh` replaces them. Use `--cache /path/to/cache` to reuse another snapshot directory and `--output /path/to/output` to generate a reviewable export outside the app. Review the data diff and rerun validation before shipping a refreshed catalogue.
 
 City metadata is available immediately. Place data is split into six continent modules and loaded on demand; native release bundles include the modules for offline browsing. Onboarding and World search render bounded or virtualized city grids. Existing matches remain in the original simulated social pool; adding a guide does not invent connected Roamies.
+
+
+## Smaller-destination expansion (v2)
+
+`expansion-v2.json` adds **1,500 more destinations with four attractions each**. Together with the frozen v1 snapshot, Kymzi now has **2,526 destinations and 26,520 attractions across 170 GeoNames countries and territories**. Existing city IDs, original attractions and the running image-generation manifest are preserved.
+
+The added set spans six continents and 145 countries and territories. It favours places below 500,000 residents with a verified English Wikivoyage guide, including Munnar, Madikeri (Coorg), Banff, Ubud, Queenstown and Nuwara Eliya. Source metadata comes from the GeoNames `cities500.zip` snapshot (CC BY 4.0), Wikidata structured records (CC0), and Wikivoyage guide presence. Munnar and Coorg also have attributed Wikipedia introductions (CC BY-SA 4.0). Canonical source links, per-record identities and retrieval/source hashes accompany the data.
+
+Popularity is a reproducible **travel-interest/coverage proxy**, calculated from Wikidata language/site coverage for the destination and its four strongest attractions, plus verified travel-guide presence. It is not a visitor-count ranking, live trend or user rating. The selection retains worldwide coverage, limits a single country to 100 additions, and caps Europe at 750 additions. The app offers Popular, A–Z and continental filters.
+
+Before publication, validation rejects repeated GeoNames IDs, repeated Wikidata destination and attraction IDs, nearby destination aliases, and same-country attraction names within 750 metres. For the two attractions without published point coordinates, duplicate checking uses the destination area and records the missing coordinates explicitly. Similar names in geographically distinct places are kept. No attraction from v1 is reused to pad a new guide.
+
+`expansion-v2-selection.json` pins all 1,500 destination IDs. `expansion-v2-report.json` records the final counts, exclusions, geographic coverage, ranking method and snapshot SHA-256. The create-only Firestore publisher writes attractions before exposing parent cities; repeated runs cannot replace existing cities or richer image/detail fields. Only popularity is merged into original city documents. New destination imagery is a separate asset set; the current generation run remains pinned to v1.
+
+Run `npm run catalog:expand:validate`, `npm run test:destinations` and `npm run catalog:expand:verify` to audit the data and cloud counts. Source/build caches live on ExtremeSSD through `artifacts/destination-expansion-v2` and are excluded from app bundles.

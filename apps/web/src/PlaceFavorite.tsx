@@ -2,8 +2,8 @@ import {useEffect,useId,useRef,useState} from 'react';
 import {Icon} from './icons';
 import './place-favorite.css';
 
-type Props={id:string;name:string;saved:boolean;onFavorite:(id:string)=>void;onSaved?:()=>void;variant?:'icon'|'primary';compact?:boolean;className?:string;accessibleLabel?:string};
-export function PlaceFavoriteButton({id,name,saved,onFavorite,onSaved,variant='icon',compact=false,className='',accessibleLabel}:Props){
+type Props={id:string;name:string;saved:boolean;onFavorite:(id:string)=>void;onSaved?:()=>void;variant?:'icon'|'primary';glyph?:'heart'|'plus';compact?:boolean;className?:string;accessibleLabel?:string};
+export function PlaceFavoriteButton({id,name,saved,onFavorite,onSaved,variant='icon',glyph='heart',compact=false,className='',accessibleLabel}:Props){
  const [open,setOpen]=useState(false),[pop,setPop]=useState(0),[error,setError]=useState(''),dialog=useRef<HTMLDialogElement>(null),removing=useRef(false),titleId=useId(),nameId=useId();
  useEffect(()=>{if(open&&!dialog.current?.open)dialog.current?.showModal();else if(!open&&dialog.current?.open)dialog.current.close();},[open]);
  useEffect(()=>{if(!saved){setOpen(false);setPop(0);}},[saved]);
@@ -13,10 +13,10 @@ export function PlaceFavoriteButton({id,name,saved,onFavorite,onSaved,variant='i
  function remove(){if(!saved||removing.current)return;removing.current=true;try{onFavorite(id);setOpen(false);setError('');}catch(e){removing.current=false;setError(e instanceof Error?e.message:'Couldn’t remove this favourite. Try again.');}}
  return <>
   <button type="button" className={`${variant==='primary'?'place-primary place-favorite-primary':'place-heart'} ${className}`} aria-label={accessibleLabel??(variant==='primary'?(saved?'Saved to Favs':'Save this place'):`${saved?'Unfavorite':'Favorite'} ${name}`)} aria-pressed={saved} onClick={change}>
-   <span key={pop} className={pop?'place-heart-glyph favorite-pop':'place-heart-glyph'}><Icon name="heart"/></span>{variant==='primary'&&(compact?(saved?'Saved':'Save'):(saved?'Saved to Favs':'Save this place'))}
+   <span key={pop} className={pop?'place-heart-glyph favorite-pop':'place-heart-glyph'}><Icon name={glyph==='plus'?(saved?'check':'plus'):'heart'}/></span>{variant==='primary'&&(glyph==='plus'?(saved?'Added':'Add place'):compact?(saved?'Saved':'Save'):(saved?'Saved to Favs':'Save this place'))}
   </button>
   {!open&&error&&<span role="alert" className="place-favorite-error">{error}</span>}
-  <dialog ref={dialog} className="place-unfavorite-sheet" aria-labelledby={titleId} aria-describedby={nameId} onCancel={e=>{e.preventDefault();dismiss();}} onClose={dismiss} onClick={e=>{if(e.target===e.currentTarget)dismiss();}}>
+  <dialog ref={dialog} className="place-unfavorite-sheet" aria-labelledby={titleId} aria-describedby={nameId} onCancel={e=>{e.preventDefault();e.stopPropagation();dismiss();}} onClose={dismiss} onClick={e=>{if(e.target===e.currentTarget)dismiss();}}>
    {open&&<><div className="place-unfavorite-handle"/>
    <span className="place-unfavorite-symbol" aria-hidden="true"><Icon name="heart" size={30}/></span>
    <h2 id={titleId}>Remove from Favs?</h2><p id={nameId}>{name}</p>

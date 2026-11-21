@@ -4,6 +4,7 @@ import {readGlobalPals,type GlobalPalsPreview} from './global-pals.ts';
 import {AVATARS,normalizeAnswer,questionBank,demoPeers} from './index.ts';
 import {beginDaily,completeDaily,dailyStatus,hasDailyProgress,localDay,scheduleDaily,type DailyGame} from './daily.ts';
 import {availableCategories,type PlayCategoryId} from './categories.ts';
+import {travelCityForPlace} from './world-catalogue.ts';
 import {COUNTRIES,countryById,type CountryId} from './countries.ts';
 import {attractionById} from './attractions.ts';
 import {cleanCityJpeg,cityPhotoMonth,removeCityPhoto} from './photos.ts';
@@ -188,7 +189,7 @@ export function toggleGuide(state:PreviewState,id:CountryId,now=new Date()):Prev
  return {...state,launch:{...launch,guides:launch.guides.includes(id)?launch.guides.filter(x=>x!==id):[...launch.guides,id]}};
 }
 export function toggleGuidePlace(state:PreviewState,id:string,now=new Date()):PreviewState{
- if(!attractionById(id))throw new Error('Choose a place.');const launch=state.launch??emptyLaunch(now);
+ if(!attractionById(id)&&!travelCityForPlace(id))throw new Error('Choose a place.');const launch=state.launch??emptyLaunch(now);
  return {...state,launch:{...launch,places:launch.places.includes(id)?launch.places.filter(x=>x!==id):[...launch.places,id]}};
 }
 export function addHomeMoment(state:PreviewState,moment:Pick<HomeMoment,'captureId'|'image'|'capturedAt'>,reviewed:boolean,now=new Date()):PreviewState{
@@ -233,7 +234,7 @@ export function readLaunch(raw:unknown,now=new Date()):LaunchState|undefined{
  for(const x of Array.isArray(p.homeCredits)?p.homeCredits.slice(-300):[]){if(x&&typeof x.captureId==='string'&&x.captureId.length<=100&&validDate(x.capturedAt)&&Date.parse(x.capturedAt)<=now.getTime()+30000&&bands.includes(x.ageBand)&&!out.homeCredits.some(c=>c.captureId===x.captureId))out.homeCredits.push({captureId:x.captureId,capturedAt:x.capturedAt,ageBand:x.ageBand});}
  for(const x of Array.isArray(p.homePhotos)?p.homePhotos.slice(-12):[]){try{const location=readProfileLocation(x);if(!location.city||!location.country||!out.homeCredits.some(c=>c.captureId===x.captureId&&c.ageBand===x.ageBand&&c.capturedAt===x.capturedAt))continue;out.homePhotos.push({captureId:x.captureId,image:cleanCityJpeg(x.image),capturedAt:x.capturedAt,city:location.city,country:location.country,ageBand:x.ageBand});}catch{}}
  out.guides=[...new Set((Array.isArray(p.guides)?p.guides:[]).filter((id):id is CountryId=>!!countryById(id)))].slice(0,COUNTRIES.length);
- out.places=[...new Set((Array.isArray(p.places)?p.places:[]).filter((id):id is string=>typeof id==='string'&&!!attractionById(id)))].slice(0,104);
+ out.places=[...new Set((Array.isArray(p.places)?p.places:[]).filter((id):id is string=>typeof id==='string'&&(!!attractionById(id)||!!travelCityForPlace(id))))].slice(0,25000);
  return out;
 }
 export function inviteQuestions(invite:FriendInvite){return invite.ids.map(id=>questionById(id)!);}

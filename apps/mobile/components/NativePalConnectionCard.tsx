@@ -1,3 +1,4 @@
+import {publicImageSource} from '@rymzi/cloud';
 import {NativeImage as Image} from './NativeImage';
 import React from 'react';
 import {Pressable,StyleSheet,Text,View} from 'react-native';
@@ -20,7 +21,7 @@ export function NativePalConnectionCard({pal}: Props) {
       </View>
       <View style={[S.photo, !!frame && {borderColor:'#A6C77A'}]}>
         {frame ? <View accessible accessibilityRole="image" accessibilityLabel={`${pal.alias}’s fictional profile photo`} style={S.portrait}>
-          <Image accessible={false} source={require('../../../packages/assets/portraits/fictional-atlas.png')} crop={{column:frame.column,row:frame.row,columns:4,rows:4,tileWidth:1,tileHeight:1}} style={{width:'100%',height:'100%'}}/>
+          <Image accessible={false} source={publicImageSource('/portraits/fictional-atlas.webp')} crop={{column:frame.column,row:frame.row,columns:4,rows:4,tileWidth:1,tileHeight:1}} style={{width:'100%',height:'100%'}}/>
           <Text style={S.preview}>Preview</Text>
         </View> : <View accessible accessibilityRole="image" accessibilityLabel="Profile photo locked" style={S.sealed}><Ionicons name="lock-closed-outline" size={24} color="#D1C2EF"/></View>}
       </View>

@@ -1,0 +1,78 @@
+{
+  "batchId": "batch_6b010ddde8348190b1ee1821bcd04284",
+  "reviewedAt": "2026-11-21T03:32:49.548274+00:00",
+  "mode": "OpenAI REST Batch API",
+  "model": "gpt-image-2.5-flare",
+  "quality": "low",
+  "status": "needs-landmark-corrections",
+  "published": true,
+  "submitted": 100,
+  "downloaded": 99,
+  "cityCovers": 20,
+  "attractions": 79,
+  "imagesVisuallyInspected": 99,
+  "technicalChecks": {
+    "allJpeg": true,
+    "all1536x1024": true,
+    "uniqueFileHashes": 99,
+    "allMappedToOriginalRequests": true,
+    "allHashesVerified": true
+  },
+  "estimatedUSDFromReportedTokens": 0.29827,
+  "costNote": "Estimated from the API-returned usage at Batch token rates, not a cash billing statement.",
+  "previewSheets": [
+    "output/imagegen/pilot-100-v1/contact-1.jpg",
+    "output/imagegen/pilot-100-v1/contact-2.jpg",
+    "output/imagegen/pilot-100-v1/contact-3.jpg",
+    "output/imagegen/pilot-100-v1/contact-4.jpg"
+  ],
+  "promptSet": "artifacts/world-art/pilot-100-v1/requests.jsonl",
+  "results": "artifacts/world-art/pilot-100-v1/results.json",
+  "styleNotes": [
+    "Bright natural colors and coherent editorial illustration style across the sample.",
+    "Images are guide illustrations rather than documentary photographs."
+  ],
+  "qualityFindings": [
+    {
+      "city": "Delhi",
+      "name": "St. James’ Church",
+      "finding": "Generated image shows a Gothic church with a square tower. The official description specifies a western classical Greek-cross plan and a central dome. Needs regeneration using verified architectural references.",
+      "sourceUrl": "https://delhitourism.gov.in/tourist_place/spritual_delhi.html"
+    },
+    {
+      "city": "Prague",
+      "name": "National Library of the Czech Republic",
+      "finding": "Generated image shows a modern rectangular glass-fronted building. The library identifies its principal Prague site as the historic Baroque Klementinum. Needs a verified site-specific reference before publication.",
+      "sourceUrl": "https://www.nkp.cz/studovny-a-prostory/areal-klementina"
+    },
+    {
+      "finding": "Several illustrations introduce prominent building signage despite the no-labels prompt. Reference and typography checks are needed before bulk publication."
+    }
+  ],
+  "failure": {
+    "name": "National Gandhi Museum",
+    "city": "Delhi",
+    "custom_id": "place_Q2991098",
+    "code": "moderation_blocked",
+    "moderationStage": "input",
+    "category": "public-figure",
+    "retrySubmitted": false
+  },
+  "nextStep": "Keep pilot outputs separate from approved app assets; improve landmark grounding and verify attraction eligibility before larger generation.",
+  "publicationStatus": "partially-published-for-app-preview",
+  "publishedImages": 10,
+  "unpublishedImages": 89,
+  "publishedAssetKeys": [
+    "city/city:2761369",
+    "place/Q211818",
+    "city/city:3176959",
+    "place/Q191739",
+    "city/city:2650225",
+    "place/Q212065",
+    "city/city:5368361",
+    "place/Q57900",
+    "city/city:2158177",
+    "place/Q829338"
+  ],
+  "publicationNote": "Five city covers and one illustrated attraction per city are available for the user-requested app preview. Other pilot images remain outside the app inventory, including the known inaccurate examples."
+}

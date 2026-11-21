@@ -161,3 +161,9 @@ export * from './place-pals.ts';
 export * from './city-geography.ts';
 
 export * from './world-catalogue.ts';
+
+export * from './world-art.ts';
+
+export * from './cdn.ts';
+
+export * from './place-play.ts';

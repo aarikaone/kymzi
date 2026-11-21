@@ -1,0 +1,1174 @@
+{
+  "projectId": "kymzi-f1e9d",
+  "purpose": "Preserve pre-migration URLs for installed clients; all new images publish to Storage and Cloud CDN only.",
+  "files": [
+    {
+      "path": "images/apple-touch-icon-c28eb7dec8645c29.png",
+      "sha256": "c28eb7dec8645c29a125315b8a0b2fa96867c1faff1d2d33988daf64156c9b30"
+    },
+    {
+      "path": "images/attractions/atlas-01-f5757fe7c480f172.webp",
+      "sha256": "f5757fe7c480f1723e1b04bfcb9a743eea1125206c61a24a71166cf219e15e0c"
+    },
+    {
+      "path": "images/attractions/atlas-02-5cff283233b46ac6.webp",
+      "sha256": "5cff283233b46ac6161e70be640f25c27afcffea39e6b3c1397c0a80816c297f"
+    },
+    {
+      "path": "images/attractions/atlas-03-c2ae2dfc30de6b2b.webp",
+      "sha256": "c2ae2dfc30de6b2b2310e19b3cd9680d6a9009bc5b7c116661b76d6d34822788"
+    },
+    {
+      "path": "images/attractions/atlas-04-0a889405feae1638.webp",
+      "sha256": "0a889405feae16387529a97fb5f3974fdc8a8ce61bc0ee1fe1ee49ee035d5f49"
+    },
+    {
+      "path": "images/attractions/atlas-05-846fa15010aace5e.webp",
+      "sha256": "846fa15010aace5e55ce133f3a3b268c974795e228b7ca76a5e7045d3dd6945d"
+    },
+    {
+      "path": "images/attractions/atlas-06-32b2344933e16d90.webp",
+      "sha256": "32b2344933e16d90799f647b0262cbe12b42851dee88411f23ceb4403a060dfc"
+    },
+    {
+      "path": "images/attractions/atlas-07-f2a924f18484e7ad.webp",
+      "sha256": "f2a924f18484e7aded97e7ddb1c9f896c79142b7380ad1cfc7ca147fdaa492d8"
+    },
+    {
+      "path": "images/attractions/atlas-08-431ee38b76962974.webp",
+      "sha256": "431ee38b76962974aa3a3b3f3d05276708aa825814ac758c9abd887375170787"
+    },
+    {
+      "path": "images/attractions/atlas-09-10266aee7281c559.webp",
+      "sha256": "10266aee7281c559890a4470f4674e66b4e3943689af10b8f184904fa5d23a08"
+    },
+    {
+      "path": "images/attractions/atlas-10-f16db63909768413.webp",
+      "sha256": "f16db63909768413819e7cd4363880d61e531343ecebe3289e94663a31ac52fe"
+    },
+    {
+      "path": "images/attractions/atlas-11-4acd56b7c6493ac8.webp",
+      "sha256": "4acd56b7c6493ac8273f407969c61d759c1bdebf42f24265fe826136b8cb09c4"
+    },
+    {
+      "path": "images/attractions/atlas-12-09b548f026ff92c2.webp",
+      "sha256": "09b548f026ff92c2924f57f1042a5835c036895cb46585340ea524b4b445606a"
+    },
+    {
+      "path": "images/attractions/atlas-13-12c7ff6b47272cf4.webp",
+      "sha256": "12c7ff6b47272cf40dc5816fe8791b84243ed43d4a8a1a7e883ca9854df61395"
+    },
+    {
+      "path": "images/avatars/astro-45f8c62895d7b775.webp",
+      "sha256": "45f8c62895d7b775dafcaf1c19c6b2f39c20ffdc51b33d11f83ff4f34d937ff5"
+    },
+    {
+      "path": "images/avatars/basil-b2f21bc33046db7c.webp",
+      "sha256": "b2f21bc33046db7ce841ef13c3acea8733e3039172243dcbcc12eb9694642cf7"
+    },
+    {
+      "path": "images/avatars/boba-25b3b7ca87e75a9b.webp",
+      "sha256": "25b3b7ca87e75a9b0a7524d1945318a83e27b3db67ca27c35c8ba18733e07809"
+    },
+    {
+      "path": "images/avatars/bumble-dfd4a122e13271ae.webp",
+      "sha256": "dfd4a122e13271ae5cdc6854a39b9307fa410359cbfc408e00a642e2104dfb37"
+    },
+    {
+      "path": "images/avatars/cleo-3e733793b7cb42b3.webp",
+      "sha256": "3e733793b7cb42b316cb17606ee2fc0d83b0eccc2accdb453c329780da92ada6"
+    },
+    {
+      "path": "images/avatars/cloud-glasses-v1-42039ce22aab4047.webp",
+      "sha256": "42039ce22aab4047e36bc250cbd80adac59586f7fc906c1c8e4fa8276d15a926"
+    },
+    {
+      "path": "images/avatars/cloud-9f8840ed99b51de0.webp",
+      "sha256": "9f8840ed99b51de0f80375ca21facd835003d2d90380c7541c5529e207a2c20a"
+    },
+    {
+      "path": "images/avatars/comet-0f593f6bf686fa4e.webp",
+      "sha256": "0f593f6bf686fa4eb8d44cb5f4e23792ae33828f62bbe6386c82445be2a236cd"
+    },
+    {
+      "path": "images/avatars/cosmo-38923174fef202e6.webp",
+      "sha256": "38923174fef202e6c6e2dc0c68fd1b7d2adfe39da8062d5630d58a430cc9b44f"
+    },
+    {
+      "path": "images/avatars/cove-4fa3be8fec55a837.webp",
+      "sha256": "4fa3be8fec55a837c09338091edf8b17bafd1382982add8c9c10cd356ec87691"
+    },
+    {
+      "path": "images/avatars/dune-9a2691c860ad3792.webp",
+      "sha256": "9a2691c860ad37926e53beef46426d2e7822e91e71b64fba4d08b791a1aa0dd7"
+    },
+    {
+      "path": "images/avatars/echo-67b44089d6373c92.webp",
+      "sha256": "67b44089d6373c923d5c458102f1d6f9e3a879e2812c6256ee618e69e69342eb"
+    },
+    {
+      "path": "images/avatars/fenn-bec58231961d3290.webp",
+      "sha256": "bec58231961d3290f93612a99743001bbd9a09b60725c0b445ddd61502158afe"
+    },
+    {
+      "path": "images/avatars/flint-432f54d4ebe4a771.webp",
+      "sha256": "432f54d4ebe4a771f5bc074ac5ef35d29db6eea6e401eb95b4730c08c3d8b379"
+    },
+    {
+      "path": "images/avatars/halo-3ac3aed45ec97b72.webp",
+      "sha256": "3ac3aed45ec97b7245cfb766d175040863b45ef0bf6be9cf8fedaa18d95ce69d"
+    },
+    {
+      "path": "images/avatars/indigo-96a3657df97557c3.webp",
+      "sha256": "96a3657df97557c383cfefde447a8a48763aea2680f4d2de4146b67a712bf692"
+    },
+    {
+      "path": "images/avatars/juniper-842674a563f0228d.webp",
+      "sha256": "842674a563f0228dd1d212c784ecbcb45c00f8decc2a82c8b26475236868d738"
+    },
+    {
+      "path": "images/avatars/kiko-e5bb1d7a82c37c55.webp",
+      "sha256": "e5bb1d7a82c37c553164a1d24173d6b59ed903416e5b2a97a25fc259f6a76003"
+    },
+    {
+      "path": "images/avatars/loop-e0aa3fd5e6489060.webp",
+      "sha256": "e0aa3fd5e6489060057df9acd46ebeeb1e2630c097966d5f7aded524bc6c1219"
+    },
+    {
+      "path": "images/avatars/luma-2e9d095b44dff270.webp",
+      "sha256": "2e9d095b44dff270fe9140c2e782de766b1c183d745a92f75a89d84c1aebfa34"
+    },
+    {
+      "path": "images/avatars/mello-bae8646d9fa85733.webp",
+      "sha256": "bae8646d9fa85733f4aea29b462a820a2494a016afede6815c93b7f13a4faa58"
+    },
+    {
+      "path": "images/avatars/miso-95f82ff7b7cc6bf2.webp",
+      "sha256": "95f82ff7b7cc6bf2ff57c235eafa286385a1408ab94894b886f3e8f4f61ceded"
+    },
+    {
+      "path": "images/avatars/mochi-d1dda4f831b88a67.webp",
+      "sha256": "d1dda4f831b88a67566c5760ec5a132ddb7b79093bdf3dcf7c6b1eabb4da8441"
+    },
+    {
+      "path": "images/avatars/nimbus-9060c3857f561c4f.webp",
+      "sha256": "9060c3857f561c4f28ea7ae836ec80d9f694daa17b2c8a0f968bbc813a415a55"
+    },
+    {
+      "path": "images/avatars/nori-dc4bf18364f09c4a.webp",
+      "sha256": "dc4bf18364f09c4a0f8836b8298f5b2f397b78fe382fc99bc940c349fa73c072"
+    },
+    {
+      "path": "images/avatars/nova-c71d152f495fd701.webp",
+      "sha256": "c71d152f495fd7012cbae4f29d5d406ee9be2557e17de199ce0e5f9765319f24"
+    },
+    {
+      "path": "images/avatars/opal-8e32623a4e2667f3.webp",
+      "sha256": "8e32623a4e2667f31759d881b9e22f524c1a6cbef3e6a8599e4af645bb9e83ff"
+    },
+    {
+      "path": "images/avatars/orbit-be3ae4de0dc1b8f6.webp",
+      "sha256": "be3ae4de0dc1b8f639cf020c9f663ebae0fc7af336a0560a912e560f5a80342f"
+    },
+    {
+      "path": "images/avatars/otto-6af5ba7eb5e5dd55.webp",
+      "sha256": "6af5ba7eb5e5dd558f681aabda33e6b6c0a5ad9facaf5cdb808fcbb55751ac33"
+    },
+    {
+      "path": "images/avatars/pebble-779636780858b541.webp",
+      "sha256": "779636780858b541319762f76365fabc6af8484ad5a447f19ff909f72e3e7af7"
+    },
+    {
+      "path": "images/avatars/pip-b3a7138de90c77fa.webp",
+      "sha256": "b3a7138de90c77fa4fba7711f85afcc9ea7e6ace36463cbd2e916e370378bf58"
+    },
+    {
+      "path": "images/avatars/pixel-0d91ea2b96b875f4.webp",
+      "sha256": "0d91ea2b96b875f493cbf1f3a7f7b5fd7f40435e0c1e3367ed5386310cf592ce"
+    },
+    {
+      "path": "images/avatars/pogo-80bc176cda22d31e.webp",
+      "sha256": "80bc176cda22d31efdc4c48a0b0a5f4187c6aff4214951975900e3d8e7e73e4c"
+    },
+    {
+      "path": "images/avatars/puddle-f06dd80d151a88fc.webp",
+      "sha256": "f06dd80d151a88fcf90282cd3ba921cca583017bc0c3b3fa8cdd33d687882e82"
+    },
+    {
+      "path": "images/avatars/quill-d36c67a61625e857.webp",
+      "sha256": "d36c67a61625e85749566044a718a1d0810fdc045f5640c432fd30cac6d435f7"
+    },
+    {
+      "path": "images/avatars/roo-239bae09e75772b6.webp",
+      "sha256": "239bae09e75772b6d54156a107d1edd51e8c5f7ad372c1129db8956913865bd1"
+    },
+    {
+      "path": "images/avatars/sprout-8284f30f886d28b3.webp",
+      "sha256": "8284f30f886d28b3a8dac77b5d12ebcfa6226a82d39faa144ff38d059bcdb3b8"
+    },
+    {
+      "path": "images/avatars/suki-d89b7c57b52a2790.webp",
+      "sha256": "d89b7c57b52a27906280624fe73412ce7bb80db609ac76446b833daf57bffea1"
+    },
+    {
+      "path": "images/avatars/sunny-4b0bf478aa9f3752.webp",
+      "sha256": "4b0bf478aa9f3752c34c9fae536f364ff56abd066eec57d12ddf1d903aa46427"
+    },
+    {
+      "path": "images/avatars/taro-50e1fc544a478213.webp",
+      "sha256": "50e1fc544a478213ced8928cdde01f0259c3836b672ab1d754e36fdbb0031693"
+    },
+    {
+      "path": "images/avatars/tizzy-37b6bcdee0040c4a.webp",
+      "sha256": "37b6bcdee0040c4ad1ada0e68f6c4450ffe6b69cddab818854ed25f639771ec3"
+    },
+    {
+      "path": "images/avatars/wisp-53e5eb51a077fea8.webp",
+      "sha256": "53e5eb51a077fea838b7a3a316104975d6b81ddfa8dd7a39162765ac5ce6e5e7"
+    },
+    {
+      "path": "images/avatars/yuzu-c67a21a68e235241.webp",
+      "sha256": "c67a21a68e2352412ca467b5fb9e68e26b15693dfcac28d051712f07758289f5"
+    },
+    {
+      "path": "images/avatars/ziggy-c2297df1625693a9.webp",
+      "sha256": "c2297df1625693a9382806304863cf29b5cd6c42f84b72b321a137d518ac3304"
+    },
+    {
+      "path": "images/avatars/zuzu-4a40768131d4a7bc.webp",
+      "sha256": "4a40768131d4a7bcd9503743e7c6f709c15ac028723dadf1ea0091c6313b5422"
+    },
+    {
+      "path": "images/brand/icon-192-3dc4fd716f1e13b6.png",
+      "sha256": "3dc4fd716f1e13b656328b2decacac42e905fc7eedb1128841d246fd7e795c5e"
+    },
+    {
+      "path": "images/brand/icon-512-4dc6d3d0177cf7c3.png",
+      "sha256": "4dc6d3d0177cf7c3de6c458da5fd99cd8dacfce7b1c9ed3cd4a37e94779216ae"
+    },
+    {
+      "path": "images/brand/icon-maskable-512-d02531d8a5d8cf52.png",
+      "sha256": "d02531d8a5d8cf520b0868b7997ca6ba1116c5f92865bf635adc08773353b711"
+    },
+    {
+      "path": "images/brand/kymzi-app-icon-c88869608adc3950.svg",
+      "sha256": "c88869608adc3950c168fefc8fbdd36261433a24e4a4091f4e43bdd22568e7a1"
+    },
+    {
+      "path": "images/brand/kymzi-mark-62d3e38ee45c44c3.svg",
+      "sha256": "62d3e38ee45c44c3d5939149c81b62352414e575de37395e852b49f2ed6f1505"
+    },
+    {
+      "path": "images/brand/kymzi-symbol-62d3e38ee45c44c3.svg",
+      "sha256": "62d3e38ee45c44c3d5939149c81b62352414e575de37395e852b49f2ed6f1505"
+    },
+    {
+      "path": "images/brand/kymzi-wordmark-ebc69de0919a6ec6.svg",
+      "sha256": "ebc69de0919a6ec6bf061d76d792fef6465a9069a82b37eb197fe7ccb4d62f15"
+    },
+    {
+      "path": "images/brand/rymzi-app-icon-c88869608adc3950.svg",
+      "sha256": "c88869608adc3950c168fefc8fbdd36261433a24e4a4091f4e43bdd22568e7a1"
+    },
+    {
+      "path": "images/brand/rymzi-mark-62d3e38ee45c44c3.svg",
+      "sha256": "62d3e38ee45c44c3d5939149c81b62352414e575de37395e852b49f2ed6f1505"
+    },
+    {
+      "path": "images/brand/rymzi-symbol-62d3e38ee45c44c3.svg",
+      "sha256": "62d3e38ee45c44c3d5939149c81b62352414e575de37395e852b49f2ed6f1505"
+    },
+    {
+      "path": "images/brand/rymzi-wordmark-ebc69de0919a6ec6.svg",
+      "sha256": "ebc69de0919a6ec6bf061d76d792fef6465a9069a82b37eb197fe7ccb4d62f15"
+    },
+    {
+      "path": "images/brand/rymzi-world-v1-f057920d87015b41.webp",
+      "sha256": "f057920d87015b4115b8abb56ac99a6b3be13bd468bf91c2974e6d8df838c854"
+    },
+    {
+      "path": "images/brand/rymzi-world-v2-purple-70eb2dc40ae612cf.webp",
+      "sha256": "70eb2dc40ae612cf35855b15f17cfbfafcf79529400f96351aaf3f6a65a77f10"
+    },
+    {
+      "path": "images/categories/animals-086524557af86087.webp",
+      "sha256": "086524557af86087e87addb973626c7148bf9d3f8857ae673044d15f7a0ac337"
+    },
+    {
+      "path": "images/categories/food-825f3fb5f952cca5.webp",
+      "sha256": "825f3fb5f952cca5c29314b8453841f5cff5ce63b6f19ec95d98c53188914775"
+    },
+    {
+      "path": "images/categories/future-you-f638c03f9acade91.webp",
+      "sha256": "f638c03f9acade914969871eea44f80db2cdd718bdb491d43d7a02964c034d11"
+    },
+    {
+      "path": "images/categories/play-989ca6e5775d824d.webp",
+      "sha256": "989ca6e5775d824d42be5468422dd30c2818a51244436e706868fca849947457"
+    },
+    {
+      "path": "images/categories/what-if-fe10d381d4279f02.webp",
+      "sha256": "fe10d381d4279f02d0ac00907ec253b87b34f619ad351a58758754ba72b039a9"
+    },
+    {
+      "path": "images/categories/your-world-654cc3d0f7d34b13.webp",
+      "sha256": "654cc3d0f7d34b13ae68bda194f9819c3f113ae4b16cad76c9af239e24db8444"
+    },
+    {
+      "path": "images/cities/london-469294a602da2746.webp",
+      "sha256": "469294a602da2746bebda5da068f075791b2090255655b0e65793e97df8d0faa"
+    },
+    {
+      "path": "images/cities/mumbai-3105c6b439fca039.webp",
+      "sha256": "3105c6b439fca03919980c64033388cc37175f96347ef7e5d621bb9fd8e00a48"
+    },
+    {
+      "path": "images/cities/rio-0a1e3d486f83c2fe.webp",
+      "sha256": "0a1e3d486f83c2fe732b97d661c0ada9495fbadf05014007a19c31e4edbc1437"
+    },
+    {
+      "path": "images/cities/seoul-c7c8bac25841b6d7.webp",
+      "sha256": "c7c8bac25841b6d76aec55aa2db79fa88b093117a876b21d614d712cc54376ba"
+    },
+    {
+      "path": "images/cities/tokyo-795dd3bc461806aa.webp",
+      "sha256": "795dd3bc461806aa7619e9b7c4c84d38fc5f5d51259e9098d11bc8074e69af08"
+    },
+    {
+      "path": "images/cities/toronto-74463a19ebc0e388.webp",
+      "sha256": "74463a19ebc0e388a0a1b3e1aa4942d205999b2fda09cc82084c4d42003c1446"
+    },
+    {
+      "path": "images/favicon-b342089a2360cc14.ico",
+      "sha256": "b342089a2360cc14713966efc254392c867c21e9470b55f67efd77e99dd63544"
+    },
+    {
+      "path": "images/favicon-80039ef633e7a29f.png",
+      "sha256": "80039ef633e7a29f7ba95972d425bf8b01516cb5946ab61b3af1c9d31d09805f"
+    },
+    {
+      "path": "images/favicon-62d3e38ee45c44c3.svg",
+      "sha256": "62d3e38ee45c44c3d5939149c81b62352414e575de37395e852b49f2ed6f1505"
+    },
+    {
+      "path": "images/portraits/fictional-atlas-5a9326bdb7b000e4.webp",
+      "sha256": "5a9326bdb7b000e44810e9b61e7aeda5a43df54cd01383d491cb5b50d8ba981f"
+    },
+    {
+      "path": "images/places/jp-1-da7e8edafda89e55.jpg",
+      "sha256": "da7e8edafda89e55417ad14f81bc6c92ed74708d08a4c97e6bc73b37f11d612c"
+    },
+    {
+      "path": "images/places/jp-2-a7d0e9f032aa0bc3.jpg",
+      "sha256": "a7d0e9f032aa0bc388703f29f401dc439d31a41b527851e17f74da1249878c10"
+    },
+    {
+      "path": "images/places/jp-3-7d7e05307b0eec16.jpg",
+      "sha256": "7d7e05307b0eec162c9bebf957abee1fd8d3bebac2e8b7e581aea55335d70eb4"
+    },
+    {
+      "path": "images/places/jp-4-2d7355a0980db987.jpg",
+      "sha256": "2d7355a0980db987afbb9d7899901cf7a6d8d25206913fd4910808011ec21329"
+    },
+    {
+      "path": "images/places/br-1-e8aa2f36c7b0667c.jpg",
+      "sha256": "e8aa2f36c7b0667c9a4cc0d9a547e4ad8f84d118b63a30bda530133668b46722"
+    },
+    {
+      "path": "images/places/br-2-3fae5315bddc706e.jpg",
+      "sha256": "3fae5315bddc706e316319e58072e1bf12b3a44b2d09344ade72d7052cc1a36f"
+    },
+    {
+      "path": "images/places/br-3-7943bb47ab74a4aa.jpg",
+      "sha256": "7943bb47ab74a4aa8892cd98e0882fe9b27c145d1f6e2233414b800e961149ae"
+    },
+    {
+      "path": "images/places/br-4-2e7c783704b05e72.jpg",
+      "sha256": "2e7c783704b05e72bf07f92020ecc1a4b5b4df0c46aae2098fc28c51c2880b83"
+    },
+    {
+      "path": "images/places/gb-1-54548dc2b8734d91.jpg",
+      "sha256": "54548dc2b8734d9158e6d5ce2d6b50a98636352e0c07f5fc169c5c3eec9ed589"
+    },
+    {
+      "path": "images/places/gb-2-e0f8840c912bb0d1.jpg",
+      "sha256": "e0f8840c912bb0d1ff4c6c23039e366169160b89cacda4db50c6817c377b562c"
+    },
+    {
+      "path": "images/places/gb-3-233b442dbca783a0.jpg",
+      "sha256": "233b442dbca783a0405f59f7fef493e27e016d96f3ecff9b12e203ec4365cfdb"
+    },
+    {
+      "path": "images/places/gb-4-4b4a11228fcdd6d3.jpg",
+      "sha256": "4b4a11228fcdd6d38a1cd16614f8f9cc0edeb0b7c57c51e29d2cd78b7742e12a"
+    },
+    {
+      "path": "images/places/kr-1-e65d872985285e01.jpg",
+      "sha256": "e65d872985285e015a01cc569623f7d5c4b7fda8bdad04cd8423c61463d37d16"
+    },
+    {
+      "path": "images/places/kr-2-671ffa11b8551d33.jpg",
+      "sha256": "671ffa11b8551d33dc11aa15535385216795d38149a17b3e2b82279e5c510ebe"
+    },
+    {
+      "path": "images/places/kr-3-fa4349e49bc8c75f.jpg",
+      "sha256": "fa4349e49bc8c75f79bd634d4c11cdb84c323bf5e50149a51f1ca02f21f5cee5"
+    },
+    {
+      "path": "images/places/kr-4-19d30e8fb5049768.jpg",
+      "sha256": "19d30e8fb504976805b54338d397bb57c170a4481e653e86c913e5a03bd09667"
+    },
+    {
+      "path": "images/places/in-1-ed90d5bdbaa0c85e.jpg",
+      "sha256": "ed90d5bdbaa0c85e122923c25c6050cb9038e84e4c55c2aabd3fb1e4ef2b8ea3"
+    },
+    {
+      "path": "images/places/in-2-2d81ea25baa5d96a.jpg",
+      "sha256": "2d81ea25baa5d96a66554624dda5a409148e0d22745c5ae24c6f5c6c0693d1b8"
+    },
+    {
+      "path": "images/places/in-3-0e0f3ada022b050a.jpg",
+      "sha256": "0e0f3ada022b050a0153ba383397d2dba8a58a2f08ca018eb284018b3afa9cd6"
+    },
+    {
+      "path": "images/places/in-4-aeffa654e6d868e1.jpg",
+      "sha256": "aeffa654e6d868e1b76f9aa997b86c440a30b3dd8445232c1cdb34190edbe219"
+    },
+    {
+      "path": "images/places/ca-1-4a7d1a9dead870fb.jpg",
+      "sha256": "4a7d1a9dead870fb495ffa5e69f7afc5372a0f4bcc55655711f8165198bf7e53"
+    },
+    {
+      "path": "images/places/ca-2-11985ad85f52d080.jpg",
+      "sha256": "11985ad85f52d0801027a6199d70bd8419e8c568336d0a937810c33886a90370"
+    },
+    {
+      "path": "images/places/ca-3-1cb86a64d3eab8a5.jpg",
+      "sha256": "1cb86a64d3eab8a5808e53738313e9c43cdb94d3598c4ef53bd56d417c0cbdc0"
+    },
+    {
+      "path": "images/places/ca-4-02cdffcafd19abe9.jpg",
+      "sha256": "02cdffcafd19abe931af2d49df4133776fd1c970e41dd1890a21b0067628d21c"
+    },
+    {
+      "path": "images/places/us-1-030e3fdd43f0772f.jpg",
+      "sha256": "030e3fdd43f0772ff5620ef567e126cc9236ab91681bf5794569361650589bba"
+    },
+    {
+      "path": "images/places/us-2-cb356b2515a754bc.jpg",
+      "sha256": "cb356b2515a754bc88288012bb8cefc2b90a735ad5493acfb0c936ae39bcb70a"
+    },
+    {
+      "path": "images/places/us-3-c1e87604e4d095ba.jpg",
+      "sha256": "c1e87604e4d095ba521929aea665d10afc93e32703d3467412292fa36b95fa7e"
+    },
+    {
+      "path": "images/places/us-4-9818bdf981284ec8.jpg",
+      "sha256": "9818bdf981284ec8abff4de737f54bf6ce0f83c822a52d9caeefd7eef419368c"
+    },
+    {
+      "path": "images/places/fr-1-ca606199add9b1b0.jpg",
+      "sha256": "ca606199add9b1b07666d665161493a383f7041d5ceb64c4fc206875dc97a97c"
+    },
+    {
+      "path": "images/places/fr-2-9d1703d3c8944844.jpg",
+      "sha256": "9d1703d3c8944844d52e130a3176c82074c569315f613e0ca742fc7f7b85c20d"
+    },
+    {
+      "path": "images/places/fr-3-3c0a4addc63b18f5.jpg",
+      "sha256": "3c0a4addc63b18f53f3e3d108479cb72ce72e8e7601fab8ee402a07f34475262"
+    },
+    {
+      "path": "images/places/fr-4-3fbbf780a6fbfa04.jpg",
+      "sha256": "3fbbf780a6fbfa04de4f7777a4c104bc72180fcc2bf1eaaa71aca7d22cd8ca50"
+    },
+    {
+      "path": "images/places/de-1-953a8fe3e8f6f770.jpg",
+      "sha256": "953a8fe3e8f6f770f2c5b52a64c083a9d677ce4b3fa44d191adce523ad51d79a"
+    },
+    {
+      "path": "images/places/de-2-9366bd448fdae3e7.jpg",
+      "sha256": "9366bd448fdae3e768adb12cedb7c16bca26056f922d4b05898e5b672665a2e5"
+    },
+    {
+      "path": "images/places/de-3-855d2ea087f4da80.jpg",
+      "sha256": "855d2ea087f4da80a88d912c534e21a8d4ea807fae97bd6e24a465ec6363e488"
+    },
+    {
+      "path": "images/places/de-4-122bb64059dc8b78.jpg",
+      "sha256": "122bb64059dc8b78a71d5ff8d1777a070f8870974dbc8ca8e9a26d1ddda99bde"
+    },
+    {
+      "path": "images/places/it-1-3bddea3f74c82d2d.jpg",
+      "sha256": "3bddea3f74c82d2dfc8bbb12dff4a1742d9f3341d5520b03f5c7d9b3c9d34556"
+    },
+    {
+      "path": "images/places/it-2-bb0275c644999128.jpg",
+      "sha256": "bb0275c64499912853e388fa42f8481ffa8a6c48077b1390b2b8ebc2dea606d1"
+    },
+    {
+      "path": "images/places/it-3-2874d06deb1767bf.jpg",
+      "sha256": "2874d06deb1767bf566fbfec7e5a64f73f9742bc64881d5eb36e9c4f6c6902e1"
+    },
+    {
+      "path": "images/places/it-4-87071997eee900bf.jpg",
+      "sha256": "87071997eee900bf9535355c49c90e28012389430b8fb8ef97e2f791ac1c922c"
+    },
+    {
+      "path": "images/places/es-1-8f0372dcbc138fcf.jpg",
+      "sha256": "8f0372dcbc138fcf3d8513e095593f80934da1699eec687b782a83986f29c583"
+    },
+    {
+      "path": "images/places/es-2-5ac1fe6e80210ea0.jpg",
+      "sha256": "5ac1fe6e80210ea0b4baf79aa76635fefc96c98237593423d8b7b3c5bd14ec72"
+    },
+    {
+      "path": "images/places/es-3-f57bc7e4b22b9cd5.jpg",
+      "sha256": "f57bc7e4b22b9cd5b833dc73cf697aa875b57d41568b2ed5fc2f418a6cfae7d2"
+    },
+    {
+      "path": "images/places/es-4-4995c774b3338d9d.jpg",
+      "sha256": "4995c774b3338d9d4c0a3cf658c13f8b4f3e89bc03cbea911e8d69e05e2128a5"
+    },
+    {
+      "path": "images/places/pt-1-506b1d46c57b63e4.jpg",
+      "sha256": "506b1d46c57b63e4ca72a102699b435b59b8c60d0c8689e3d96738216a75bef5"
+    },
+    {
+      "path": "images/places/pt-2-1ca8e3cc2d8c4ad2.jpg",
+      "sha256": "1ca8e3cc2d8c4ad2521e87bb9ea440dedd25fdfea060c7bf6ac1aebf77cc92b9"
+    },
+    {
+      "path": "images/places/pt-3-062c90d91f19a499.jpg",
+      "sha256": "062c90d91f19a499e56e76231c57c7a600ec2f01186c73ed1ea9cf2eda9dc186"
+    },
+    {
+      "path": "images/places/pt-4-eeceb5f7f43128af.jpg",
+      "sha256": "eeceb5f7f43128afc8f3bb87d6212dc3ecbd5c043d5ab2299478cb5d655f629d"
+    },
+    {
+      "path": "images/places/nl-1-d4fd535ee902a019.jpg",
+      "sha256": "d4fd535ee902a019e47168f820d5e25eac92dcec2afb0420b21c2736c43dcb0e"
+    },
+    {
+      "path": "images/places/nl-2-fd483cd7f3b7d7fd.jpg",
+      "sha256": "fd483cd7f3b7d7fd777e423a764b22978810759513a0960787fc7c7034c8f5f6"
+    },
+    {
+      "path": "images/places/nl-3-c0b00d5d79adf618.jpg",
+      "sha256": "c0b00d5d79adf618bf8af21c40f121b0286190c4c17041371238f054388722ff"
+    },
+    {
+      "path": "images/places/nl-4-07b80adadcf67bad.jpg",
+      "sha256": "07b80adadcf67bad02048d76096ef79e54226eb7cfdf6ad0b53636e5bc9a57ec"
+    },
+    {
+      "path": "images/places/se-1-93b6e2e0810eb88d.jpg",
+      "sha256": "93b6e2e0810eb88db8621e767f67e96665ec083f43c8376fb21912fd1c23292e"
+    },
+    {
+      "path": "images/places/se-2-12ce5c7f633ba764.jpg",
+      "sha256": "12ce5c7f633ba764511e1d478066beec976ca01e50a275b5ca40db949a8790af"
+    },
+    {
+      "path": "images/places/se-3-928496213223c98f.jpg",
+      "sha256": "928496213223c98fda46aad63384bc71b39c07955bff2a6ed0da94a5b27cc7ee"
+    },
+    {
+      "path": "images/places/se-4-a411a796a855264f.jpg",
+      "sha256": "a411a796a855264f6abed7e457f9955283b9245b9d3f249166754fd7a2d9dece"
+    },
+    {
+      "path": "images/places/no-1-b78223368fa85f17.jpg",
+      "sha256": "b78223368fa85f179330077d359e8c3d8155bb6595d590d640bca6e00fa0d537"
+    },
+    {
+      "path": "images/places/no-2-807de383adfc4bca.jpg",
+      "sha256": "807de383adfc4bca2395b7eaa281e7767de70d657df11f5196cb4ac0b6599250"
+    },
+    {
+      "path": "images/places/no-3-6dcb839a28631792.jpg",
+      "sha256": "6dcb839a286317929995fd2b959b17084ad3439183b44b548d430444080fe39b"
+    },
+    {
+      "path": "images/places/no-4-64a591e86091e7a4.jpg",
+      "sha256": "64a591e86091e7a4f7566d7465eeb5bd3d0cb025b6dca8d9582ad73965ece7ed"
+    },
+    {
+      "path": "images/places/gr-1-b1e56abc364d0695.jpg",
+      "sha256": "b1e56abc364d06954d0ae181323fd5d1e1f16605d316c52da41d4c6faa939f54"
+    },
+    {
+      "path": "images/places/gr-2-90461d5410c56d64.jpg",
+      "sha256": "90461d5410c56d644f1856b34ba3068d2922355e6e92fdb7d7e3475d1d17eb28"
+    },
+    {
+      "path": "images/places/gr-3-b4b3da46d6a4ba42.jpg",
+      "sha256": "b4b3da46d6a4ba42de7d60455028789e2f949b519cef91a57ea1c607b73d3671"
+    },
+    {
+      "path": "images/places/gr-4-f001b22238d0e460.jpg",
+      "sha256": "f001b22238d0e460209334db79e5a4e63f9f226fd22ef45362a8be23444d372a"
+    },
+    {
+      "path": "images/places/au-1-047cd8307a3504cb.jpg",
+      "sha256": "047cd8307a3504cba13790e57a8e835ed351736ced3080291e7034f2fec09b32"
+    },
+    {
+      "path": "images/places/au-2-a47a9d88eb3f43d5.jpg",
+      "sha256": "a47a9d88eb3f43d5e83444f13999aa95bf1cea595886e53aa126e9ce593786cd"
+    },
+    {
+      "path": "images/places/au-3-c5e1848cb34781c7.jpg",
+      "sha256": "c5e1848cb34781c7c3e9585232b8b9c175c5c5580bdb79ec0346c2fe3d639363"
+    },
+    {
+      "path": "images/places/au-4-81730d7e164273f2.jpg",
+      "sha256": "81730d7e164273f267a77bf22e4cfabbdb8efc429d06e776f97b5858d373dbbc"
+    },
+    {
+      "path": "images/places/nz-1-e444a18147b5ae96.jpg",
+      "sha256": "e444a18147b5ae96f19d88850ad6f1076bfa18a6a6904ba2b9cedc5a119805b9"
+    },
+    {
+      "path": "images/places/nz-2-ee9d2f01ee0d8012.jpg",
+      "sha256": "ee9d2f01ee0d8012dfe6591e96cb42f7a8b48db8d2dcaa022b591c56a20acbf2"
+    },
+    {
+      "path": "images/places/nz-3-0871906cff8fc97f.jpg",
+      "sha256": "0871906cff8fc97fdf2467611718d6970b7520e5f4d2e3e6587c51dfd24bb6a4"
+    },
+    {
+      "path": "images/places/nz-4-562c9f5d6eeb0393.jpg",
+      "sha256": "562c9f5d6eeb03937b1fb7664728f4e9c8970388d15a6ceabd128e05015b6ef1"
+    },
+    {
+      "path": "images/places/sg-1-ffe8b26bdac8aa17.jpg",
+      "sha256": "ffe8b26bdac8aa1766288047dd821ddb0251ebf76f027015d4240009bf9282bd"
+    },
+    {
+      "path": "images/places/sg-2-d2af8e060c859018.jpg",
+      "sha256": "d2af8e060c859018eda24ed303079b86d9c8763e1e3c5a3ff7c8f4747d9258d9"
+    },
+    {
+      "path": "images/places/sg-3-cb6ec7229e9939b0.jpg",
+      "sha256": "cb6ec7229e9939b062533bcb702d940710bbbfe67b0eb076e05894c4737c971a"
+    },
+    {
+      "path": "images/places/sg-4-8b2d344a526e4206.jpg",
+      "sha256": "8b2d344a526e420629231fd797655ad267779522f1b9b47213f7390d4c0fb871"
+    },
+    {
+      "path": "images/places/th-1-10e93a61a85cb416.jpg",
+      "sha256": "10e93a61a85cb416b1a9386091ff8895b311ddd582fa7e980ab793e448c5ff43"
+    },
+    {
+      "path": "images/places/th-2-28198cd3bc668654.jpg",
+      "sha256": "28198cd3bc66865463b9aface01b331d034b66e0ca1dd2a7d0e7c964b0d256a0"
+    },
+    {
+      "path": "images/places/th-3-465c5c6e4daa3976.jpg",
+      "sha256": "465c5c6e4daa3976d0fb163d571b9ba0865f4b832e674c229519d5a11d605027"
+    },
+    {
+      "path": "images/places/th-4-08ad4cb83c34f74a.jpg",
+      "sha256": "08ad4cb83c34f74a80ce14bbd389ef50e19f27d3b54c58603597df9860822451"
+    },
+    {
+      "path": "images/places/id-1-cfc240d0befcd0ed.jpg",
+      "sha256": "cfc240d0befcd0ed406f5fe4cde4f5b23cbe9fe68792913cd2fc5a8540c83579"
+    },
+    {
+      "path": "images/places/id-2-c1157ad726b5ab90.jpg",
+      "sha256": "c1157ad726b5ab909858c310ff011cbd53e742dc945d832f59464bc3750e8a85"
+    },
+    {
+      "path": "images/places/id-3-0128319620b8f2f7.jpg",
+      "sha256": "0128319620b8f2f723efff356c251330062731c9d11d0ed16af56655be3aa995"
+    },
+    {
+      "path": "images/places/id-4-3b252c7191557279.jpg",
+      "sha256": "3b252c7191557279fd19cd62125e7c542317241ee54bce5a2cbbc02ce70791ff"
+    },
+    {
+      "path": "images/places/ae-1-0c211a55b5dada1c.jpg",
+      "sha256": "0c211a55b5dada1ca0b6e8a6234807fbd041adf32083ef77c7ad67ac3373dc27"
+    },
+    {
+      "path": "images/places/ae-2-0f069c6317cd7c27.jpg",
+      "sha256": "0f069c6317cd7c27b49c1551957b58340ea5c2766fab2fb21d663d60e7993c06"
+    },
+    {
+      "path": "images/places/ae-3-481c0a828efcd070.jpg",
+      "sha256": "481c0a828efcd070291af414458bf5949959aa4d81002ae714c6e9f1941acfdc"
+    },
+    {
+      "path": "images/places/ae-4-60ae54925b8a38e9.jpg",
+      "sha256": "60ae54925b8a38e9c7365dd819cbed16361a1db74cbd396fa84f256d7e2b453f"
+    },
+    {
+      "path": "images/places/za-1-82bffe5327cf4c28.jpg",
+      "sha256": "82bffe5327cf4c28c6f4e1e5f18a4bb8cf9cc67afcb2d23946be91ea6a823bf5"
+    },
+    {
+      "path": "images/places/za-2-cdc6912ac9ecdff5.jpg",
+      "sha256": "cdc6912ac9ecdff55d2c56477c571edfd39e18250fe7a7c028f6ddbfdf9263ae"
+    },
+    {
+      "path": "images/places/za-3-5f235604f63fffbb.jpg",
+      "sha256": "5f235604f63fffbbf823c5afc1a3b74e5c34e9619242c741b72abd407805333c"
+    },
+    {
+      "path": "images/places/za-4-11f791cef58cacfb.jpg",
+      "sha256": "11f791cef58cacfbb1abed0c4dd6ee18ecc53756e2a8eaf9b7452075972404e6"
+    },
+    {
+      "path": "images/places/ke-1-3c3bf5dcf8b559ab.jpg",
+      "sha256": "3c3bf5dcf8b559abeb0f5c6a257d9744b48b6a1d8a2008a522be942e905a495f"
+    },
+    {
+      "path": "images/places/ke-2-f5bc83fe2a98a225.jpg",
+      "sha256": "f5bc83fe2a98a225934ba97c7918e40bd8dc96fd663002c795b931bc7d0a67ce"
+    },
+    {
+      "path": "images/places/ke-3-537cf3248ef90302.jpg",
+      "sha256": "537cf3248ef903021f1a696b6c6b70b7327186a8d399b0c636be36709f46669d"
+    },
+    {
+      "path": "images/places/ke-4-c6773f75fc09f381.jpg",
+      "sha256": "c6773f75fc09f3816e3ed146b8bbb2e16fd3a55415ea3ecd54026407cb8ad416"
+    },
+    {
+      "path": "images/places/mx-1-e6bd7577af3e1c72.jpg",
+      "sha256": "e6bd7577af3e1c72e2dfa3e22741162fd772ab1ce3cefbdab848561324dcbc16"
+    },
+    {
+      "path": "images/places/mx-2-05bb282b4dabda76.jpg",
+      "sha256": "05bb282b4dabda76df78974a29b2132fb8aa3a19c3aad6942c38e3319bb26794"
+    },
+    {
+      "path": "images/places/mx-3-2dc66ca5e0ab4cb0.jpg",
+      "sha256": "2dc66ca5e0ab4cb0028a4e84681fa7ddcb2c74f7adadb32bcead2dcf2ec2771f"
+    },
+    {
+      "path": "images/places/mx-4-e0ca2310be675a18.jpg",
+      "sha256": "e0ca2310be675a18ea44dd42ac03b4145b7aaf4ca49f902201a08763c694bce9"
+    },
+    {
+      "path": "images/places/ar-1-7f72f57553b3ae6c.jpg",
+      "sha256": "7f72f57553b3ae6cebc5d58330e0e6e0c2ff7abdcb1135a4f13f65dae3d65443"
+    },
+    {
+      "path": "images/places/ar-2-1e3961c3482630b7.jpg",
+      "sha256": "1e3961c3482630b76332b708206d576dd1d0a0375c00997a43008d793e6fb36b"
+    },
+    {
+      "path": "images/places/ar-3-7c76a832bf92bed8.jpg",
+      "sha256": "7c76a832bf92bed81c46e5dddf0039450c4e808da0dedf2876c682569cb38943"
+    },
+    {
+      "path": "images/places/ar-4-e99c2edbe140780f.jpg",
+      "sha256": "e99c2edbe140780fc7fc8b73b20ee6c552593e323645644aa0f2087a2e7c0303"
+    },
+    {
+      "path": "images/cities/1857910-5b7100d905220acc.jpg",
+      "sha256": "5b7100d905220accbd36c414b51f45e6aaf8e99ee124aa66e8c500b7c04f8acb"
+    },
+    {
+      "path": "images/places/Q1013399-9efb71942cf9967a.jpg",
+      "sha256": "9efb71942cf9967a2a97c2a66cb636eaad6d0eaa80f31b5eb16c6bc28671d4e1"
+    },
+    {
+      "path": "images/places/Q147286-372155e5e5665aa3.jpg",
+      "sha256": "372155e5e5665aa3d5b5c218ab2b658c1fce68c2945bd24032345cfefdea39e3"
+    },
+    {
+      "path": "images/places/Q3087620-f380f3016353fdc1.jpg",
+      "sha256": "f380f3016353fdc146b4914c5ccb793a152421873be53929ebb8bc725866eb43"
+    },
+    {
+      "path": "images/places/Q1089767-f2f5c938da1c9ddc.jpg",
+      "sha256": "f2f5c938da1c9ddcbe5a13542363942b259e3814152602f52bcdf768205cc3fa"
+    },
+    {
+      "path": "images/cities/1273294-4a115fc6a60fd153.jpg",
+      "sha256": "4a115fc6a60fd153eb23465cdd3186d2369bd892d562f573db4bfd4d9ef35b75"
+    },
+    {
+      "path": "images/places/Q2985087-8557658559241923.jpg",
+      "sha256": "8557658559241923908648e52148c4c6aa180f018a214cd77351076917a1bf10"
+    },
+    {
+      "path": "images/places/Q5620491-4c79a0580cfb79f4.jpg",
+      "sha256": "4c79a0580cfb79f450fc4cd5bc36886f8cfe8fb5cdbecdf61abf6607119f15eb"
+    },
+    {
+      "path": "images/places/Q16852143-11c04bfd6c3f94f2.jpg",
+      "sha256": "11c04bfd6c3f94f285a66e4ac87b2b1a1214df6d7676bebb94721de564845bc3"
+    },
+    {
+      "path": "images/cities/1796236-d4d1f70ad19bada9.jpg",
+      "sha256": "d4d1f70ad19bada9a729e75191a142d92b5d96b4c7807d6f4a66529e36181046"
+    },
+    {
+      "path": "images/places/Q926767-b548e98f213ae9ee.jpg",
+      "sha256": "b548e98f213ae9ee740c1fb6ef5eb49cd8c6bf7559946d5b8e0afd559fa0b807"
+    },
+    {
+      "path": "images/places/Q41728-6efae3df1362a7c9.jpg",
+      "sha256": "6efae3df1362a7c9cb2c8e905ae2b934957df70303eec967f1dcb1fa3887cac3"
+    },
+    {
+      "path": "images/places/Q7236419-57f3b38154b8d696.jpg",
+      "sha256": "57f3b38154b8d6965f032e5f1b96f8b144c32341f4bd2c3615f50e52756b800d"
+    },
+    {
+      "path": "images/places/Q1055130-d4aa9a065d5792a3.jpg",
+      "sha256": "d4aa9a065d5792a31300a898a37e666fe40790f8be4871e7348a2f2479e8b96d"
+    },
+    {
+      "path": "images/cities/1838524-842bef100796a4ee.jpg",
+      "sha256": "842bef100796a4ee987724802bd6eaf817e9b50f69c934895678f70f6bc6698f"
+    },
+    {
+      "path": "images/places/Q496218-428775b54ce93ad2.jpg",
+      "sha256": "428775b54ce93ad29030bf22c75125c74d963a8d2083fd5cdd1ab8be7530012d"
+    },
+    {
+      "path": "images/places/Q130628-b14f7af51092dab8.jpg",
+      "sha256": "b14f7af51092dab8d5ee33adc9708f2f06a98f4017ffef67cd3f5f74b9d7e8b2"
+    },
+    {
+      "path": "images/places/Q5001263-4460cf597dcd2231.jpg",
+      "sha256": "4460cf597dcd223147ab605b86983f2dbb0b42cb280aa10f342990e4b37997cb"
+    },
+    {
+      "path": "images/places/Q495370-361aadf79aa55701.jpg",
+      "sha256": "361aadf79aa5570135db4222cad194bea2414dacb246ffa4d7d32a8d29575afb"
+    },
+    {
+      "path": "images/cities/3067696-bfde1d28d2abd166.jpg",
+      "sha256": "bfde1d28d2abd1668765820c34032da09be7ecad33d6a6bdfbd09e5cba8953dd"
+    },
+    {
+      "path": "images/places/Q1967876-8a413ecd5aeeb1e8.jpg",
+      "sha256": "8a413ecd5aeeb1e8b13fa855e23f9d5358b2c7b3e3d78e7e9b08a16b06dc9a08"
+    },
+    {
+      "path": "images/places/Q1453427-7bedaee9953049d1.jpg",
+      "sha256": "7bedaee9953049d1bc5f39390c4259f6e0502bfb064d93640cc86317a114924b"
+    },
+    {
+      "path": "images/places/Q421678-cc0709e2f8e4c0cb.jpg",
+      "sha256": "cc0709e2f8e4c0cb5cba2e46bea67c1266f4418391839591f5b3888c04fe80d2"
+    },
+    {
+      "path": "images/places/Q569877-72d9081ad1d9da12.jpg",
+      "sha256": "72d9081ad1d9da1220a54becab6722b3adc416b9ee1b7951abea5100aa9f565f"
+    },
+    {
+      "path": "images/cities/2761369-7d6aa909d56a5681.jpg",
+      "sha256": "7d6aa909d56a5681a2da56022a224199432370988853a1d081e4c9d2fadb07b9"
+    },
+    {
+      "path": "images/places/Q211818-5cd8632d7b9df0e5.jpg",
+      "sha256": "5cd8632d7b9df0e5e5b3e9f82e223af908d572d0af8712a19d40ebc19d18b70b"
+    },
+    {
+      "path": "images/places/Q46242-4320970f2c5887a5.jpg",
+      "sha256": "4320970f2c5887a586731a4e5458f3a93e6e9015027e83754badada4441d2b7d"
+    },
+    {
+      "path": "images/places/Q95569-9426274aac5a0c0d.jpg",
+      "sha256": "9426274aac5a0c0d946d1a609f10639cb9fcc50de6668cc9c5f29d9ff01ddc70"
+    },
+    {
+      "path": "images/places/Q209937-033f5e3af336a6a5.jpg",
+      "sha256": "033f5e3af336a6a570cf70eee0bc3ca67bedca4c33682c9ee90d72515f650aa1"
+    },
+    {
+      "path": "images/cities/3176959-f4b36456027bd0f5.jpg",
+      "sha256": "f4b36456027bd0f5e1bf29dd9bdecf2750e789b1b4261e3df3ea13c0631365d0"
+    },
+    {
+      "path": "images/places/Q51252-d051a832a1de726a.jpg",
+      "sha256": "d051a832a1de726a21d3e0f3954e07c39115ea87a5a1e1fc57458d8f9016f7aa"
+    },
+    {
+      "path": "images/places/Q191739-38b596f49371357f.jpg",
+      "sha256": "38b596f49371357f2d92bc782c3a2faa46b707d1b0fcd59b788d16cf5e5baa89"
+    },
+    {
+      "path": "images/places/Q29286-3a5240fc25598e24.jpg",
+      "sha256": "3a5240fc25598e24e52f7f4e0f88b91f040b595384b57385855cd4305e7099ce"
+    },
+    {
+      "path": "images/places/Q51177-df2880858824720e.jpg",
+      "sha256": "df2880858824720e1693311b04be5c72c679fb0a6ea9fa3a9a4762e76481b5d8"
+    },
+    {
+      "path": "images/cities/2650225-cd7d3e1102a41a98.jpg",
+      "sha256": "cd7d3e1102a41a982913a84af1f3ba570e5377193f00632a539bc25c2bcba40d"
+    },
+    {
+      "path": "images/places/Q212065-072498adf2b0f286.jpg",
+      "sha256": "072498adf2b0f2861abf524cececb8c82520a93730b5e17b06de501c5a54c3fe"
+    },
+    {
+      "path": "images/places/Q505950-a03cb8158fa20590.jpg",
+      "sha256": "a03cb8158fa20590be2726e1a207434144f8d94487ed061de98800ee41daadcc"
+    },
+    {
+      "path": "images/places/Q942713-a869fe063e49014c.jpg",
+      "sha256": "a869fe063e49014c064535d4668d225259bbc32c71ee6bda172fda93e376f632"
+    },
+    {
+      "path": "images/places/Q1547466-bd84635065dfaa6f.jpg",
+      "sha256": "bd84635065dfaa6f8d272699ef23e1fa5762897a8bd5a7b2e7d576251571d7c9"
+    },
+    {
+      "path": "images/cities/6173331-5a954472dd5186f9.jpg",
+      "sha256": "5a954472dd5186f9a14fed2721d22283928dc007e0a4e2b5269f1daa1bda9057"
+    },
+    {
+      "path": "images/places/Q612227-1455f93af17782df.jpg",
+      "sha256": "1455f93af17782df25954b9314dd32800f067bc3ca6a882f2099d383af748018"
+    },
+    {
+      "path": "images/places/Q371960-c513618316f04760.jpg",
+      "sha256": "c513618316f0476028f012678c3439a7646101568c83934e273979b615a5ac6d"
+    },
+    {
+      "path": "images/places/Q1376408-d73dbaf35c8c8ad4.jpg",
+      "sha256": "d73dbaf35c8c8ad43d2ce91f72f1799430c7ed7f6308089ed119af184cf39e0d"
+    },
+    {
+      "path": "images/places/Q1514655-1883159db227ed50.jpg",
+      "sha256": "1883159db227ed502b5c26135e4df1f2b263837086649a9854f316401df51334"
+    },
+    {
+      "path": "images/cities/5368361-7ee4da2473ec43be.jpg",
+      "sha256": "7ee4da2473ec43be7a45ea5c9c2555b8d792d5ccb6c298c0b445ee8dae990a6a"
+    },
+    {
+      "path": "images/places/Q57900-eb27215b6dfc37d0.jpg",
+      "sha256": "eb27215b6dfc37d0fdbd71b786ff04c2ae9155eeecc9434aa074644352a97b11"
+    },
+    {
+      "path": "images/places/Q1147168-fce9f0c4467b3a9d.jpg",
+      "sha256": "fce9f0c4467b3a9dc33911f9a7634043dc889109a57ae451df73ec46fdfbdbe3"
+    },
+    {
+      "path": "images/places/Q849784-db27720b3b4bfd8a.jpg",
+      "sha256": "db27720b3b4bfd8ad0188fe8a5f82c20ab7229fb760c07c7fa0f1e72f5a867ec"
+    },
+    {
+      "path": "images/places/Q1250287-9bc7dae4706e17cb.jpg",
+      "sha256": "9bc7dae4706e17cb466d59351ef5a312f82f9ceaa946a5b384d2068f58787c8e"
+    },
+    {
+      "path": "images/cities/4005539-45de0c4de571b901.jpg",
+      "sha256": "45de0c4de571b9019800ab607be35380487e1bc07bba68e2315651b44613bc36"
+    },
+    {
+      "path": "images/places/Q1346716-a60d59ec4a9bdd97.jpg",
+      "sha256": "a60d59ec4a9bdd975e5f2b9efce6a1c6310d11fe84895ec926c27fd14ff15cb1"
+    },
+    {
+      "path": "images/places/Q583726-cf397622044e1263.jpg",
+      "sha256": "cf397622044e126357d71b6854704d657fa8d1ed2f1e253817c08cacfa00e040"
+    },
+    {
+      "path": "images/places/Q2398791-6e95000add19d99b.jpg",
+      "sha256": "6e95000add19d99b618cbf55be493fdc21ad205767ad903f893bde2a29d7fc36"
+    },
+    {
+      "path": "images/places/Q3576044-8a2c80f7a1f231f0.jpg",
+      "sha256": "8a2c80f7a1f231f07aaa54b3ea628fb0b1c7bf8c58c9452316c55d10acf4417c"
+    },
+    {
+      "path": "images/cities/3553478-fca19649c8d1cd0d.jpg",
+      "sha256": "fca19649c8d1cd0d9610107923ba6679714079f350f8b1bbfbce1460bd62fe78"
+    },
+    {
+      "path": "images/places/Q1781364-e50ce735511415b6.jpg",
+      "sha256": "e50ce735511415b6c2aad326103297c390f1234706fb4d9e87c663bccec692d4"
+    },
+    {
+      "path": "images/places/Q1461939-61fa822f1f917507.jpg",
+      "sha256": "61fa822f1f9175079adef767b0521194ec85fcebf0e787f50b56d06366ea7c3f"
+    },
+    {
+      "path": "images/places/Q5728066-6348ba1f439ae3ab.jpg",
+      "sha256": "6348ba1f439ae3ab486fd53023f2dc672b94a2b6c886be10b49d4d2b3d15d109"
+    },
+    {
+      "path": "images/places/Q5050352-e0b2ce8d8c28f697.jpg",
+      "sha256": "e0b2ce8d8c28f6971e88618a1ac21a5eb976b868004ece39919beadc13b68e30"
+    },
+    {
+      "path": "images/cities/3936456-e27c92b91a030c17.jpg",
+      "sha256": "e27c92b91a030c17aa7bb696acd078335a22737704ac8822c3cb59b86244411a"
+    },
+    {
+      "path": "images/places/Q385938-8f4cc265bc64d630.jpg",
+      "sha256": "8f4cc265bc64d630fdd46e9ab6a1a163eb419eadbc291ca6c349f045832a2b5e"
+    },
+    {
+      "path": "images/places/Q2536763-8ed6e1e022318690.jpg",
+      "sha256": "8ed6e1e022318690b7f68b1ba071a43577ed93d921f1bd9139979bffa14073f0"
+    },
+    {
+      "path": "images/places/Q2744878-99e272bf6f0af1ea.jpg",
+      "sha256": "99e272bf6f0af1eaf6a076e1d36e1fa4936d0d4105ca58052a3a65abdfbec8cd"
+    },
+    {
+      "path": "images/places/Q930349-e58e8d3f94195b5c.jpg",
+      "sha256": "e58e8d3f94195b5c9efccae361287f224df045c7e328bd8de6ca182a339bec97"
+    },
+    {
+      "path": "images/cities/3674962-0aa5dda4620f1425.jpg",
+      "sha256": "0aa5dda4620f142551ede11c9822eb239f0aa475fafe51e45db06ee58cf24670"
+    },
+    {
+      "path": "images/places/Q1050597-db16742d1386c67f.jpg",
+      "sha256": "db16742d1386c67fc90b92ee13622cbfbc85b0e46a80e59e1b1d8ba0f507fa40"
+    },
+    {
+      "path": "images/places/Q6156079-d0f39af1d9611eee.jpg",
+      "sha256": "d0f39af1d9611eeeb8d9eefb528a350cc6146e7cb9e0b16d1f02fda6bfabfb03"
+    },
+    {
+      "path": "images/places/Q3329644-f829eef2b3a21a4f.jpg",
+      "sha256": "f829eef2b3a21a4f844ebd4e81878a96a413323d3f6e27b3dd8510b4afcc72c3"
+    },
+    {
+      "path": "images/places/Q5926838-d964dc3ffd11604f.jpg",
+      "sha256": "d964dc3ffd11604f384f6bc33a4aec1890dc2bf67b41848053646396b16aaa49"
+    },
+    {
+      "path": "images/cities/3871336-f731ade79fbca817.jpg",
+      "sha256": "f731ade79fbca817089a1766ce9c9be90f3e40243c03817eca66bdf91c58dc29"
+    },
+    {
+      "path": "images/places/Q594994-7a4066ad0ab09b1f.jpg",
+      "sha256": "7a4066ad0ab09b1faeab88b83cc3fadc3ce5c1d71ae9d89a405579ce6c0a6fd9"
+    },
+    {
+      "path": "images/places/Q2901485-ba0582bdccca133e.jpg",
+      "sha256": "ba0582bdccca133e68677afdcfc5232669d001b3858746aaec26f2d97161c6c8"
+    },
+    {
+      "path": "images/places/Q1542408-f786f4227bfd3dc6.jpg",
+      "sha256": "f786f4227bfd3dc6c35e19620923bedcf5c58a483e4968db54ba31bc0e56e03c"
+    },
+    {
+      "path": "images/places/Q775376-4c7f4ede2f907040.jpg",
+      "sha256": "4c7f4ede2f9070401db354dc84c120f544fee4307afa3b9d5a5afd772539a809"
+    },
+    {
+      "path": "images/cities/2306104-92b878469131e5ee.jpg",
+      "sha256": "92b878469131e5ee0ea31c9348f546c4356f366982ac7b14f8499352984b41aa"
+    },
+    {
+      "path": "images/places/Q1082964-6bb161a931e47967.jpg",
+      "sha256": "6bb161a931e47967caf7af58968e666f18b5a8a4c599ce1f88a04131e4d0af13"
+    },
+    {
+      "path": "images/places/Q1967472-031bf227713f4796.jpg",
+      "sha256": "031bf227713f47965e87fdfbb1a49909aeca06f0058f26da8eb48520f8df498f"
+    },
+    {
+      "path": "images/places/Q339568-6454c7f7026986c4.jpg",
+      "sha256": "6454c7f7026986c43228f1db7b28a2944927dd1898fdd7a05773b4d797f7675e"
+    },
+    {
+      "path": "images/places/Q4921908-35d074e7beb6cb6c.jpg",
+      "sha256": "35d074e7beb6cb6c2d490114ee55c8c604288308a2f7376b50b5f95300abf589"
+    },
+    {
+      "path": "images/cities/2464470-94a9b2c63183251e.jpg",
+      "sha256": "94a9b2c63183251e852cff4960ce525527271191d7a8a81a127ecf245b2f614f"
+    },
+    {
+      "path": "images/places/Q606065-5b888361a9ab5dba.jpg",
+      "sha256": "5b888361a9ab5dbae5d9eaccc9750426275c93c71ddfa0da441e1d10a8eb0fbb"
+    },
+    {
+      "path": "images/places/Q2963564-dcf7f08a17e4ecb6.jpg",
+      "sha256": "dcf7f08a17e4ecb6a2da834733c520d4f824a1e445b4a7b411be0076e64f5eb5"
+    },
+    {
+      "path": "images/places/Q3364339-c0603f065a977c8c.jpg",
+      "sha256": "c0603f065a977c8c39a677010d8884e6f94a823ff39fda8bf378699434502241"
+    },
+    {
+      "path": "images/places/Q3015945-4cdf8d441657a9ca.jpg",
+      "sha256": "4cdf8d441657a9ca059f57208a462f28e483d0c1537b75d04d4f8b8de98d9324"
+    },
+    {
+      "path": "images/cities/2314302-893b61ee2484b10e.jpg",
+      "sha256": "893b61ee2484b10ec732afdc0abc0d81abfe4af2f1349ab0c12f5465d0e426e6"
+    },
+    {
+      "path": "images/places/Q2165655-0cfac06b08892676.jpg",
+      "sha256": "0cfac06b08892676dfb34d2db7be7f38047cc8942564dda4f4b210f6c1bd4519"
+    },
+    {
+      "path": "images/places/Q2878705-1e1ffaa368b4b028.jpg",
+      "sha256": "1e1ffaa368b4b028c895c09578461a7423ba10f20a2e63ef3f9b90ef0b37e1f6"
+    },
+    {
+      "path": "images/places/Q16875750-0257c0e82ace048c.jpg",
+      "sha256": "0257c0e82ace048c0b0639c683872104db6233cac5b7bd68acc00d1fc2edfc9b"
+    },
+    {
+      "path": "images/places/Q65600754-cef0e3bcd0174d61.jpg",
+      "sha256": "cef0e3bcd0174d6198df4987ae482bc5d6c6cbaa61f5309bf58c32a2da0663e5"
+    },
+    {
+      "path": "images/cities/2158177-f854ac6922b3b9da.jpg",
+      "sha256": "f854ac6922b3b9da30affe5db0daeab7b9bf252875b202e26938d89808ce5b5f"
+    },
+    {
+      "path": "images/places/Q829338-da2d150c14142faa.jpg",
+      "sha256": "da2d150c14142faad820eaa7bcef8491d44ce1689850496735c81e86c9c968d0"
+    },
+    {
+      "path": "images/places/Q330136-b65f27024b302f2b.jpg",
+      "sha256": "b65f27024b302f2be083db3b16a9d430ca59c68d3f0060bd63b84ab6be38b438"
+    },
+    {
+      "path": "images/places/Q1464509-ffea72d8628d7d05.jpg",
+      "sha256": "ffea72d8628d7d05a0b5982e17590f3cdbc794b3af7f3a3fc99b193998125af2"
+    },
+    {
+      "path": "images/places/Q578027-d110d4034d8b3c73.jpg",
+      "sha256": "d110d4034d8b3c730f86daba95cff537329a6663b5de90e92d263f846fd741e0"
+    },
+    {
+      "path": "images/cities/2179537-cc5fd396895527d5.jpg",
+      "sha256": "cc5fd396895527d5073034e5240ee53a8ae17983c4b14510ffc00099a4b59b1d"
+    },
+    {
+      "path": "images/places/Q915603-35c15f45a86cbf90.jpg",
+      "sha256": "35c15f45a86cbf9092d8194e7612e3c3e25ed4ef475794c0502cc7e6db73a058"
+    },
+    {
+      "path": "images/places/Q390375-2de9780de0932937.jpg",
+      "sha256": "2de9780de0932937eba1db95355254207b1225989d1a030f4bd69a71d20f277d"
+    },
+    {
+      "path": "images/places/Q7981545-2f8591a64c6fae93.jpg",
+      "sha256": "2f8591a64c6fae930997333ca2c1791205eff73259204780d7580a5018bd6d97"
+    },
+    {
+      "path": "images/places/Q2447822-ae13ff46adf12c0f.jpg",
+      "sha256": "ae13ff46adf12c0f62787ff6e10acf6fb95d4886ccb177ec300292882bc91f33"
+    },
+    {
+      "path": "images/cities/1277333-4f44898035db5aa4.jpg",
+      "sha256": "4f44898035db5aa496cbbecad086cc623dcb40db78bfcd2baaf777426e8e2036"
+    }
+  ]
+}

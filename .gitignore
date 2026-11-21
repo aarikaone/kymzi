@@ -229,3 +229,6 @@ Desktop.ini
 /artifacts/
 /apps/mobile/ios/
 /apps/mobile/android/
+
+# Generated image originals and review sheets; approved app assets stay versioned.
+/output/imagegen/

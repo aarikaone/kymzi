@@ -106,3 +106,9 @@ test('activation respects private children and actual friend unlocks without add
  assert.throws(()=>simulatePalUnlock({...seed(),profile:{...owner,ageBand:'10-12'}},NOW));assert.throws(()=>simulatePalUnlock({...seed(),profile:null},NOW));const real=unlocked();assert.equal(real.launch!.globalPlay!.source,'friends');assert.equal(simulatePalUnlock(real,NOW),real);assert.equal(resetPalUnlock(real),real);
  const corrupt=readPreview({...seed(),launch:{...seed().launch,globalPlay:{activatedAt:'not-a-date',source:'simulation'},unlockPreview:true}},NOW);assert.equal(palFindingProgress(corrupt).canPlay,false);
 });
+
+test('world guide places survive local storage without unlocking or spending a play',()=>{
+ const original=seed(),saved=toggleGuidePlace(original,'Q836531',NOW),restored=readPreview(JSON.parse(JSON.stringify(saved)),NOW);
+ assert.ok(restored.launch!.places.includes('Q836531'));assert.equal(palFindingProgress(restored).canPlay,false);assert.deepEqual(restored.daily,readPreview(JSON.parse(JSON.stringify(original)),NOW).daily);
+ assert.deepEqual(toggleGuidePlace(restored,'Q836531',NOW).launch!.places,[]);assert.throws(()=>toggleGuidePlace(original,'Q999999999999999',NOW),/Choose a place/);
+});

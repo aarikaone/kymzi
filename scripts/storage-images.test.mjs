@@ -1,0 +1,12 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import {createHash} from 'node:crypto';
+import {validateImageManifest} from './publish-storage-images.mjs';
+import {IMAGE_DELIVERY,isDeliveryImageUrl} from './image-delivery-config.mjs';
+function fixture(t){const root=fs.mkdtempSync(path.join(os.tmpdir(),'kymzi-storage-'));t.after(()=>fs.rmSync(root,{recursive:true,force:true}));const image={path:'images/avatars/character-0123456789abcdef.webp',sha256:createHash('sha256').update('bitmap').digest('hex'),bytes:6};fs.mkdirSync(path.join(root,'artifacts/cloud-cdn/public/images/avatars'),{recursive:true});fs.writeFileSync(path.join(root,'artifacts/cloud-cdn/public',image.path),'bitmap');return {root,manifest:{projectId:'kymzi-f1e9d',files:[image]}};}
+test('uploads only the verified image manifest and computes a server-validated checksum',t=>{const {root,manifest}=fixture(t);const files=validateImageManifest(manifest,root);assert.equal(files.length,1);assert.equal(files[0].md5Hash,createHash('md5').update('bitmap').digest('base64'));assert.equal(files[0].sha256,manifest.files[0].sha256);});
+test('rejects foreign projects, changed bytes, duplicate paths and private files',t=>{const {root,manifest}=fixture(t);assert.throws(()=>validateImageManifest({...manifest,projectId:'rxbott-prod'},root),/Kymzi/);assert.throws(()=>validateImageManifest({...manifest,files:[...manifest.files,...manifest.files]},root),/duplicate/);assert.throws(()=>validateImageManifest({...manifest,files:[{...manifest.files[0],path:'images/../.env'}]},root),/Invalid/);assert.throws(()=>validateImageManifest({...manifest,files:[{...manifest.files[0],sha256:'wrong'}]},root),/changed/);});
+test('allows only Kymzi CDN and legacy Hosting image URLs during migration',()=>{assert.equal(IMAGE_DELIVERY.bucket,'kymzi-f1e9d-images');assert.ok(isDeliveryImageUrl(IMAGE_DELIVERY.cdnOrigin+'/images/avatars/cloud.webp'));assert.ok(isDeliveryImageUrl(IMAGE_DELIVERY.legacyOrigin+'/images/avatars/cloud.webp'));assert.equal(isDeliveryImageUrl('https://evil.example/images/cloud.webp'),false);assert.equal(isDeliveryImageUrl(IMAGE_DELIVERY.cdnOrigin+'.evil.example/images/cloud.webp'),false);assert.equal(isDeliveryImageUrl(IMAGE_DELIVERY.cdnOrigin+'/images/../private'),false);assert.equal(isDeliveryImageUrl(IMAGE_DELIVERY.cdnOrigin.replace('https:','http:')+'/images/cloud.webp'),false);});

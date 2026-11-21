@@ -1,3 +1,4 @@
+import {publicCdnImage} from '@rymzi/core';
 import {attractionsForCountry,canUseCityBoard,countryById,dayCardPicks,latestPlayConnections,palFor,playCountry,type CountryId,type PreviewState} from '@rymzi/core';
 import {AttractionImage} from './AttractionImage';
 import {Icon} from './icons';
@@ -34,7 +35,7 @@ export function RoamieReveal({state,onPal,onCountry,onAttraction,onPhotos,onPlan
       </header>
 
       {!privateOnly&&<section className="reveal-person" aria-label="Your new roamie">
-        <span className="reveal-character"><img src={`/avatars/${pal?.imageAvatar??'cloud'}.webp`} alt="Your roamie’s character"/></span>
+        <span className="reveal-character"><img src={publicCdnImage(`/avatars/${pal?.imageAvatar??'cloud'}.webp`)} alt="Your roamie’s character"/></span>
         <div><small>A NEW CONNECTION</small><h2>{pal?.alias??'Your roamie'}</h2><span className="reveal-private"><Icon name="lock" size={13}/>Identity private</span></div>
         <Icon name="spark" size={20} className="reveal-person-spark"/>
       </section>}

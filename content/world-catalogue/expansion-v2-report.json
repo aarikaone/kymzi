@@ -1,0 +1,329 @@
+{
+  "expansionId": "kymzi-destinations-v2",
+  "generatedAt": "2026-11-21T10:17:24.253385+00:00",
+  "additionalDestinations": 1500,
+  "additionalAttractions": 6000,
+  "combinedDestinations": 2526,
+  "combinedAttractions": 26520,
+  "minimumNewAttractionsPerDestination": 4,
+  "newCountries": 145,
+  "combinedCountries": 170,
+  "byContinent": {
+    "AS": 419,
+    "EU": 750,
+    "NA": 179,
+    "SA": 36,
+    "OC": 45,
+    "AF": 71
+  },
+  "byCountry": {
+    "IN": 53,
+    "AD": 1,
+    "AE": 2,
+    "AG": 1,
+    "AL": 17,
+    "AM": 18,
+    "AR": 5,
+    "AT": 1,
+    "AU": 20,
+    "AW": 1,
+    "AZ": 16,
+    "BA": 16,
+    "BD": 6,
+    "BE": 4,
+    "BG": 22,
+    "BH": 5,
+    "BI": 1,
+    "BJ": 2,
+    "BM": 1,
+    "BN": 1,
+    "BO": 2,
+    "BR": 1,
+    "BT": 1,
+    "BY": 9,
+    "BZ": 4,
+    "CA": 41,
+    "CH": 19,
+    "CL": 7,
+    "CM": 1,
+    "CN": 2,
+    "CO": 2,
+    "CR": 4,
+    "CV": 3,
+    "CY": 5,
+    "CZ": 34,
+    "DE": 17,
+    "DK": 22,
+    "DM": 1,
+    "DZ": 4,
+    "EC": 1,
+    "EE": 20,
+    "EG": 6,
+    "ES": 1,
+    "ET": 2,
+    "FI": 2,
+    "FJ": 3,
+    "FO": 3,
+    "FR": 100,
+    "GB": 79,
+    "GD": 1,
+    "GE": 23,
+    "GH": 4,
+    "GL": 5,
+    "GM": 2,
+    "GR": 29,
+    "GW": 2,
+    "GY": 1,
+    "HR": 19,
+    "HU": 7,
+    "ID": 14,
+    "IE": 11,
+    "IL": 22,
+    "IM": 1,
+    "IQ": 3,
+    "IR": 11,
+    "IS": 9,
+    "IT": 14,
+    "JM": 1,
+    "JO": 2,
+    "JP": 100,
+    "KE": 3,
+    "KH": 2,
+    "KM": 1,
+    "KN": 1,
+    "KR": 15,
+    "KW": 2,
+    "KZ": 3,
+    "LB": 4,
+    "LC": 1,
+    "LK": 12,
+    "LT": 14,
+    "LU": 5,
+    "LV": 12,
+    "MA": 3,
+    "MD": 4,
+    "ME": 4,
+    "MG": 1,
+    "MH": 1,
+    "MK": 10,
+    "MM": 1,
+    "MU": 2,
+    "MV": 1,
+    "MX": 9,
+    "MY": 11,
+    "NA": 1,
+    "NG": 1,
+    "NI": 1,
+    "NO": 4,
+    "NP": 4,
+    "NZ": 12,
+    "OM": 1,
+    "PA": 2,
+    "PE": 8,
+    "PG": 2,
+    "PH": 6,
+    "PK": 3,
+    "PL": 59,
+    "PS": 6,
+    "PT": 1,
+    "PW": 1,
+    "PY": 1,
+    "RO": 1,
+    "RS": 14,
+    "RU": 44,
+    "RW": 4,
+    "SA": 1,
+    "SC": 2,
+    "SD": 1,
+    "SE": 49,
+    "SI": 14,
+    "SK": 28,
+    "ST": 2,
+    "SV": 1,
+    "SX": 1,
+    "SY": 3,
+    "TH": 4,
+    "TL": 2,
+    "TN": 10,
+    "TR": 51,
+    "TT": 2,
+    "TV": 1,
+    "TW": 5,
+    "TZ": 1,
+    "UA": 21,
+    "UG": 2,
+    "US": 100,
+    "UY": 4,
+    "UZ": 1,
+    "VC": 1,
+    "VE": 4,
+    "VN": 4,
+    "VU": 2,
+    "WS": 1,
+    "XK": 4,
+    "ZA": 10
+  },
+  "largestCountryShare": 0.06666666666666667,
+  "selectionPopulationCeiling": 500000,
+  "duplicateChecks": {
+    "uniqueGeoNamesIds": 1500,
+    "uniqueWikidataDestinationIds": 1500,
+    "uniqueNewAttractionIds": 6000,
+    "existingAttractionIdOverlap": 0,
+    "sameNameNearbyPhysicalPlaceOverlap": 0,
+    "candidateExclusions": {
+      "largeCitiesExcluded": 144,
+      "destinationAliasDuplicateExcluded": 2,
+      "existingPhysicalPlaceDuplicateExcluded": 3
+    },
+    "selectionRejections": {
+      "nearbyDestinationAlias": 2
+    }
+  },
+  "sources": [
+    {
+      "file": "places-caves.json",
+      "records": 1436,
+      "sha256": "2d03afd8a7b3d307938576e9b32b4c378dcb0632b983b9909bd5dcb34250f2c4",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "file": "places-coast.json",
+      "records": 40782,
+      "sha256": "3ed7699252273a3629f1e943dd4db54762d793a76410c744acad787d93496dcf",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "file": "places-culture.json",
+      "records": 22039,
+      "sha256": "a830332e2530b74f9d0c906600ee2e491dc00c0afc46716db25b2f00a5b5004a",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "file": "places-heritage.json",
+      "records": 41591,
+      "sha256": "5ce00a1d213c8eabf3adcabdb764217c4744a9deb02781ab37f9a40ece4d965b",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "file": "places-leisure.json",
+      "records": 7593,
+      "sha256": "902c3ad9fb3aac71f4fad533caec10e6034c7403f619dad49f147404a99ed978",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "file": "places-national-parks.json",
+      "records": 3770,
+      "sha256": "7e8ff087ad60a879b79d8cd3de945b793423b1a38d9a30cf01db662db4d629fb",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "file": "places-waterfalls.json",
+      "records": 2052,
+      "sha256": "3138b86f0a0d81569f9f4f688c346726a8fc508c174a29cf5a9470f27a9f19ce",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "file": "cities500.zip",
+      "sha256": "86c76d7f3eec04b51650877da433a1dd5c384c31e99c940300c1b37cb716a649"
+    },
+    {
+      "file": "countryInfo.txt",
+      "sha256": "79f8f59ea01cbb40438bf1856dd6c2ff201f03f8fc72d0530b2646aaf603ef04"
+    },
+    {
+      "file": "admin1CodesASCII.txt",
+      "sha256": "2e4867f5397acb056ea26377601b57af37cb4c81399770225018e9e439e91ad3"
+    },
+    {
+      "file": "destination-guides.json",
+      "sha256": "188d31328925bc72ef6ce297e84f3ad6ea64b729c92b0461398ac5d7dd0f4282"
+    },
+    {
+      "file": "travel-guide-links.json",
+      "sha256": "776950a7c492d10b3c1bed177897eacc6f4111247d1a6ae4c6451c54cfe46a08"
+    },
+    {
+      "file": "pinned-encyclopedia.json",
+      "sha256": "b1ced0502ea21ab9ef1947c0f114aac4ca6350c5a711a82b67c7feb8b35801d4"
+    },
+    {
+      "file": "type-labels.json",
+      "sha256": "70eb8c5fa7446c5ee1f12c5eb26e22877a6da081df7e936790374a20a0b10386"
+    }
+  ],
+  "popularityMethod": "Weighted log-scaled Wikidata language/site coverage for destinations and the strongest four attractions, plus verified Wikivoyage guide presence. Interest/coverage proxy, not visitor counts, live trends or user ratings. Country cap 100; Europe capped at 750; each represented country seeded before global score fill.",
+  "datasetSha256": "5efc2914cb33b33abce15ca10d3c675f5e96296544fc2d314f8aabe418b0bd16",
+  "examples": [
+    {
+      "city": "Zermatt",
+      "country": "Switzerland",
+      "places": [
+        "Riffelsee",
+        "Matterhorn Museum",
+        "Niklaus Hombrechtikon",
+        "lake Mattmark"
+      ]
+    },
+    {
+      "city": "Banff",
+      "country": "Canada",
+      "places": [
+        "Banff National Park",
+        "Bow Falls",
+        "Johnson Lake",
+        "Whyte Museum"
+      ]
+    },
+    {
+      "city": "Ubud",
+      "country": "Indonesia",
+      "places": [
+        "Ubud Monkey Forest",
+        "Pura Ulun Danu Batur",
+        "Ubud Palace",
+        "Puri Lukisan Museum"
+      ]
+    },
+    {
+      "city": "Queenstown",
+      "country": "New Zealand",
+      "places": [
+        "Lake Wakatipu",
+        "Hidden Island",
+        "Moke Lake",
+        "Pig Island / Mātau"
+      ]
+    },
+    {
+      "city": "Nuwara Eliya",
+      "country": "Sri Lanka",
+      "places": [
+        "Bomburu Ella",
+        "Hakgala Botanical Garden",
+        "Galway's Land National Park",
+        "Kotmale Dam"
+      ]
+    },
+    {
+      "city": "Madikeri (Coorg)",
+      "country": "India",
+      "places": [
+        "Madikeri Fort",
+        "Abbey Falls",
+        "Nisargadhama",
+        "Raja's Seat"
+      ]
+    },
+    {
+      "city": "Munnar",
+      "country": "India",
+      "places": [
+        "Eravikulam National Park",
+        "KDHP Tea Museum",
+        "Anamudi",
+        "Mattupetty Dam"
+      ]
+    }
+  ]
+}

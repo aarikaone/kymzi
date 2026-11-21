@@ -1,3 +1,4 @@
+import {publicImageSource} from '@rymzi/cloud';
 import {NativeImage as Image} from './NativeImage';
 import React,{useId} from 'react';
 import {Pressable,ScrollView,Text,useWindowDimensions,View} from 'react-native';
@@ -24,7 +25,7 @@ export function NativeWelcome({onStart}:{onStart:()=>void}){
    <View accessible={false} importantForAccessibility="no-hide-descendants" pointerEvents="none" style={{
     position:'absolute',top:0,left:0,right:0,height:'80%',overflow:'hidden',
    }}>
-    <Image source={require('../../../packages/assets/avatars/cloud-glasses-v1.png')} accessible={false} style={{
+    <Image source={publicImageSource('/avatars/cloud-glasses-v1.webp')} accessible={false} style={{
      position:'absolute',top:0,left:'-3%',width:'200%',height:'100%',resizeMode:'contain',
     }}/>
     <Svg width="100%" height="100%" style={{position:'absolute',top:0,left:0}}><Defs><LinearGradient id={fadeId} x1="0" y1="0" x2="0" y2="1"><Stop offset="0.58" stopColor={C.ground} stopOpacity={0}/><Stop offset="1" stopColor={C.ground}/></LinearGradient></Defs><Rect width="100%" height="100%" fill={'url(#'+fadeId+')'}/></Svg>

@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "catalogueSha256": "d8a298322060b5f4dbea5b8e1dc908051ffe47035eaf82d7214694b4d4ca63d4",
+  "cities": 1026,
+  "places": 20520,
+  "totalSlots": 21546,
+  "existing": 130,
+  "generated": 11,
+  "missing": 21405
+}

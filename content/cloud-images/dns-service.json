@@ -1,0 +1,38 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Kymzi image CDN hostname",
+    "version": "1.0.0"
+  },
+  "host": "images.endpoints.kymzi-f1e9d.cloud.goog",
+  "schemes": [
+    "https"
+  ],
+  "x-google-endpoints": [
+    {
+      "name": "images.endpoints.kymzi-f1e9d.cloud.goog",
+      "target": "136.69.105.195"
+    }
+  ],
+  "x-google-allow": "all",
+  "paths": {
+    "/images/{asset}": {
+      "get": {
+        "operationId": "readPublicImage",
+        "parameters": [
+          {
+            "name": "asset",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Public Kymzi image"
+          }
+        }
+      }
+    }
+  }
+}

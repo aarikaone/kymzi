@@ -1,14 +1,20 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {emptyPreview,emptyLaunch,emptyTravel,setTravelCity,completeTravelProfile,readTravelProfile,readPreview,recordCityArrival,previewCityEvidence,CITY_CENTRES,cityDistanceKm,sharedTravel,readSharedTravel,travelPreview,beginDayCard,answerInvitePreparation,submitInvitePreparation,finishInvitePreparation,questionById,makeFriendInvite,rememberInvite,answerFriendInvite,collectPostcard,receiverPreviewProfile,roamieTravels,travelMilestones,palFindingProgress,challengeToken,inviteFromToken,seedGlobalPals,simulatePalUnlock,palSummaries,beginPerfectDayPlay,type PreviewState,type CityEvidence,type CountryId} from './index.ts';
+import {emptyPreview,emptyLaunch,emptyTravel,travelWishCount,travelCityById,setTravelCity,completeTravelProfile,readTravelProfile,readPreview,recordCityArrival,previewCityEvidence,CITY_CENTRES,cityDistanceKm,sharedTravel,readSharedTravel,travelPreview,beginDayCard,answerInvitePreparation,submitInvitePreparation,finishInvitePreparation,questionById,makeFriendInvite,rememberInvite,answerFriendInvite,collectPostcard,receiverPreviewProfile,roamieTravels,travelMilestones,palFindingProgress,challengeToken,inviteFromToken,seedGlobalPals,simulatePalUnlock,palSummaries,beginPerfectDayPlay,type PreviewState,type CityEvidence,type CountryId} from './index.ts';
 const now=new Date('2026-11-21T05:00:00Z');
 const profile={name:'123456',avatar:'cloud' as const,ageBand:'25-30' as const,travel:travelPreview(['GB'],['JP','FR','IT'],now)};
 const seed=():PreviewState=>({...emptyPreview(now),profile,launch:emptyLaunch(now)});
 const evidence=(id:CountryId):CityEvidence=>({source:'device',latitude:CITY_CENTRES[id][0],longitude:CITY_CENTRES[id][1],accuracy:20,observedAt:now.getTime()});
-test('visited cities are optional, but a new travel profile needs exactly three unique known wishes',()=>{
- assert.throws(()=>completeTravelProfile(emptyTravel(),now),/three/);let draft=emptyTravel();for(const cityId of ['JP','FR','IT'] as const)draft=setTravelCity(draft,'wishlist',{cityId,attractionIds:['jp-1','invalid','fr-1']});
- const done=completeTravelProfile(draft,now);assert.equal(done.visited.length,0);assert.equal(done.wishlist.length,3);assert.deepEqual(done.wishlist[0].attractionIds,['jp-1']);assert.throws(()=>setTravelCity(done,'wishlist',{cityId:'US',attractionIds:[]}),/full/);assert.equal(completeTravelProfile({...done,wishlist:[done.wishlist[0],done.wishlist[0],done.wishlist[1],done.wishlist[2]]},now).wishlist.length,3);
+test('visited cities are optional; completion requires three distinct attractions, even in one city',()=>{
+ assert.throws(()=>completeTravelProfile(emptyTravel(),now),/three/);
+ const one=setTravelCity(emptyTravel(),'wishlist',{cityId:'JP',attractionIds:['jp-1','jp-1','invalid','fr-1']});assert.equal(travelWishCount(one),1);assert.throws(()=>completeTravelProfile(one,now),/three/);
+ const three=setTravelCity(one,'wishlist',{cityId:'JP',attractionIds:['jp-1','jp-2','jp-3']});const done=completeTravelProfile(three,now);assert.equal(done.visited.length,0);assert.equal(done.wishlist.length,1);assert.equal(travelWishCount(done),3);
+ assert.throws(()=>completeTravelProfile({...emptyTravel(),wishlist:['JP','FR','IT'].map(cityId=>({cityId,attractionIds:[]}))},now),/three/);
+});
+test('wishlist places have no three-city cap and survive storage without duplicate spots',()=>{
+ let draft=emptyTravel();for(const cityId of ['JP','FR','IT','US'] as const)draft=setTravelCity(draft,'wishlist',{cityId,attractionIds:travelCityById(cityId)!.placeIds.slice(0,2)});
+ const done=completeTravelProfile(draft,now);assert.equal(done.wishlist.length,4);assert.equal(travelWishCount(done),8);assert.equal(travelWishCount(readTravelProfile(JSON.parse(JSON.stringify(done)))),8);assert.equal(readSharedTravel(sharedTravel(done))!.wishlist.length,4);
 });
 test('a declared visit or wishlist edit never creates a check-in or fulfils a wish',()=>{
  let t=setTravelCity(profile.travel,'visited',{cityId:'JP',attractionIds:['jp-1']});t=completeTravelProfile(t,now);assert.equal(t.arrivals.length,0);assert.equal(travelMilestones({...seed(),profile:{...profile,travel:t}}).length,0);

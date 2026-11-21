@@ -1,37 +1,53 @@
 import {countryById,type CountryId} from './countries.ts';
 import {attractionsForCountry,type Attraction} from './attractions.ts';
 import type {PlaceCategoryId} from './place-categories.ts';
-import {WORLD_CITY_ROWS} from './catalogue/world-cities-data.ts';
 export type TravelCityId=CountryId|`city:${number}`;
 export type WorldRegion='AF'|'AS'|'EU'|'NA'|'SA'|'OC'|'AN';
 export type WorldCityRow=[id:TravelCityId,geonameId:number,city:string,ascii:string,region:string,countryCode:string,country:string,continent:WorldRegion,latitude:number,longitude:number,timeZone:string,population:number,placeIds:string[],aliases:string[]];
 export type WorldPlaceRow=[id:string,name:string,categoryId:PlaceCategoryId,kind:string,description:string,latitude:number,longitude:number,distanceKm:number,sitelinks:number,countryCode:string];
-export type TravelCity={id:TravelCityId;geonameId:number;city:string;name:string;countryCode:string;flag:string;region:string;continent:WorldRegion;latitude:number;longitude:number;timeZone:string;population:number;placeIds:readonly string[];aliases:readonly string[];sourceUrl:string};
-export type TravelPlace={id:string;cityId:TravelCityId;name:string;categoryId:PlaceCategoryId;kind:string;fact:string;question:string;sourceUrl:string;mapsUrl:string;latitude?:number;longitude?:number;distanceKm?:number;sitelinks?:number;sourceCountryCode:string;source:'Wikidata'|'Curated guide'};
+export type TravelCitySort='popular'|'name';
+export type TravelPopularity={score:number;rank:number;method:string;citySitelinks?:number;attractionSitelinks?:number;hasTravelGuide?:boolean;measuredAt?:string};
+export type TravelCity={popularity?:TravelPopularity;description?:string;wikidataId?:string;wikipediaUrl?:string;wikivoyageUrl?:string;id:TravelCityId;geonameId:number;city:string;name:string;countryCode:string;flag:string;region:string;continent:WorldRegion;latitude:number;longitude:number;timeZone:string;population:number;placeIds:readonly string[];aliases:readonly string[];sourceUrl:string};
+export type TravelPlaceDetails={description:string;facts:{label:string;value:string}[];credits:{title:string;url:string;license:string;attribution:string}[];updatedAt:string;status:'complete'|'limited'};
+export type TravelPlace={details?:TravelPlaceDetails;id:string;cityId:TravelCityId;name:string;categoryId:PlaceCategoryId;kind:string;fact:string;question:string;sourceUrl:string;mapsUrl:string;latitude?:number;longitude?:number;distanceKm?:number;sitelinks?:number;sourceCountryCode:string;source:'Wikidata'|'Curated guide'};
 const flag=(iso:string)=>String.fromCodePoint(...iso.toUpperCase().split('').map(c=>127397+c.charCodeAt(0)));
-export const TRAVEL_CITIES:TravelCity[]=WORLD_CITY_ROWS.map(r=>({id:r[0],geonameId:r[1],city:r[2],name:r[6],countryCode:r[5],flag:flag(r[5]),region:r[4],continent:r[7],latitude:r[8],longitude:r[9],timeZone:r[10],population:r[11],placeIds:r[12],aliases:[r[3],...r[13]],sourceUrl:`https://www.geonames.org/${r[1]}`}));
-const cityIndex=new Map(TRAVEL_CITIES.map(c=>[c.id,c]));
+export const TRAVEL_CITIES:TravelCity[]=[];
+const cityIndex=new Map<TravelCityId,TravelCity>();
+const placeCityIndex=new Map<string,TravelCity>();
+export function travelCityForPlace(id:string):TravelCity|undefined{return placeCityIndex.get(id);}
 export function travelCityById(id:unknown):TravelCity|undefined{return typeof id==='string'?cityIndex.get(id as TravelCityId):undefined;}
 export function isTravelCityId(id:unknown):id is TravelCityId{return !!travelCityById(id);}
-export const WORLD_CATALOGUE={newCities:TRAVEL_CITIES.filter(c=>c.id.startsWith('city:')).length,countries:new Set(TRAVEL_CITIES.map(c=>c.countryCode)).size,cities:TRAVEL_CITIES.length,places:TRAVEL_CITIES.reduce((n,c)=>n+c.placeIds.length,0),minimumPlaces:Math.min(...TRAVEL_CITIES.map(c=>c.placeIds.length))};
+export const WORLD_CATALOGUE={newCities:0,countries:0,cities:0,places:0,minimumPlaces:0};
 const fold=(s:string)=>s.normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLocaleLowerCase().trim();
 const countryAliases:Record<string,string[]>={US:['USA','United States of America'],GB:['UK'],AE:['UAE']};
-const searchIndex=TRAVEL_CITIES.map(city=>({city,name:fold(city.city),countries:[city.name,city.countryCode,...(countryAliases[city.countryCode]??[])].map(fold),text:fold([city.city,city.name,city.countryCode,...(countryAliases[city.countryCode]??[]),city.region,...city.aliases].join(' '))}));
-/** Search scans the light city index; place chunks are never loaded by typing. */
-export function searchTravelCities(query='',limit=40,continent?:WorldRegion):TravelCity[]{
- const q=fold(query),words=q.split(/\s+/).filter(Boolean);return searchIndex.filter(r=>(!continent||r.city.continent===continent)&&words.every(w=>r.text.includes(w))).map(r=>({city:r.city,score:!q?0:r.name===q?6:r.countries.includes(q)?5:r.name.startsWith(q)?4:r.name.includes(q)?3:1})).sort((a,b)=>b.score-a.score||(q?b.city.population-a.city.population:0)).slice(0,Math.max(0,limit)).map(r=>r.city);
+let searchIndex: {city:TravelCity;name:string;countries:string[];text:string}[]=[];
+let placeLoader:((id:TravelCityId)=>Promise<TravelPlace[]>)|undefined;
+const cityCache=new Map<TravelCityId,Promise<TravelPlace[]>>();
+/** The apps call this only after cities have been read from Kymzi Firestore. */
+export function configureTravelCatalogue(cities:TravelCity[],loader:(id:TravelCityId)=>Promise<TravelPlace[]>){
+ TRAVEL_CITIES.splice(0,TRAVEL_CITIES.length,...cities);cityIndex.clear();placeCityIndex.clear();
+ for(const city of cities){cityIndex.set(city.id,city);for(const id of city.placeIds)if(!placeCityIndex.has(id))placeCityIndex.set(id,city);}
+ searchIndex=cities.map(city=>({city,name:fold(city.city),countries:[city.name,city.countryCode,...(countryAliases[city.countryCode]??[])].map(fold),text:fold([city.city,city.name,city.countryCode,...(countryAliases[city.countryCode]??[]),city.region,...city.aliases].join(' '))}));
+ Object.assign(WORLD_CATALOGUE,{newCities:cities.filter(c=>c.id.startsWith('city:')).length,countries:new Set(cities.map(c=>c.countryCode)).size,cities:cities.length,places:cities.reduce((n,c)=>n+c.placeIds.length,0),minimumPlaces:cities.length?Math.min(...cities.map(c=>c.placeIds.length)):0});
+ placeLoader=loader;cityCache.clear();
 }
+/** Search scans the light city index; place chunks are never loaded by typing. */
+export function searchTravelCities(query='',limit=40,continent?:WorldRegion,sort?:TravelCitySort):TravelCity[]{
+ const q=fold(query),words=q.split(/\s+/).filter(Boolean);
+ return searchIndex.filter(r=>(!continent||r.city.continent===continent)&&words.every(w=>r.text.includes(w)))
+  .map(r=>({city:r.city,score:!q?0:r.name===q?6:r.countries.includes(q)?5:r.name.startsWith(q)?4:r.name.includes(q)?3:1}))
+  .sort((a,b)=>b.score-a.score||(sort==='name'?a.city.city.localeCompare(b.city.city,'en'):sort==='popular'?(b.city.popularity?.score??0)-(a.city.popularity?.score??0):0)||(q?b.city.population-a.city.population:0)||((sort||q)?a.city.id.localeCompare(b.city.id):0))
+  .slice(0,Math.max(0,limit)).map(r=>r.city);
+}
+
 function curatedKind(a:Attraction):PlaceCategoryId{const k=a.kind.toLowerCase();return /nature|conservation/.test(k)?'park':/coast/.test(k)?'beach':/art|history|science/.test(k)?'museum':/culture|heritage/.test(k)?'temple':/skyline|architecture|landmark/.test(k)?'landmark':'attraction';}
 export function curatedTravelPlaces(id:TravelCityId):TravelPlace[]{const legacy=countryById(id);if(!legacy)return [];return attractionsForCountry(legacy.id).map(a=>({id:a.id,cityId:id,name:a.name,categoryId:curatedKind(a),kind:a.kind,fact:a.fact,question:a.question,sourceUrl:a.sourceUrl,mapsUrl:`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(a.name+', '+legacy.city+', '+legacy.name)}`,sourceCountryCode:legacy.id,source:'Curated guide'}));}
-const loaders={AF:()=>import('./catalogue/places-af.ts'),AS:()=>import('./catalogue/places-as.ts'),EU:()=>import('./catalogue/places-eu.ts'),NA:()=>import('./catalogue/places-na.ts'),SA:()=>import('./catalogue/places-sa.ts'),OC:()=>import('./catalogue/places-oc.ts')};
-const shardCache=new Map<WorldRegion,Promise<Record<string,WorldPlaceRow[]>>>();
-const cityCache=new Map<TravelCityId,Promise<TravelPlace[]>>();
-/** Web code-splits by continent; native ships the chunks for offline access. */
+/** Attractions are requested from Firestore only when a city needs them. */
 export function loadTravelCityPlaces(id:TravelCityId):Promise<TravelPlace[]>{
- const city=travelCityById(id);if(!city)return Promise.resolve([]);const cached=cityCache.get(id);if(cached)return cached;
- let shard=shardCache.get(city.continent);if(!shard){const region=city.continent;shard=region==='AN'?Promise.resolve({}):loaders[region]().then(m=>m.places);shardCache.set(region,shard);shard.catch(()=>shardCache.delete(region));}
- const result=shard.then(data=>{const sourced:TravelPlace[]=(data[id]??[]).map(r=>({id:r[0],cityId:id,name:r[1],categoryId:r[2],kind:r[3],fact:r[4]||`${r[3]} in the ${city.city} area.`,latitude:r[5],longitude:r[6],distanceKm:r[7],sitelinks:r[8],sourceCountryCode:r[9],question:`What’s your local tip for visiting ${r[1]}?`,sourceUrl:`https://www.wikidata.org/wiki/${r[0]}`,mapsUrl:`https://www.google.com/maps/search/?api=1&query=${r[5]},${r[6]}`,source:'Wikidata'}));const byId=new Map([...curatedTravelPlaces(id),...sourced].map(p=>[p.id,p]));return city.placeIds.map(key=>byId.get(key)).filter((p):p is TravelPlace=>!!p);});
- cityCache.set(id,result);result.catch(()=>cityCache.delete(id));return result;
+ if(!travelCityById(id))return Promise.resolve([]);
+ const cached=cityCache.get(id);if(cached)return cached;
+ if(!placeLoader)return Promise.reject(new Error('The city catalogue has not connected yet.'));
+ const result=placeLoader(id);cityCache.set(id,result);result.catch(()=>{if(cityCache.get(id)===result)cityCache.delete(id);});return result;
 }
 export function travelPlaceGroup(p:Pick<TravelPlace,'categoryId'|'kind'>):string {if(/museum|gallery|library|theatre|culture|art|history/i.test(p.kind))return 'Culture';if(['park','garden','beach','lake','trail'].includes(p.categoryId)||/zoo|aquarium|reserve/i.test(p.kind))return 'Nature';if(['cafe','restaurant'].includes(p.categoryId))return 'Food';if(['mall','market','bookshop'].includes(p.categoryId))return 'Shopping';if(p.categoryId==='sports')return 'Sports';if(p.categoryId==='station')return 'Architecture';return 'Landmarks';}
 export function travelCityDistanceKm(id:TravelCityId,latitude:number,longitude:number){const c=travelCityById(id);if(!c)return Infinity;const r=Math.PI/180,a=Math.sin((latitude-c.latitude)*r/2)**2+Math.cos(c.latitude*r)*Math.cos(latitude*r)*Math.sin((longitude-c.longitude)*r/2)**2;return 6371*2*Math.atan2(Math.sqrt(a),Math.sqrt(Math.max(0,1-a)));}

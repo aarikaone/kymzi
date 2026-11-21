@@ -1,0 +1,25 @@
+{
+  "indexes": [],
+  "fieldOverrides": [
+    {
+      "collectionGroup": "cities",
+      "fieldPath": "aliases",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "cities",
+      "fieldPath": "image",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "attractions",
+      "fieldPath": "image",
+      "indexes": []
+    },
+    {
+      "collectionGroup": "attractions",
+      "fieldPath": "description",
+      "indexes": []
+    }
+  ]
+}

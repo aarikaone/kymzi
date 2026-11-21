@@ -1,3 +1,4 @@
+import {publicCdnImage} from '@rymzi/core';
 import {chooseTravelAnswer} from './test-choice-helpers';
 import {it,expect,vi,beforeEach,afterEach} from 'vitest';
 import {render,screen,fireEvent,waitFor} from '@testing-library/react';
@@ -32,9 +33,9 @@ it('shares an anonymous public meeting spot only after explicit check-in and req
 });
 
 it('shows character images for anonymous roamies in the story row, photo byline, city list and roamie page before the reveal',async()=>{
- const state=seed(1),pal=palSummaries(state)[0],user=userEvent.setup();render(<App/>);const image=screen.getByRole('img',{name:'Roamie 01’s chosen avatar'});expect(image.querySelector('img')?.getAttribute('src')).toBe(`/avatars/${pal.imageAvatar}.webp`);expect(image.textContent).not.toContain('?');expect(document.querySelector('.feed-author img')?.getAttribute('src')).toBe(`/avatars/${pal.imageAvatar}.webp`);expect(screen.queryByLabelText('Roamie 01’s fictional profile photo')).toBeNull();
- await user.click(screen.getByRole('button',{name:'Places'}));await user.click(screen.getByRole('button',{name:'Explore Tokyo, Japan'}));await user.click(screen.getByRole('button',{name:'Roamies · 1'}));expect(screen.getByRole('img',{name:'Roamie 01 character'}).getAttribute('src')).toBe(`/avatars/${pal.imageAvatar}.webp`);
- await user.click(screen.getByRole('button',{name:'Go back'}));await user.click(screen.getByRole('button',{name:'Home'}));await user.click(screen.getAllByRole('button',{name:'Open Roamie 01 in Tokyo'})[0]);expect(screen.getByRole('img',{name:'Roamie 01’s chosen avatar'}).querySelector('img')?.getAttribute('src')).toBe(`/avatars/${pal.imageAvatar}.webp`);expect(screen.getByText('Photo at 3')).toBeTruthy();expect(screen.getByRole('button',{name:'Message Roamie 01'})).toBeTruthy();
+ const state=seed(1),pal=palSummaries(state)[0],user=userEvent.setup();render(<App/>);const image=screen.getByRole('img',{name:'Roamie 01’s chosen avatar'});expect(image.querySelector('img')?.getAttribute('src')).toBe(publicCdnImage(`/avatars/${pal.imageAvatar}.webp`));expect(image.textContent).not.toContain('?');expect(document.querySelector('.feed-author img')?.getAttribute('src')).toBe(publicCdnImage(`/avatars/${pal.imageAvatar}.webp`));expect(screen.queryByLabelText('Roamie 01’s fictional profile photo')).toBeNull();
+ await user.click(screen.getByRole('button',{name:'Places'}));await user.click(screen.getByRole('button',{name:'Explore Tokyo, Japan'}));await user.click(screen.getByRole('button',{name:'Roamies · 1'}));expect(screen.getByRole('img',{name:'Roamie 01 character'}).getAttribute('src')).toBe(publicCdnImage(`/avatars/${pal.imageAvatar}.webp`));
+ await user.click(screen.getByRole('button',{name:'Go back'}));await user.click(screen.getByRole('button',{name:'Home'}));await user.click(screen.getAllByRole('button',{name:'Open Roamie 01 in Tokyo'})[0]);expect(screen.getByRole('img',{name:'Roamie 01’s chosen avatar'}).querySelector('img')?.getAttribute('src')).toBe(publicCdnImage(`/avatars/${pal.imageAvatar}.webp`));expect(screen.getByText('Photo at 3')).toBeTruthy();expect(screen.getByRole('button',{name:'Message Roamie 01'})).toBeTruthy();
 });
 
 async function confirmUnlock(user:ReturnType<typeof userEvent.setup>){const start=screen.queryByRole('button',{name:/^(Let’s play|Continue my answers)$/});if(start)await user.click(start);}

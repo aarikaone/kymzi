@@ -1,6 +1,14 @@
-import {View,type StyleProp,type ViewStyle} from 'react-native';
+import {ActivityIndicator,Pressable,Text,View,type StyleProp,type ViewStyle} from 'react-native';
 import {SvgXml} from 'react-native-svg';
-import {attractionById,cityGuideSVG,travelCityById,type TravelCityId,type TravelPlace} from '@rymzi/core';
-import {NativeAttractionImage} from './NativeAttractionImage';
-export function NativeCityArt({cityId,style}:{cityId:TravelCityId;style?:StyleProp<ViewStyle>}){const city=travelCityById(cityId);if(!city)return null;const art=city.placeIds.find(id=>!!attractionById(id));return <View style={[{width:'100%',height:142,overflow:'hidden'},style]}>{art?<NativeAttractionImage showLoader id={art} style={{width:'100%',height:'100%',aspectRatio:undefined,borderRadius:0}}/>:<SvgXml xml={cityGuideSVG(city.id)} width="100%" height="100%" accessibilityLabel={`${city.city} guide illustration`}/>}</View>;}
-export function NativeGuidePlaceArt({place}:{place:TravelPlace}){return <View style={{width:'100%',height:112,overflow:'hidden'}}>{attractionById(place.id)?<NativeAttractionImage showLoader id={place.id} style={{width:'100%',height:'100%',aspectRatio:undefined,borderRadius:0}}/>:<SvgXml xml={cityGuideSVG(place.cityId+':'+place.id)} width="100%" height="100%" accessibilityLabel={`Guide illustration for ${place.name}`}/>}</View>;}
+import {cityGuideSVG,travelCityById,type TravelCityId,type TravelPlace} from '@rymzi/core';
+import {useCatalogueImage} from '@rymzi/cloud';
+import {NativeImage} from './NativeImage';
+function RemoteGuide({kind,id,label}:{kind:'city'|'place';id:string;label:string}){
+ const {image,loading,error,retry}=useCatalogueImage(kind,id);
+ return image?<NativeImage showLoader source={{uri:image.url,cache:'force-cache'}} accessibilityRole="image" accessibilityLabel={label} style={{width:'100%',height:'100%',resizeMode:'cover'}}/>:<View style={{width:'100%',height:'100%'}}><SvgXml xml={cityGuideSVG(`${kind}:${id}`)} width="100%" height="100%" accessibilityLabel={label}/>{loading?<View style={{position:'absolute',top:0,bottom:0,left:0,right:0,alignItems:'center',justifyContent:'center'}}><ActivityIndicator color="#C8BEFF"/></View>:error?<Pressable accessibilityRole="button" accessibilityLabel="Retry image" onPress={retry} style={{position:'absolute',top:0,bottom:0,left:0,right:0,alignItems:'center',justifyContent:'center'}}><Text style={{fontSize:25,color:'#C8BEFF'}}>↻</Text></Pressable>:null}</View>;
+}
+export function NativeCityArt({cityId,style}:{cityId:TravelCityId;style?:StyleProp<ViewStyle>}){
+ const city=travelCityById(cityId);if(!city)return null;
+ return <View style={[{width:'100%',height:142,overflow:'hidden'},style]}><RemoteGuide key={cityId} kind="city" id={cityId} label={`${city.city} guide illustration`}/></View>;
+}
+export function NativeGuidePlaceArt({place,style}:{place:TravelPlace;style?:StyleProp<ViewStyle>}){return <View style={[{width:'100%',height:112,overflow:'hidden'},style]}><RemoteGuide key={place.id} kind="place" id={place.id} label={`Guide illustration for ${place.name}`}/></View>;}

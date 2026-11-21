@@ -1,3 +1,4 @@
+import {publicImageSource} from '@rymzi/cloud';
 import {NativeImage as Image} from './NativeImage';
 import {avatarImages as avatars} from './avatarAssets';
 import {NIGHT_THEME} from './theme';
@@ -11,7 +12,7 @@ import {CITIES,CITY_SETS,COVERS,cityById,passportStamps,passportStats,setProgres
 import {Hand} from './Typography';
 import {ActivityStrip} from './ActivityStrip';
 const INK='#F1F5EB',PURPLE='#D5F88F',MUTED='#B1BCA8',PAPER='#090C0A',TASK_ACCENT='#D5F88F';
-const cityImages={tokyo:require('../../../packages/assets/cities/tokyo.png'),rio:require('../../../packages/assets/cities/rio.png'),london:require('../../../packages/assets/cities/london.png'),seoul:require('../../../packages/assets/cities/seoul.png'),mumbai:require('../../../packages/assets/cities/mumbai.png'),toronto:require('../../../packages/assets/cities/toronto.png')};
+const cityImages={tokyo:publicImageSource('/cities/tokyo.webp'),rio:publicImageSource('/cities/rio.webp'),london:publicImageSource('/cities/london.webp'),seoul:publicImageSource('/cities/seoul.webp'),mumbai:publicImageSource('/cities/mumbai.webp'),toronto:publicImageSource('/cities/toronto.webp')};
 type IconName=React.ComponentProps<typeof Ionicons>['name'];
 function Glyph({name,size=21,color=PURPLE}:{name:IconName;size?:number;color?:string}){return <Ionicons name={name} size={size} color={color}/>;}
 function Action({label,onPress,quiet=false,dark=false,icon='arrow-forward'}:{label:string;onPress:()=>void;quiet?:boolean;dark?:boolean;icon?:IconName}){return <Pressable cssInterop={false} accessibilityRole="button" onPress={onPress} style={({pressed})=>({minHeight:quiet?44:56,borderRadius:19,flexDirection:'row',alignItems:'center',justifyContent:'center',gap:10,paddingHorizontal:16,paddingVertical:quiet?8:14,backgroundColor:quiet?'transparent':NIGHT_THEME.primary,opacity:pressed?.8:1})}><Text style={{fontSize:quiet?14:19,fontWeight:quiet?'500':'600',color:quiet?NIGHT_THEME.accent:NIGHT_THEME.primaryInk}}>{label}</Text><Glyph name={icon} size={quiet?18:22} color={quiet?NIGHT_THEME.accent:NIGHT_THEME.primaryInk}/></Pressable>;}

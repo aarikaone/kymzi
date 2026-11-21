@@ -1,3 +1,4 @@
+import {publicCdnImage} from '@rymzi/core';
 import type { CSSProperties } from 'react';
 export function Icon({name,size=22,className='',style}:{name:string;size?:number;className?:string;style?:CSSProperties}){
  const paths:Record<string,React.ReactNode>={
@@ -40,4 +41,4 @@ export function Icon({name,size=22,className='',style}:{name:string;size?:number
  };
  return <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.65" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" className={className} style={style}>{paths[name]??paths.spark}</svg>;
 }
-export function Wordmark(){return <span className="wordmark"><img className="brand-lockup" src="/brand/kymzi-wordmark.svg?v=softline6" alt="Kymzi"/></span>}
+export function Wordmark(){return <span className="wordmark"><img className="brand-lockup" src={publicCdnImage("/brand/kymzi-wordmark.svg?v=softline6")} alt="Kymzi"/></span>}

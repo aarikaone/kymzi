@@ -1,0 +1,89 @@
+{
+  "hosting": {
+    "site": "kymzi-f1e9d",
+    "public": "artifacts/firebase-hosting/public",
+    "ignore": [
+      "firebase.json",
+      "firebase.assets.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "headers": [
+      {
+        "source": "/images/**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=31536000, s-maxage=31536000, immutable"
+          },
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          },
+          {
+            "key": "X-Content-Type-Options",
+            "value": "nosniff"
+          }
+        ]
+      },
+      {
+        "source": "/**/*.json",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=300, s-maxage=300"
+          },
+          {
+            "key": "Access-Control-Allow-Origin",
+            "value": "*"
+          }
+        ]
+      },
+      {
+        "source": "/404.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-store"
+          }
+        ]
+      },
+      {
+        "source": "/assets/**",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "public, max-age=31536000, s-maxage=31536000, immutable"
+          }
+        ]
+      },
+      {
+        "source": "/",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, max-age=0, must-revalidate"
+          }
+        ]
+      },
+      {
+        "source": "/index.html",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "no-cache, max-age=0, must-revalidate"
+          }
+        ]
+      }
+    ],
+    "predeploy": [
+      "node scripts/prepare-firebase-hosting.mjs"
+    ]
+  },
+  "firestore": {
+    "database": "(default)",
+    "location": "asia-south1",
+    "rules": "firestore.catalogue.rules",
+    "indexes": "firestore.catalogue.indexes.json"
+  }
+}

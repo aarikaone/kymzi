@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "projectId": "kymzi-f1e9d",
+  "account": "admin@nexilence.co",
+  "bucket": "kymzi-f1e9d-images",
+  "location": "ASIA",
+  "cdnOrigin": "https://images.endpoints.kymzi-f1e9d.cloud.goog",
+  "legacyOrigin": "https://kymzi-f1e9d.web.app",
+  "addressName": "kymzi-images-ip",
+  "address": "136.69.105.195",
+  "backendBucket": "kymzi-images-backend",
+  "urlMap": "kymzi-images-map",
+  "httpsProxy": "kymzi-images-https",
+  "httpsForwardingRule": "kymzi-images-https-rule",
+  "certificate": "kymzi-images-tls",
+  "dnsService": "images.endpoints.kymzi-f1e9d.cloud.goog",
+  "cacheControl": "public, max-age=31536000, s-maxage=31536000, immutable"
+}

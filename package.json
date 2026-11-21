@@ -6,14 +6,15 @@
   "workspaces": [
     "apps/web",
     "apps/mobile",
-    "packages/core"
+    "packages/core",
+    "packages/cloud"
   ],
   "scripts": {
     "dev": "npm run dev --workspace @rymzi/web",
     "web": "npm run dev --workspace @rymzi/web",
     "build": "npm run build --workspace @rymzi/web",
     "typecheck": "npm run typecheck --workspace @rymzi/web && npm run typecheck --workspace @rymzi/mobile",
-    "test": "node --experimental-strip-types --test packages/core/src/*.test.ts",
+    "test": "node --experimental-strip-types --import ./scripts/catalogue-test-setup.ts --test packages/core/src/*.test.ts",
     "mobile": "node scripts/start-mobile.mjs",
     "ios": "npm run ios --workspace @rymzi/mobile --",
     "android": "npm run android --workspace @rymzi/mobile --",
@@ -39,7 +40,37 @@
     "test:places": "node --test packages/core/src/place-checkins.test.ts scripts/place-art-server.test.mjs",
     "questions:build": "node scripts/generate-travel-questions.mjs",
     "catalog:build": "node scripts/build-world-catalogue.mjs",
-    "catalog:validate": "node scripts/validate-world-catalogue.mjs"
+    "catalog:validate": "node scripts/validate-world-catalogue.mjs",
+    "art:prepare": "node scripts/prepare-world-art.mjs",
+    "art:validate": "node scripts/prepare-world-art.mjs --check",
+    "cloud:prepare": "node scripts/prepare-cloud-catalogue.mjs",
+    "cloud:import": "node scripts/cloud-firestore-import.mjs",
+    "cloud:deploy": "npm run build && firebase deploy --project kymzi-f1e9d --config firebase.json --only hosting,firestore:rules,firestore:indexes --non-interactive",
+    "cloud:verify": "node scripts/cloud-firestore-import.mjs --verify",
+    "test:cloud": "node --test scripts/cloud-catalogue.test.mjs",
+    "cloud:verify-bundles": "node scripts/verify-cloud-bundles.mjs",
+    "hosting:prepare": "npm run build && node scripts/prepare-firebase-hosting.mjs",
+    "hosting:deploy": "npm run build && firebase deploy --project kymzi-f1e9d --config firebase.json --only hosting --non-interactive",
+    "test:hosting": "node --test scripts/firebase-hosting.test.mjs",
+    "images:publish": "node scripts/publish-storage-images.mjs",
+    "test:storage": "node --test scripts/storage-images.test.mjs",
+    "images:verify": "node scripts/verify-image-cdn.mjs",
+    "images:deploy": "npm run cloud:prepare && npm run images:publish -- --apply && npm run images:verify && npm run cloud:import -- --apply",
+    "art:bulk:prepare": "node scripts/world-art-run.mjs --prepare",
+    "art:bulk:run": "node --env-file=.env.imagegen.local scripts/world-art-run.mjs --run",
+    "art:bulk:status": "node scripts/world-art-run.mjs --status",
+    "test:art-batch": "node --test scripts/world-art-batch.test.mjs scripts/world-art-run.test.mjs",
+    "places:enrich": "node scripts/enrich-place-catalogue.mjs",
+    "places:details:status": "node scripts/enrich-place-details.mjs --status",
+    "test:place-details": "node --test scripts/place-details.test.mjs",
+    "catalog:expand:validate": "node scripts/publish-destination-expansion.mjs",
+    "catalog:expand:publish": "node scripts/publish-destination-expansion.mjs --apply",
+    "catalog:expand:verify": "node scripts/publish-destination-expansion.mjs --verify",
+    "test:destinations": "node --test scripts/destination-expansion.test.mjs",
+    "art:destinations:prepare": "node scripts/destination-art.mjs --prepare",
+    "art:destinations:run": "node --env-file=.env.imagegen.local scripts/destination-art.mjs --run",
+    "art:destinations:status": "node scripts/destination-art.mjs --status",
+    "test:destination-art": "node --test scripts/destination-art.test.mjs scripts/world-art-run.test.mjs scripts/storage-images.test.mjs"
   },
   "engines": {
     "node": "^22.18.0 || ^24.0.0 || >=26.0.0"
@@ -51,6 +82,7 @@
     "@react-navigation/elements": "2.9.39"
   },
   "devDependencies": {
-    "patch-package": "^8.0.1"
+    "patch-package": "^8.0.1",
+    "pngjs": "^7.0.0"
   }
 }

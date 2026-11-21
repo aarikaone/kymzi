@@ -1,3 +1,4 @@
+import {publicCdnImage} from '@rymzi/core';
 import {FounderCircle} from './PerfectDay';
 import {useCallback,useEffect,useRef,useState} from 'react';
 import {palFindingProgress,UNLOCK_PREVIEW_AVATARS,hasInviteAnswers,dailyStatus,replyFromToken,type PreviewState,type FriendReply} from '@rymzi/core';
@@ -28,7 +29,7 @@ export function LaunchUnlock({state,now,onPrepare,onInvite,onPlay,onExplore,onCo
     <svg className="unlock-ring" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="88"/><circle className="unlock-ring-value" cx="100" cy="100" r="88" pathLength="100" strokeDasharray="100" strokeDashoffset={100-count*20}/></svg>
     {complete?<div className="unlock-world" aria-hidden="true"><Icon name="globe" size={106}/><span><Icon name="check" size={20}/></span></div>:<div className="unlock-counter" key={count}><strong>{count}<small>/5</small></strong><span>{count===5?'Opening your world…':'friends added'}</span></div>}
    </div>
-   <div className="unlock-friends preview-friends" aria-hidden="true">{UNLOCK_PREVIEW_AVATARS.map((avatar,i)=><div className={i<count?'complete':''} key={avatar}>{i<count?<img key={`${run}-${i}`} src={`/avatars/${avatar}.webp`} alt=""/>:<Icon name="user" size={27}/>}<span>{i<count?<Icon name="check" size={12}/>:i+1}</span></div>)}</div>
+   <div className="unlock-friends preview-friends" aria-hidden="true">{UNLOCK_PREVIEW_AVATARS.map((avatar,i)=><div className={i<count?'complete':''} key={avatar}>{i<count?<img key={`${run}-${i}`} src={publicCdnImage(`/avatars/${avatar}.webp`)} alt=""/>:<Icon name="user" size={27}/>}<span>{i<count?<Icon name="check" size={12}/>:i+1}</span></div>)}</div>
   </div>
   <div className="unlock-copy" role="status" aria-live="polite"><h2>{complete?'Global play is on.':count===5?'You’re all set.':count?`${count} down. ${5-count} to go.`:'Your world starts with five.'}</h2><p>{complete?'3 answers. Someone new. Anywhere.':'Watch your first five join.'}</p><span className="unlock-simulation-note">Simulated friends · No invites sent</span></div>
   {error&&<p role="alert" className="launch-note">{error}</p>}

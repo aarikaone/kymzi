@@ -1,3 +1,4 @@
+import {publicImageSource} from '@rymzi/cloud';
 import {NativeImage as Image} from './NativeImage';
 import {avatarImages as avatars} from './avatarAssets';
 import {NIGHT_THEME} from './theme';
@@ -9,8 +10,8 @@ import {COUNTRIES,attractionsForCountry,countryById,cityById,worldPlaces,worldSt
 import {NativeWorld} from './NativePassport';
 import {Hand} from './Typography';
 const PURPLE='#D5F88F',INK='#F1F5EB',MUTED='#B1BCA8',PAPER='#090C0A';
-const cityArt={tokyo:require('../../../packages/assets/cities/tokyo.png'),rio:require('../../../packages/assets/cities/rio.png'),london:require('../../../packages/assets/cities/london.png'),seoul:require('../../../packages/assets/cities/seoul.png'),mumbai:require('../../../packages/assets/cities/mumbai.png'),toronto:require('../../../packages/assets/cities/toronto.png')};
-const portraits=require('../../../packages/assets/portraits/fictional-atlas.png');
+const cityArt={tokyo:publicImageSource('/cities/tokyo.webp'),rio:publicImageSource('/cities/rio.webp'),london:publicImageSource('/cities/london.webp'),seoul:publicImageSource('/cities/seoul.webp'),mumbai:publicImageSource('/cities/mumbai.webp'),toronto:publicImageSource('/cities/toronto.webp')};
+const portraits=publicImageSource('/portraits/fictional-atlas.webp');
 type Glyph=React.ComponentProps<typeof Ionicons>['name'];
 function Icon({name,size=21,color=MUTED}:{name:Glyph;size?:number;color?:string}){return <Ionicons name={name} size={size} color={color}/>;}
 function Layout({children}:{children:React.ReactNode}){const insets=useSafeAreaInsets();return <View style={{flex:1,minHeight:0,backgroundColor:PAPER,padding:16,paddingBottom:Math.max(16,insets.bottom+3),gap:11}}>{children}</View>;}

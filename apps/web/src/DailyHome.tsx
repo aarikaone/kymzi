@@ -1,3 +1,4 @@
+import {publicCdnImage} from '@rymzi/core';
 import {UnknownPalHero} from './UnknownPalHero';
 import {DiscoveryTrail} from './DiscoveryTrail';
 import {JOURNEY_COPY} from '@rymzi/core';
@@ -6,7 +7,7 @@ import type {ReactNode} from 'react';
 import {dailyStatus,countdownParts,nextPlayLabel,remainingDailyPlays,hasDailyProgress,type DailyGame,type AvatarId,type PassportState,type SocialState,type Profile} from '@rymzi/core';
 import {Icon} from './icons';
 type Props={game:DailyGame;passport:PassportState;social:SocialState;profile:Profile;blocked:string[];avatar:AvatarId;now:Date;canDiscover:boolean;onPlay:()=>void;onSchedule:()=>void;onShare:()=>void;onPassport:()=>void;community?:ReactNode;headerAction?:ReactNode};
-export function PalIllustration({avatar='orbit',privatePlay=false}:{avatar?:AvatarId;privatePlay?:boolean}){return <div className="pal-illustration" aria-hidden="true"><span className="pal-art-route"/><div className="roamie-art-person roamie-art-you"><img src={`/avatars/${avatar}.webp`} alt=""/><span>You</span></div><span className="pal-art-earth"><Icon name="globe" size={42}/><Icon name="plane" size={23}/></span><div className="roamie-art-person roamie-art-them">{privatePlay?<Icon name="compass" size={71}/>:<img src={`/avatars/${avatar==='sprout'?'sunny':'sprout'}.webp`} alt=""/>}<span>{privatePlay?'New city':'New roamie'}</span></div><span className="pal-art-star">✦</span></div>;}
+export function PalIllustration({avatar='orbit',privatePlay=false}:{avatar?:AvatarId;privatePlay?:boolean}){return <div className="pal-illustration" aria-hidden="true"><span className="pal-art-route"/><div className="roamie-art-person roamie-art-you"><img src={publicCdnImage(`/avatars/${avatar}.webp`)} alt=""/><span>You</span></div><span className="pal-art-earth"><Icon name="globe" size={42}/><Icon name="plane" size={23}/></span><div className="roamie-art-person roamie-art-them">{privatePlay?<Icon name="compass" size={71}/>:<img src={publicCdnImage(`/avatars/${avatar==='sprout'?'sunny':'sprout'}.webp`)} alt=""/>}<span>{privatePlay?'New city':'New roamie'}</span></div><span className="pal-art-star">✦</span></div>;}
 
 export function DailyHome({game,now,canDiscover,onPlay,onSchedule,community,headerAction}:Props){
  const status=dailyStatus(game,now),waiting=status.kind==='waiting',left=remainingDailyPlays(game,now),resuming=hasDailyProgress(game),time=countdownParts(status.remainingMs),privatePlay=!canDiscover;

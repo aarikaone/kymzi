@@ -1,3 +1,4 @@
+import {publicCdnImage} from '@rymzi/core';
 import {SimpleProfile} from './SimpleProfile';
 import {CityGuideDoor} from './WorldLibrary';
 import {MapShareTask} from './MapShares';
@@ -16,7 +17,7 @@ import {AttractionImage} from './AttractionImage';
 import {webChallengeCrypto,shareChallenge} from './launchCrypto';
 
 type StateProps={state:PreviewState;now:Date};
-function Character({id,className=''}:{id:string;className?:string}){return <img className={`launch-character ${className}`} src={`/avatars/${id}.webp`} alt="" draggable="false"/>;}
+function Character({id,className=''}:{id:string;className?:string}){return <img className={`launch-character ${className}`} src={publicCdnImage(`/avatars/${id}.webp`)} alt="" draggable="false"/>;}
 function HomeStamp({state,onEdit}:{state:PreviewState;onEdit?:()=>void}){const p=state.profile!,photo=undefined as {image:string}|undefined;return <button className={`launch-home-stamp ${photo?'has-photo':''}`} onClick={onEdit} aria-label={p.city?`Your home stamp: ${p.city}, ${p.country}`:'Your explorer card'}>{photo?<img className="launch-stamp-photo" src={photo.image} alt="Your home city moment"/>:<Character id={p.avatar}/>}<span className="launch-stamp-top"><span>HOME</span><Icon name="globe" size={20}/></span><span className="launch-stamp-place"><small>{p.country??'Your first chapter'}</small><strong>{p.city??'Starts with you.'}</strong></span><span className="launch-stamp-id">KY / {p.name}</span></button>;}
 function GuideTile({id,onOpen}:{id:CountryId;onOpen:(id:CountryId)=>void}){const c=countryById(id)!;return <button className="launch-guide-tile" aria-label={`Explore ${c.city} guide`} onClick={()=>onOpen(id)}><AttractionImage id={attractionsForCountry(id)[0].id}/><span><small>City guide</small><strong>{c.city}</strong></span></button>;}
 export function LaunchGoal({state,now,onOpen}:StateProps&{onOpen:()=>void}){return <CheckInGoal state={state} now={now} onOpen={onOpen}/>;}
