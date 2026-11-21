@@ -5,7 +5,7 @@
 .button.secondary{background:#243026;border-color:#57704B;color:#D5F88F}
 .button:not(.secondary):active{background:#C1E875;border-color:#C1E875}
 .text-button,.icon-button,.action-row svg,.app-header>.back{color:#D5F88F}
-.standard-bottom-nav>button[aria-current=page]{color:#D5F88F;background:#D5F88F14}
+.standard-bottom-nav>button[aria-current=page]{color:#D5F88F}
 .bottom-nav>button[aria-current=page],.game-home-theme .bottom-nav>button[aria-current=page]{color:#D5F88F}
 .bottom-nav>button[aria-current=page]:after{background:#D5F88F}
 .home-monthly-bars>i.filled,.activity-strip-heading i,.question-progress>div>i.filled{background:#D5F88F}

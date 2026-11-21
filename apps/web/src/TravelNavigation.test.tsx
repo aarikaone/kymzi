@@ -79,3 +79,24 @@ it('keeps the editor open when saving fails, then retries without changing play 
  fail.mockRestore();await u.click(screen.getByRole('button',{name:'Save changes'}));
  await waitFor(()=>expect(window.location.hash).toBe('#/profile'));expect(stored().daily).toEqual(before.daily);
 });
+
+it('makes room for city results during search and opens a city without an extra dismissal tap',async()=>{
+ seed('/profile');const user=userEvent.setup();render(<App/>);await user.click(screen.getByRole('button',{name:'My travel list'}));
+ const field=screen.getByRole('textbox',{name:'Find a city'});await user.click(field);
+ expect(screen.queryByRole('heading',{name:/Where have\s+you been/})).toBeNull();expect(screen.queryByRole('button',{name:'Save changes'})).toBeNull();
+ await user.type(field,'Munnar');expect(screen.getAllByRole('button',{name:/^Choose /})).toHaveLength(1);
+ await user.click(screen.getByRole('button',{name:'Done'}));expect(screen.getByRole('heading',{name:/Where have\s+you been/})).toBeTruthy();expect(screen.getByRole('button',{name:'Save changes'})).toBeTruthy();expect((field as HTMLInputElement).value).toBe('Munnar');
+ await user.click(field);await user.click(screen.getByRole('button',{name:/^Choose Munnar/}));expect(await screen.findByRole('heading',{name:'Munnar'})).toBeTruthy();expect(screen.queryByRole('dialog')).toBeNull();expect(await screen.findByRole('button',{name:'Select Anamudi'})).toBeTruthy();
+});
+
+it.each(['viewer Back','browser Back'])('browses London attraction images on a full page and keeps picks after %s',async(backKind)=>{
+ const before=seed('/profile');before.profile!.travel!.visited=[];localStorage.setItem(KEY,JSON.stringify(before));const user=userEvent.setup();render(<App/>);
+ await user.click(screen.getByRole('button',{name:'My travel list'}));await user.click(screen.getByRole('button',{name:'Choose London'}));
+ await user.click(await screen.findByRole('button',{name:'Explore Tower Bridge'}));const feed=await screen.findByRole('feed',{name:'London attractions feed'});
+ expect(screen.queryByRole('dialog')).toBeNull();expect(within(feed).getByRole('heading',{name:'Tower Bridge'})).toBeTruthy();expect(screen.getByRole('button',{name:'Select Tower Bridge'}).getAttribute('aria-pressed')).toBe('false');
+ await user.click(screen.getByRole('button',{name:'Select Tower Bridge'}));await user.click(screen.getByRole('button',{name:'Next attraction'}));expect(screen.getByRole('heading',{name:'British Museum'})).toBeTruthy();await user.click(screen.getByRole('button',{name:'Select British Museum'}));expect(stored().profile).toEqual(before.profile);
+ if(backKind==='viewer Back')await user.click(screen.getByRole('button',{name:'Back to London places'}));else await act(async()=>{window.history.back();});
+ await waitFor(()=>expect(screen.queryByRole('feed')).toBeNull());expect((await screen.findByRole('button',{name:'Select Tower Bridge'})).getAttribute('aria-pressed')).toBe('true');expect(screen.getByRole('button',{name:'Select British Museum'}).getAttribute('aria-pressed')).toBe('true');
+ await user.click(screen.getByRole('button',{name:'Add visited city'}));await user.click(await screen.findByRole('button',{name:'Save changes'}));await waitFor(()=>expect(window.location.hash).toBe('#/profile'));
+ expect(stored().profile!.travel!.visited).toContainEqual({cityId:'GB',attractionIds:['gb-1','gb-2']});expect(stored().daily).toEqual(before.daily);
+});
