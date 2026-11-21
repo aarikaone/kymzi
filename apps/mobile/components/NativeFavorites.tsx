@@ -1,5 +1,6 @@
+import {NativeImage as Image} from './NativeImage';
 import React,{useEffect,useState} from 'react';
-import {FlatList,Image,Modal,Pressable,ScrollView,StyleSheet,Text,View,useWindowDimensions} from 'react-native';
+import {FlatList,Modal,Pressable,ScrollView,StyleSheet,Text,View,useWindowDimensions} from 'react-native';
 import {SafeAreaView,useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Ionicons} from '@expo/vector-icons';
 import {favoritePhotos,type FavoritePhoto,type PreviewState} from '@rymzi/core';

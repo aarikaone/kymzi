@@ -30,6 +30,30 @@
     "backgroundColor": "#090C0A",
     "plugins": [
       [
+        "expo-share-intent",
+        {
+          "iosShareExtensionName": "Share to Kymzi",
+          "iosShareExtensionBundleIdentifier": "com.kymzi.app.share-extension",
+          "iosAppGroupIdentifier": "group.com.kymzi.app",
+          "iosActivationRules": {
+            "NSExtensionActivationSupportsText": true,
+            "NSExtensionActivationSupportsWebURLWithMaxCount": 1,
+            "NSExtensionActivationSupportsWebPageWithMaxCount": 1
+          },
+          "androidIntentFilters": [
+            "text/*"
+          ]
+        }
+      ],
+      [
+        "expo-location",
+        {
+          "locationWhenInUsePermission": "Allow Kymzi to find your city for a place check-in. Your live location is never shared.",
+          "isIosBackgroundLocationEnabled": false,
+          "isAndroidBackgroundLocationEnabled": false
+        }
+      ],
+      [
         "expo-camera",
         {
           "cameraPermission": "Allow Kymzi to take city photos. Photos are reviewed before you add them.",

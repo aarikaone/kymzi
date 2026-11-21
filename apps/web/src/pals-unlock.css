@@ -1,0 +1,22 @@
+.pals-unlock{display:flex;flex-direction:column;gap:15px;min-height:100%;color:#f1f5eb}
+.pals-unlock>h1{font-size:38px;line-height:44px;font-weight:600;letter-spacing:-1.3px;margin:0 0 4px}
+.pals-global-box{display:flex;flex-direction:column;gap:22px;padding:21px 18px 18px;border:1px solid #4d6540;border-radius:25px;background:linear-gradient(150deg,#1d291c,#111712)}
+.pals-global-box>header{display:flex;align-items:center;gap:11px}
+.pals-global-icon{display:grid;place-items:center;width:48px;height:48px;flex-shrink:0;border:1px solid #576c44;border-radius:18px;background:#273520;color:#d5f88f}
+.pals-global-box h2{font-size:24px;line-height:29px;font-weight:500;letter-spacing:-.7px;flex:1;min-width:0;margin:0}
+.pals-global-off{display:flex;align-items:center;gap:5px;padding:6px 8px;border:1px solid #65577a;border-radius:9px;background:#2a2433;color:#c8beff;font-size:10px;letter-spacing:.7px}
+.pals-unlock-friends{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;padding-top:3px}
+.pals-unlock-friends>button,.pals-empty-friend{position:relative;display:grid;place-items:center;width:100%;max-width:49px;aspect-ratio:1;margin:auto;box-sizing:border-box;border:1px solid #78935a;border-radius:18px;background:#283923;padding:0;color:#d5f88f;font:inherit}
+.pals-unlock-friends img{height:100%;width:100%;object-fit:contain}
+.pals-unlock-friends>button>i{position:absolute;right:-3px;bottom:-4px;width:19px;height:19px;display:grid;place-items:center;border:3px solid #182119;border-radius:50%;background:#d5f88f;color:#172116}
+.pals-empty-friend{border-style:dashed;border-color:#536047;background:#121913;color:#8f9c80;font-size:16px}
+.pals-global-progress{display:flex;gap:6px;padding-top:3px}
+.pals-global-progress>i{flex:1;height:9px;border-radius:4px;background:#34432d;border:1px solid #435639}
+.pals-global-progress>i.complete{background:#d5f88f;border-color:#d5f88f;box-shadow:0 0 12px #d5f88f16}
+.pals-unlock-count{display:flex;justify-content:flex-start;align-items:center;gap:12px;margin-top:-7px}
+.pals-unlock-count>strong{font-size:46px;line-height:50px;letter-spacing:-1.3px;color:#d5f88f;font-weight:600}
+.pals-unlock-count>span{font-size:21px;line-height:26px;color:#f1f5eb}
+.pals-global-box>p{font-size:15px;line-height:22px;color:#b1bca8;margin:-8px 0 0}
+.pals-invite-button:focus-visible,.pals-unlock-friends>button:focus-visible{outline:2px solid #d5f88f;outline-offset:4px}
+
+.pals-invite-button{display:flex;align-items:center;justify-content:center;gap:10px;min-height:54px;width:100%;box-sizing:border-box;padding:14px;border:0;border-radius:17px;background:#d5f88f;color:#172116;font:inherit;font-size:18px;font-weight:600}

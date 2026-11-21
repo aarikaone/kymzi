@@ -1,3 +1,5 @@
+import {readSharedTravel,sharedTravel,type SharedTravel} from './travel-profile.ts';
+import {questionById,TRAVEL_INVITE_SETS,validQuestionChoice} from './question-library.ts';
 import {readGlobalPals,type GlobalPalsPreview} from './global-pals.ts';
 import {AVATARS,normalizeAnswer,questionBank,demoPeers} from './index.ts';
 import {beginDaily,completeDaily,dailyStatus,hasDailyProgress,localDay,scheduleDaily,type DailyGame} from './daily.ts';
@@ -14,7 +16,7 @@ import type {AgeBand,AvatarId,Profile} from './types.ts';
 export const LAUNCH_SETS=[['K0001','K0002','K0003'],['K0101','K0102','K0103'],['K0301','K0302','K0303'],['K0201','K0202','K0203'],['K0601','K0602','K0603']] as const;
 export const LAUNCH_GUIDES:CountryId[]=['JP','FR','BR','KR','IT'];
 const TTL=7*86400000,HEX=/^[a-f0-9]{32}$/,HASH=/^[a-f0-9]{64}$/;
-type Person={name:string;avatar:AvatarId;city?:string;country?:string};
+type Person={name:string;avatar:AvatarId;city?:string;country?:string;travel?:SharedTravel};
 export type FriendInvite={version:1;id:string;createdAt:string;person:Person;ids:string[];hashes:string[]};
 export type FriendReply={version:1;invite:FriendInvite;id:string;completedAt:string;person:Person;hashes:string[]};
 export type LaunchTicket={id:string;createdAt:string;ids:string[];answers:string[]};
@@ -31,12 +33,12 @@ export function enableLaunch(state:PreviewState,now=new Date()):PreviewState{
  return next;
 }
 const validDate=(value:unknown):value is string=>typeof value==='string'&&Number.isFinite(Date.parse(value));
-const validSet=(ids:unknown):ids is string[]=>Array.isArray(ids)&&LAUNCH_SETS.some(set=>set.join('.')===ids.join('.'));
-const knownSet=(ids:unknown):ids is string[]=>Array.isArray(ids)&&ids.length===3&&new Set(ids).size===3&&ids.every(id=>questionBank.some(q=>q.id===id));
+const validSet=(ids:unknown):ids is string[]=>Array.isArray(ids)&&[...LAUNCH_SETS,...TRAVEL_INVITE_SETS].some(set=>set.join('.')===ids.join('.'));
+const knownSet=(ids:unknown):ids is string[]=>Array.isArray(ids)&&ids.length===3&&new Set(ids).size===3&&ids.every(id=>!!questionById(id));
 function person(raw:unknown):Person{
  const p=raw as Partial<Person>|null;
  if(!p||typeof p.name!=='string'||!/^[1-9]\d{5}$/.test(p.name)||!AVATARS.some(a=>a.id===p.avatar))throw new Error('This challenge could not be opened.');
- return {name:p.name,avatar:p.avatar!,...readProfileLocation(p)};
+ return {name:p.name,avatar:p.avatar!,...readProfileLocation(p),...(p.travel?{travel:readSharedTravel(p.travel)}:{})};
 }
 function hashes(raw:unknown):string[]{if(!Array.isArray(raw)||raw.length!==3||raw.some(h=>typeof h!=='string'||!HASH.test(h)))throw new Error('This challenge could not be opened.');return [...raw];}
 export function readFriendInvite(raw:unknown,now=new Date()):FriendInvite{
@@ -69,7 +71,7 @@ export function challengeURL(base:string,value:FriendInvite|FriendReply):string{
  const url=new URL(base);if(!['https:','http:'].includes(url.protocol)||url.username||url.password)throw new Error('A web address is needed to share this challenge.');
  url.hash=`/challenge/${'invite' in value?'result/':''}${challengeToken(value)}`;return url.toString();
 }
-function publicPerson(profile:Profile):Person{return person({name:profile.name,avatar:profile.avatar});}
+function publicPerson(profile:Profile):Person{return person({name:profile.name,avatar:profile.avatar,...(profile.travel?{travel:sharedTravel(profile.travel)}:{})});}
 function cleanAnswers(values:string[]):string[]{if(values.length!==3||values.some(v=>typeof v!=='string'||!v.trim()||v.length>40))throw new Error('Answer all 3 questions first.');return values.map(v=>normalizeAnswer(v));}
 async function commitments(id:string,ids:string[],answers:string[],crypto:ChallengeCrypto){const values=cleanAnswers(answers);const result=await Promise.all(ids.map((q,i)=>crypto.digest(`kymzi-friend-v1:${id}:${q}:${values[i]}`)));return hashes(result);}
 export async function makeFriendInvite(state:PreviewState,crypto:ChallengeCrypto,now=new Date()):Promise<FriendInvite>{
@@ -79,7 +81,7 @@ export async function makeFriendInvite(state:PreviewState,crypto:ChallengeCrypto
 }
 export function hasInviteAnswers(state:PreviewState){return !!state.launch?.tickets.some(t=>validSet(t.ids));}
 export async function answerFriendInvite(invite:FriendInvite,profile:Profile,answers:string[],crypto:ChallengeCrypto,now=new Date()):Promise<FriendReply>{
- invite=readFriendInvite(invite,now);if(profile.ageBand==='10-12')throw new Error('Your city journey stays private.');if(profile.name===invite.person.name)throw new Error('Open this link with a friend to compare your answers.');
+ invite=readFriendInvite(invite,now);if(invite.ids.some((id,i)=>{const q=questionById(id);return q&&!validQuestionChoice(q,answers[i]);}))throw new Error('Pick one of the six choices.');if(profile.ageBand==='10-12')throw new Error('Your city journey stays private.');if(profile.name===invite.person.name)throw new Error('Open this link with a friend to compare your answers.');
  return readFriendReply({version:1,invite,id:crypto.nonce(),completedAt:now.toISOString(),person:publicPerson(profile),hashes:await commitments(invite.id,invite.ids,answers,crypto)},now);
 }
 export function friendScore(reply:FriendReply){const matched=reply.invite.hashes.map((h,i)=>h===reply.hashes[i]);return {matched,shared:matched.filter(Boolean).length,total:3 as const};}
@@ -126,17 +128,18 @@ export function resetPalUnlock(state:PreviewState):PreviewState{
  return {...state,launch};
 }
 /** Preparing an invitation is free and independent of global play hours/quota. */
-export function beginInvitePreparation(state:PreviewState,now=new Date()):PreviewState{
+export function beginInvitePreparation(state:PreviewState,now=new Date(),travel=false):PreviewState{
  if(!state.profile||state.profile.ageBand==='10-12')throw new Error('Your city journey stays private.');
  const next=enableLaunch(state,now),launch=next.launch!;
  if(launch.preparation)return next;
- const ids=[...LAUNCH_SETS[Math.floor(now.getTime()/86400000)%LAUNCH_SETS.length]];
+ const sets=travel?TRAVEL_INVITE_SETS:LAUNCH_SETS,ids=[...sets[Math.floor(now.getTime()/86400000)%sets.length]];
  return {...next,launch:{...launch,preparation:{ids,answers:['','',''],submitted:0,startedAt:now.toISOString()}}};
 }
-export function invitePreparationQuestions(state:PreviewState){return (state.launch?.preparation?.ids??[]).map(id=>questionBank.find(q=>q.id===id)!);}
+export function invitePreparationQuestions(state:PreviewState){return (state.launch?.preparation?.ids??[]).map(id=>questionById(id)!);}
 export function invitePreparationIndex(state:PreviewState){const draft=state.launch?.preparation;if(!draft)return 0;const index=draft.answers.findIndex((a,i)=>i>=draft.submitted||!a.trim());return index<0?2:index;}
 export function answerInvitePreparation(state:PreviewState,index:number,value:string):PreviewState{
  const launch=state.launch,draft=launch?.preparation;if(!launch||!draft||!Number.isInteger(index)||index<0||index>2)throw new Error('Start your invite first.');
+ const q=questionById(draft.ids[index]);if(q&&!validQuestionChoice(q,value))throw new Error('Pick one of the six choices.');
  return {...state,launch:{...launch,preparation:{...draft,answers:draft.answers.map((a,i)=>i===index?value.slice(0,40):a)}}};
 }
 export function submitInvitePreparation(state:PreviewState,index:number):PreviewState{
@@ -233,4 +236,4 @@ export function readLaunch(raw:unknown,now=new Date()):LaunchState|undefined{
  out.places=[...new Set((Array.isArray(p.places)?p.places:[]).filter((id):id is string=>typeof id==='string'&&!!attractionById(id)))].slice(0,104);
  return out;
 }
-export function inviteQuestions(invite:FriendInvite){return invite.ids.map(id=>questionBank.find(q=>q.id===id)!);}
+export function inviteQuestions(invite:FriendInvite){return invite.ids.map(id=>questionById(id)!);}

@@ -1,5 +1,6 @@
+import {NativeImage as Image} from './NativeImage';
 import React,{useEffect,useRef,useState} from 'react';
-import {Image,Pressable,Text,View} from 'react-native';
+import {Pressable,Text,View} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import * as ImagePicker from 'expo-image-picker';
 import {ImageManipulator,SaveFormat} from 'expo-image-manipulator';

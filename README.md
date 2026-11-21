@@ -1,8 +1,8 @@
 # Kymzi — explore through someone new
 
-Kymzi is a local web and React Native prototype: **bring five friends → unlock pal finding → answer three questions → match all three → connect with an unknown pal → discover their city through places and photos → meet anonymously when visiting**.
+Kymzi is a local web and React Native prototype: **pick your perfect day → share your day card with five friends → unlock global play → find an unknown pal → swap places → explore their city**.
 
-On iPhone, the bottom navigation is **Home / Explore / Task / Favs**. The app bar pairs your anonymous character and personal photo on the left, the original K logo in the center and notifications on the right. Tap the paired avatars to open Profile. Notifications sit at the top right of every eligible root tab. There are no Demo chips. About, illustration labels and the chat/meeting explanations identify the local preview without adding a global badge.
+On iPhone, the bottom navigation is **Home / Pals / Task / Places**. The app bar pairs your anonymous character and personal photo on the left, the original K logo in the center and notifications on the right. Tap the paired avatars to open Profile. Notifications sit at the top right of every eligible root tab. There are no Demo chips. About, illustration labels and the chat/meeting explanations identify the local preview without adding a global badge.
 
 ## Five-friend unlock
 
@@ -16,9 +16,17 @@ On iPhone, use **Profile → Global play preview** to play the five-friend unloc
 
 ## Day-one launch flow
 
-New profiles receive a home passport immediately. Explore, Cities, Task and Profile use a minimal black/lime/lavender layout. City guides and home-camera photos work with zero pals. The existing monthly goal counts fresh home photos; deleting a photo does not undo its earned credit. Real profile photos never appear in friend links.
+New profiles become **Founding Explorers** with a six-digit member number. **Build my day** is a free three-question experience: six illustrated choices per question, no typing, and a visual trail of chosen stops. It produces a personal day card before any invitation is required. **Open my circle** shows the card, five friend slots and genuine completed-friend progress. Friends can answer in the web browser without installing or signing up, compare a partial or full score, and return a postcard link. Five distinct returned replies open global play. The explicit five-friend preview remains separate from real referral credits.
 
-New global plays open the six illustrated topics first. Selecting a topic creates three questions from that topic and saves its category and hidden destination. Opening topics, selecting one and leaving an untouched first question are free; the first submitted answer consumes one play. Returning from Home resumes an answered/paid draft, including its original topic and pal. Untouched starts can choose a different topic. The daily five-play limit and saved opening time still apply. Friend invitations retain their separate shared three-question preparation. The first submitted answer consumes a play; untouched starts stay free and drafts resume. After global activation, finishing any three valid answers saves the answer ticket and records an explicitly simulated same-cohort world connection, pal and city discovery. The result opens that pal, their city attractions and illustrated photo feed. Explore switches to connected-pals and city moments; Cities lists uncovered destinations and pal/photo counts. Targeted plays keep the same pal and still require three matches for the fictional photo and five for chat. The daily five-play allowance and saved daily time remain in force.
+Global play opens six illustrated collections: Little stops, Outside days, Wander freely, Slow moments, City stories and Afterglow. Each set contains three questions from different themes. Selecting choices is free; submitting the first choice consumes one of five daily plays. Paid drafts retain their questions, partner and destination after reopening. The optional photo still reveals after three matches with the same pal; the five-match cap and existing chat/meetup gates are retained. Matches remain local simulations in this prototype.
+
+A pal page now offers **A little place swap**: save their illustrated local find or send one back from Maps. Re-sharing a place with another Roamie does not duplicate the gem. **Someday in [city]** collects saved pal finds and city places the pal has saved from your shares. Task is an open-ended hidden-gem collection; the leaderboard stays hidden.
+
+### Question bank
+
+The active travel bank contains **1,000 original prompts, six choices each**, across 25 themes. Each question has an ID, collection, day phase and six labels with existing generated artwork references. Edit `content/travel-question-seeds.json`, then run `npm run questions:build`. The complete reviewable export is `content/travel-questions.json`; `packages/core/src/travel-question-bank.ts` is the app source generated from the same content. The older 2,000-question catalogue stays available only to restore saved games and historical invitation links.
+
+For local invitation testing, use **http://localhost:4178**. Native sharing defaults to that address, configurable via `EXPO_PUBLIC_WEB_URL`. A localhost link opens on the same computer; real cross-device invitations will need a reachable hosted address later. No host or database is configured by this change.
 
 A friend challenge contains the question IDs, anonymous character/number and salted SHA-256 answer commitments. It contains no answer text, real photo or home location. A recipient opens the web link, answers in their browser without signing up or installing, sees an honest 0–3 score, and shares the postcard link back. Both participants can save the postcard. Rewards are separate from global match proofs: friend challenges cannot unlock personal photos, chat or meetups. A sender opening their own invitation sees the invitation/share view. Invitations expire after seven days; completed postcards remain viewable. Guest drafts and finished responses survive reloads.
 
@@ -42,7 +50,7 @@ Pal aliases are city-specific, such as **Pal 01**, and never expose a name, cont
 - **3 matches:** reveal the optional personal photo to that same-cohort pal; the local incoming portrait is clearly labeled as fictional.
 - **5 matches:** chat opens and that pal’s games are complete. At most five successful games are recorded per pal; random play can connect another eligible pal.
 
-**Play together** offers topics for another three typed answers with that same pal. A typed or charged draft always resumes its original questions, partner and destination. Photo/chat gates use saved match proofs and cannot be bypassed by opening a chat URL. Blocking or changing cohorts removes access.
+**Play together** offers collections for another three illustrated choices with that same pal. A submitted or charged draft always resumes its original questions, partner and destination. Photo/chat gates use saved match proofs and cannot be bypassed by opening a chat URL. Blocking or changing cohorts removes access.
 
 In this local prototype, any three valid answers create a simulated full match. Matching fixtures are not mutated. Chat replies are generated locally from city facts and are labeled as simulated on the conversation screen. No real user or chat service is connected.
 
@@ -50,17 +58,19 @@ In this local prototype, any three valid answers create a simulated full match. 
 
 Cities shows only uncovered destinations in a photo-led grid. Each city has its pal count, city-photo entry, new-photo count and saved-place progress. The guide contains four illustrated attractions, a connected-pals view and city moments. Each attraction has a short fact, official source and **Save this place**. Saving a place does not claim physical travel.
 
-There are **26 cities in 26 countries**, **104 illustrated attractions** and **2,000 draft question prompts**. One city represents each country. Images labeled **Illustrated preview** are artwork, not documentary photographs from real community members.
+There are **26 cities in 26 countries**, **104 illustrated attractions** and **1,000 active six-choice travel prompts**. One city represents each country. Images labeled **Illustrated preview** are artwork, not documentary photographs from real community members.
 
-## Task and camera
+## Task: fifteen places from Maps
 
-The third tab asks for **3 fresh camera photos each calendar month** to keep the local profile active. It shows the current month’s photos, progress and due date. The first month is a grace period. Completing a month maintains activity into the next; a missed month pauses local status until three current-month photos are taken. Browsing, play and camera access remain available.
+Share **hidden gems at your own pace**. My gems keeps your illustrated collection; My impact shows saves, distinct Roamies helped and the cities you share. Use Google/Apple Maps → Share → Share to Kymzi, or paste a Maps link. Review its name, city, country and category, preview the artwork, then publish to Home. There is no GPS or photo requirement. The task and Maps import screens keep their main actions outside scrolling content. There are no numbered empty slots, deadline, activity penalty or progress badge. An optional 160-character local tip appears on the feed and place detail.
 
-Choose the city manually, open the live camera, shoot, review and acknowledge that there are no faces or personal details before saving. There is no gallery picker, file upload input, microphone or GPS permission. Images are re-encoded and EXIF/IPTC/comment metadata stripped. Failed permissions, cancellation, retakes and failed persistence do not grant credit. The camera stops after capture, on leaving and on backgrounding.
+Duplicate provider links and normalized place/location aliases do not create another gem. Cancelling a preview or a failed save consumes no task credit or daily play. Gems and their impact persist across months. Existing check-ins and favourites remain saved.
 
-The latest 12 compact camera photos remain on the device. Monthly capture credits survive deletion and the storage cap. The monthly goal resets at device-local calendar-month boundaries. Own photos remain separate under **Profile → My city photos**. No production upload/storage/moderation backend is connected.
+The contribution leaderboard counts favourites **received from eligible pals on your shared places**. Saving your own place never adds points. The local preview has an explicit simulated incoming-favourite action; remote favourites and live rankings require a backend. The Maps helper resolves supported links and metadata; unresolved fields require review. Configured OpenAI art is optional, with labelled existing travel artwork as fallback.
 
-Connected profiles open the pals/photo feed on Explore and pal avatars with city images on Cities. A valid existing same-cohort connection restores a missing global activation flag on older saves, so the first-use **Your passport** screen cannot take over after a connection. The `/launch` entry and Back to Explore actions return to the connected feed; daily plays and saved connection progress stay intact.
+Leaderboards are hidden for now (`SHOW_LEADERBOARD=false`); saved places and the fifteen-place task remain available. The retained daily leaderboard implementation has Today, Yesterday and a past-date picker, a top-three avatar podium, rank movement and a midnight countdown. Dated favourites keep each day separate; repeatedly saving the same place creates no extra daily credit.
+
+See [Maps sharing and illustration setup](docs/PLACE_CHECK_INS.md). City check-in and meetup presence remain separate.
 
 ## Three global pals and a visit to your city
 
@@ -193,3 +203,20 @@ npm run build:ios:simulator        # unsigned Release simulator app
 ```
 
 See [the mobile build guide](docs/MOBILE_BUILDS.md) and `.env.build.example` for local Xcode, SDK and signing setup. Copy the template to `.env.build.local`; credentials and generated native projects/artifacts are ignored by Git.
+
+### Places shared from Maps
+
+Task is fifteen unique Maps places per month. Received favourites drive the contribution leaderboard. Leaderboards are hidden for now (`SHOW_LEADERBOARD=false`); saved places and the fifteen-place task remain available. The retained daily leaderboard implementation has Today, Yesterday and a past-date picker, a top-three avatar podium, rank movement and a midnight countdown. Dated favourites keep each day separate; repeatedly saving the same place creates no extra daily credit.
+
+See [Maps sharing and illustration setup](docs/PLACE_CHECK_INS.md).
+
+
+## World city catalogue
+
+**Places → World** now browses 1,026 city-area guides and 20,520 places across 126 countries. The original 26 cities keep their existing IDs and first four illustrated attractions; each guide now has 20 places. Existing city pages include an **Explore all 20 places** shortcut while retaining their original four highlight actions. Onboarding, visited cities, wishlists and wish check-ins accept the 1,000 additional GeoNames city IDs.
+
+Search supports city, region and country names. The city index is light; place records load in six continent chunks. Native grids use FlatList, and native release bundles include the guide data for offline browsing. Maps/source links open externally. The interface uses labelled guide illustrations.
+
+The portable data, source references, pinned city selection and validation report are in [content/world-catalogue](content/world-catalogue/SOURCES.md). Run `npm run catalog:validate` to check every city and place; use `npm run catalog:build -- --fetch` to build from cached/public sources. The importer preserves the published city selection and stops if a city no longer meets the 20-place threshold.
+
+These are nearest-centre guides within 35 km, not administrative boundaries or a live opening-hours/access database. New guide data does not create fictional social connections outside the existing preview pool.

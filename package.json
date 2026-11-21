@@ -34,7 +34,12 @@
     "release:stores": "node build-store-releases.mjs",
     "test:build": "node --test scripts/mobile-build.test.mjs",
     "mobile:dev": "node scripts/start-mobile.mjs",
-    "ios:dev": "node scripts/run-native.mjs ios --configuration Debug --device"
+    "ios:dev": "node scripts/run-native.mjs ios --configuration Debug --device",
+    "dev:place-art": "node scripts/place-art-server.mjs",
+    "test:places": "node --test packages/core/src/place-checkins.test.ts scripts/place-art-server.test.mjs",
+    "questions:build": "node scripts/generate-travel-questions.mjs",
+    "catalog:build": "node scripts/build-world-catalogue.mjs",
+    "catalog:validate": "node scripts/validate-world-catalogue.mjs"
   },
   "engines": {
     "node": "^22.18.0 || ^24.0.0 || >=26.0.0"

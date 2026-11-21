@@ -1,0 +1,4 @@
+import {attractionById,cityGuideSVG,travelCityById,type TravelCityId,type TravelPlace} from '@rymzi/core';
+import {AttractionImage} from './AttractionImage';
+export function TravelCityArt({cityId}:{cityId:TravelCityId}){const city=travelCityById(cityId);if(!city)return null;const art=city.placeIds.find(id=>!!attractionById(id));return <span className="travel-city-art">{art?<AttractionImage showLoader id={art}/>:<span className="world-guide-art" role="img" aria-label={`${city.city} guide illustration`} dangerouslySetInnerHTML={{__html:cityGuideSVG(city.id)}}/>}</span>;}
+export function GuidePlaceArt({place}:{place:TravelPlace}){return attractionById(place.id)?<AttractionImage showLoader id={place.id}/>:<span className="world-guide-art" role="img" aria-label={`Guide illustration for ${place.name}`} dangerouslySetInnerHTML={{__html:cityGuideSVG(place.cityId+':'+place.id)}}/>;}

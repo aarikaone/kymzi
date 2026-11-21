@@ -1,6 +1,6 @@
 import React from 'react';
-import {View,type ViewStyle} from 'react-native';
-import Svg,{Image as SvgImage} from 'react-native-svg';
+import type {ViewStyle} from 'react-native';
+import {NativeImage} from './NativeImage';
 import {attractionArtwork,attractionById} from '@rymzi/core';
 const atlases:Record<string,number>={
 'atlas-01':require('../../../packages/assets/attractions/atlas-01.png'),
@@ -17,4 +17,4 @@ const atlases:Record<string,number>={
 'atlas-12':require('../../../packages/assets/attractions/atlas-12.png'),
 'atlas-13':require('../../../packages/assets/attractions/atlas-13.png'),
 };
-export function NativeAttractionImage({id,style}:{id:string;style?:ViewStyle}){const art=attractionArtwork(id),a=attractionById(id);if(!art||!a)return null;return <View accessibilityRole="image" accessibilityLabel={`Illustration of ${a.name}`} style={[{width:'100%',aspectRatio:4/3,backgroundColor:'#151B16',borderRadius:16,overflow:'hidden'},style]}><Svg width="100%" height="100%" viewBox={`${art.column*512} ${art.row*384} 512 384`} preserveAspectRatio="xMidYMid slice" accessible={false}><SvgImage href={atlases[art.file]} width={1024} height={1536}/></Svg></View>;}
+export function NativeAttractionImage({id,style,showLoader=false}:{id:string;style?:ViewStyle;showLoader?:boolean}){const art=attractionArtwork(id),a=attractionById(id);if(!art||!a)return null;return <NativeImage showLoader={showLoader} loaderPosition={showLoader?'top':'center'} accessibilityRole="image" accessibilityLabel={`Illustration of ${a.name}`} source={atlases[art.file]} crop={{column:art.column,row:art.row,columns:2,rows:4,tileWidth:512,tileHeight:384}} style={[{width:'100%',aspectRatio:4/3,backgroundColor:'#151B16',borderRadius:16},style]}/>;}

@@ -1,0 +1,337 @@
+{
+  "version": 1,
+  "retrievedAt": "2026-11-20T20:32:14.059549+00:00",
+  "newCities": 1000,
+  "legacyCities": 26,
+  "totalCities": 1026,
+  "totalPlaces": 20520,
+  "minimumPlacesPerCity": 20,
+  "countries": 126,
+  "byContinent": {
+    "AS": 284,
+    "SA": 64,
+    "EU": 458,
+    "NA": 140,
+    "OC": 18,
+    "AF": 62
+  },
+  "byCountry": {
+    "JP": 91,
+    "BR": 30,
+    "GB": 46,
+    "KR": 10,
+    "IN": 34,
+    "CA": 27,
+    "US": 91,
+    "FR": 26,
+    "DE": 65,
+    "IT": 41,
+    "ES": 39,
+    "PT": 3,
+    "NL": 15,
+    "SE": 9,
+    "NO": 5,
+    "GR": 4,
+    "AU": 15,
+    "NZ": 3,
+    "SG": 2,
+    "TH": 2,
+    "ID": 21,
+    "AE": 3,
+    "ZA": 6,
+    "KE": 1,
+    "MX": 12,
+    "AR": 15,
+    "CN": 31,
+    "TR": 26,
+    "RU": 76,
+    "TW": 13,
+    "EG": 5,
+    "IR": 6,
+    "PK": 3,
+    "CL": 4,
+    "CD": 1,
+    "NG": 34,
+    "CO": 5,
+    "PE": 1,
+    "UA": 26,
+    "IQ": 1,
+    "KP": 2,
+    "SA": 3,
+    "RO": 7,
+    "HU": 1,
+    "AT": 6,
+    "VE": 2,
+    "PL": 20,
+    "UZ": 4,
+    "BD": 1,
+    "BY": 6,
+    "AF": 1,
+    "AZ": 1,
+    "UY": 1,
+    "ET": 1,
+    "CZ": 7,
+    "DK": 4,
+    "BG": 4,
+    "MA": 5,
+    "EC": 3,
+    "PH": 4,
+    "BE": 4,
+    "RS": 3,
+    "IE": 2,
+    "AM": 1,
+    "SN": 1,
+    "DZ": 1,
+    "KZ": 2,
+    "IL": 4,
+    "DO": 1,
+    "BO": 1,
+    "LV": 1,
+    "GE": 1,
+    "CU": 1,
+    "HR": 1,
+    "FI": 6,
+    "LB": 1,
+    "GH": 1,
+    "SY": 2,
+    "LT": 3,
+    "UG": 1,
+    "MY": 5,
+    "PY": 1,
+    "NP": 1,
+    "CH": 7,
+    "EE": 1,
+    "MZ": 1,
+    "LY": 1,
+    "JO": 1,
+    "BA": 1,
+    "TM": 1,
+    "NI": 1,
+    "MN": 1,
+    "SI": 1,
+    "TN": 1,
+    "SK": 2,
+    "MD": 1,
+    "TJ": 1,
+    "LK": 1,
+    "XK": 1,
+    "MK": 1,
+    "AL": 1,
+    "QA": 1,
+    "NA": 1,
+    "CR": 1,
+    "SR": 1,
+    "BW": 1,
+    "LU": 1,
+    "ME": 1,
+    "BS": 1,
+    "VN": 1,
+    "CY": 1,
+    "IS": 1,
+    "CW": 1,
+    "BB": 1,
+    "IM": 1,
+    "BN": 1,
+    "MC": 1,
+    "JE": 1,
+    "MT": 1,
+    "AW": 1,
+    "GG": 1,
+    "FO": 1,
+    "SV": 1,
+    "GD": 1,
+    "LI": 1,
+    "VA": 1
+  },
+  "discarded": {
+    "inactiveDescription": 1220,
+    "coordinates": 144,
+    "name": 268,
+    "outsideGuideScope": 193,
+    "educationNotMuseum": 108,
+    "outside35km": 67103,
+    "noCity": 8275
+  },
+  "sources": [
+    {
+      "name": "parks",
+      "records": 100000,
+      "sha256": "ec66c100578254ffb71fb6b6f11b0eaa84192278e8bb8b5dc7c9db0aea19b440",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "gardens",
+      "records": 2974,
+      "sha256": "a067c94d9a932d87c3ebcf23ddcc17f883d6625157f921b427f7736c60db70a5",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "zoos",
+      "records": 2367,
+      "sha256": "09becca21c332462631b499ed7f6941c35baf70f57b3be5a0718cc13499abafc",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "castles",
+      "records": 30361,
+      "sha256": "122f714b77ceb1b21b8f8c112d6c60ef54c93ec03d1856715ad5e2e673d66b1c",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "palaces",
+      "records": 12105,
+      "sha256": "bb1621af0d54b3bb3583df9a39e7c2975cf7c22579912b205b30704c6fa66780",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "theatres",
+      "records": 12610,
+      "sha256": "5e92e47451f95b3c2826552a1ff8eec1305ffb8bf0adc4fe7826d3cb16f639c6",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "squares",
+      "records": 20365,
+      "sha256": "69c504e4e7863a96e722e7efca23680748964a0163d2b5a236d13d39a987ab48",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "beaches",
+      "records": 17495,
+      "sha256": "62e72a5448eec935ce83d3a9cfa813ff5f621a7373ec542e8af01128381aa10c",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "reserves",
+      "records": 30359,
+      "sha256": "9cfe497ca4c043257c718d208adb37c049162fb2007952bcbda999501737b91a",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "temples",
+      "records": 100000,
+      "sha256": "c5a26b949b8eed5ca1dcc985758081522165b39db9d97660528b6e63be09b23e",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "libraries",
+      "records": 62155,
+      "sha256": "ca3d645a20857f86ff206d9c00ac0e3b6fad1b57f67ba96205f0f2eac60937f6",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "attractions",
+      "records": 88852,
+      "sha256": "285ae785b6f8952d6738bdabd7f0f124cc359b2713b8c7ab5bd23f6df9514afd",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "restaurants",
+      "records": 16911,
+      "sha256": "fee5dc625cf9416989feb3e5527d8ed80af813960cd6a631377b517908dcf35e",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "cafes",
+      "records": 1123,
+      "sha256": "d1f4087c63f0c5cde2d742def009d2a3827bd2639e79944e54711f1d11021fd9",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "malls",
+      "records": 7639,
+      "sha256": "203e60f3ec970e46f7fe709f946270e656387543329db991d140baece6b9abbb",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "stadiums",
+      "records": 11604,
+      "sha256": "567b9234f4934875d01cf5bf4e3844c3e6a42b860665d65c9417f63614ef9098",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "galleries",
+      "records": 2177,
+      "sha256": "01829eca8898ec7c887ccd6c61ff0c005501167ec0a719499181785655b8af4e",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "memorials",
+      "records": 100000,
+      "sha256": "f4759da9b3d9ebfcce48ce6800019862082467d7e65b3f9f7b8aa7be97489b4c",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "markets",
+      "records": 1764,
+      "sha256": "b28e2bc6160e3c70b90afad9d3dec069f774c9745aadbb45e190bce1cb2ecc44",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "skyscrapers",
+      "records": 4259,
+      "sha256": "64c819ec5e468a2c06f155951b38adb89e59f2d047b8b09d07fc717399014dbb",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "amusement",
+      "records": 1954,
+      "sha256": "e1fbfe5dbd32ea44e8cbf7db61088290a3c49d792946695720f22b466325cfd8",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "stations",
+      "records": 100000,
+      "sha256": "98dbf1f7628198d6e577890e1f1b0f3bed4f82202449290932ff80d4f45db502",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "museum-ranked",
+      "records": 50132,
+      "sha256": "4dc735ab0680cc0931ab673b25ecfd5f9f02cd8f5e97fc0d5b50fe3c7ffb7a69",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "targeted",
+      "records": 21671,
+      "sha256": "0f51703a2fcb16921a7bbf92b2256bee7ca86b2ee980fb0c38688561c1da99b3",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    },
+    {
+      "name": "netherlands",
+      "records": 13094,
+      "sha256": "3ad99d5878c35318c481ba7f76e47d426b49957b546086ddb444df42f1306820",
+      "endpoint": "https://qlever.dev/api/wikidata"
+    }
+  ],
+  "radiusKm": 35,
+  "cityAssignment": "Nearest same-country city centre; nearby places may lie outside municipal boundaries.",
+  "selection": "At least three place kinds per new city; at most three stations/memorials. Wikimedia sitelinks are a curation signal, not ratings.",
+  "recordsWithCoordinates": 20416,
+  "curatedWithoutCoordinates": 104,
+  "datasetSha256": "d8a298322060b5f4dbea5b8e1dc908051ffe47035eaf82d7214694b4d4ca63d4",
+  "citySourceFiles": [
+    {
+      "name": "cities15000.zip",
+      "sha256": "3413ab7e63ee1f7da441fc4d9c962fe31b569319430ab1e5b549f683fab8b84f",
+      "url": "https://download.geonames.org/export/dump/cities15000.zip"
+    },
+    {
+      "name": "countryInfo.txt",
+      "sha256": "79f8f59ea01cbb40438bf1856dd6c2ff201f03f8fc72d0530b2646aaf603ef04",
+      "url": "https://download.geonames.org/export/dump/countryInfo.txt"
+    },
+    {
+      "name": "admin1CodesASCII.txt",
+      "sha256": "2e4867f5397acb056ea26377601b57af37cb4c81399770225018e9e439e91ad3",
+      "url": "https://download.geonames.org/export/dump/admin1CodesASCII.txt"
+    }
+  ],
+  "manualExclusions": [
+    {
+      "id": "Q5310637",
+      "reason": "Closed Dubai/Jumeirah Zoo",
+      "sourceUrl": "https://www.wam.ae/en/article/hszr62u9-jumeirah-zoo-closes-doors"
+    }
+  ]
+}

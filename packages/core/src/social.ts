@@ -1,3 +1,4 @@
+import {questionById} from './question-library.ts';
 import {attractionById,attractionsForCountry} from './attractions.ts';
 import {demoPeers,questionBank} from './index.ts';
 import {COUNTRIES,COUNTRY_PEOPLE_TARGET,countryById,countryByName,countryForCity,publicVenue,type CountryId,type VenueId} from './countries.ts';
@@ -9,7 +10,7 @@ export type MatchProof={playId:string;peerId:string;countryId:CountryId;at:strin
 export type ChatMessage={id:string;from:'you'|'demo';body:string;at:string};
 export type ChatThread={peerId:string;active:boolean;messages:ChatMessage[]};
 export type Meetup={id:string;peerId:string;countryId:CountryId;venueId:VenueId;when:string;youAccepted:boolean;peerAccepted:boolean;status:'proposed'|'confirmed'|'declined'|'cancelled';createdAt:string;spotId?:string};
-export type SocialState={version:1;proofs:MatchProof[];threads:Record<string,ChatThread>;meetups:Meetup[];focusCountryId:CountryId|null;exploredAttractionIds?:string[];revealedPeerIds?:string[]};
+export type SocialState={version:1;dmReadIds?:Record<string,string[]>;proofs:MatchProof[];threads:Record<string,ChatThread>;meetups:Meetup[];focusCountryId:CountryId|null;exploredAttractionIds?:string[];revealedPeerIds?:string[]};
 export type Connection={peer:DemoPeer;countryId:CountryId;matches:number;firstAt:string;lastAt:string;chatUnlocked:boolean;simulated:boolean};
 export function emptySocial():SocialState{return {version:1,proofs:[],threads:{},meetups:[],focusCountryId:null,exploredAttractionIds:[],revealedPeerIds:[]};}
 const validDate=(value:unknown):value is string=>typeof value==='string'&&Number.isFinite(Date.parse(value));
@@ -18,7 +19,7 @@ export function readSocial(value:unknown):SocialState{
  const raw=value as Partial<SocialState>|null;if(!raw||typeof raw!=='object')return emptySocial();
  const result=emptySocial(),seen=new Set<string>();result.focusCountryId=countryById(raw.focusCountryId)?.id??null;
  for(const p of Array.isArray(raw.proofs)?raw.proofs:[]){
-  if(!p||typeof p.playId!=='string'||!p.playId||typeof p.peerId!=='string'||!validDate(p.at)||!Array.isArray(p.questionIds)||p.questionIds.length!==3||new Set(p.questionIds).size!==3||!p.questionIds.every(id=>typeof id==='string'&&questionBank.some(q=>q.id===id)))continue;
+  if(!p||typeof p.playId!=='string'||!p.playId||typeof p.peerId!=='string'||!validDate(p.at)||!Array.isArray(p.questionIds)||p.questionIds.length!==3||new Set(p.questionIds).size!==3||!p.questionIds.every(id=>typeof id==='string'&&!!questionById(id)))continue;
   const peer=demoPeers.find(peer=>peer.id===p.peerId),country=countryByName(peer?.country),key=`${p.playId}:${p.peerId}`;
   if(!peer||!country||country.id!==p.countryId||seen.has(key))continue;
   if(Object.hasOwn(p,'simulated')&&p.simulated!==true)continue;const demoAnswers=p.simulated===true?Object.fromEntries(p.questionIds.map(id=>[id,p.demoAnswers?.[id]])):undefined;if(demoAnswers&&Object.values(demoAnswers).some(a=>typeof a!=='string'||!a.trim()||a.length>40))continue;result.proofs.push({playId:p.playId,peerId:peer.id,countryId:country.id,at:p.at,questionIds:[...p.questionIds],...(p.simulated===true?{simulated:true as const,demoAnswers:demoAnswers as Record<string,string>}:{})});seen.add(key);
@@ -28,6 +29,12 @@ export function readSocial(value:unknown):SocialState{
   const messageIds=new Set<string>();const messages:ChatMessage[]=[];
   for(const m of Array.isArray(thread.messages)?thread.messages:[]){if(m&&typeof m.id==='string'&&!messageIds.has(m.id)&&(m.from==='you'||m.from==='demo')&&typeof m.body==='string'&&m.body.trim()&&m.body.length<=280&&validDate(m.at)){messages.push({id:m.id,from:m.from,body:m.body,at:m.at});messageIds.add(m.id);}}
   result.threads[id]={peerId:id,active:thread.active===true,messages};
+ }
+ if(raw.dmReadIds&&typeof raw.dmReadIds==='object'){
+  result.dmReadIds={};for(const [id,values]of Object.entries(raw.dmReadIds)){
+   const incoming=new Set(result.threads[id]?.messages.filter(m=>m.from==='demo').map(m=>m.id)??[]);
+   if(Array.isArray(values)&&demoPeers.some(p=>p.id===id))result.dmReadIds[id]=[...new Set(values.filter((id):id is string=>typeof id==='string'&&incoming.has(id)))].slice(-300);
+  }
  }
  const plans=new Set<string>();
  for(const m of Array.isArray(raw.meetups)?raw.meetups:[]){const peer=m&&typeof m.peerId==='string'?demoPeers.find(p=>p.id===m.peerId):undefined;

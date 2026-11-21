@@ -1,5 +1,6 @@
+import {NativeImage as Image} from './NativeImage';
 import React,{useId} from 'react';
-import {Image,Pressable,ScrollView,Text,useWindowDimensions,View} from 'react-native';
+import {Pressable,ScrollView,Text,useWindowDimensions,View} from 'react-native';
 import {SafeAreaView,useSafeAreaInsets} from 'react-native-safe-area-context';
 import {StatusBar} from 'expo-status-bar';
 import Svg,{Defs,LinearGradient,Rect,Stop} from 'react-native-svg';
@@ -33,7 +34,7 @@ export function NativeWelcome({onStart}:{onStart:()=>void}){
     <Text accessibilityRole="header" style={{fontSize:titleSize,lineHeight:titleSize*1.05,fontWeight:'600',letterSpacing:-1.6,color:C.ink}}>
      {JOURNEY_COPY.title}{'\n'}<Hand style={{fontSize:titleSize*1.18,lineHeight:titleSize*1.22,color:C.accent}}>{JOURNEY_COPY.titleAccent}</Hand>
     </Text>
-    <Text style={{maxWidth:330,fontSize:compact?16:17,lineHeight:compact?23:25,color:C.muted}}>5 friends unlock your next pal.</Text>
+    <Text style={{maxWidth:330,fontSize:compact?16:17,lineHeight:compact?23:25,color:C.muted}}>5 friends unlock your next roamie.</Text>
    </View>
    <Pressable cssInterop={false} accessibilityRole="button" onPress={onStart} style={({pressed})=>({
     minHeight:small?56:compact?58:60,padding:14,borderRadius:20,backgroundColor:pressed?C.primaryPressed:C.primary,

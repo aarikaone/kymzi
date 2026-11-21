@@ -18,7 +18,7 @@ export function ChatRoom({alias,avatar,yourAvatar,city,mode,messages,draft,onDra
  useEffect(()=>{if(log.current)log.current.scrollTop=log.current.scrollHeight;},[messages.length,messages.at(-1)?.id]);
  useEffect(()=>{const field=input.current;if(field){field.style.height='0px';field.style.height=`${Math.min(104,Math.max(48,field.scrollHeight))}px`;}},[draft]);
  function send(){if(!busy&&draft.trim())onSend();}
- const ideas=mode==='meetup'?['Hey, pal 👋','See you at the entrance?','Coffee nearby?']:['Hey, pal 👋','Your city’s hidden gem?','What should I try first?'];
+ const ideas=mode==='meetup'?['Hey, roamie 👋','See you at the entrance?','Coffee nearby?']:['Hey, roamie 👋','Your city’s hidden gem?','What should I try first?'];
  return <div className="chat-room">
   <header className="room-header">
    <div className="room-avatar"><img src={`/avatars/${avatar}.webp`} alt={`${alias}’s chosen character`}/><i aria-hidden="true"><Icon name="spark" size={12}/></i></div>

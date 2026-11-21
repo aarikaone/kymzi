@@ -29,7 +29,7 @@ export function chooseMeetupCity(s:CityMeetupState,id:CountryId):CityMeetupState
 export function checkInForMeetup(s:CityMeetupState,spotId:string,now=new Date()):CityMeetupState{
  if(!s.cityId||!citySpot(s.cityId,spotId))throw new Error('Choose a public spot in this city.');
  if(cityMeetupActive(s,now))return s;
- return {...s,step:'requests',checkIn:{spotId,at:now.toISOString(),until:new Date(now.getTime()+SPOT_PRESENCE_MINUTES*60000).toISOString()},requests:[{id:'preview-pal-024',alias:'Pal 024',avatar:'boba',status:'new'},{id:'preview-pal-071',alias:'Pal 071',avatar:'miso',status:'new'}],selectedRequestId:null,meeting:null,update:s.update+1};
+ return {...s,step:'requests',checkIn:{spotId,at:now.toISOString(),until:new Date(now.getTime()+SPOT_PRESENCE_MINUTES*60000).toISOString()},requests:[{id:'preview-pal-024',alias:'Roamie 024',avatar:'boba',status:'new'},{id:'preview-pal-071',alias:'Roamie 071',avatar:'miso',status:'new'}],selectedRequestId:null,meeting:null,update:s.update+1};
 }
 export function chooseMeetupRequest(s:CityMeetupState,id:string,now=new Date()):CityMeetupState{
  requireActive(s,now);if(s.meeting)throw new Error('Finish or cancel the current meetup first.');

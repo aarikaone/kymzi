@@ -11,8 +11,8 @@ test('explicit city check-in creates only local fictional requests and an hour o
 });
 test('incoming requests lead to a public pin, explicit coming confirmation, then explicit arrival',()=>{
  const s=pinned();assert.equal(s.meeting!.spotId,spots[1].id);assert.notEqual(s.checkIn!.spotId,s.meeting!.spotId);assert.equal(cityMeetupStatus(s,NOW),'pinned');assert.throws(()=>previewMeetupArrival(s,'arrived',NOW));
- const coming=previewMeetupArrival(s,'coming',NOW);assert.equal(cityMeetupStatus(coming,NOW),'coming');assert.equal(cityMeetupNotice(coming,NOW)!.title,'Pal 024 is coming');
- const arrived=previewMeetupArrival(coming,'arrived',NOW);assert.equal(cityMeetupStatus(arrived,NOW),'arrived');assert.equal(cityMeetupNotice(arrived,NOW)!.title,'Pal 024 is at the pin');assert.throws(()=>previewMeetupArrival(arrived,'coming',NOW));
+ const coming=previewMeetupArrival(s,'coming',NOW);assert.equal(cityMeetupStatus(coming,NOW),'coming');assert.equal(cityMeetupNotice(coming,NOW)!.title,'Roamie 024 is coming');
+ const arrived=previewMeetupArrival(coming,'arrived',NOW);assert.equal(cityMeetupStatus(arrived,NOW),'arrived');assert.equal(cityMeetupNotice(arrived,NOW)!.title,'Roamie 024 is at the pin');assert.throws(()=>previewMeetupArrival(arrived,'coming',NOW));
  assert.deepEqual(readCityMeetup(JSON.parse(JSON.stringify(arrived)),profile),arrived);
 });
 test('pins cannot bypass check-in, request ownership, public locations, meeting times or active-plan limits',()=>{
@@ -36,7 +36,7 @@ test('younger children remain private and teen walkthroughs cannot change age or
 });
 test('restoring corrupt state rejects invalid pins, fabricated identities and excessive presence without throwing',()=>{
  const s=pinned(),raw=JSON.parse(JSON.stringify(s));raw.requests[0].alias='Real Person';raw.requests[0].avatar='real-photo';raw.requests.push({id:'real-user',alias:'Someone',avatar:'cloud',status:'new'});raw.latitude=1;raw.meeting.longitude=2;
- const restored=readCityMeetup(raw,profile)!;assert.equal(restored.requests[0].alias,'Pal 024');assert.equal(restored.requests[0].avatar,'boba');assert.equal(restored.requests.length,2);assert.equal(JSON.stringify(restored).includes('latitude'),false);assert.equal(JSON.stringify(restored).includes('longitude'),false);
+ const restored=readCityMeetup(raw,profile)!;assert.equal(restored.requests[0].alias,'Roamie 024');assert.equal(restored.requests[0].avatar,'boba');assert.equal(restored.requests.length,2);assert.equal(JSON.stringify(restored).includes('latitude'),false);assert.equal(JSON.stringify(restored).includes('longitude'),false);
  raw.checkIn.until=new Date(NOW.getTime()+4*3600000).toISOString();const invalid=readCityMeetup(raw,profile)!;assert.equal(invalid.checkIn,null);assert.equal(invalid.meeting,null);assert.equal(invalid.requests.length,0);
  assert.doesNotThrow(()=>readCityMeetup({version:1,owner:profile.name,ageBand:profile.ageBand,requests:42,meeting:[]},profile));
 });

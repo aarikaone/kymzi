@@ -50,6 +50,22 @@ Keep the Mac and iPhone on the same local network. Saving React/TypeScript, copy
 
 The launcher selects a compatible Node runtime automatically. iOS Debug uses source-built React Native core (`RCT_USE_PREBUILT_RNCORE=0`) with prebuilt third-party dependencies, because the SDK 54 prebuilt core omits `RCTPackagerConnection` needed by the development client. If the existing Pod lock still contains prebuilt React core, the native launcher refreshes Pods before building. The first Debug build takes longer; later UI edits use Metro. Store build scripts retain their normal native configuration.
 
+### Standalone app on a connected iPhone
+
+A Release build embeds JavaScript and images, so it opens without Metro or the Mac:
+
+```sh
+npm run ios -- --configuration Release --device --no-bundler
+```
+
+The native launcher preserves the terminal so Expo can show its device picker. In a non-interactive shell, supply the device UDID or exact device name instead of bare `--device`:
+
+```sh
+npm run ios -- --configuration Release --device YOUR_DEVICE_UDID --no-bundler
+```
+
+This installs the Release app directly; it does not export an IPA. `npm run build:ios` creates the App Store-signed archive and IPA. API-backed features still require an online backend; bundled artwork and local prototype data work without the development server.
+
 ## One-time local setup
 
 Copy the included template:

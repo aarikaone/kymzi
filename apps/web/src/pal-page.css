@@ -1,0 +1,14 @@
+.app-main:has(.pal-page){padding:0;overflow:hidden}
+.screen:has(>.pal-page){height:100%;min-height:0;gap:0}
+.pal-page{height:100%;min-height:0;display:flex;flex-direction:column}
+.pal-page>.pal-detail{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:18px 24px 24px;scrollbar-width:none}
+.pal-page>.pal-detail::-webkit-scrollbar{display:none}
+.pal-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;flex-shrink:0;padding:12px 22px max(12px,env(safe-area-inset-bottom,0px));border-top:1px solid #29362b;background:#090c0a}
+.pal-actions>button{min-width:0;min-height:54px;padding:14px 10px;border:0;border-radius:17px;font:inherit;font-size:17px;line-height:22px;font-weight:600;text-align:center}
+.pal-actions>.pal-action-play{background:#d5f88f;color:#172116}
+.pal-actions>.pal-action-play:active{background:#c1e875}
+.pal-actions>.pal-action-play:disabled{background:#253024;color:#8a9681}
+.pal-actions>.pal-action-message{border:1px solid #776a98;background:#292435;color:#e2d6ff}
+.pal-actions>.pal-action-message:active{background:#3a304b}
+.pal-actions>button:focus-visible{outline:2px solid #c8beff;outline-offset:3px}
+@container rymzi-app (max-width:350px){.pal-page>.pal-detail{padding-inline:20px}.pal-actions{padding-inline:18px;gap:8px}.pal-actions>button{font-size:16px}}

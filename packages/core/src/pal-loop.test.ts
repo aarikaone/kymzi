@@ -4,22 +4,22 @@ import {emptyPreview,beginDaily,answerDaily,submitDaily,completeDemoPlay,beginPa
 const NOW=new Date('2026-11-18T05:00:00Z');
 function first(band:AgeBand='18-20'){let s:PreviewState={...emptyPreview(NOW),profile:{name:'PrivateName',avatar:'cloud',ageBand:band}},daily=beginDaily(s.daily,band,NOW,'food','JP');for(const id of daily.active!.ids)daily=answerDaily(daily,id,'anything new',NOW);return completeDemoPlay({...s,daily},NOW);}
 function again(s:PreviewState,id:string){let daily=beginPalPlay(s,id,'food',NOW);for(const q of daily.active!.ids)daily=answerDaily(daily,q,'a new thought',NOW);return completeDemoPlay({...s,daily},NOW);}
-test('the same pal reveals their photo at 3 matches, opens chat at 5, and cannot consume a sixth targeted play',()=>{
+test('the same roamie reveals their photo at 3 matches, opens chat at 5, and cannot consume a sixth targeted play',()=>{
  let s=first();const id=palSummaries(s)[0].id;
  for(let n=1;n<=5;n++){const p=palFor(s,id)!;assert.equal(p.matches,n);assert.ok(p.avatar);assert.equal(p.photoUnlocked,n>=3);assert.equal(!!p.photoFrame,n>=3);assert.equal(p.chatUnlocked,n===5);assert.equal(canChat(s.social,id,'18-20'),n===5);assert.equal(palSummaries(s).length,1);assert.equal(s.daily.playsToday,n);if(n<5)s=again(s,id);}
  assert.equal(recordConnections(s.social,{...s.daily,played:6},'18-20',completedPreviewMatches(s)),s.social);const before=JSON.stringify(s);assert.throws(()=>beginPalPlay(s,id,'food',NOW),/Five games/);assert.equal(JSON.stringify(s),before);
  const social=startDemoChat(s.social,id,'18-20',[],NOW),reply=sendDemoMessage(social,id,'18-20','Tell me about Sensō-ji',[],NOW);assert.equal(reply.threads[id].messages.length,3);assert.match(reply.threads[id].messages.at(-1)!.body,/City tip:/);
  assert.equal(palFor(readPreview(JSON.parse(JSON.stringify(s)),NOW),id)!.matches,5);
 });
-test('a targeted draft remains free until submission and resumes the same pal after persistence',()=>{
+test('a targeted draft remains free until submission and resumes the same roamie after persistence',()=>{
  let s=first(),id=palSummaries(s)[0].id,daily=beginPalPlay(s,id,'animals',NOW);assert.equal(daily.playsToday,1);daily=answerDaily(daily,daily.active!.ids[0],'Fox',NOW);s={...s,daily};
  const restored=readPreview(JSON.parse(JSON.stringify(s)),NOW);assert.equal(restored.daily.active!.peerId,id);assert.equal(restored.daily.playsToday,1);assert.equal(beginPalPlay(restored,'not-a-pal','food',NOW).active!.peerId,id);
  const charged=submitDaily(restored.daily,restored.daily.active!.ids[0],NOW);assert.equal(charged.playsToday,2);assert.equal(readDaily(charged,false,NOW).active!.peerId,id);
 });
-test('a capped pal is skipped by the next random play without duplicating the old connection',()=>{
+test('a capped roamie is skipped by the next random play without duplicating the old connection',()=>{
  let s=first();const id=palSummaries(s)[0].id;for(let n=1;n<5;n++)s=again(s,id);const later=new Date('2026-11-19T16:00:00Z');let daily=beginDaily(s.daily,'18-20',later,'food','JP');for(const q of daily.active!.ids)daily=answerDaily(daily,q,'new answer',later);s=completeDemoPlay({...s,daily},later);assert.equal(palFor(s,id)!.matches,5);assert.equal(palSummaries(s).length,2);assert.equal(s.daily.playsToday,1);
 });
-test('pal photo authors resolve to anonymous city aliases and do not reveal names before or after avatar unlock',()=>{
+test('roamie photo authors resolve to anonymous city aliases and do not reveal names before or after avatar unlock',()=>{
  let s=first('16-17');const id=palSummaries(s)[0].id;assert.equal(palForMoment(s,cityPhotoFeed(s,'JP',NOW)[0])!.id,id);assert.equal(JSON.stringify(palSummaries(s)).includes('Luna'),false);s=again(again(s,id),id);assert.ok(palFor(s,id)!.avatar);assert.equal(JSON.stringify(palSummaries(s)).includes('Luna'),false);assert.equal(palSummaries({...s,blocked:[id]}).length,0);assert.equal(palSummaries({...s,profile:{...s.profile!,ageBand:'13-15'}}).length,0);
 });
 test('an adult shares only a checked-in public attraction and future time, with separate mutual acceptance',()=>{

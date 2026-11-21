@@ -73,7 +73,7 @@ export function cityPhotoFeed(state:PreviewState,countryId?:CountryId,now=new Da
  if(band==='10-12')return own;
  const fixtures:CityPhotoItem[]=worldPlaces(state).filter(p=>p.uncovered&&(!countryId||p.country.id===countryId)).flatMap(p=>{
   const pals=publicCityPals(state,p.country.id),places=attractionsForCountry(p.country.id);
-  return Array.from({length:pals.length?3:0},(_,i)=>({id:`demo-photo:${band}:${p.country.id}:${passportWeek(now)}:${i}`,countryId:p.country.id,alias:pals[i%pals.length]?.alias??'Pal',you:false,source:'demo' as const,artworkId:places[i].id}));
+  return Array.from({length:pals.length?3:0},(_,i)=>({id:`demo-photo:${band}:${p.country.id}:${passportWeek(now)}:${i}`,countryId:p.country.id,alias:pals[i%pals.length]?.alias??'Roamie',you:false,source:'demo' as const,artworkId:places[i].id}));
  });
  return [...own,...fixtures].filter(p=>!state.photos.hiddenIds.includes(p.id));
 }

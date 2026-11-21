@@ -1,5 +1,6 @@
+import {NativeImage as Image} from './NativeImage';
 import React,{useState} from 'react';
-import {Image,Pressable,ScrollView,Text,View,useWindowDimensions} from 'react-native';
+import {Pressable,ScrollView,Text,View,useWindowDimensions} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Ionicons} from '@expo/vector-icons';
 import Svg,{Path} from 'react-native-svg';
@@ -22,11 +23,11 @@ export function NativeCityMeetupFlow({profile,session,now,initialCity,onChange,o
  const title=expired?'Check-in ended.':s.step==='city'?'Which city?':s.step==='check-in'?'Where are you?':s.step==='requests'?'Who’s around?':s.step==='pin'?'Meet here?':status==='arrived'?'They’re here.':status==='coming'?'On the way.':'Pin shared.';
  const stage=expired?0:s.step==='city'?0:s.step==='check-in'?1:s.step==='requests'?2:3;
  return <SafeAreaView edges={['bottom']} style={{flex:1,backgroundColor:C.ground}}><ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{flexGrow:1,padding:22,gap:compact?16:20}} keyboardShouldPersistTaps="handled">
-  <View style={{gap:12}}><View accessible accessibilityLabel={`Step ${stage+1} of 4: ${['city','place','pal','meet'][stage]}`} style={{flexDirection:'row',gap:6}}>{[0,1,2,3].map(i=><View key={i} style={{width:i===stage?28:8,height:4,borderRadius:4,backgroundColor:i<=stage?C.accent:C.line}}/>)}</View><Text accessibilityRole="header" style={{fontSize:35,lineHeight:40,fontWeight:'600',letterSpacing:-1.1,color:C.ink}}>{title}</Text>{s.step!=='city'&&<Text style={{fontSize:16,lineHeight:22,color:C.muted}}>{country.flag} {country.city}</Text>}</View>
+  <View style={{gap:12}}><View accessible accessibilityLabel={`Step ${stage+1} of 4: ${['city','place','roamie','meet'][stage]}`} style={{flexDirection:'row',gap:6}}>{[0,1,2,3].map(i=><View key={i} style={{width:i===stage?28:8,height:4,borderRadius:4,backgroundColor:i<=stage?C.accent:C.line}}/>)}</View><Text accessibilityRole="header" style={{fontSize:35,lineHeight:40,fontWeight:'600',letterSpacing:-1.1,color:C.ink}}>{title}</Text>{s.step!=='city'&&<Text style={{fontSize:16,lineHeight:22,color:C.muted}}>{country.flag} {country.city}</Text>}</View>
   {s.step==='city'?<>
    <View style={{height:compact?200:260,borderRadius:27,overflow:'hidden'}}><NativeAttractionImage id={citySpots(city)[0].artworkId} style={{width:'100%',height:'100%'}}/><View style={{position:'absolute',bottom:0,left:0,right:0,padding:18,backgroundColor:'#090C0A99'}}><Text style={{fontSize:32,lineHeight:38,fontWeight:'600',color:C.ink}}>{country.flag} {country.city}</Text></View></View>
    <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={{gap:8,paddingBottom:4}}>{COUNTRIES.map(c=><Pressable accessibilityRole="button" accessibilityLabel={`Choose ${c.city}`} accessibilityState={{selected:city===c.id}} key={c.id} onPress={()=>setCity(c.id)} style={{minHeight:48,paddingHorizontal:16,justifyContent:'center',borderRadius:16,backgroundColor:city===c.id?C.accent:C.surface}}><Text style={{fontSize:17,color:city===c.id?C.primaryInk:C.ink}}>{c.flag} {c.city}</Text></Pressable>)}</ScrollView>
-   <View style={{marginTop:'auto',gap:10}}><Action label="Choose a place" disabled={busy} onPress={()=>void change(()=>chooseMeetupCity(s,city))}/><Note>Public places · Anonymous pals</Note></View>
+   <View style={{marginTop:'auto',gap:10}}><Action label="Choose a place" disabled={busy} onPress={()=>void change(()=>chooseMeetupCity(s,city))}/><Note>Public places · Anonymous roamies</Note></View>
   </>:expired?<>
    <View style={{height:220,borderRadius:25,overflow:'hidden'}}><NativeAttractionImage id={place?.artworkId??spots[0].artworkId} style={{width:'100%',height:'100%'}}/></View>
    <View style={{marginTop:'auto',gap:6}}><Action label="Check in again" disabled={busy} onPress={leave}/><Action quiet label="Done" onPress={onExit}/></View>

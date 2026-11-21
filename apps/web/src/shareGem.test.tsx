@@ -1,0 +1,8 @@
+import {afterEach,it,expect,vi} from 'vitest';
+import {shareGem} from './shareGem';
+import {parseMapsPlaceLink,type PlaceDraft} from '@rymzi/core';
+const place:PlaceDraft={id:'private-id',name:'Little café',categoryId:'cafe',tip:'Go at sunset.',maps:parseMapsPlaceLink('https://maps.apple.com/?q=Cafe&auid=555'),location:{city:'Bengaluru',country:'India',source:'maps'}};
+const originals={share:Object.getOwnPropertyDescriptor(navigator,'share'),clipboard:Object.getOwnPropertyDescriptor(navigator,'clipboard')};
+afterEach(()=>{vi.restoreAllMocks();for(const key of ['share','clipboard'] as const){const descriptor=originals[key];if(descriptor)Object.defineProperty(navigator,key,descriptor);else Reflect.deleteProperty(navigator,key);}});
+it('shares the current gem rather than starting another import',async()=>{const share=vi.fn().mockResolvedValue(undefined);Object.defineProperty(navigator,'share',{configurable:true,get:()=>share});expect(await shareGem(place)).toBe('shared');expect(share.mock.calls[0][0]).toMatchObject({title:'Little café · Bengaluru',url:place.maps!.url});expect(share.mock.calls[0][0].text).toContain('Go at sunset.');});
+it('copies a public Maps link when native sharing is unavailable, and treats dismissing as cancellation',async()=>{const copy=vi.fn().mockResolvedValue(undefined);Object.defineProperty(navigator,'share',{configurable:true,get:()=>undefined});Object.defineProperty(navigator,'clipboard',{configurable:true,value:{writeText:copy}});expect(await shareGem(place)).toBe('copied');expect(copy.mock.calls[0][0]).toContain(place.maps!.url);Object.defineProperty(navigator,'share',{configurable:true,get:()=>vi.fn().mockRejectedValue(new DOMException('Dismissed','AbortError'))});expect(await shareGem(place)).toBe('cancelled');});

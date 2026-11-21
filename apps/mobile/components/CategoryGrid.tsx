@@ -1,5 +1,6 @@
+import {NativeImage as Image} from './NativeImage';
 import React from 'react';
-import { Image,Pressable,Text,View } from 'react-native';
+import {Pressable,Text,View} from 'react-native';
 import { availableCategories,type AgeBand,type PlayCategoryId } from '@rymzi/core';
 const images={food:require('../../../packages/assets/categories/food.png'),animals:require('../../../packages/assets/categories/animals.png'),'what-if':require('../../../packages/assets/categories/what-if.png'),'your-world':require('../../../packages/assets/categories/your-world.png'),play:require('../../../packages/assets/categories/play.png'),'future-you':require('../../../packages/assets/categories/future-you.png')};
 export function CategoryGrid({band,onSelect}:{band:AgeBand;onSelect:(id:PlayCategoryId)=>void}){

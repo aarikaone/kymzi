@@ -19,7 +19,7 @@ export function readProfileLocation(value:unknown):Pick<Profile,'city'|'country'
 }
 
 export const PROFILE_SETUP_COPY={
- title:'Your two sides.',
+ title:'Pick your avatar.',
  revealTitle:`Photo unlocks after ${PAL_PHOTO_MATCHES} full matches.`,
  revealDetail:'Same pal. All 3 answers, each time.',
 } as const;

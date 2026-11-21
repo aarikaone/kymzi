@@ -1,0 +1,8 @@
+.attraction-image.has-image-loader{position:relative;overflow:hidden}
+.has-image-loader>svg{opacity:0;transition:opacity 180ms ease}
+.has-image-loader.image-ready>svg{opacity:1}
+.artwork-loading-cover{position:absolute;inset:0;background:#1b241e;pointer-events:none}
+.artwork-loading-cover>i{position:absolute;top:22%;left:calc(50% - 9px);box-sizing:border-box;width:18px;height:18px;border:2px solid #716986;border-top-color:#d8ccf6;border-radius:50%;animation:artwork-load-spin .8s linear infinite}
+.artwork-unavailable{display:grid;place-items:center;color:#c8beff}
+@keyframes artwork-load-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.artwork-loading-cover>i{animation:none}.has-image-loader>svg{transition:none}}

@@ -1,6 +1,7 @@
+import {NativeImage as Image} from './NativeImage';
 import {NIGHT_THEME} from './theme';
 import React,{useEffect,useRef,useState} from 'react';
-import {AppState,Image,Linking,Platform,Pressable,ScrollView,Text,TextInput,useWindowDimensions,View} from 'react-native';
+import {AppState,Linking,Platform,Pressable,ScrollView,Text,TextInput,useWindowDimensions,View} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import {CameraView,useCameraPermissions} from 'expo-camera';
 import {ImageManipulator,SaveFormat} from 'expo-image-manipulator';

@@ -1,0 +1,15 @@
+.standard-travel-editor>header{padding-top:12px}
+.travel-inline-back{display:flex;align-items:center;gap:6px;min-height:44px;margin-bottom:8px;color:#D5F88F;font-size:16px}
+.travel-step-indicator{display:flex;gap:7px;margin:0 0 18px}
+.travel-step-indicator>i{height:3px;flex:1;border-radius:3px;background:#34442F}
+.travel-step-indicator>i.complete{background:#D5F88F}
+.travel-section-tabs{display:flex;gap:4px;padding:4px;border-radius:13px;background:#1A221B;margin-bottom:12px}
+.travel-section-tabs>button{display:flex;align-items:center;justify-content:center;gap:8px;flex:1;min-height:40px;border-radius:9px;font-size:16px;color:#B1BCA8}
+.travel-section-tabs>button[aria-selected=true]{background:#35432D;color:#F1F5EB}
+.travel-section-tabs small{font-size:12px;color:#D5F88F}
+.standard-travel-editor .travel-selected>button{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;min-width:0;min-height:44px;border:1px solid #536746;border-radius:12px;padding:9px 7px;font-size:12px;color:#D5F88F;background:#151B16}
+.standard-travel-editor .travel-selected>button>svg{transform:rotate(-90deg);flex-shrink:0}
+.travel-cancel{display:flex;align-items:center;justify-content:flex-start;min-height:44px;padding:8px 0;font-size:16px;color:#D5F88F}
+.standard-travel-editor button:focus-visible{outline:2px solid #C8BEFF;outline-offset:3px}
+.travel-footprints>header{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.travel-footprints>header>button{display:flex;align-items:center;gap:6px;min-height:44px;font-size:14px;color:#D5F88F}

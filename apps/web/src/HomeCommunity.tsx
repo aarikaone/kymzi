@@ -10,7 +10,7 @@ import {AttractionImage} from './AttractionImage';
 export {MonthlyPhotoGoal} from './MonthlyTasks';
 export function UpdatesBell({state,now,onOpen}:{state:PreviewState;now:Date;onOpen:()=>void}){
   const count=unreadPalUpdates(state,now);
-  return <button className="home-updates-bell icon-button" aria-label={`Pal updates${count?` · ${count} unread`:''}`} onClick={onOpen}><Icon name="bell" size={25}/>{count>0&&<b>{count>9?'9+':count}</b>}</button>;
+  return <button className="home-updates-bell icon-button" aria-label={`Roamie updates${count?` · ${count} unread`:''}`} onClick={onOpen}><Icon name="bell" size={25}/>{count>0&&<b>{count>9?'9+':count}</b>}</button>;
 }
 export {HomePalPreview,PalUpdatesInbox} from './UpdateSurfaces';
 

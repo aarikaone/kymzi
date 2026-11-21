@@ -1,0 +1,39 @@
+.app-main:has(.place-detail-page){padding:0;overflow:hidden}
+.screen:has(>.place-detail-page){height:100%;min-height:0;gap:0}
+.place-detail-page{height:100%;min-height:0;display:flex;flex-direction:column}
+.place-detail-page>.place-detail-content{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:14px 20px 20px;gap:14px;scrollbar-width:none}
+.place-detail-content>*{flex-shrink:0}
+.place-detail-content::-webkit-scrollbar{display:none}
+.place-action-dock{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:10px;flex-shrink:0;padding:12px 22px max(12px,env(safe-area-inset-bottom,0px));border-top:1px solid #29362b;background:#090c0a}
+.place-action-dock>div{min-width:0}
+.place-action-dock .place-favorite-primary,.place-action-dock>.place-action-share{box-sizing:border-box;min-width:0;width:100%;min-height:54px;padding:14px 10px;border-radius:17px;font:inherit;font-size:17px;line-height:22px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:8px}
+.place-action-dock .place-heart-glyph svg{height:20px;width:20px}
+.place-action-dock>.place-action-share{border:1px solid #776a98;background:#292435;color:#e2d6ff}
+.place-action-dock>.place-action-share:active{background:#3a304b}
+.place-action-dock button:focus-visible{outline:2px solid #c8beff;outline-offset:3px}
+@container rymzi-app (max-width:350px){.place-action-dock{padding-inline:18px;gap:8px}.place-detail-page>.place-detail-content{padding-inline:20px}}
+
+.place-detail-content>.place-art{aspect-ratio:1.9;max-height:190px;border-radius:20px}
+.place-detail-summary{display:grid;gap:7px}
+.place-detail-kind{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;line-height:17px}
+.place-detail-content .place-detail-kind small{font-size:10px;line-height:15px}
+.place-detail-content .place-detail-summary h1{font-size:28px;line-height:33px;letter-spacing:-.7px;margin:0}
+.place-detail-content .place-detail-location{display:flex;align-items:center;gap:5px;font-size:14px;line-height:20px;margin:0}
+.place-detail-location svg{flex-shrink:0}
+.place-detail-byline{display:flex;align-items:center;gap:7px;padding-top:1px}
+.place-detail-byline>img{height:24px;width:24px;object-fit:contain;border-radius:9px;background:#243026}
+.place-detail-content .place-detail-byline small{font-size:12px;line-height:18px}
+.place-city-pals{display:grid;gap:10px;padding-top:3px}
+.place-city-pals>header{display:flex;align-items:center;gap:9px}
+.place-detail-content .place-city-pals h2{font-size:20px;line-height:26px;letter-spacing:-.3px;margin:0}
+.place-city-pals>header>span{font-size:12px;line-height:17px;padding:2px 7px;border-radius:8px;background:#292435;color:#c8beff}
+.place-local-pals{display:flex;gap:14px;overflow-x:auto;scrollbar-width:none;padding:2px 0}
+.place-local-pals>button{display:flex;flex:0 0 70px;align-items:center;flex-direction:column;gap:7px;padding:0 0 4px;border:0;background:none;color:#f1f5eb;font:inherit}
+.place-local-pals>button>span{display:grid;place-items:center;width:58px;height:58px;border:1px solid #516048;border-radius:22px;background:#202a21;overflow:hidden}
+.place-local-pals>button>.is-author{border-color:#c8beff}
+.place-local-pals img{width:54px;height:54px;object-fit:contain}
+.place-local-pals strong{font-size:13px;line-height:18px;font-weight:500}
+.place-detail-content .place-city-pals>p{font-size:13px;line-height:19px;margin:0}
+.place-detail-links{display:flex;flex-wrap:wrap;gap:8px;border-top:1px solid #3e5140;padding-top:11px}
+.place-detail-links>button,.place-detail-links>a{display:flex;align-items:center;justify-content:center;gap:8px;min-height:44px;box-sizing:border-box;border:1px solid #3e5140;border-radius:13px;padding:10px 13px;background:#151b16;color:#c8beff;text-decoration:none;font:inherit;font-size:13px}
+.place-detail-links>*:focus-visible,.place-local-pals>button:focus-visible{outline:2px solid #c8beff;outline-offset:3px}

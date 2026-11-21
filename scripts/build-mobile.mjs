@@ -124,11 +124,11 @@ export function exportOptions(team){
  if(!/^[A-Z0-9]{10}$/.test(team))throw new Error('Invalid IOS_TEAM_ID.');
  return `<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"><plist version="1.0"><dict><key>method</key><string>app-store-connect</string><key>destination</key><string>export</string><key>signingStyle</key><string>automatic</string><key>teamID</key><string>${team}</string><key>manageAppVersionAndBuildNumber</key><false/><key>stripSwiftSymbols</key><true/></dict></plist>\n`;
 }
-export function runCommand(step,{env,logFile,quiet=false}={}){
+export function runCommand(step,{env,logFile,quiet=false,interactive=false}={}){
  return new Promise((resolve,reject)=>{
   const output=logFile?fs.createWriteStream(logFile,{flags:'a'}):null;
-  const child=spawn(step.command,step.args,{cwd:step.cwd,env,shell:false,stdio:['inherit','pipe','pipe']});let captured='',tail='';
-  for(const [stream,destination] of [[child.stdout,process.stdout],[child.stderr,process.stderr]])stream.on('data',chunk=>{tail=(tail+chunk.toString()).slice(-32768);if(quiet)captured+=chunk;if(!quiet)destination.write(chunk);output?.write(chunk);});
+  const child=spawn(step.command,step.args,{cwd:step.cwd,env,shell:false,stdio:interactive&&!quiet&&!logFile?'inherit':['inherit','pipe','pipe']});let captured='',tail='';
+  for(const [stream,destination] of [[child.stdout,process.stdout],[child.stderr,process.stderr]])stream?.on('data',chunk=>{tail=(tail+chunk.toString()).slice(-32768);if(quiet)captured+=chunk;if(!quiet)destination.write(chunk);output?.write(chunk);});
   output?.on('error',error=>{child.kill('SIGTERM');reject(error);});
   const interrupt=()=>child.kill('SIGINT');process.once('SIGINT',interrupt);
   child.on('error',error=>{process.removeListener('SIGINT',interrupt);output?.end();reject(error);});

@@ -93,7 +93,7 @@ export function cityUpdates(state:PreviewState):CityNotice[]{return isAdult(stat
 /** Public presentation never includes the matched person's ID, name, photo or presence. */
 export function publicCityPals(state:PreviewState,countryId:CountryId):{alias:string;matches:number}[]{
  if(!state.profile||state.profile.ageBand==='10-12'||!uncoveredPlace(state,countryId).uncovered)return [];
- return connections(state.social,state.profile.ageBand,state.blocked).filter(p=>p.countryId===countryId).sort((a,b)=>Date.parse(a.firstAt)-Date.parse(b.firstAt)||a.peer.id.localeCompare(b.peer.id)).map((p,index)=>({alias:`Pal ${String(index+1).padStart(2,'0')}`,matches:p.matches}));
+ return connections(state.social,state.profile.ageBand,state.blocked).filter(p=>p.countryId===countryId).sort((a,b)=>Date.parse(a.firstAt)-Date.parse(b.firstAt)||a.peer.id.localeCompare(b.peer.id)).map((p,index)=>({alias:`Roamie ${String(index+1).padStart(2,'0')}`,matches:p.matches}));
 }
 
 

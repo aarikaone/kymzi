@@ -9,7 +9,7 @@ function ready(band:AgeBand='16-17',countryId='JP',previous?:PreviewState){
  for(const [i,id] of daily.active!.ids.entries())daily=answerDaily(daily,id,arbitrary[i],NOW);
  return {...state,daily};
 }
-test('any valid answers produce one clearly simulated pal across every country, cohort and topic',()=>{
+test('any valid answers produce one clearly simulated roamie across every country, cohort and topic',()=>{
  const fixtures=JSON.stringify(demoPeers);
  for(const c of COUNTRIES)for(const band of ['13-15','16-17','18-20','21-24'] as AgeBand[])for(const topic of PLAY_CATEGORIES){
   const daily=beginDaily(emptyPreview().daily,band,NOW,topic.id,c.id),answers=Object.fromEntries(daily.active!.ids.map((id,i)=>[id,arbitrary[i]])),matches=demoPlayMatches(answers,band,daily);
@@ -29,7 +29,7 @@ test('typed but unsubmitted answers stay free and completion charges a submitted
  let state=ready();assert.equal(state.daily.playsToday,0);state={...state,daily:submitDaily(state.daily,state.daily.active!.ids[0],NOW)};assert.equal(state.daily.playsToday,1);
  const done=completeDemoPlay(state,NOW);assert.equal(done.daily.playsToday,1);assert.throws(()=>completeDemoPlay(done,NOW),/Start a play/);
 });
-test('private play uncovers a virtual city without a pal, chat or portrait reveal',()=>{
+test('private play uncovers a virtual city without a roamie, chat or portrait reveal',()=>{
  const done=completeDemoPlay(ready('10-12'),NOW);assert.equal(worldStats(done).cities,1);assert.equal(done.social.proofs.length,0);assert.equal(completedPreviewMatches(done).length,0);assert.equal(canChat(done.social,'16-17-0','10-12'),false);
 });
 test('demo selection respects blocks, requires complete answers and stays in the selected age group',()=>{

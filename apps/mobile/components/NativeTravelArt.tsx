@@ -1,0 +1,6 @@
+import {View,type StyleProp,type ViewStyle} from 'react-native';
+import {SvgXml} from 'react-native-svg';
+import {attractionById,cityGuideSVG,travelCityById,type TravelCityId,type TravelPlace} from '@rymzi/core';
+import {NativeAttractionImage} from './NativeAttractionImage';
+export function NativeCityArt({cityId,style}:{cityId:TravelCityId;style?:StyleProp<ViewStyle>}){const city=travelCityById(cityId);if(!city)return null;const art=city.placeIds.find(id=>!!attractionById(id));return <View style={[{width:'100%',height:142,overflow:'hidden'},style]}>{art?<NativeAttractionImage showLoader id={art} style={{width:'100%',height:'100%',aspectRatio:undefined,borderRadius:0}}/>:<SvgXml xml={cityGuideSVG(city.id)} width="100%" height="100%" accessibilityLabel={`${city.city} guide illustration`}/>}</View>;}
+export function NativeGuidePlaceArt({place}:{place:TravelPlace}){return <View style={{width:'100%',height:112,overflow:'hidden'}}>{attractionById(place.id)?<NativeAttractionImage showLoader id={place.id} style={{width:'100%',height:'100%',aspectRatio:undefined,borderRadius:0}}/>:<SvgXml xml={cityGuideSVG(place.cityId+':'+place.id)} width="100%" height="100%" accessibilityLabel={`Guide illustration for ${place.name}`}/>}</View>;}

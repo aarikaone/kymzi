@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {emptyPreview,emptyLaunch,simulatePalUnlock,prepareLaunchTopics,beginLaunchPlay,finishLaunchPlay,availableCategories,categoryQuestions,activeQuestions,answerDaily,submitDaily,readPreview,type PreviewState,type AgeBand,type PlayCategoryId} from './index.ts';
 const NOW=new Date('2026-11-19T05:00:00Z');
 function seed(band:AgeBand='16-17'):PreviewState{const state={...emptyPreview(NOW),profile:{name:'123456',avatar:'cloud' as const,ageBand:band,city:'Chennai',country:'India'},launch:emptyLaunch(NOW)};return band==='10-12'?state:simulatePalUnlock(state,NOW);}
-test('opening topics is free, creates no questions or pal and clears only an untouched start',()=>{
+test('opening topics is free, creates no questions or roamie and clears only an untouched start',()=>{
  const s=seed(),open=prepareLaunchTopics(s,NOW);assert.equal(open.daily.active,null);assert.equal(open.daily.playsToday,0);assert.deepEqual(open.social,s.social);assert.deepEqual(open.launch!.globalPlay,s.launch!.globalPlay);
  const untouched=beginLaunchPlay(open,NOW,undefined,'food');assert.equal(untouched.daily.active!.categoryId,'food');assert.equal(untouched.daily.playsToday,0);const again=prepareLaunchTopics(untouched,NOW);assert.equal(again.daily.active,null);assert.equal(again.daily.playsToday,0);assert.equal(beginLaunchPlay(again,NOW,undefined,'animals').daily.active!.categoryId,'animals');
 });

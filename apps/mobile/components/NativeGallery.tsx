@@ -1,13 +1,11 @@
+import {NativeImage as Image} from './NativeImage';
 import {avatarImages} from './avatarAssets';
 import {NativePalRail} from './NativeExploreExperience';
 import {palForMoment,dailyStatus,countdownParts,remainingDailyPlays,hasDailyProgress} from '@rymzi/core';
 import {NIGHT_THEME} from './theme';
 import {JOURNEY_COPY} from '@rymzi/core';
 import React,{useEffect,useRef,useState} from 'react';
-import {
-  AccessibilityInfo,Animated,FlatList,Image,Pressable,ScrollView,Text,View,
-  useWindowDimensions,type NativeScrollEvent,type NativeSyntheticEvent,
-} from 'react-native';
+import {AccessibilityInfo,Animated,FlatList,Pressable,ScrollView,Text,View,useWindowDimensions,type NativeScrollEvent,type NativeSyntheticEvent} from 'react-native';
 import {useIsFocused} from '@react-navigation/native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Ionicons} from '@expo/vector-icons';
@@ -36,7 +34,7 @@ function Action({label,onPress}:{label:string;onPress:()=>void}){
   return <Pressable accessibilityRole="button" onPress={onPress} style={{minHeight:56,backgroundColor:NIGHT_THEME.primary,borderRadius:16,padding:14,alignItems:'center',justifyContent:'center'}}><Text style={{fontSize:20,fontWeight:'600',color:NIGHT_THEME.primaryInk}}>{label}</Text></Pressable>;
 }
 function NativeUnlockAvatar({waiting,detail,onPress}:{waiting:boolean;detail:string;onPress:()=>void}){
-  return <Pressable accessibilityRole="button" accessibilityLabel={waiting?`Next unlock in ${detail}`:'Unlock a new pal'} accessibilityHint={waiting?undefined:'Answer three questions, or continue your saved answers'} accessibilityState={{disabled:waiting}} disabled={waiting} onPress={onPress} style={{width:76,alignItems:'center',gap:4,opacity:waiting?.45:1}}>
+  return <Pressable accessibilityRole="button" accessibilityLabel={waiting?`Next unlock in ${detail}`:'Unlock a new roamie'} accessibilityHint={waiting?undefined:'Answer three questions, or continue your saved answers'} accessibilityState={{disabled:waiting}} disabled={waiting} onPress={onPress} style={{width:76,alignItems:'center',gap:4,opacity:waiting?.45:1}}>
     <View style={{position:'relative',width:70,height:70,borderRadius:35,borderWidth:1.5,borderStyle:'dashed',borderColor:ACCENT,backgroundColor:'#D5F88F0D',alignItems:'center',justifyContent:'center'}}><Icon name={waiting?'time-outline':'lock-open-outline'} size={29}/><View style={{position:'absolute',right:-2,bottom:0,width:23,height:23,borderWidth:3,borderColor:BG,borderRadius:13,backgroundColor:ACCENT,alignItems:'center',justifyContent:'center'}}><Icon name="add" size={13} color={NIGHT_THEME.primaryInk}/></View></View>
     <Text style={{fontSize:12,lineHeight:17,fontWeight:'600',color:ACCENT}}>Unlock</Text><Text numberOfLines={1} style={{fontSize:11,lineHeight:16,color:MUTED}}>{detail}</Text>
   </Pressable>;
@@ -107,7 +105,7 @@ function NativeMomentFeed(props:Props&{items:CityPhotoItem[];mode:'feed'|'grid';
     if(!explore&&height)setIndex(Math.min(items.length,Math.max(0,Math.round(event.nativeEvent.contentOffset.y/height))));
   }
 
-  const empty=<View style={{flex:1,minHeight:130,alignItems:'center',justifyContent:'center',gap:20}}><Icon name="camera-outline" size={60}/><Text style={{fontSize:28,color:INK,textAlign:'center'}}>{privateOnly||ownOnly?'Your next moment.':'Your first pal is out there.'}</Text><Text style={{fontSize:17,color:MUTED,textAlign:'center'}}>{privateOnly||ownOnly?'Your city, through your lens.':'Match 3 answers. See their world.'}</Text><View style={{width:'100%',marginTop:10}}><Action label={privateOnly||ownOnly?'Shoot your city':JOURNEY_COPY.start} onPress={privateOnly||ownOnly?()=>onCapture():onPlay}/></View></View>;
+  const empty=<View style={{flex:1,minHeight:130,alignItems:'center',justifyContent:'center',gap:20}}><Icon name="camera-outline" size={60}/><Text style={{fontSize:28,color:INK,textAlign:'center'}}>{privateOnly||ownOnly?'Your next moment.':'Your first roamie is out there.'}</Text><Text style={{fontSize:17,color:MUTED,textAlign:'center'}}>{privateOnly||ownOnly?'Your city, through your lens.':'Match 3 answers. See their world.'}</Text><View style={{width:'100%',marginTop:10}}><Action label={privateOnly||ownOnly?'Shoot your city':JOURNEY_COPY.start} onPress={privateOnly||ownOnly?()=>onCapture():onPlay}/></View></View>;
   if(!items.length)return explore?<ScrollView showsVerticalScrollIndicator={false} style={{marginHorizontal:-12}} contentContainerStyle={{flexGrow:1,gap:20,paddingBottom:20}}>{header}<View style={{paddingHorizontal:12}}>{props.empty??empty}</View></ScrollView>:empty;
 
   return <View style={{flex:1,minHeight:0,marginHorizontal:-12,marginBottom:-10,borderRadius:explore?0:20,overflow:explore?'visible':'hidden',backgroundColor:explore?BG:'#151B16'}} onLayout={e=>{setHeight(explore?Math.max(400,Math.min(560,Math.round(dimensions.height*.65))):Math.round(e.nativeEvent.layout.height));setWidth(Math.round(e.nativeEvent.layout.width));}}>
@@ -138,7 +136,7 @@ function GalleryViewSwitch({value,onChange}:{value:'photos'|'pals';onChange:(val
   const [width,setWidth]=useState(0),position=useRef(new Animated.Value(value==='photos'?0:1)).current,reduce=useRef(true);
   useEffect(()=>{void AccessibilityInfo.isReduceMotionEnabled().then(v=>{reduce.current=v;});const sub=AccessibilityInfo.addEventListener('reduceMotionChanged',v=>{reduce.current=v;});return()=>sub.remove();},[]);
   useEffect(()=>{if(reduce.current){position.setValue(value==='photos'?0:1);return;}const animation=Animated.timing(position,{toValue:value==='photos'?0:1,duration:190,useNativeDriver:true});animation.start();return()=>animation.stop();},[value]);
-  return <View accessibilityLabel="Pals views" onLayout={event=>setWidth(event.nativeEvent.layout.width)} style={{flexDirection:'row',padding:4,minHeight:54,borderWidth:1,borderColor:'#52644B',borderRadius:19,backgroundColor:'#1D271E'}}>
+  return <View accessibilityLabel="Roamies views" onLayout={event=>setWidth(event.nativeEvent.layout.width)} style={{flexDirection:'row',padding:4,minHeight:54,borderWidth:1,borderColor:'#52644B',borderRadius:19,backgroundColor:'#1D271E'}}>
     {width>0&&<Animated.View pointerEvents="none" style={{position:'absolute',left:4,top:4,bottom:4,width:(width-10)/2,borderRadius:14,borderWidth:1,borderColor:'#F1F5EB',backgroundColor:'#284C32',transform:[{translateX:position.interpolate({inputRange:[0,1],outputRange:[0,(width-10)/2]})}]}}/>}
     {[{id:'photos' as const,label:JOURNEY_COPY.galleryPhotos,icon:'camera-outline' as const},{id:'pals' as const,label:JOURNEY_COPY.galleryPals,icon:'people-outline' as const}].map(item=><Pressable cssInterop={false} key={item.id} accessibilityRole="button" accessibilityLabel={item.label} accessibilityState={{selected:value===item.id}} onPress={()=>onChange(item.id)} style={({pressed})=>({flex:1,minHeight:44,paddingHorizontal:8,paddingVertical:10,borderRadius:14,flexDirection:'row',justifyContent:'center',alignItems:'center',gap:8,backgroundColor:width===0&&value===item.id?'#284C32':'transparent',opacity:pressed?.7:1})}><Icon name={item.icon} size={19} color={value===item.id?'#EAF6D9':'#B1BCA8'}/><Text style={{fontSize:17,lineHeight:22,letterSpacing:-.25,fontWeight:value===item.id?'600':'500',color:value===item.id?'#EAF6D9':'#B1BCA8',flexShrink:1,textAlign:'center'}}>{item.label}</Text></Pressable>)}
   </View>;
@@ -168,7 +166,7 @@ export function NativePalsGallery(props:Props){
   if(explore)return <View style={{flex:1,minHeight:0,paddingHorizontal:22,paddingTop:12,paddingBottom:Math.max(18,insets.bottom),backgroundColor:BG}}><NativeMomentFeed key={`${scope??'all'}:${savedOnly}`} {...props} items={items} mode={mode} setMode={setMode} header={<View style={{gap:10,paddingHorizontal:12,paddingBottom:16}}>{header}</View>} empty={savedOnly?savedEmpty:undefined}/></View>;
   return <View style={{flex:1,minHeight:0,paddingHorizontal:22,paddingTop:12,paddingBottom:Math.max(18,insets.bottom),gap:10,backgroundColor:BG}}>
     {header}
-    {tab==='pals'?<ScrollView style={{flex:1}}>{places.map(p=><Pressable key={p.country.id} accessibilityRole="button" accessibilityLabel={`Connected pals in ${p.country.city}`} onPress={()=>onCity(p.country.id)} style={{minHeight:96,flexDirection:'row',alignItems:'center',gap:15,paddingVertical:14,borderBottomWidth:1,borderColor:LINE}}><NativeAttractionImage id={p.attractions[0].id} style={{width:65,height:65,aspectRatio:undefined,borderRadius:13}}/><View style={{flex:1,gap:7}}><Text style={{fontSize:24,color:INK}}>{p.country.city}</Text><Text style={{fontSize:15,color:MUTED}}>{publicCityPals(state,p.country.id).length} pals · Anonymous</Text></View><Icon name="arrow-forward" size={20}/></Pressable>)}{!places.length&&<View style={{paddingTop:60,gap:22}}><Text style={{fontSize:29,color:INK,textAlign:'center'}}>New cities. New perspectives.</Text><Action label={JOURNEY_COPY.start} onPress={onPlay}/></View>}</ScrollView>:<>
+    {tab==='pals'?<ScrollView style={{flex:1}}>{places.map(p=><Pressable key={p.country.id} accessibilityRole="button" accessibilityLabel={`Connected roamies in ${p.country.city}`} onPress={()=>onCity(p.country.id)} style={{minHeight:96,flexDirection:'row',alignItems:'center',gap:15,paddingVertical:14,borderBottomWidth:1,borderColor:LINE}}><NativeAttractionImage id={p.attractions[0].id} style={{width:65,height:65,aspectRatio:undefined,borderRadius:13}}/><View style={{flex:1,gap:7}}><Text style={{fontSize:24,color:INK}}>{p.country.city}</Text><Text style={{fontSize:15,color:MUTED}}>{publicCityPals(state,p.country.id).length} roamies · Anonymous</Text></View><Icon name="arrow-forward" size={20}/></Pressable>)}{!places.length&&<View style={{paddingTop:60,gap:22}}><Text style={{fontSize:29,color:INK,textAlign:'center'}}>New cities. New perspectives.</Text><Action label={JOURNEY_COPY.start} onPress={onPlay}/></View>}</ScrollView>:<>
 
       
       {savedOnly&&!items.length?savedEmpty:<NativeMomentFeed key={`${scope??'all'}:${savedOnly}`} {...props} items={items} mode={mode} setMode={setMode}/>}

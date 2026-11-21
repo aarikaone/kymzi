@@ -1,3 +1,4 @@
+import {questionById,allQuestions,validQuestionChoice} from './question-library.ts';
 import {COUNTRIES,countryById,type CountryId} from './countries.ts';
 import { DAILY_IDS, dailyQuestions, eligibleQuestions } from './index.ts';
 import { questionBank } from './questions.ts';
@@ -27,7 +28,7 @@ export function hasDailyProgress(game:DailyGame):boolean{return !!game.active&&(
 export function resumeDailyIndex(game:DailyGame):number{if(!game.active)return 0;const index=game.active.ids.findIndex(id=>!game.active!.submittedIds?.includes(id)||!game.active!.answers[id]?.trim());return index<0?2:index;}
 const validDate=(value:unknown):value is string=>typeof value==='string'&&Number.isFinite(Date.parse(value));
 export const validPlayTime=(value:unknown):value is string=>typeof value==='string'&&/^([01]\d|2[0-3]):[0-5]\d$/.test(value);
-const validIds=(value:unknown):value is string[]=>Array.isArray(value)&&value.length===3&&new Set(value).size===3&&value.every(id=>questionBank.some(q=>q.id===id));
+const validIds=(value:unknown):value is string[]=>Array.isArray(value)&&value.length===3&&new Set(value).size===3&&value.every(id=>!!questionById(id));
 export function readDaily(value:unknown,legacyCompleted=false,now=new Date()):DailyGame {
   const data=value as Partial<DailyGame>|null;
   if(!data||typeof data!=='object')return legacyCompleted?{...emptyDaily(),lastCompletedAt:now.toISOString(),lastCompletedDay:localDay(now),usageDay:localDay(now),lastQuestionIds:[...DAILY_IDS],usedQuestionIds:[...DAILY_IDS],played:1,playsToday:1}:emptyDaily();
@@ -40,7 +41,7 @@ export function readDaily(value:unknown,legacyCompleted=false,now=new Date()):Da
   const oldActive=!!data.active&&!Array.isArray(data.active.submittedIds)&&!Object.hasOwn(data.active,'countedAt');
   let active:DailyGame['active']=data.active&&validIds(data.active.ids)&&validDate(data.active.startedAt)?{ids:data.active.ids,startedAt:data.active.startedAt,countryId:countryById(data.active.countryId)?.id,...(typeof data.active.peerId==='string'?{peerId:data.active.peerId}:{}),categoryId:PLAY_CATEGORIES.some(c=>c.id===data.active?.categoryId)?data.active.categoryId:undefined,answers:Object.fromEntries(Object.entries(data.active.answers??{}).filter(([id,v])=>data.active!.ids.includes(id)&&typeof v==='string'&&v.length<=40)) as Record<string,string>,submittedIds:Array.isArray(data.active.submittedIds)?[...new Set(data.active.submittedIds.filter(id=>data.active!.ids.includes(id)))]:[],countedAt:validDate(data.active.countedAt)?data.active.countedAt:null}:null;
   if(active&&!active.categoryId&&!active.countedAt&&!Object.values(active.answers).some(answer=>answer.trim()))active=null;
-  let result:DailyGame={playTime,nextUnlockAt:validDate(data.nextUnlockAt)?data.nextUnlockAt:null,lastCompletedAt:completed,lastCompletedDay:completedDay,lastQuestionIds:ids,lastCountryId:countryById(data.lastCountryId)?.id,played:completed?Math.max(1,Number.isInteger(data.played)?data.played!:1):0,usageDay,playsToday:usageDay?Math.max(completedDay===usageDay?1:0,Math.min(DAILY_PLAY_LIMIT,Number.isInteger(data.playsToday)?data.playsToday!:completed?1:0)):0,usedQuestionIds:Array.isArray(data.usedQuestionIds)?data.usedQuestionIds.filter(id=>typeof id==='string'&&questionBank.some(q=>q.id===id)).slice(0,15):ids,active};
+  let result:DailyGame={playTime,nextUnlockAt:validDate(data.nextUnlockAt)?data.nextUnlockAt:null,lastCompletedAt:completed,lastCompletedDay:completedDay,lastQuestionIds:ids,lastCountryId:countryById(data.lastCountryId)?.id,played:completed?Math.max(1,Number.isInteger(data.played)?data.played!:1):0,usageDay,playsToday:usageDay?Math.max(completedDay===usageDay?1:0,Math.min(DAILY_PLAY_LIMIT,Number.isInteger(data.playsToday)?data.playsToday!:completed?1:0)):0,usedQuestionIds:Array.isArray(data.usedQuestionIds)?data.usedQuestionIds.filter(id=>typeof id==='string'&&!!questionById(id)).slice(0,15):ids,active};
   if(completed&&playTime&&!result.nextUnlockAt)result={...result,nextUnlockAt:nextCalendarTime(new Date(completed),playTime).toISOString()};
   if(oldActive&&active&&Object.values(active.answers).some(answer=>answer.trim())&&remainingDailyPlays(result,now)>0){result=countActive(result,now);result={...result,active:{...result.active!,submittedIds:active.ids.filter(id=>active!.answers[id]?.trim())}};}
   return result;
@@ -80,9 +81,9 @@ export function questionsForDay(day:string,band:AgeBand,exclude:string[]=[],cate
 }
 export function activeQuestions(game:DailyGame,band:AgeBand):Question[] {
   if(!game.active)return dailyQuestions;
-  const pool=eligibleQuestions(band);return game.active.ids.map(id=>pool.find(q=>q.id===id)).filter((q):q is Question=>!!q);
+  const pool=allQuestions.filter(q=>q.min_age<=Number(band.split('-')[0]));return game.active.ids.map(id=>pool.find(q=>q.id===id)).filter((q):q is Question=>!!q);
 }
-export function completedQuestions(game:DailyGame):Question[] { return game.lastQuestionIds.map(id=>questionBank.find(q=>q.id===id)).filter((q):q is Question=>!!q); }
+export function completedQuestions(game:DailyGame):Question[] { return game.lastQuestionIds.map(id=>questionById(id)).filter((q):q is Question=>!!q); }
 export function beginDaily(game:DailyGame,band:AgeBand,now=new Date(),categoryId?:string,countryId?:CountryId):DailyGame {
   game=readDaily(game,false,now);
   if(dailyStatus(game,now).kind!=='ready')throw new Error('Your next round is not open yet.');
@@ -96,6 +97,7 @@ export function beginDaily(game:DailyGame,band:AgeBand,now=new Date(),categoryId
 }
 export function answerDaily(game:DailyGame,id:string,answer:string,now=new Date()):DailyGame {
   if(dailyStatus(game,now).kind!=='ready'||!game.active||!game.active.ids.includes(id))throw new Error('Start your daily round first.');
+  const q=questionById(id);if(q&&!validQuestionChoice(q,answer))throw new Error('Pick one of the six choices.');
   return {...game,active:{...game.active,answers:{...game.active.answers,[id]:answer.slice(0,40)}}};
 }
 function countActive(game:DailyGame,now:Date):DailyGame{

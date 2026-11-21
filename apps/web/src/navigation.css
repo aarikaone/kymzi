@@ -39,3 +39,7 @@
 @media(hover:hover){.nav-tab:hover{color:#D0DEC3}.nav-tab:hover>.nav-tab-icon{transform:translateY(-2px)}.nav-task-tab:hover>.nav-camera-orb{transform:translateY(-3px)}}
 @container rymzi-app (max-width:350px){.floating-nav{margin-left:8px;margin-right:8px}.nav-selection:before{left:5px;right:5px}.nav-camera-orb,.nav-camera-orb>svg:first-child{width:68px;height:68px}.nav-camera-orb{flex-basis:72px}.nav-camera-orb>.nav-camera-icon{left:22px;top:20px}.nav-camera-count{top:49px;right:-1px}.header-root-actions{gap:7px}.creative-app-header .home-mode-badge{padding:3px 5px}}
 @media(prefers-reduced-motion:reduce){.floating-nav *{transition:none!important;animation:none!important}.nav-tab:active{transform:none}}
+
+/* A 44px control with 16px breathing room above and below. */
+.app-shell:not(.welcome-theme)>.app-header.creative-app-header{height:76px;min-height:76px;flex:0 0 76px;padding:16px 24px;box-sizing:border-box}
+@media(max-width:760px){.app-shell:not(.welcome-theme)>.app-header.creative-app-header{height:calc(76px + env(safe-area-inset-top,0px));min-height:calc(76px + env(safe-area-inset-top,0px));flex-basis:calc(76px + env(safe-area-inset-top,0px));padding-top:calc(16px + env(safe-area-inset-top,0px));padding-bottom:16px}}

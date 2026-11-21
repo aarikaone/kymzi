@@ -82,7 +82,7 @@ test('a stale Android application identifier is rejected before compiling an inc
 });
 
 test('native development commands use the selected build tools and forward device arguments without release credentials',async t=>{
- const root=fixture(t),calls=[];await launchNative('ios',['--device','Test iPhone'],{root,env:{},check:(_r,options)=>{assert.equal(options.simulator,true);return {issues:[],notes:[],env:{DEVELOPER_DIR:'/Selected/Xcode/Contents/Developer'}};},run:async(step,settings)=>{calls.push(step);assert.equal(settings.env.DEVELOPER_DIR,'/Selected/Xcode/Contents/Developer');}});assert.deepEqual(calls[0].args.slice(-3),['run:ios','--device','Test iPhone']);assert.equal(calls[0].cwd,path.join(root,'apps/mobile'));
+ const root=fixture(t),calls=[];await launchNative('ios',['--device','Test iPhone'],{root,env:{},check:(_r,options)=>{assert.equal(options.simulator,true);return {issues:[],notes:[],env:{DEVELOPER_DIR:'/Selected/Xcode/Contents/Developer'}};},run:async(step,settings)=>{calls.push(step);assert.equal(settings.env.DEVELOPER_DIR,'/Selected/Xcode/Contents/Developer');assert.equal(settings.interactive,true);}});assert.deepEqual(calls[0].args.slice(-3),['run:ios','--device','Test iPhone']);assert.equal(calls[0].cwd,path.join(root,'apps/mobile'));
 });
 
 test('Node runtime selection accepts supported engines and prefers installed Node 24 over 22 or newer majors',()=>{
@@ -167,4 +167,10 @@ test('iOS Release and help do not enable development-only core settings or refre
  for(const args of [['--configuration','Release'],['--help']]){
   let calls=0;await launchNative('ios',args,{root,env:{},check:ready,run:async(step,settings)=>{calls++;assert.equal(step.name,'Run native ios');assert.equal(settings.env.RCT_USE_PREBUILT_RNCORE,undefined);}});assert.equal(calls,1);
  }
+});
+
+test('interactive requests retain output capture when a log or quiet result is required',async t=>{
+ const root=fixture(t),logFile=path.join(root,'interactive-compiler.log');
+ const result=await runCommand({name:'Logged output',command:process.execPath,args:['-e',"console.log('captured release output')"],cwd:root},{env:process.env,logFile,quiet:true,interactive:true});
+ assert.match(result,/captured release output/);assert.match(fs.readFileSync(logFile,'utf8'),/captured release output/);
 });

@@ -1,5 +1,6 @@
+import {NativeImage as Image} from './NativeImage';
 import React,{useRef} from 'react';
-import {Image,KeyboardAvoidingView,Platform,Pressable,ScrollView,StyleSheet,Text,TextInput,View} from 'react-native';
+import {KeyboardAvoidingView,Platform,Pressable,ScrollView,StyleSheet,Text,TextInput,View} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Ionicons} from '@expo/vector-icons';
 import Svg,{Circle} from 'react-native-svg';
@@ -18,7 +19,7 @@ function time(at:string){const date=new Date(at);return Number.isFinite(date.get
 function day(at:string){const date=new Date(at);if(!Number.isFinite(date.getTime()))return '';return date.toDateString()===new Date().toDateString()?'Today':new Intl.DateTimeFormat('en',{month:'short',day:'numeric'}).format(date);}
 export function NativeChatRoom({alias,avatar,yourAvatar,city,mode,messages,draft,onDraft,onSend,logLabel,inputLabel,sendLabel,status,remaining,previewLabel,busy=false,error,context,onCheckout}:Props){
  const log=useRef<ScrollView>(null),input=useRef<TextInput>(null),insets=useSafeAreaInsets();
- const ideas=mode==='meetup'?['Hey, pal 👋','See you at the entrance?','Coffee nearby?']:['Hey, pal 👋','Your city’s hidden gem?','What should I try first?'];
+ const ideas=mode==='meetup'?['Hey, roamie 👋','See you at the entrance?','Coffee nearby?']:['Hey, roamie 👋','Your city’s hidden gem?','What should I try first?'];
  return <KeyboardAvoidingView behavior={Platform.OS==='ios'?'padding':undefined} keyboardVerticalOffset={95} style={[S.room,{paddingBottom:Math.max(10,insets.bottom)}]}>
   <View style={S.header}>
    <View style={S.avatar}><Image source={avatarImages[avatar]} accessibilityLabel={`${alias}’s chosen character`} style={S.avatarImage}/><View style={S.avatarBadge}><Ionicons name="sparkles-outline" size={11} color="#211C2B"/></View></View>

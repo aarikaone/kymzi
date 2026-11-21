@@ -1,0 +1,13 @@
+button.profile-clear-data{display:flex;align-items:center;gap:13px;width:100%;min-height:60px;border:0;border-bottom:1px solid #3e5140;background:transparent;padding:12px 0;font:inherit;font-size:17px;text-align:left;color:#e9b3ae}
+button.profile-clear-data>span{flex:1;color:#e9b3ae}
+button.profile-clear-data>svg{color:#e9b3ae;flex-shrink:0}
+.clear-data-dialog{width:min(350px,calc(100% - 32px));box-sizing:border-box;padding:25px;border:1px solid #4b5547;border-radius:26px;background:#151b16;color:#f1f5eb;margin:auto}
+.clear-data-dialog::backdrop{background:#000b}
+.clear-data-dialog h2{font:inherit;font-size:27px;line-height:33px;font-weight:600;letter-spacing:-.7px;margin:0 0 13px}
+.clear-data-dialog p{font-size:15px;line-height:23px;color:#b1bca8;margin:0 0 24px}
+.clear-data-dialog>button{width:100%;min-height:52px;padding:13px;border:0;border-radius:16px;font:inherit;font-size:17px;font-weight:600}
+.clear-data-cancel{background:#d5f88f;color:#172116}
+.clear-data-confirm{background:transparent;color:#e9b3ae;margin-top:8px}
+.clear-data-dialog>button:disabled{opacity:.5}
+.clear-data-dialog .clear-data-error{color:#ffc7ad}
+button.profile-clear-data:focus-visible,.clear-data-dialog>button:focus-visible{outline:2px solid #c8beff;outline-offset:3px}

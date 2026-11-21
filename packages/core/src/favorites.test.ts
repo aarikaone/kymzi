@@ -10,6 +10,6 @@ test('existing photo saves become favorites, persist across weekly photo rotatio
 test('own camera favorites retain their real city, respect cohort privacy, and disappear when the source is removed',()=>{
  let s=seed();s=addHomeMoment(s,{captureId:'home-fav-1',image:JPEG,capturedAt:NOW.toISOString()},true,NOW);const id=cameraFavoriteId(s,'home-fav-1'),before=s;s=togglePhotoFavorite(s,id,NOW);assert.equal(favoritePhotos(s,NOW)[0].city,'Bengaluru');assert.equal(favoritePhotos(s,NOW)[0].image,JPEG);assert.deepEqual(s.launch,before.launch);assert.equal(photoMonthProgress(s,NOW).count,1);const restored=readPreview(JSON.parse(JSON.stringify(s)),NOW);assert.equal(favoritePhotos(restored,NOW).length,1);assert.equal(favoritePhotos({...restored,profile:{...restored.profile!,ageBand:'16-17'}},NOW).length,0);assert.equal(favoritePhotos(removeLaunchMoment(restored,'home-fav-1'),NOW).length,0);assert.throws(()=>togglePhotoFavorite(s,'unknown',NOW));
 });
-test('hidden moments, blocked pals and child profiles cannot be exposed by the favorites collection',()=>{
+test('hidden moments, blocked roamies and child profiles cannot be exposed by the favorites collection',()=>{
  let s=seed();const photo=cityPhotoFeed(s,undefined,NOW)[0];s=togglePhotoFavorite(s,photo.id,NOW);assert.equal(favoritePhotos({...s,photos:hideCityPhoto(s,photo.id)},NOW).length,0);assert.equal(favoritePhotos({...s,blocked:palSummaries(s).map(p=>p.id)},NOW).length,0);assert.equal(favoritePhotos({...s,profile:{...s.profile!,ageBand:'10-12'}},NOW).length,0);
 });

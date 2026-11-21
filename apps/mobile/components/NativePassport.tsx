@@ -1,8 +1,9 @@
+import {NativeImage as Image} from './NativeImage';
 import {avatarImages as avatars} from './avatarAssets';
 import {NIGHT_THEME} from './theme';
 import {worldStats} from '@rymzi/core';
 import React,{useEffect,useRef,useState} from 'react';
-import {AccessibilityInfo,Animated,Image,Pressable,ScrollView,Text,View,useWindowDimensions,type ViewStyle,type ImageStyle} from 'react-native';
+import {AccessibilityInfo,Animated,Pressable,ScrollView,Text,View,useWindowDimensions,type ViewStyle,type ImageStyle} from 'react-native';
 import Svg,{Defs,RadialGradient,Stop,Ellipse,Path,G} from 'react-native-svg';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {Ionicons} from '@expo/vector-icons';

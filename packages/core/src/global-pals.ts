@@ -34,9 +34,9 @@ export function seedGlobalPals(state:PreviewState,now=new Date(),timeZone=Intl.D
  let proofs=state.social.proofs,seededBands=old.seededBands,changed=false;
  if(!old.seededBands.includes(band)){
   const known=connections(state.social,band,state.blocked),ids=new Set(known.map(p=>p.peer.id)),countries=new Set(known.map(p=>p.peer.country)),avatars=new Set(known.map(p=>p.peer.avatar));
-  const order=['JP','FR','BR',...COUNTRIES.map(c=>c.id)],added:MatchProof[]=[];
+  const order=[...(state.profile.travel?.wishlist??[]).map(w=>w.cityId),'JP','FR','BR',...COUNTRIES.map(c=>c.id)],added:MatchProof[]=[];
   for(const countryId of [...new Set(order)]){
-   if(ids.size>=3)break;const country=COUNTRIES.find(c=>c.id===countryId)!;if(countries.has(country.name))continue;
+   if(ids.size>=3)break;const country=COUNTRIES.find(c=>c.id===countryId)!;if(!country||countries.has(country.name))continue;
    const candidates=demoPeers.filter(p=>p.ageBand===band&&p.country===country.name&&!ids.has(p.id)&&!state.blocked.includes(p.id)),peer=candidates.find(p=>!avatars.has(p.avatar))??candidates[0];if(!peer)continue;
    const questionIds=dailyQuestions.map(q=>q.id);added.push({playId:`global-starter:${band}:${peer.id}`,peerId:peer.id,countryId:country.id,at:now.toISOString(),questionIds,simulated:true,demoAnswers:Object.fromEntries(questionIds.map((id,i)=>[id,['Coffee','Sunset','Adventure'][i]]))});ids.add(peer.id);countries.add(country.name);avatars.add(peer.avatar);
   }
