@@ -4,9 +4,7 @@
 
 .place-stack-panel{display:flex;flex-direction:column;max-height:calc(100dvh - var(--stack-bottom,104px) - 200px)}.place-stack-list{min-height:0;flex-shrink:1}.place-stack-panel>header,.place-stack-panel>small{flex-shrink:0}
 
-/* Dedicated footer row: browse left, selected-place circles right. */
-.city-reel.has-place-stack .city-reel-copy{padding-bottom:max(88px,calc(env(safe-area-inset-bottom,0px) + 80px))}
-.city-reel.has-place-stack .city-reel-paging{left:18px;right:auto}
+/* Feedback overlays its reserved lane above the fixed attraction actions. */
 .city-reel.has-place-stack .city-reel-hint{display:none}
 
 .place-stack-transient{transition:opacity .18s ease,transform .18s ease}.place-stack-transient.is-fading{opacity:0;transform:translateY(8px)}.place-stack-transient.is-fading>*{pointer-events:none}@media(prefers-reduced-motion:reduce){.place-stack-transient{transition:none}}

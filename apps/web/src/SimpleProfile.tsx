@@ -34,6 +34,8 @@ export function SimpleProfile({state,onEdit,items,travel,onTravel,roamies,onInvi
       </div>
     </section>}
 
+    {onTravel&&travel&&<div className="profile-travel-lists">{travel}</div>}
+
     <nav className="simple-profile-menu" aria-label="Profile menu">
       {onTravel?<button className="simple-profile-row" onClick={onTravel}><Icon name="globe" size={20}/><span>My travel list</span><Icon name="arrow" size={17}/></button>:travel&&<ProfileDrawer label="My travel list" icon="globe">{travel}</ProfileDrawer>}
       {roamies&&<ProfileDrawer label="Your roamies" icon="people">{roamies}</ProfileDrawer>}

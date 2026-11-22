@@ -5,7 +5,7 @@ import type {PreviewState} from './preview.ts';
 export type CitySelection={cityId:TravelCityId;attractionIds:string[]};
 export type CityArrival={id:string;cityId:TravelCityId;at:string;source:'device'|'demo';wishFulfilled:boolean};
 export type TravelProfile={version:1;visited:CitySelection[];wishlist:CitySelection[];arrivals:CityArrival[];memories?:VisitedPhoto[];wishFulfillments?:WishFulfillment[];completedAt?:string};
-export type SharedTravel={visited:TravelCityId[];wishlist:TravelCityId[];fulfilled:{cityId:TravelCityId;source:'device'|'demo';at:string}[]};
+export type SharedTravel={visitedPlaces?:CitySelection[];visited:TravelCityId[];wishlist:TravelCityId[];wishlistPlaces?:CitySelection[];fulfilled:{cityId:TravelCityId;source:'device'|'demo';at:string}[]};
 export type CityEvidence={source:'device'|'demo';latitude:number;longitude:number;observedAt:number;accuracy:number};
 export const emptyTravel=():TravelProfile=>({version:1,visited:[],wishlist:[],arrivals:[]});
 export function cleanCitySelection(value:unknown):CitySelection|undefined {
@@ -32,12 +32,18 @@ export function setTravelCity(travel:TravelProfile,kind:'visited'|'wishlist',sel
  return readTravelProfile({...travel,[kind]:items.some(c=>c.cityId===city.cityId)?items.map(c=>c.cityId===city.cityId?city:c):[...items,city]});
 }
 export function removeTravelCity(travel:TravelProfile,kind:'visited'|'wishlist',id:TravelCityId):TravelProfile{return readTravelProfile({...travel,[kind]:travel[kind].filter(c=>c.cityId!==id)});}
+// Keep shared attraction picks compact enough for both people in a postcard URL.
+function sharedWishPlaces(value:unknown,cities:TravelCityId[]):CitySelection[]{
+ let remaining=6;return selections(value,26).filter(c=>cities.includes(c.cityId)).map(c=>{const attractionIds=c.attractionIds.slice(0,remaining);remaining-=attractionIds.length;return {...c,attractionIds};}).filter(c=>c.attractionIds.length);
+}
 export function sharedTravel(value:unknown):SharedTravel|undefined {
- if(!value)return;const s=readTravelProfile(value);return {visited:s.visited.map(c=>c.cityId).slice(0,26),wishlist:s.wishlist.map(c=>c.cityId).slice(0,26),fulfilled:s.arrivals.filter(a=>a.wishFulfilled).map(a=>({cityId:a.cityId,source:a.source,at:a.at})).slice(-3)};
+ if(!value)return;const s=readTravelProfile(value),wishlistPlaces=sharedWishPlaces(s.wishlist,s.wishlist.map(c=>c.cityId).slice(0,26)),summary={...(wishlistPlaces.length?{wishlistPlaces}:{}),visited:s.visited.map(c=>c.cityId).slice(0,26),wishlist:s.wishlist.map(c=>c.cityId).slice(0,26),fulfilled:s.arrivals.filter(a=>a.wishFulfilled).map(a=>({cityId:a.cityId,source:a.source,at:a.at})).slice(-3)},visitedPlaces=sharedWishPlaces(s.visited,summary.visited);
+ // Keep exact visited picks when they fit; older and large city-only cards remain valid.
+ return visitedPlaces.length&&JSON.stringify({...summary,visitedPlaces}).length<=1500?{...summary,visitedPlaces}:summary;
 }
 export function readSharedTravel(value:unknown):SharedTravel|undefined {
  if(!value||typeof value!=='object')return;const p=value as Partial<SharedTravel>,ids=(v:unknown,max:number)=>[...new Set((Array.isArray(v)?v:[]).filter((id):id is TravelCityId=>!!travelCityById(id)))].slice(0,max);
- const visited=ids(p.visited,26),wishlist=ids(p.wishlist,26),fulfilled=(Array.isArray(p.fulfilled)?p.fulfilled:[]).filter(a=>a&&visited.includes(a.cityId)&&['device','demo'].includes(a.source)&&Number.isFinite(Date.parse(a.at))).slice(-3).map(a=>({cityId:a.cityId,source:a.source,at:a.at}));return {visited,wishlist,fulfilled};
+ const visited=ids(p.visited,26),wishlist=ids(p.wishlist,26),fulfilled=(Array.isArray(p.fulfilled)?p.fulfilled:[]).filter(a=>a&&visited.includes(a.cityId)&&['device','demo'].includes(a.source)&&Number.isFinite(Date.parse(a.at))).slice(-3).map(a=>({cityId:a.cityId,source:a.source,at:a.at}));const wishlistPlaces=sharedWishPlaces(p.wishlistPlaces,wishlist),visitedPlaces=sharedWishPlaces(p.visitedPlaces,visited);return {...(wishlistPlaces.length?{wishlistPlaces}:{}),...(visitedPlaces.length?{visitedPlaces}:{}),visited,wishlist,fulfilled};
 }
 export function recordCityArrival(state:PreviewState,id:TravelCityId,evidence:CityEvidence,now=new Date()):PreviewState {
  const city=travelCityById(id);if(!state.profile||!city||!['device','demo'].includes(evidence.source))throw new Error('Choose a city to check in.');

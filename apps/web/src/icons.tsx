@@ -2,6 +2,8 @@ import {publicCdnImage} from '@rymzi/core';
 import type { CSSProperties } from 'react';
 export function Icon({name,size=22,className='',style}:{name:string;size?:number;className?:string;style?:CSSProperties}){
  const paths:Record<string,React.ReactNode>={
+  edit:<><path d="m15 4 5 5M4 20l5-1L21 7a2 2 0 0 0-4-4L5 15l-1 5Z"/></>,
+  replay:<path d="M3 11a9 9 0 1 1 2.7 6.4M3 4v7h7"/>,
   heart:<path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z"/>,
   grid:<><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></>,
   layers:<><rect x="6" y="3" width="12" height="15" rx="2"/><path d="M3 7v13a1 1 0 0 0 1 1h11M10 7h4M10 11h4"/></>,

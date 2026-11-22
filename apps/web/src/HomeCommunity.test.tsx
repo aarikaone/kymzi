@@ -11,9 +11,9 @@ function route(path:string){window.history.pushState(null,'','#'+path);fireEvent
 async function checkIn(user:ReturnType<typeof userEvent.setup>){await user.click(screen.getByRole('button',{name:'Choose Sensō-ji'}));expect(screen.getByRole('heading',{name:'You’re at this spot?'})).toBeTruthy();await user.click(screen.getByRole('button',{name:'I’m here'}));}
 beforeEach(()=>{vi.useFakeTimers({toFake:['Date']});vi.setSystemTime(NOW);});
 afterEach(()=>{vi.useRealTimers();vi.restoreAllMocks();});
-it('opens hidden gem sharing without spending a game',async()=>{seed();const u=userEvent.setup();render(<App/>);await u.click(screen.getByRole('button',{name:'Task'}));expect(screen.getByRole('button',{name:'My gems'})).toBeTruthy();await u.click(screen.getByRole('button',{name:'Share a hidden gem'}));expect(screen.getByRole('heading',{name:'Where do locals go?'})).toBeTruthy();expect(data().daily.playsToday).toBe(1);});
+it('opens hidden gem sharing without spending a game',async()=>{seed();window.history.replaceState(null,'','/#/camera');const u=userEvent.setup();render(<App/>);expect(screen.getByRole('heading',{name:'Where do locals go?'})).toBeTruthy();expect(data().daily.playsToday).toBe(1);});
 
-it('keeps the gem collection when the month changes',async()=>{let s=seed();for(let i=0;i<15;i++)s=publishMapsPlace(s,{maps:parseMapsPlaceLink(`https://maps.apple.com/?q=Park${i}&auid=${i}`),id:'task-'+i,name:'Public place '+i,categoryId:'park',location:{city:'Tokyo',country:'Japan',source:'manual'}},NOW);save(s);route('/tasks');const view=render(<App/>);expect(document.querySelectorAll('.gem-grid>button')).toHaveLength(15);view.unmount();vi.setSystemTime(new Date('2026-12-01T12:00:00Z'));render(<App/>);expect(document.querySelectorAll('.gem-grid>button')).toHaveLength(15);});
+it('keeps the gem collection when the month changes',async()=>{let s=seed();for(let i=0;i<15;i++)s=publishMapsPlace(s,{maps:parseMapsPlaceLink(`https://maps.apple.com/?q=Park${i}&auid=${i}`),id:'task-'+i,name:'Public place '+i,categoryId:'park',location:{city:'Tokyo',country:'Japan',source:'manual'}},NOW);save(s);route('/my-gems');const view=render(<App/>);expect(document.querySelectorAll('.gem-grid>button')).toHaveLength(15);view.unmount();vi.setSystemTime(new Date('2026-12-01T12:00:00Z'));render(<App/>);expect(document.querySelectorAll('.gem-grid>button')).toHaveLength(15);});
 
 it('opens a roamie place notification and persists its read state',async()=>{seed('16-17');const u=userEvent.setup(),v=render(<App/>);await u.click(screen.getByRole('button',{name:/Roamie updates/}));await u.click(screen.getByRole('button',{name:'Open update: New places in Tokyo.'}));expect(window.location.hash).toMatch(/journal/);expect(screen.getByRole('heading',{name:'Sensō-ji'})).toBeTruthy();expect(data().palInbox.readIds.length).toBe(1);v.unmount();render(<App/>);expect(screen.getByRole('heading',{name:'Sensō-ji'})).toBeTruthy();expect(data().daily.playsToday).toBe(1);});
 it('opens a voluntarily shared roamie visit in the city board without checking you in',async()=>{seed();const user=userEvent.setup();render(<App/>);await user.click(screen.getByRole('button',{name:/Roamie updates/}));await user.click(screen.getByRole('button',{name:'Visits'}));await user.click(screen.getByRole('button',{name:'Open update: Roamie 01 shared a visit.'}));expect(screen.getByRole('heading',{name:'Tokyo.'})).toBeTruthy();await user.click(screen.getByRole('button',{name:'Coming'}));expect(screen.getByText('Roamie 01')).toBeTruthy();expect(data().visits.visits).toHaveLength(0);expect(screen.queryByText('SecretName')).toBeNull();});
@@ -24,7 +24,7 @@ it('children keep monthly progress in Task and have no roamie update badge or in
 
 it('keeps one updates bell in the top bar across root tabs and returns to the originating tab',async()=>{
  seed();const user=userEvent.setup();render(<App/>);
- for(const label of ['Home','Roamies','Task','Places']){
+ for(const label of ['Home','Roamies','Places','Postcard']){
   await user.click(screen.getByRole('button',{name:label}));
   const bells=screen.getAllByRole('button',{name:/Roamie updates/});
   expect(bells).toHaveLength(1);

@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {addVisitedPhoto,removeVisitedPhoto,visitedPhotoAlbums,emptyTravel,setTravelCity,removeTravelCity,readTravelProfile,sharedTravel,emptyPreview,readPreview,travelPreview,type TravelProfile} from './index.ts';
+import {addVisitedPhoto,MAX_VISITED_PHOTOS,removeVisitedPhoto,visitedPhotoAlbums,emptyTravel,setTravelCity,removeTravelCity,readTravelProfile,sharedTravel,emptyPreview,readPreview,travelPreview,type TravelProfile} from './index.ts';
 import {VISITED_JPEGS as images} from './visited-photo-fixture.ts';
 const now=new Date('2026-11-22T05:00:00Z');
 const visited=()=>setTravelCity(travelPreview([],['JP','FR','IT'],now),'visited',{cityId:'GB',attractionIds:['gb-1','gb-2']});
@@ -26,8 +26,8 @@ test('uploads reject missing visits, unselected attractions, duplicate images an
 test('restoration strips photo metadata, validates place ownership, deduplicates and caps the device album',()=>{
  const pixel=Buffer.from(images[0].split(',')[1],'base64'),tag=Buffer.from('GPS private original filename'),segment=Buffer.concat([Buffer.from([255,225,0,tag.length+2]),tag]),image='data:image/jpeg;base64,'+Buffer.concat([pixel.subarray(0,2),segment,pixel.subarray(2)]).toString('base64');
  const entry={id:'memory-test',cityId:'GB',placeId:'gb-1',image,addedAt:now.toISOString()};const t=readTravelProfile({...visited(),memories:[entry,{...entry,id:'memory-invalid',cityId:'JP'},{...entry,id:'memory-wrongplace',placeId:'fr-1'},{...entry,id:'memory-duplicate'},{...entry,id:'bad-id'}]});assert.equal(t.memories!.length,1);assert.equal(t.memories![0].image,images[0]);
- const capped={...visited(),memories:Array.from({length:12},(_,i)=>({...entry,id:`memory-${i}`,image:images[i%4]}))} as TravelProfile;
+ const capped={...visited(),memories:Array.from({length:MAX_VISITED_PHOTOS},(_,i)=>({...entry,id:`memory-${i}`,image:images[i%4]}))} as TravelProfile;
  // Valid distinct pixel streams with harmless JFIF density changes.
  capped.memories=capped.memories!.map((p,i)=>{const bytes=Buffer.from(p.image.split(',')[1],'base64');bytes[13]=i+1;return {...p,image:'data:image/jpeg;base64,'+bytes.toString('base64')};});
- assert.equal(readTravelProfile(capped).memories!.length,12);assert.throws(()=>addVisitedPhoto(capped,'GB',images[3]),/full/);
+ assert.equal(readTravelProfile(capped).memories!.length,MAX_VISITED_PHOTOS);assert.throws(()=>addVisitedPhoto(capped,'GB',images[3]),/full/);
 });

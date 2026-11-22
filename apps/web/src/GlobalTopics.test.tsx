@@ -2,14 +2,14 @@ import {chooseTravelAnswer} from './test-choice-helpers';
 import {beforeEach,afterEach,it,expect,vi} from 'vitest';
 import {render,screen} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import {emptyPreview,emptyLaunch,simulatePalUnlock,travelQuestionBank,type PreviewState} from '@rymzi/core';
-import App from './App';
+import {emptyPreview,emptyLaunch,simulatePalUnlock,seedGlobalPals,travelQuestionBank,type PreviewState} from '@rymzi/core';
+import {LegacyPreview as App} from './App';
 const NOW=new Date('2026-11-19T05:00:00Z'),KEY='rymzi.preview.v1';
-function seed(unlocked=true){const base={...emptyPreview(NOW),profile:{name:'123456',avatar:'cloud' as const,ageBand:'16-17' as const,city:'Chennai',country:'India'},launch:emptyLaunch(NOW)},s=unlocked?simulatePalUnlock(base,NOW):base;localStorage.setItem(KEY,JSON.stringify(s));window.history.replaceState(null,'','/#/home');return s;}
+function seed(unlocked=true){const base={...emptyPreview(NOW),profile:{name:'123456',avatar:'cloud' as const,ageBand:'16-17' as const,city:'Chennai',country:'India'},launch:emptyLaunch(NOW)},s=unlocked?seedGlobalPals(simulatePalUnlock(base,NOW),NOW):base;localStorage.setItem(KEY,JSON.stringify(s));window.history.replaceState(null,'','/#/home');return s;}
 function saved(){return JSON.parse(localStorage.getItem(KEY)!) as PreviewState;}
 beforeEach(()=>{vi.useFakeTimers({toFake:['Date']});vi.setSystemTime(NOW);});
 afterEach(()=>{vi.useRealTimers();vi.restoreAllMocks();});
-it('Home Play opens all six topics and the selected topic completes the global roamie flow',async()=>{
+it('the historical topic flow still opens all six topics and the selected topic completes the global roamie flow',async()=>{
  seed();const u=userEvent.setup();render(<App/>);await u.click(screen.getByRole('button',{name:'Find my roamie'}));await confirmUnlock(u);expect(screen.getByRole('heading',{name:'Pick your day.'})).toBeTruthy();for(const name of ['Little stops','Outside days','Wander freely','Slow moments','City stories','Afterglow'])expect(screen.getByRole('button',{name:`Choose ${name}`}).querySelector('img')).toBeTruthy();expect(saved().daily.active).toBeNull();expect(saved().daily.playsToday).toBe(0);
  await u.click(screen.getByRole('button',{name:'Choose Afterglow'}));expect(screen.getByRole('radiogroup',{name:'Your answer'})).toBeTruthy();expect(saved().daily.active!.categoryId).toBe('future-you');const ids=new Set(travelQuestionBank.filter(q=>q.topicId==='future-you').map(q=>q.id));expect(saved().daily.active!.ids.every(id=>ids.has(id))).toBe(true);expect(saved().daily.playsToday).toBe(0);
  for(let i=0;i<3;i++){await chooseTravelAnswer(u,`Anything ${i}`);await u.click(screen.getByRole('button',{name:i===2?'Find my roamie':'Next'}));}expect(screen.getByRole('heading',{name:'You found a roamie.'})).toBeTruthy();expect(saved().daily.playsToday).toBe(1);expect(saved().social.proofs).toHaveLength(4);

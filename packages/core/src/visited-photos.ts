@@ -2,7 +2,7 @@ import {cleanCityJpeg} from './photos.ts';
 import {travelCityById,type TravelCityId} from './world-catalogue.ts';
 import type {CitySelection,TravelProfile} from './travel-profile.ts';
 
-export const MAX_VISITED_PHOTOS=12;
+export const MAX_VISITED_PHOTOS=60;
 export type VisitedPhoto={id:string;cityId:TravelCityId;placeId?:string;image:string;addedAt:string};
 export type VisitedAlbum={id:string;cityId:TravelCityId;placeId?:string;photos:VisitedPhoto[]};
 const imageCache=new Map<string,string>();

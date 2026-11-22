@@ -20,7 +20,7 @@ it('connects arbitrary answers to an unknown roamie, their moments, places, visi
  }
  expect(screen.getByRole('heading',{name:'You found a roamie.'})).toBeTruthy();
  await user.click(screen.getByRole('button',{name:'Meet my roamie'}));
- expect(screen.getByRole('heading',{name:'Roamie 01'})).toBeTruthy();await user.click(screen.getAllByRole('button',{name:'Open Roamie 01’s place in Tokyo'})[0]);expect(screen.getByText('Illustrated preview')).toBeTruthy();
+ expect(screen.getByRole('heading',{name:'Roamie 01'})).toBeTruthy();await user.click(screen.getByRole('tab',{name:/^Hidden gems/}));await user.click(screen.getByText('Our place swap'));await user.click((await screen.findAllByRole('button',{name:'Open Roamie 01’s place in Tokyo'}))[0]);expect(screen.getByText('Illustrated preview')).toBeTruthy();
  expect(screen.queryByText('PrivateNova')).toBeNull();expect(screen.queryByRole('button',{name:/Chat|Reveal.*photo/})).toBeNull();
  expect(screen.getByRole('button',{name:'Plan visit to Tokyo'})).toBeTruthy();
  await user.click(screen.getByRole('button',{name:'Explore their city'}));
@@ -50,7 +50,7 @@ it('returns connected users to roamie moments while keeping their own camera col
  s={...s,photos:addCameraMoment(s,{captureId:'my-own-lens',countryId:'JP',image:CAMERA_IMAGE,capturedAt:NOW.toISOString()},true,NOW)};save(s);
  const user=userEvent.setup();render(<App/>);
  expect(screen.getByRole('button',{name:'Home'}).getAttribute('aria-current')).toBe('page');
- expect(screen.getAllByRole('article')).toHaveLength(1);expect(screen.getAllByRole('article')[0].getAttribute('aria-label')).toContain('Roamie 01');
+ expect(document.querySelectorAll('.feed-gem,.feed-checkin')).toHaveLength(1);expect(screen.getAllByRole('article')[0].getAttribute('aria-label')).toContain('Roamie 01');
  expect(screen.queryByRole('button',{name:'Next photo'})).toBeNull();expect(screen.queryByRole('button',{name:'Delete my photo'})).toBeNull();
 
 

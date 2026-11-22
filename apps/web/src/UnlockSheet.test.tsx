@@ -2,7 +2,7 @@ import {beforeEach,afterEach,it,expect,vi} from 'vitest';
 import {render,screen,within} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import {emptyPreview,emptyLaunch,simulatePalUnlock,seedGlobalPals,beginDaily,answerDaily,type PreviewState} from '@rymzi/core';
-import App from './App';
+import {LegacyPreview as App} from './App';
 import {UnlockSheet} from './UnlockSheet';
 const NOW=new Date('2026-11-20T06:00:00Z'),KEY='rymzi.preview.v1';
 function seed(){const s=seedGlobalPals(simulatePalUnlock({...emptyPreview(NOW),profile:{name:'123456',avatar:'cloud',ageBand:'25-30',city:'Bengaluru',country:'India'},launch:emptyLaunch(NOW)},NOW),NOW);localStorage.setItem(KEY,JSON.stringify(s));window.history.replaceState(null,'','/#/home');return s;}

@@ -1,10 +1,11 @@
+import {readPlacePostcards,type PlacePostcard} from './place-postcards.ts';
 import {readSharedTravel,sharedTravel,type SharedTravel} from './travel-profile.ts';
-import {questionById,questionChoices,dayCardPicks,TRAVEL_INVITE_SETS,validQuestionChoice} from './question-library.ts';
+import {questionById,questionChoices,dayCardPicks,TRAVEL_INVITE_SETS,validQuestionChoice,isPostcardQuestionSet} from './question-library.ts';
 import {readGlobalPals,type GlobalPalsPreview} from './global-pals.ts';
 import {AVATARS,normalizeAnswer,questionBank,demoPeers} from './index.ts';
 import {beginDaily,completeDaily,dailyStatus,hasDailyProgress,localDay,scheduleDaily,type DailyGame} from './daily.ts';
 import {availableCategories,type PlayCategoryId} from './categories.ts';
-import {travelCityForPlace} from './world-catalogue.ts';
+import {travelCityForPlace,travelCityById,type TravelCityId} from './world-catalogue.ts';
 import {COUNTRIES,countryById,type CountryId} from './countries.ts';
 import {attractionById} from './attractions.ts';
 import {cleanCityJpeg,cityPhotoMonth,removeCityPhoto} from './photos.ts';
@@ -18,13 +19,13 @@ export const LAUNCH_SETS=[['K0001','K0002','K0003'],['K0101','K0102','K0103'],['
 export const LAUNCH_GUIDES:CountryId[]=['JP','FR','BR','KR','IT'];
 const TTL=7*86400000,HEX=/^[a-f0-9]{32}$/,HASH=/^[a-f0-9]{64}$/;
 type Person={name:string;avatar:AvatarId;city?:string;country?:string;travel?:SharedTravel};
-export type FriendInvite={version:1;id:string;createdAt:string;person:Person;ids:string[];hashes:string[]};
-export type FriendReply={version:1;invite:FriendInvite;id:string;completedAt:string;person:Person;hashes:string[]};
+export type FriendInvite={kind?:'bottle';version:1;id:string;createdAt:string;person:Person;ids:string[];hashes:string[]};
+export type FriendReply={playCityId?:TravelCityId;version:1;invite:FriendInvite;id:string;completedAt:string;person:Person;hashes:string[]};
 export type LaunchTicket={id:string;createdAt:string;ids:string[];answers:string[]};
 export type InvitePreparation={ids:string[];answers:string[];submitted:number;startedAt:string};
 export type HomeMoment={captureId:string;image:string;capturedAt:string;city:string;country:string;ageBand:AgeBand};
 type HomeCredit={captureId:string;capturedAt:string;ageBand:AgeBand};
-export type LaunchState={version:1;startedAt:string;tickets:LaunchTicket[];invites:FriendInvite[];postcards:FriendReply[];friendCredits:FriendReply[];preparation:InvitePreparation|null;homePhotos:HomeMoment[];homeCredits:HomeCredit[];guides:CountryId[];places:string[];globalPals?:GlobalPalsPreview;globalPlay?:{activatedAt:string;source:'friends'|'simulation'};unlockPreview?:{originalDaily:DailyGame}};
+export type LaunchState={placePostcards?:PlacePostcard[];version:1;startedAt:string;tickets:LaunchTicket[];invites:FriendInvite[];postcards:FriendReply[];friendCredits:FriendReply[];preparation:InvitePreparation|null;homePhotos:HomeMoment[];homeCredits:HomeCredit[];guides:CountryId[];places:string[];globalPals?:GlobalPalsPreview;globalPlay?:{activatedAt:string;source:'friends'|'simulation'};unlockPreview?:{originalDaily:DailyGame}};
 export type ChallengeCrypto={nonce:()=>string;digest:(value:string)=>Promise<string>};
 export function emptyLaunch(now=new Date()):LaunchState{return {version:1,startedAt:now.toISOString(),tickets:[],invites:[],postcards:[],friendCredits:[],preparation:null,homePhotos:[],homeCredits:[],guides:[],places:[]};}
 export function enableLaunch(state:PreviewState,now=new Date()):PreviewState{
@@ -44,15 +45,15 @@ function person(raw:unknown):Person{
 function hashes(raw:unknown):string[]{if(!Array.isArray(raw)||raw.length!==3||raw.some(h=>typeof h!=='string'||!HASH.test(h)))throw new Error('This challenge could not be opened.');return [...raw];}
 export function readFriendInvite(raw:unknown,now=new Date()):FriendInvite{
  const p=raw as Partial<FriendInvite>|null;
- if(!p||p.version!==1||typeof p.id!=='string'||!HEX.test(p.id)||!validDate(p.createdAt)||Date.parse(p.createdAt)>now.getTime()+300000||now.getTime()-Date.parse(p.createdAt)>TTL||!validSet(p.ids))throw new Error('This challenge has expired or is incomplete. Ask for a new link.');
- return {version:1,id:p.id,createdAt:p.createdAt,person:person(p.person),ids:[...p.ids],hashes:hashes(p.hashes)};
+ if(!p||p.version!==1||typeof p.id!=='string'||!HEX.test(p.id)||!validDate(p.createdAt)||Date.parse(p.createdAt)>now.getTime()+300000||(p.kind!=='bottle'&&now.getTime()-Date.parse(p.createdAt)>TTL)||(p.kind==='bottle'?!isPostcardQuestionSet(p.ids):!validSet(p.ids))||(p.kind!==undefined&&p.kind!=='bottle'))throw new Error('This challenge has expired or is incomplete. Ask for a new link.');
+ return {...(p.kind==='bottle'?{kind:'bottle' as const}:{}),version:1,id:p.id,createdAt:p.createdAt,person:person(p.person),ids:[...p.ids!],hashes:hashes(p.hashes)};
 }
 export function readFriendReply(raw:unknown,now=new Date()):FriendReply{
  const p=raw as Partial<FriendReply>|null;
  if(!p||p.version!==1||typeof p.id!=='string'||!HEX.test(p.id)||!validDate(p.completedAt)||Date.parse(p.completedAt)>now.getTime()+300000)throw new Error('This postcard could not be opened.');
  const invite=readFriendInvite(p.invite,new Date(p.completedAt));
  if(Date.parse(p.completedAt)<Date.parse(invite.createdAt)-300000)throw new Error('This postcard could not be opened.');
- return {version:1,invite,id:p.id,completedAt:p.completedAt,person:person(p.person),hashes:hashes(p.hashes)};
+ return {version:1,invite,id:p.id,completedAt:p.completedAt,person:person(p.person),hashes:hashes(p.hashes),...(travelCityById(p.playCityId)?{playCityId:p.playCityId}:{})};
 }
 const alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
 /** URL data contains answer commitments, never answer text or either real photo. */
@@ -80,6 +81,12 @@ export async function makeFriendInvite(state:PreviewState,crypto:ChallengeCrypto
  const id=crypto.nonce();if(!HEX.test(id))throw new Error('Could not create a challenge. Try again.');
  return readFriendInvite({version:1,id,createdAt:now.toISOString(),person:publicPerson(state.profile),ids:ticket.ids,hashes:await commitments(id,ticket.ids,ticket.answers,crypto)},now);
 }
+/** Long-lived bottle links keep their exact question revision across ten-day loops. */
+export async function makeBottleInvite(state:PreviewState,ticket:LaunchTicket,crypto:ChallengeCrypto,now=new Date()):Promise<FriendInvite>{
+ if(!state.profile||state.profile.ageBand==='10-12'||!isPostcardQuestionSet(ticket.ids,state.profile.ageBand))throw new Error('Choose three travel questions.');
+ const id=crypto.nonce();if(!HEX.test(id))throw new Error('Could not seal your postcard.');
+ return readFriendInvite({kind:'bottle',version:1,id,createdAt:now.toISOString(),person:publicPerson(state.profile),ids:ticket.ids,hashes:await commitments(id,ticket.ids,ticket.answers,crypto)},now);
+}
 /** Preview only the owner's saved answers whose commitments match this exact invite. */
 export async function senderPostcardPicks(state:PreviewState,invite:FriendInvite,crypto:Pick<ChallengeCrypto,'digest'>){
  if(state.profile?.name!==invite.person.name)return [];
@@ -88,9 +95,9 @@ export async function senderPostcardPicks(state:PreviewState,invite:FriendInvite
  return [];
 }
 export function hasInviteAnswers(state:PreviewState){return !!state.launch?.tickets.some(t=>validSet(t.ids));}
-export async function answerFriendInvite(invite:FriendInvite,profile:Profile,answers:string[],crypto:ChallengeCrypto,now=new Date()):Promise<FriendReply>{
+export async function answerFriendInvite(invite:FriendInvite,profile:Profile,answers:string[],crypto:ChallengeCrypto,now=new Date(),playCityId?:TravelCityId):Promise<FriendReply>{
  invite=readFriendInvite(invite,now);if(invite.ids.some((id,i)=>{const q=questionById(id);return q&&!validQuestionChoice(q,answers[i]);}))throw new Error('Pick one of the six choices.');if(profile.ageBand==='10-12')throw new Error('Your city journey stays private.');if(profile.name===invite.person.name)throw new Error('Open this link with a friend to compare your answers.');
- return readFriendReply({version:1,invite,id:crypto.nonce(),completedAt:now.toISOString(),person:publicPerson(profile),hashes:await commitments(invite.id,invite.ids,answers,crypto)},now);
+ return readFriendReply({version:1,invite,id:crypto.nonce(),completedAt:now.toISOString(),playCityId,person:publicPerson(profile),hashes:await commitments(invite.id,invite.ids,answers,crypto)},now);
 }
 export function friendScore(reply:FriendReply){const matched=reply.invite.hashes.map((h,i)=>h===reply.hashes[i]),shared=matched.filter(Boolean).length;return {matched,shared,total:3 as const,percentage:Math.round(shared/3*100),connects:shared/3>=.5};}
 /** Open the sender's illustrated travel day only after two answers match.
@@ -255,6 +262,7 @@ export function readLaunch(raw:unknown,now=new Date()):LaunchState|undefined{
  for(const x of Array.isArray(p.homePhotos)?p.homePhotos.slice(-12):[]){try{const location=readProfileLocation(x);if(!location.city||!location.country||!out.homeCredits.some(c=>c.captureId===x.captureId&&c.ageBand===x.ageBand&&c.capturedAt===x.capturedAt))continue;out.homePhotos.push({captureId:x.captureId,image:cleanCityJpeg(x.image),capturedAt:x.capturedAt,city:location.city,country:location.country,ageBand:x.ageBand});}catch{}}
  out.guides=[...new Set((Array.isArray(p.guides)?p.guides:[]).filter((id):id is CountryId=>!!countryById(id)))].slice(0,COUNTRIES.length);
  out.places=[...new Set((Array.isArray(p.places)?p.places:[]).filter((id):id is string=>typeof id==='string'&&(!!attractionById(id)||!!travelCityForPlace(id))))].slice(0,25000);
+ const placed=readPlacePostcards(p.placePostcards,out.invites);if(placed.length)out.placePostcards=placed;
  return out;
 }
 export function inviteQuestions(invite:FriendInvite){return invite.ids.map(id=>questionById(id)!);}

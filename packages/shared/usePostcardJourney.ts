@@ -1,0 +1,3 @@
+import {useEffect,useState} from 'react';
+import {POSTCARD_JOURNEY} from './postcardBottleArt';
+export function usePostcardJourney(reduced:boolean,release=false){const [stage,setStage]=useState(0),[replayKey,setReplayKey]=useState(0),last=release?2:POSTCARD_JOURNEY.length-1;useEffect(()=>{if(reduced||stage>=last)return;const timer=setTimeout(()=>setStage(s=>Math.min(last,s+1)),release?(stage===0?700:900):POSTCARD_JOURNEY[stage].ms);return()=>clearTimeout(timer);},[stage,replayKey,reduced,release,last]);return {stage,replayKey,replay:()=>{setStage(0);setReplayKey(k=>k+1);},next:()=>setStage(s=>Math.min(last,s+1)),last};}

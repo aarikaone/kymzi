@@ -34,6 +34,8 @@ export function NativeSimpleProfile({state,onEdit,items,travel,onTravel,roamies,
       <View style={S.globalActions}>{circle.canPlay?onFeed&&<Pressable cssInterop={false} accessibilityRole="button" onPress={onFeed} style={S.globalAction}><Text style={S.actionText}>Explore the world</Text><Ionicons name="arrow-forward" size={16} color={C.accent}/></Pressable>:onInvite&&<Pressable cssInterop={false} accessibilityRole="button" onPress={onInvite} style={S.globalAction}><Text style={S.actionText}>{circle.count?'Invite next friend':'Invite an explorer'}</Text><Ionicons name="arrow-forward" size={16} color={C.accent}/></Pressable>}{!circle.canPlay&&circle.count>0&&onFeed&&<Pressable cssInterop={false} accessibilityRole="button" onPress={onFeed} style={S.globalAction}><Text style={S.feedText}>See your feed</Text></Pressable>}</View>
     </View>}
 
+    {onTravel&&travel&&<View>{travel}</View>}
+
     <View accessibilityLabel="Profile menu">
       {onTravel?<Pressable cssInterop={false} accessibilityRole="button" onPress={onTravel} style={({pressed})=>[S.row,pressed&&S.pressed]}><Ionicons name="globe-outline" size={20} color="#A8B89B"/><Text style={S.rowLabel}>My travel list</Text><Ionicons name="arrow-forward" size={17} color="#819077"/></Pressable>:travel&&<ProfileDrawer label="My travel list" icon="globe-outline">{travel}</ProfileDrawer>}
       {roamies&&<ProfileDrawer label="Your roamies" icon="people-outline">{roamies}</ProfileDrawer>}

@@ -121,3 +121,13 @@
 .saved-guide-places{display:grid;gap:24px}
 .saved-guide-city{display:grid;gap:10px}.saved-guide-city>h3{display:flex;justify-content:space-between;align-items:center;font-size:16px;font-weight:600;color:#F1F5EB;margin:0}.saved-guide-city>h3>span{font-size:12px;color:#B1BCA8;font-weight:400}
 .saved-guide-city>div{display:flex;gap:12px;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;padding-bottom:3px}.saved-guide-city article{position:relative;flex:0 0 210px;border-radius:20px;overflow:hidden;border:1px solid #3E5140;background:#151B16}.saved-guide-city article>.world-generated-art{height:138px;width:100%}.saved-guide-city article>span{padding:12px;display:grid;gap:5px}.saved-guide-city strong{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:17px;line-height:22px;font-weight:600}.saved-guide-city small{font-size:12px;line-height:17px;color:#B1BCA8}.saved-guide-city article>button{position:absolute;inset:0;width:100%;height:100%;border:0;background:none}.saved-guide-city .artwork-unavailable{z-index:2}.saved-guide-city article>button:focus-visible{outline:2px solid #D5F88F;outline-offset:-4px}
+
+/* Fixed-size footer: collecting a place never changes story or button positions. */
+.city-reel .city-reel-copy{overflow:hidden}
+.city-reel-story{flex:1;min-height:0;overflow:auto;overscroll-behavior:contain;scrollbar-width:none}
+.city-reel .city-reel-story h2{font-size:30px;line-height:32px;letter-spacing:-.9px;font-weight:600;margin:0 0 9px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.city-reel-story>p{font-size:14px;line-height:19px;color:#c1ccb8;margin:0 0 8px;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
+.city-reel-feedback-slot{height:64px;min-height:64px;flex:0 0 64px;pointer-events:none}
+.city-reel .city-reel-actions{margin-top:0;min-height:56px;box-sizing:border-box;flex:0 0 auto}
+.city-reel .city-reel-actions>.city-reel-primary{min-width:118px;box-sizing:border-box}
+@media(max-height:720px){.city-reel .city-reel-story h2{font-size:27px;line-height:29px}.city-reel-story>p{-webkit-line-clamp:2}}

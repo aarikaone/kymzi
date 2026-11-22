@@ -12,8 +12,9 @@ function seed(path='/home'){
 const stored=()=>JSON.parse(localStorage.getItem(KEY)!) as PreviewState;
 afterEach(()=>vi.restoreAllMocks());
 
-it('opens wishlist editing directly, stages changes, and Cancel returns to Home without saving them',async()=>{
+it('opens wishlist editing directly, stages changes, and Cancel returns to Profile without saving them',async()=>{
  const before=seed(),u=userEvent.setup();render(<App/>);
+ expect(screen.queryByRole('group',{name:'Travel lists'})).toBeNull();await u.click(screen.getByRole('button',{name:'Profile'}));
  await u.click(screen.getByRole('button',{name:'Edit travel wishlist'}));
  expect(screen.getByRole('tab',{name:'Wishlist 6'}).getAttribute('aria-selected')).toBe('true');
  expect(screen.queryByRole('button',{name:'Previous setup step'})).toBeNull();
@@ -24,7 +25,7 @@ it('opens wishlist editing directly, stages changes, and Cancel returns to Home 
  expect(await screen.findByLabelText('4 wishlist places')).toBeTruthy();
  expect(stored().profile).toEqual(before.profile);
  await u.click(screen.getByRole('button',{name:'Cancel'}));
- expect(window.location.hash).toBe('#/home');
+ await waitFor(()=>expect(window.location.hash).toBe('#/profile'));
  expect(await screen.findByRole('button',{name:'Open my Tokyo wish'})).toBeTruthy();
  expect(stored().daily).toEqual(before.daily);
  await u.click(screen.getByRole('button',{name:'Edit travel wishlist'}));

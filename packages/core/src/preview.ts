@@ -1,3 +1,5 @@
+import {readPostcardGuide,type PostcardGuide} from './postcard-guide.ts';
+import {readPostcardDiscovery,type PostcardDiscovery} from './postcard-discovery.ts';
 import {readTravelProfile} from './travel-profile.ts';
 import {emptyPlaceJournal,readPlaceJournal,type PlaceJournal} from './place-checkins.ts';
 import {readCityMeetup,type CityMeetupState} from './city-meetups.ts';
@@ -12,7 +14,7 @@ import { emptyDaily, readDaily, type DailyGame } from './daily.ts';
 import {emptyPassport,readPassport,recordJourney,type PassportState} from './passport.ts';
 import {emptySocial,readSocial,recordConnections,connections,type SocialState} from './social.ts';
 import type { Profile } from './types.ts';
-export type PreviewState = { profile: Profile | null; placeJournal?:PlaceJournal; launch?:LaunchState;cityMeetup?:CityMeetupState; answers: Record<string,string>; completed: boolean; daily:DailyGame; passport:PassportState; social:SocialState; visits:CityVisitsState; photos:CityPhotosState; palInbox:PalInboxState; saved: string[]; blocked: string[]; reactions: Record<string,string>; rounds: number; reports: { peerId:string; reason:string; createdAt:string }[] };
+export type PreviewState = { postcardGuide?:PostcardGuide;postcardDiscovery?:PostcardDiscovery;profile: Profile | null; placeJournal?:PlaceJournal; launch?:LaunchState;cityMeetup?:CityMeetupState; answers: Record<string,string>; completed: boolean; daily:DailyGame; passport:PassportState; social:SocialState; visits:CityVisitsState; photos:CityPhotosState; palInbox:PalInboxState; saved: string[]; blocked: string[]; reactions: Record<string,string>; rounds: number; reports: { peerId:string; reason:string; createdAt:string }[] };
 export function emptyPreview(now=new Date()): PreviewState { return { profile:null, placeJournal:emptyPlaceJournal(now), answers:{}, completed:false, daily:emptyDaily(),passport:emptyPassport(),social:emptySocial(),visits:emptyCityVisits(),photos:emptyCityPhotos(now),palInbox:emptyPalInbox(),saved:[], blocked:[], reactions:{}, rounds:0, reports:[] }; }
 export function readPreview(value: unknown,now=new Date()): PreviewState {
   const data = value as Partial<PreviewState> | null;
@@ -22,6 +24,8 @@ export function readPreview(value: unknown,now=new Date()): PreviewState {
   const photo=readProfilePhoto(data.profile.photo,data.profile.ageBand);
   const launch=readLaunch(data.launch,now);
   const result:PreviewState={ ...emptyPreview(now),placeJournal:readPlaceJournal(data.placeJournal,now),...(launch?{launch}:{}), passport:readPassport(data.passport),social:readSocial(data.social), visits:readCityVisits(data.visits),photos:readCityPhotos(data.photos,now),palInbox:readPalInbox(data.palInbox), profile:{name:String(data.profile.name||'Player').slice(0,18),avatar:data.profile.avatar,ageBand:data.profile.ageBand,...(data.profile.travel?{travel:readTravelProfile(data.profile.travel)}:{}),...readProfileLocation(data.profile),...(photo?{photo}:{})}, answers:record(data.answers), completed:data.completed===true, daily:readDaily(data.daily,data.completed===true,now),saved:strings(data.saved), blocked:strings(data.blocked), reactions:record(data.reactions), rounds:Math.max(0,Number(data.rounds)||0), reports:Array.isArray(data.reports)?data.reports:[] };
+  const guide=readPostcardGuide(data.postcardGuide,result.profile?.name);if(guide)result.postcardGuide=guide;
+  const discovery=readPostcardDiscovery(data.postcardDiscovery,result.profile,result.blocked);if(discovery)result.postcardDiscovery=discovery;
   if(result.launch&&palFindingProgress(result).unlocked&&!palFindingProgress(result).activated)result.launch=simulatePalUnlock(result,now).launch;
   const meetup=readCityMeetup(data.cityMeetup,result.profile!);if(meetup)result.cityMeetup=meetup;
   if(!Object.hasOwn(data,'passport')&&result.completed)result.passport=recordJourney(result.passport,result.daily,result.profile!.ageBand,rankMatches(result.answers,result.profile!.ageBand,result.daily.lastQuestionIds,result.blocked));

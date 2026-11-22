@@ -1,0 +1,20 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
+import {emptyPreview,emptyLaunch,initialPlacePostcard,preparePlacePostcard,placePostcard,answerFriendInvite,collectPostcard,postcardHub,questionById,travelPreview,setTravelCity,addVisitedPhoto,readPreview,myPostcardSignal,type PreviewState,type FriendReply} from './index.ts';
+import {VISITED_JPEGS} from './visited-photo-fixture.ts';
+const now=new Date('2026-11-22T09:00:00Z');let serial=0;const crypto={nonce:()=> (++serial).toString(16).padStart(32,'0'),digest:async(s:string)=>createHash('sha256').update(s).digest('hex')};
+const seed=():PreviewState=>({...emptyPreview(now),profile:{name:'123456',avatar:'cloud',ageBand:'25-30'},launch:emptyLaunch(now)});
+async function placed(){let s=seed();const draft=initialPlacePostcard(s,now);draft.answers=draft.ids.map(id=>questionById(id)!.choices![0].label);s=placePostcard(s,await preparePlacePostcard(s,'JP','jp-3',draft,crypto,now));return {s,draft,invite:s.launch!.invites[0]};}
+test('sender analytics count actual returns, distinguish both outcomes and group the player city, never the postcard destination',async()=>{
+ let {s,draft,invite}=await placed();const guest={name:'654321',avatar:'sunny' as const,ageBand:'25-30' as const,city:'Paris',country:'France'};const yes=await answerFriendInvite(invite,guest,draft.answers,crypto,now,'FR');s=collectPostcard(s,yes,now);assert.equal(yes.person.city,undefined);assert.equal(yes.playCityId,'FR');const no=await answerFriendInvite(invite,{...guest,name:'654322',city:'Berlin',country:'Germany'},draft.ids.map(id=>questionById(id)!.choices![1].label),crypto,now,'DE');s=collectPostcard(s,no,now);
+ const hub=postcardHub(s);assert.equal(hub.played,2);assert.equal(hub.matched,1);assert.equal(hub.missed,1);assert.deepEqual(new Set(hub.cities.map(c=>c.city)),new Set(['Paris','Berlin']));assert.equal(hub.cards[0].label,'Tokyo');assert.equal(hub.cards[0].plays,2);assert.equal(hub.cards[0].matched,1);assert.deepEqual(postcardHub(readPreview(JSON.parse(JSON.stringify(s)),now)).cities,hub.cities);assert.equal(s.daily.playsToday,0);
+ const guestCopy={...s,profile:{...s.profile!,name:'654321'}};assert.equal(postcardHub(guestCopy).played,0);assert.equal(postcardHub({...s,profile:{...s.profile!,ageBand:'10-12'}}).played,0);
+});
+test('duplicate returns, altered invitations, outbound games and self replies never inflate sender results',async()=>{
+ let {s,draft,invite}=await placed();const reply=await answerFriendInvite(invite,{name:'654321',avatar:'sunny',ageBand:'25-30'},draft.answers,crypto,now);s=collectPostcard(s,reply,now);const forged={...reply,id:crypto.nonce(),invite:{...invite,hashes:invite.hashes.map(()=> 'b'.repeat(64))}},self={...reply,id:crypto.nonce(),person:s.profile!},bad={...reply,id:crypto.nonce(),completedAt:'invalid'};
+ s={...s,launch:{...s.launch!,postcards:[reply,reply,forged,self,bad] as FriendReply[]},postcardDiscovery:{active:null,results:[{id:'outbound',cardId:'world-card:25-30:JP',answers:draft.answers,at:now.toISOString()}]}};const hub=postcardHub(s);assert.equal(hub.played,1);assert.equal(hub.cities[0].city,'City not shared');assert.equal(hub.matched+hub.missed,hub.played);
+});
+test('retained unique travel photos improve postcard ranking without granting plays, matches or friend credits',()=>{
+ let s=seed();const travel=setTravelCity(travelPreview([],['JP','FR','IT'],now),'visited',{cityId:'GB',attractionIds:['gb-1']});s={...s,profile:{...s.profile!,travel}};const before=myPostcardSignal(s);s={...s,profile:{...s.profile!,travel:addVisitedPhoto(travel,'GB',VISITED_JPEGS[0],'gb-1',now)}};const after=postcardHub(s);assert.equal(after.signal.photos,1);assert.equal(after.signal.signal,before.signal+2);assert.equal(after.played,0);assert.equal(after.matched,0);assert.equal(s.daily.playsToday,0);assert.deepEqual(s.launch!.friendCredits,[]);const raw=JSON.parse(JSON.stringify(s));raw.profile.travel.memories.push({...raw.profile.travel.memories[0],id:'another-id'});assert.equal(myPostcardSignal(readPreview(raw,now)).photos,1);
+});

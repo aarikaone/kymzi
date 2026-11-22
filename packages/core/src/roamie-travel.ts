@@ -1,8 +1,8 @@
-import type {TravelCityId} from './world-catalogue.ts';
+import {travelCityById,type TravelCityId} from './world-catalogue.ts';
 import {palFindingProgress} from './launch.ts';
 import {palSummaries} from './pal-loop.ts';
 import {COUNTRIES,countryById,type CountryId} from './countries.ts';
-import {readSharedTravel,readTravelProfile,sharedTravel,travelPreview,type SharedTravel} from './travel-profile.ts';
+import {readSharedTravel,readTravelProfile,setTravelCity,sharedTravel,travelPreview,type SharedTravel} from './travel-profile.ts';
 import type {PreviewState} from './preview.ts';
 import type {AvatarId} from './types.ts';
 export type RoamieTravel={id:string;name:string;avatar:AvatarId;travel:SharedTravel;preview:boolean};
@@ -18,3 +18,26 @@ export function travelMilestones(state:PreviewState){
  return [...own,...friends].sort((a,b)=>Date.parse(b.at)-Date.parse(a.at));
 }
 export function sharedCityConnections(state:PreviewState,id:TravelCityId){return roamieTravels(state).filter(r=>r.travel.visited.includes(id)||r.travel.wishlist.includes(id));}
+
+/** Add a place from a connected Roamie's wishlist city without altering their list. */
+export function pickRoamieWish(state:PreviewState,roamieId:string,cityId:TravelCityId,placeId:string):PreviewState{
+ const roamie=roamieTravels(state).find(r=>r.id===roamieId),city=travelCityById(cityId);
+ if(!state.profile||!roamie?.travel.wishlist.includes(cityId)||!city?.placeIds.includes(placeId))throw new Error('Choose a place from your Roamie’s wishlist.');
+ const travel=readTravelProfile(state.profile.travel),existing=travel.wishlist.find(c=>c.cityId===cityId);
+ if(existing?.attractionIds.includes(placeId)||travel.wishFulfillments?.some(w=>w.cityId===cityId&&w.placeId===placeId))return state;
+ return {...state,profile:{...state.profile,travel:setTravelCity(travel,'wishlist',{cityId,attractionIds:[...(existing?.attractionIds??[]),placeId]})}};
+}
+
+export type RoamieWishStop={id:string;roamieId:string;name:string;avatar:AvatarId;cityId:TravelCityId;placeId?:string};
+/** Shared wishlist picks from connected Roamies; a wish is never evidence of a visit. */
+export function roamieWishStops(state:PreviewState):RoamieWishStop[]{
+ const lists=roamieTravels(state).filter(r=>!state.blocked.includes(r.id)).map(r=>r.travel.wishlist.flatMap(cityId=>{
+  const city=travelCityById(cityId);if(!city)return [];
+  const picks=[...new Set(r.travel.wishlistPlaces?.find(c=>c.cityId===cityId)?.attractionIds??[])].filter(id=>city.placeIds.includes(id));
+  const places:Array<string|undefined>=picks.length?picks:[undefined];
+  return places.map(placeId=>({id:`roamie-wish:${r.id}:${cityId}:${placeId??'city'}`,roamieId:r.id,name:r.name,avatar:r.avatar,cityId,...(placeId?{placeId}:{})}));
+ }));
+ // Alternate people so the first screen includes more than one Roamie’s wishes.
+ const events:RoamieWishStop[]=[];for(let i=0;i<Math.max(0,...lists.map(l=>l.length));i++)for(const list of lists)if(list[i])events.push(list[i]);
+ return events;
+}

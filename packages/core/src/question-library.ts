@@ -24,3 +24,7 @@ export function questionChoices(question:Question):QuestionChoice[]{
 export function validQuestionChoice(question:Question,value:string){return !question.choices||question.choices.some(c=>c.label===value);}
 export function selectedQuestionChoice(question:Question,value:string){return questionChoices(question).find(c=>c.label===value);}
 export function dayCardPicks(ids:readonly string[],answers:readonly string[]){return ids.flatMap((id,i)=>{const q=questionById(id);if(!q||!answers[i])return [];const c=selectedQuestionChoice(q,answers[i]);return [{id,label:answers[i],artworkId:c?.artworkId??'jp-4'}];});}
+
+/** Bottle postcards may use any three distinct reviewed travel questions. */
+export function isPostcardQuestionSet(ids:unknown,band?:string):ids is string[]{return Array.isArray(ids)&&ids.length===3&&new Set(ids).size===3&&ids.every(id=>{const q=byId.get(id);return !!q&&q.id.startsWith('T')&&q.choices?.length===6&&(!band||q.min_age<=Number(band.split('-')[0]));});}
+export function postcardQuestions(query='',band='25-30'){const words=query.toLocaleLowerCase().trim().split(/\s+/).filter(Boolean);return travelQuestionBank.filter(q=>q.choices?.length===6&&q.min_age<=Number(band.split('-')[0])&&words.every(w=>(q.prompt+' '+q.category).toLocaleLowerCase().includes(w)));}

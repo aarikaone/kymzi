@@ -5,7 +5,7 @@ import {palFindingProgress,UNLOCK_PREVIEW_AVATARS,hasInviteAnswers,dailyStatus,r
 import {Icon} from './icons';
 
 export function LaunchUnlock({state,now,onPrepare,onInvite,onPlay,onExplore,onCollect,onSimulate,onResetPreview,autoPreview=false,allowSimulation=true}:{state:PreviewState;now:Date;onPrepare:()=>void;onInvite:()=>void;onPlay:()=>void;onExplore:()=>void;onCollect:(reply:FriendReply)=>void;onSimulate:()=>void|Promise<void>;onResetPreview:()=>void;autoPreview?:boolean;allowSimulation?:boolean}){
- const p=palFindingProgress(state),ready=hasInviteAnswers(state),waiting=dailyStatus(state.daily,now).kind==='waiting';
+ const p=palFindingProgress(state),ready=hasInviteAnswers(state),waiting=false;
  const [adding,setAdding]=useState(false),[url,setUrl]=useState(''),[error,setError]=useState('');
  const [phase,setPhase]=useState<'idle'|'adding'|'unlocking'|'complete'>(autoPreview&&allowSimulation?'adding':p.simulated?'complete':'idle'),[step,setStep]=useState(0),[run,setRun]=useState(0);
  const simulate=useRef(onSimulate);simulate.current=onSimulate;
