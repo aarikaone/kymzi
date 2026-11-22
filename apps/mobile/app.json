@@ -64,7 +64,7 @@
       [
         "expo-image-picker",
         {
-          "photosPermission": "Choose an optional profile photo. It becomes eligible for a pal after three matches.",
+          "photosPermission": "Choose photos of places you have visited to save memories and show them in your Home feed.",
           "cameraPermission": "Allow Kymzi to take city photos. Photos are reviewed before you add them.",
           "microphonePermission": false
         }

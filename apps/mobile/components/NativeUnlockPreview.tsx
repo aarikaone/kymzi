@@ -7,7 +7,7 @@ import {Ionicons} from '@expo/vector-icons';
 import Svg,{Circle,Ellipse,Path} from 'react-native-svg';
 import {UNLOCK_PREVIEW_AVATARS} from '@rymzi/core';
 import {avatarImages} from './avatarAssets';
-import {Hand} from './Typography';
+import {Hand,PageHeading} from './Typography';
 import {NIGHT_THEME as C} from './theme';
 
 const AnimatedCircle=Animated.createAnimatedComponent(Circle);
@@ -32,7 +32,7 @@ export function NativeUnlockPreview({active,onActivate,onReset,onClose,onPlay,wa
  async function reset(){setPhase('unlocking');try{await onReset();onClose();}catch(e){setError((e as Error).message);setPhase('error');}}
  const complete=phase==='complete',size=compact?178:200;
  return <SafeAreaView edges={['bottom']} style={{flex:1,backgroundColor:C.ground}}><ScrollView contentContainerStyle={{flexGrow:1,paddingHorizontal:24,paddingTop:18,paddingBottom:18,gap:compact?13:18}}>
-  <View style={{gap:12}}><Text style={{fontSize:10,lineHeight:16,letterSpacing:2,color:C.lavender}}>UNLOCK PREVIEW</Text><Text accessibilityRole="header" style={{fontSize:compact?35:39,lineHeight:compact?39:43,fontWeight:'600',letterSpacing:-1.3,color:C.ink}}>{complete?'Your world.':'Five friends.'}{'\n'}<Hand style={{fontSize:compact?46:50,lineHeight:compact?49:54,color:C.accent}}>{complete?'Unlocked.':'A whole world.'}</Hand></Text></View>
+  <View style={{gap:12}}><Text style={{fontSize:10,lineHeight:16,letterSpacing:2,color:C.lavender}}>UNLOCK PREVIEW</Text><PageHeading accessibilityRole="header" style={{fontSize:compact?35:39,lineHeight:compact?39:43,fontWeight:'600',letterSpacing:-1.3,color:C.ink}}>{complete?'Your world.':'Five friends.'}{'\n'}<Hand style={{fontSize:compact?46:50,lineHeight:compact?49:54,color:C.accent}}>{complete?'Unlocked.':'A whole world.'}</Hand></PageHeading></View>
   <View style={{flex:1,minHeight:compact?245:270,alignItems:'center',justifyContent:'center',gap:18}}>
    <View accessibilityRole="progressbar" accessibilityLabel="Simulated friend unlock progress" accessibilityValue={{min:0,max:5,now:count,text:complete?'Global play unlocked':`${count} of 5 simulated friends added`}} style={{height:size,width:size,alignItems:'center',justifyContent:'center'}}>
     <Svg width={size} height={size} viewBox="0 0 200 200" style={{position:'absolute'}}><Circle cx="100" cy="100" r="88" stroke={C.raised} strokeWidth="2" fill="none"/><AnimatedCircle cx="100" cy="100" r="88" stroke={C.accent} strokeWidth="3" fill="none" strokeLinecap="round" strokeDasharray="552.92 552.92" strokeDashoffset={progress.interpolate({inputRange:[0,100],outputRange:[552.92,0]})} rotation="-90" origin="100,100"/></Svg>

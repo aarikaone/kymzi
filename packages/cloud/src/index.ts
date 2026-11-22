@@ -20,3 +20,5 @@ export function useCatalogueImage(kind:'city'|'place',id:string){
 }
 /** Deferred URI lookup keeps module-level native avatar/category maps network-only. */
 export function publicImageSource(path:string){return {get uri(){return publicCdnImage(path);},cache:'force-cache' as const};}
+
+export {submitCitySuggestion} from './city-suggestions.ts';

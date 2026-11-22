@@ -1,3 +1,4 @@
+import {PageHeading} from './Typography';
 import {NativeImage as Image} from './NativeImage';
 import React,{useState} from 'react';
 import {Pressable,ScrollView,Text,TextInput,View} from 'react-native';
@@ -22,7 +23,7 @@ export function NativeHomeVisitMeet({state,now,peerId,onChange,onBack}:Props){
  const icons={cafe:'cafe-outline',park:'leaf-outline',museum:'business-outline',square:'location-outline'} as const;
  const shortNames={cafe:'Café',park:'Park',museum:'Museum',square:'Square'};
  return <SafeAreaView edges={['bottom']} style={{flex:1,backgroundColor:C.ground}}><ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{flexGrow:1,padding:22,gap:20}} keyboardShouldPersistTaps="handled">
-  <View style={{gap:12}}><Text accessibilityRole="header" style={{fontSize:35,lineHeight:40,fontWeight:'600',letterSpacing:-1.1,color:C.ink}}>{form?'Meet your roamie.':gate.open?'You’re both here.':gate.reason==='different-city'?'Different cities.':'Waiting for your roamie.'}</Text><View style={{flexDirection:'row',alignItems:'center',gap:11}}><Image source={avatarImages[visit.pal.imageAvatar]} accessible={false} style={{height:55,width:55,resizeMode:'contain'}}/><View style={{flex:1,gap:4}}><Text style={{fontSize:22,lineHeight:28,color:C.ink}}>{visit.pal.alias}</Text><Text style={{fontSize:14,lineHeight:20,color:C.muted}}>{visit.city} · {labels.date} · {labels.time}</Text></View></View></View>
+  <View style={{gap:12}}><PageHeading accessibilityRole="header" style={{fontSize:35,lineHeight:40,fontWeight:'600',letterSpacing:-1.1,color:C.ink}}>{form?'Meet your roamie.':gate.open?'You’re both here.':gate.reason==='different-city'?'Different cities.':'Waiting for your roamie.'}</PageHeading><View style={{flexDirection:'row',alignItems:'center',gap:11}}><Image source={avatarImages[visit.pal.imageAvatar]} accessible={false} style={{height:55,width:55,resizeMode:'contain'}}/><View style={{flex:1,gap:4}}><Text style={{fontSize:22,lineHeight:28,color:C.ink}}>{visit.pal.alias}</Text><Text style={{fontSize:14,lineHeight:20,color:C.muted}}>{visit.city} · {labels.date} · {labels.time}</Text></View></View></View>
   {form?<>
    <View style={{flexDirection:'row',gap:12}}><Field label="City" value={city} onChange={setCity}/><Field label="Country" value={country} onChange={setCountry}/></View>
    <Text style={{fontSize:19,lineHeight:25,color:C.ink}}>Pick a public place.</Text>

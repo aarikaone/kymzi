@@ -12,7 +12,7 @@ export function PalIllustration({avatar='orbit',privatePlay=false}:{avatar?:Avat
 export function DailyHome({game,now,canDiscover,onPlay,onSchedule,community,headerAction}:Props){
  const status=dailyStatus(game,now),waiting=status.kind==='waiting',left=remainingDailyPlays(game,now),resuming=hasDailyProgress(game),time=countdownParts(status.remainingMs),privatePlay=!canDiscover;
  return <div className="minimal-play-home">
-  <div className="home-heading-with-updates"><h1 tabIndex={-1}>{waiting?<>{privatePlay?'More cities.':'More roamies.'}<br/><em>Tomorrow.</em></>:resuming?<>{privatePlay?'Your city':'Your next roamie'}<br/><em>is waiting.</em></>:privatePlay?<>Your next<br/><em>city.</em></>:<>{JOURNEY_COPY.title}<br/><em>{JOURNEY_COPY.titleAccent}</em></>}</h1>{headerAction}</div><DiscoveryTrail privatePlay={privatePlay}/>
+  <div className="home-heading-with-updates"><h1 className="page-heading" tabIndex={-1}>{waiting?<>{privatePlay?'More cities.':'More roamies.'}{' '}<em>Tomorrow.</em></>:resuming?<>{privatePlay?'Your city':'Your next roamie'}{' '}<em>is waiting.</em></>:privatePlay?<>Your next{' '}<em>city.</em></>:<>{JOURNEY_COPY.title}{' '}<em>{JOURNEY_COPY.titleAccent}</em></>}</h1>{headerAction}</div><DiscoveryTrail privatePlay={privatePlay}/>
   {waiting?<div className="minimal-play-countdown"><span>Back in</span><strong role="timer" aria-label="Next game countdown">{time.hours}:{time.minutes}:{time.seconds}</strong><small>{nextPlayLabel(game,now)}</small></div>:<div className="minimal-play-mascot" aria-hidden="true">{privatePlay?<TravelHero/>:<UnknownPalHero/>}</div>}
   {community&&<div className="home-community">{community}</div>}
   <div className="minimal-play-actions">

@@ -21,11 +21,11 @@ export function SimpleProfile({state,onEdit,items,travel,onTravel,roamies,onInvi
   return <div className="simple-profile">
     <header className="simple-profile-identity">
       <ProfileIdentities profile={profile} onEdit={onEdit}/>
-      <div><h1 tabIndex={-1}>#{profile.name}</h1><button onClick={onEdit}>Edit profile<Icon name="arrow" size={15}/></button></div>
+      <div><h1 className="page-heading" tabIndex={-1}>#{profile.name}</h1><button onClick={onEdit}>Edit profile<Icon name="arrow" size={15}/></button></div>
     </header>
 
     {state.launch&&circle.eligible&&<section className="simple-profile-global" aria-label="Your circle">
-      <header><h2>Global play</h2><span className={circle.canPlay?'is-on':''}><Icon name={circle.canPlay?'globe':'lock'} size={12}/>Global {circle.canPlay?'ON':'OFF'}</span></header>
+      <header><h2 className="page-heading">Global play</h2><span className={circle.canPlay?'is-on':''}><Icon name={circle.canPlay?'globe':'lock'} size={12}/>Global {circle.canPlay?'ON':'OFF'}</span></header>
       <p>{circle.canPlay?(circle.count?`${circle.count} friends`:'Ready to explore.') :circle.count?`${circle.count} added · ${circle.remaining} left`:'Five friends open the world.'}</p>
       {!circle.canPlay&&<div className="simple-profile-progress" role="progressbar" aria-label="Global unlock progress" aria-valuemin={0} aria-valuemax={5} aria-valuenow={circle.count}>{Array.from({length:5},(_,i)=><i className={i<circle.count?'complete':''} key={i}/>)}</div>}
       <div className="simple-profile-global-actions">

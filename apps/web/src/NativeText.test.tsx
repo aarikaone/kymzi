@@ -4,7 +4,7 @@ import ts from 'typescript';
 import {expect,it} from 'vitest';
 
 // These components render their children inside React Native Text.
-const textComponents=new Set(['Text','Hand','Title','Copy','Note','Heading']);
+const textComponents=new Set(['Text','Hand','Title','Copy','Note','Heading','PageHeading']);
 function renderedText(raw:string){
  const lines=raw.split(/\r\n|\n|\r/);let lastNonEmpty=0;
  lines.forEach((line,i)=>{if(/[^ \t]/.test(line))lastNonEmpty=i;});

@@ -14,3 +14,13 @@
 /* Import and review own the scroll area; their action dock remains outside it. */
 .map-share-flow>.map-share-content{flex:1;min-height:0;padding:12px 22px 22px;overflow-y:auto;gap:16px}.map-share-flow>.map-share-content h1{font-size:31px;line-height:36px;letter-spacing:-1px}.map-share-flow>.map-share-content h2{font-size:23px;line-height:29px}.map-share-flow>.map-share-content p{font-size:16px;line-height:23px}.map-share-flow>.map-share-content .place-art{max-height:230px;aspect-ratio:1.45;flex-shrink:0}.map-share-flow>.map-share-footer{flex-shrink:0}.map-share-footer>.place-primary{min-height:56px}
 @container rymzi-app (max-width:350px){.map-share-flow>.map-share-content{padding-inline:18px}}
+
+/* The scroll area extends behind the header; its spacer preserves the initial layout. */
+body .app-shell:not(.welcome-theme)>.app-header.standard-app-bar{position:absolute;top:30px;left:0;right:0;z-index:40;background:#090c0a;transition:background-color .2s ease,box-shadow .2s ease;backdrop-filter:blur(0);-webkit-backdrop-filter:blur(0)}
+.app-shell:has(>.app-header.standard-app-bar)>.app-main:before{content:"";display:block;height:var(--app-bar-height,76px);flex-shrink:0}
+.app-shell:has(>.app-header.standard-app-bar)>.app-main>.screen{height:calc(100% - var(--app-bar-height,76px))}
+body .app-shell:not(.welcome-theme)>.app-header.standard-app-bar.is-scrolled{background:rgba(9,12,10,.78);backdrop-filter:blur(16px) saturate(1.12);-webkit-backdrop-filter:blur(16px) saturate(1.12);box-shadow:0 8px 22px #0000000d}
+.app-header.standard-subpage-bar.is-scrolled{background:rgba(9,12,10,.8);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+@media(max-width:760px){body .app-shell:not(.welcome-theme)>.app-header.standard-app-bar{top:0}}
+@media(prefers-reduced-motion:reduce){body .app-shell:not(.welcome-theme)>.app-header.standard-app-bar{transition:none}}
+@media(prefers-reduced-transparency:reduce){body .app-shell:not(.welcome-theme)>.app-header.standard-app-bar.is-scrolled,.app-header.standard-subpage-bar.is-scrolled{background:#090c0a;backdrop-filter:none;-webkit-backdrop-filter:none}}

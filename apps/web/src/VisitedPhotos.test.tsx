@@ -1,0 +1,38 @@
+import {it,expect,vi,afterEach} from 'vitest';
+import {render,screen,within,waitFor} from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import {emptyPreview,emptyLaunch,travelPreview,addVisitedPhoto,palFindingProgress,type PreviewState} from '@rymzi/core';
+import {VISITED_JPEGS as images} from '../../../packages/core/src/visited-photo-fixture';
+import {prepareVisitedPhoto} from './VisitedPhotos';
+import App from './App';
+const KEY='rymzi.preview.v1';
+function seed(withPhoto=false){let travel=travelPreview(['GB'],['JP','FR','IT']);if(withPhoto)travel=addVisitedPhoto(travel,'GB',images[0],'gb-1');const state:PreviewState={...emptyPreview(),profile:{name:'123456',avatar:'nori',ageBand:'25-30',travel},launch:emptyLaunch()};localStorage.setItem(KEY,JSON.stringify(state));window.history.replaceState(null,'','/#/home');return state;}
+const stored=()=>JSON.parse(localStorage.getItem(KEY)!) as PreviewState;
+function decodePhotos(){
+ const revoke=vi.fn(),draw=vi.fn(),OriginalURL=URL;vi.stubGlobal('URL',class extends OriginalURL {static createObjectURL(){return 'blob:private-original';}static revokeObjectURL(url:string){revoke(url);}});
+ vi.stubGlobal('Image',class {naturalWidth=1600;naturalHeight=1200;onload?:()=>void;set src(_value:string){queueMicrotask(()=>this.onload?.());}});
+ vi.spyOn(HTMLCanvasElement.prototype,'getContext').mockReturnValue({drawImage:draw,fillRect:vi.fn()} as unknown as CanvasRenderingContext2D);vi.spyOn(HTMLCanvasElement.prototype,'toDataURL').mockReturnValue(images[0]);return {draw,revoke};
+}
+async function editVisited(user:ReturnType<typeof userEvent.setup>){await user.click(screen.getByRole('button',{name:/^Visited/}));await user.click(screen.getByRole('button',{name:'Edit visited places'}));}
+afterEach(()=>{vi.restoreAllMocks();vi.unstubAllGlobals();});
+it('Visited uses a separate city picker like Wishlist, then returns to its selected list',async()=>{
+ seed();const user=userEvent.setup();render(<App/>);await editVisited(user);expect(screen.queryByRole('textbox',{name:'Find a city'})).toBeNull();await user.click(screen.getByRole('button',{name:'Add visited places'}));expect(screen.getByRole('textbox',{name:'Find a city'})).toBeTruthy();await user.click(screen.getByRole('button',{name:'Choose Paris'}));expect(screen.queryByRole('dialog')).toBeNull();await user.click(await screen.findByRole('button',{name:'Select Eiffel Tower'}));await user.click(screen.getByRole('button',{name:'Add visited city'}));expect(await screen.findByRole('button',{name:'Edit Eiffel Tower visit'})).toBeTruthy();expect(screen.queryByRole('textbox',{name:'Find a city'})).toBeNull();expect(stored().profile!.travel!.visited).toHaveLength(1);
+});
+it('prepares local photos without cropping and discards the original URL and filename',async()=>{
+ const {draw,revoke}=decodePhotos();const image=await prepareVisitedPhoto(new File(['pixels'],'secret-location.jpg',{type:'image/jpeg'}));expect(image).toBe(images[0]);expect(draw.mock.calls[0].slice(1)).toEqual([0,0,900,675]);expect(revoke).toHaveBeenCalledWith('blob:private-original');await expect(prepareVisitedPhoto(new File(['<svg/>'],'x.svg',{type:'image/svg+xml'}))).rejects.toThrow(/Choose a JPG/);
+});
+it('stages a visited photo, saves it to Home before global unlock and restores it after reopening',async()=>{
+ const before=seed();decodePhotos();const user=userEvent.setup(),view=render(<App/>);await editVisited(user);await user.upload(await screen.findByLabelText('Photo for Tower Bridge'),new File(['pixels'],'my-trip.jpg',{type:'image/jpeg'}));await screen.findByRole('img',{name:'Tower Bridge memory 1'});expect(stored().profile!.travel!.memories).toBeUndefined();await user.click(screen.getByRole('button',{name:'Save changes'}));const feed=await screen.findByRole('region',{name:'Your visited photo feed'});expect(await within(feed).findByRole('img',{name:'Tower Bridge — your photo 1'})).toBeTruthy();expect(stored().profile!.travel!.memories).toHaveLength(1);expect(stored().daily).toEqual(before.daily);expect(stored().profile!.travel!.arrivals).toEqual([]);expect(palFindingProgress(stored()).canPlay).toBe(false);
+ view.unmount();render(<App/>);expect(screen.getByRole('region',{name:'Your visited photo feed'})).toBeTruthy();
+});
+it('Cancel discards a newly selected photo and preserves the saved profile',async()=>{
+ const before=seed();decodePhotos();const user=userEvent.setup();render(<App/>);await editVisited(user);await user.upload(await screen.findByLabelText('Photo for Tower Bridge'),new File(['pixels'],'trip.jpg',{type:'image/jpeg'}));await screen.findByRole('img',{name:'Tower Bridge memory 1'});await user.click(screen.getByRole('button',{name:'Cancel'}));expect(stored().profile).toEqual(before.profile);expect(screen.queryByRole('region',{name:'Your visited photo feed'})).toBeNull();
+});
+it('keeps the photo draft after storage fails and supports retry',async()=>{
+ seed();decodePhotos();const user=userEvent.setup();render(<App/>);await editVisited(user);await user.upload(await screen.findByLabelText('Photo for Tower Bridge'),new File(['pixels'],'trip.jpg',{type:'image/jpeg'}));await screen.findByRole('img',{name:'Tower Bridge memory 1'});const fail=vi.spyOn(Storage.prototype,'setItem').mockImplementation(()=>{throw new Error('Full');});await user.click(screen.getByRole('button',{name:'Save changes'}));expect(await screen.findByRole('alert')).toHaveProperty('textContent','Couldn’t save. Free some device storage and try again.');expect(stored().profile!.travel!.memories).toBeUndefined();fail.mockRestore();await user.click(screen.getByRole('button',{name:'Save changes'}));await screen.findByRole('region',{name:'Your visited photo feed'});expect(stored().profile!.travel!.memories).toHaveLength(1);
+});
+it('removing a visited photo removes its Home album after saving',async()=>{
+ seed(true);const user=userEvent.setup();render(<App/>);expect(screen.getByRole('region',{name:'Your visited photo feed'})).toBeTruthy();await editVisited(user);await user.click(await screen.findByRole('button',{name:'Remove Tower Bridge photo 1'}));await user.click(screen.getByRole('button',{name:'Save changes'}));await waitFor(()=>expect(window.location.hash).toBe('#/home'));expect(screen.queryByRole('region',{name:'Your visited photo feed'})).toBeNull();expect(stored().profile!.travel!.memories).toBeUndefined();
+});
+
+it('keeps empty albums compact, expands after the first photo and collapses after the last removal',async()=>{seed();decodePhotos();const user=userEvent.setup();render(<App/>);await editVisited(user);const card=(await screen.findByRole('button',{name:'Edit Tower Bridge visit'})).closest('article')!;expect(card.querySelector('.visited-photo-strip')).toBeNull();expect(within(card).queryByText('Your photos')).toBeNull();expect(card.querySelector('.visited-place-copy .visited-photo-editor.is-empty')).toBeTruthy();await user.upload(within(card).getByLabelText('Photo for Tower Bridge'),new File(['pixels'],'trip.jpg',{type:'image/jpeg'}));await within(card).findByRole('img',{name:'Tower Bridge memory 1'});expect(card.querySelector('.visited-photo-editor.has-photos')).toBeTruthy();expect(card.querySelector('.visited-place-copy .visited-photo-editor')).toBeNull();expect(within(card).getByText('Your photos')).toBeTruthy();await user.click(within(card).getByRole('button',{name:'Remove Tower Bridge photo 1'}));expect(card.querySelector('.visited-photo-strip')).toBeNull();expect(card.querySelector('.visited-place-copy .visited-photo-editor.is-empty')).toBeTruthy();expect(within(card).getByRole('button',{name:'Add photo to Tower Bridge'}).hasAttribute('disabled')).toBe(false);});

@@ -4,9 +4,9 @@ import userEvent from '@testing-library/user-event';
 import {emptyPreview,emptyLaunch,citySpots,type PreviewState,type AgeBand} from '@rymzi/core';
 import App from './App';
 const NOW=new Date('2026-11-19T05:00:00Z'),KEY='rymzi.preview.v1',spots=citySpots('JP');
-function seed(band:AgeBand='21-24'){const s:PreviewState={...emptyPreview(NOW),profile:{name:'123456',avatar:'cloud',ageBand:band,city:'Chennai',country:'India'},launch:emptyLaunch(NOW)};localStorage.setItem(KEY,JSON.stringify(s));window.history.replaceState(null,'','/#/passport');return s;}
+function seed(band:AgeBand='21-24'){const s:PreviewState={...emptyPreview(NOW),profile:{name:'123456',avatar:'cloud',ageBand:band,city:'Chennai',country:'India'},launch:emptyLaunch(NOW)};localStorage.setItem(KEY,JSON.stringify(s));window.history.replaceState(null,'','/#/guide/JP');return s;}
 function saved(){return JSON.parse(localStorage.getItem(KEY)!) as PreviewState;}
-async function checkIn(u:ReturnType<typeof userEvent.setup>){await u.click(screen.getByRole('button',{name:'Explore Tokyo guide'}));await u.click(screen.getByRole('button',{name:'I’m in Tokyo'}));await u.click(screen.getByRole('button',{name:'Choose a check-in spot'}));expect(screen.getByRole('button',{name:'Check in here'}).hasAttribute('disabled')).toBe(true);await u.click(screen.getByRole('button',{name:new RegExp(spots[0].name)}));await u.click(screen.getByRole('button',{name:'Check in here'}));}
+async function checkIn(u:ReturnType<typeof userEvent.setup>){await u.click(screen.getByRole('button',{name:'I’m in Tokyo'}));await u.click(screen.getByRole('button',{name:'Choose a check-in spot'}));expect(screen.getByRole('button',{name:'Check in here'}).hasAttribute('disabled')).toBe(true);await u.click(screen.getByRole('button',{name:new RegExp(spots[0].name)}));await u.click(screen.getByRole('button',{name:'Check in here'}));}
 beforeEach(()=>{vi.useFakeTimers({toFake:['Date']});vi.setSystemTime(NOW);});
 afterEach(()=>{vi.useRealTimers();vi.restoreAllMocks();});
 it('checks into a city, receives a request, pins another public spot and previews coming and arrival',async()=>{
@@ -25,5 +25,5 @@ it('keeps teen walkthroughs explicitly fictional and younger children’s city p
  seed('16-17');const u=userEvent.setup(),view=render(<App/>);await checkIn(u);expect(screen.getByText('FICTIONAL ADULT WALKTHROUGH')).toBeTruthy();expect(saved().cityMeetup!.preview).toBe(true);expect(saved().profile!.ageBand).toBe('16-17');view.unmount();seed('10-12');window.history.replaceState(null,'','/#/city-check-in');render(<App/>);expect(screen.queryByText('Meetup requests')).toBeNull();expect(screen.queryByRole('button',{name:/Check in to a city/})).toBeNull();expect(saved().cityMeetup).toBeUndefined();
 });
 it('opens the check-in flow from a city guide without requiring a global roamie',async()=>{
- seed();const u=userEvent.setup();render(<App/>);await u.click(screen.getByRole('button',{name:'Explore Tokyo guide'}));await u.click(screen.getByRole('button',{name:'I’m in Tokyo'}));expect(screen.getByRole('button',{name:'Choose a check-in spot'})).toBeTruthy();expect(saved().social.proofs).toHaveLength(0);
+ seed();const u=userEvent.setup();render(<App/>);await u.click(screen.getByRole('button',{name:'I’m in Tokyo'}));expect(screen.getByRole('button',{name:'Choose a check-in spot'})).toBeTruthy();expect(saved().social.proofs).toHaveLength(0);
 });

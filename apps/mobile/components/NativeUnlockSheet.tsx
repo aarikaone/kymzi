@@ -1,3 +1,4 @@
+import {PageHeading} from './Typography';
 import React,{useRef} from 'react';
 import {Modal,Platform,Pressable,ScrollView,StyleSheet,Text,View,useWindowDimensions} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -12,9 +13,9 @@ export function NativeUnlockSheet({visible,state,now,onClose,onStart}:Props){
  function start(){if(waiting||startOnDismiss.current)return;startOnDismiss.current=true;onClose();if(Platform.OS!=='ios'){startOnDismiss.current=false;onStart();}}
  return <Modal visible={visible} transparent animationType="slide" onRequestClose={close} onDismiss={()=>{if(startOnDismiss.current){startOnDismiss.current=false;onStart();}}}>
   <View style={S.backdrop}><Pressable accessible={false} onPress={close} style={StyleSheet.absoluteFill}/><View accessibilityViewIsModal style={[S.sheet,{height:Math.min(height*.88,650),paddingBottom:Math.max(18,insets.bottom)}]}>
-   <View style={S.handle}/><View style={S.top}><Text style={S.eyebrow}>SOMEWHERE YOU DON’T KNOW. YET.</Text><Pressable accessibilityRole="button" accessibilityLabel="Close unlock" onPress={close} style={S.close}><Ionicons name="close" size={23} color={C.ink}/></Pressable></View>
+   <View style={S.handle}/><View style={S.top}><Pressable accessibilityRole="button" accessibilityLabel="Close unlock" onPress={close} style={S.close}><Ionicons name="close" size={23} color={C.ink}/></Pressable></View>
    <ScrollView style={{flex:1,minHeight:0}} contentContainerStyle={S.content} showsVerticalScrollIndicator={false}>
-    <Text accessibilityRole="header" style={S.title}>3 picks.<Text style={{color:C.accent}}>{'\n'}A surprise city.</Text></Text><Text style={S.copy}>{privateOnly?'A little curiosity takes you somewhere new.':'Your next roamie could be anywhere.'}</Text>
+    <PageHeading accessibilityRole="header" style={S.title}>3 picks.<Text style={{color:C.accent}}>{'\n'}A surprise city.</Text></PageHeading><Text style={S.copy}>{privateOnly?'A little curiosity takes you somewhere new.':'Your next roamie could be anywhere.'}</Text>
     <View style={S.example}><Text style={S.exampleLabel}>YOUR KIND OF DAY</Text><View style={S.words}>{['Coffee','Beach','Music'].map(word=><View key={word} style={S.word}><Text style={S.wordText}>{word}</Text></View>)}</View></View>
     <View style={S.steps}>{steps.map(([title,detail],i)=><View key={title} style={S.step}><View style={S.number}><Text style={S.numberText}>{i+1}</Text></View><View style={{flex:1,gap:4}}><Text style={S.stepTitle}>{title}</Text><Text style={S.stepDetail}>{detail}</Text></View></View>)}</View>
    </ScrollView>

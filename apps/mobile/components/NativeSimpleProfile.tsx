@@ -1,5 +1,7 @@
+import {HeaderScrollView as ScrollView} from './NativeHeaderGlass';
+import {PageHeading} from './Typography';
 import React,{useState,type ReactNode} from 'react';
-import {Pressable,ScrollView,StyleSheet,Text,View} from 'react-native';
+import {Pressable,StyleSheet,Text,View} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {Ionicons} from '@expo/vector-icons';
 import {AVATARS,palFindingProgress,type PreviewState} from '@rymzi/core';
@@ -22,11 +24,11 @@ export function NativeSimpleProfile({state,onEdit,items,travel,onTravel,roamies,
   return <SafeAreaView edges={['bottom']} style={S.page}><ScrollView contentContainerStyle={S.body} keyboardShouldPersistTaps="handled">
     <View style={S.identity}>
       <View accessibilityLabel="Your avatar"><Pressable cssInterop={false} accessibilityRole="button" accessibilityLabel="Edit avatar" onPress={onEdit} style={({pressed})=>[S.avatarFrame,pressed&&S.pressed]}><NativeImage showLoader source={avatarImages[p.avatar]} accessibilityLabel={`${character.name} avatar`} style={S.avatar}/><View style={S.avatarEdit}><Ionicons name="color-palette-outline" size={14} color={C.accent}/></View></Pressable></View>
-      <View style={S.identityCopy}><Text accessibilityRole="header" style={S.name}>#{p.name}</Text><Pressable cssInterop={false} accessibilityRole="button" onPress={onEdit} style={({pressed})=>[S.edit,pressed&&S.pressed]}><Text style={S.editText}>Edit profile</Text><Ionicons name="arrow-forward" size={15} color={C.accent}/></Pressable></View>
+      <View style={S.identityCopy}><PageHeading accessibilityRole="header" style={S.name}>#{p.name}</PageHeading><Pressable cssInterop={false} accessibilityRole="button" onPress={onEdit} style={({pressed})=>[S.edit,pressed&&S.pressed]}><Text style={S.editText}>Edit profile</Text><Ionicons name="arrow-forward" size={15} color={C.accent}/></Pressable></View>
     </View>
 
     {state.launch&&circle.eligible&&<View style={S.global} accessibilityLabel="Your circle">
-      <View style={S.globalHeading}><Text accessibilityRole="header" style={S.globalTitle}>Global play</Text><View style={S.badge}><Ionicons name={circle.canPlay?'globe-outline':'lock-closed-outline'} size={12} color={circle.canPlay?C.accent:C.lavender}/><Text style={[S.badgeText,circle.canPlay&&{color:C.accent}]}>Global {circle.canPlay?'ON':'OFF'}</Text></View></View>
+      <View style={S.globalHeading}><PageHeading accessibilityRole="header" style={S.globalTitle}>Global play</PageHeading><View style={S.badge}><Ionicons name={circle.canPlay?'globe-outline':'lock-closed-outline'} size={12} color={circle.canPlay?C.accent:C.lavender}/><Text style={[S.badgeText,circle.canPlay&&{color:C.accent}]}>Global {circle.canPlay?'ON':'OFF'}</Text></View></View>
       <Text style={S.globalCopy}>{circle.canPlay?(circle.count?`${circle.count} friends`:'Ready to explore.'):circle.count?`${circle.count} added · ${circle.remaining} left`:'Five friends open the world.'}</Text>
       {!circle.canPlay&&<View accessibilityRole="progressbar" accessibilityLabel="Global unlock progress" accessibilityValue={{min:0,max:5,now:circle.count}} style={S.progress}>{Array.from({length:5},(_,i)=><View key={i} style={[S.pip,i<circle.count&&{backgroundColor:C.accent}]}/>)}</View>}
       <View style={S.globalActions}>{circle.canPlay?onFeed&&<Pressable cssInterop={false} accessibilityRole="button" onPress={onFeed} style={S.globalAction}><Text style={S.actionText}>Explore the world</Text><Ionicons name="arrow-forward" size={16} color={C.accent}/></Pressable>:onInvite&&<Pressable cssInterop={false} accessibilityRole="button" onPress={onInvite} style={S.globalAction}><Text style={S.actionText}>{circle.count?'Invite next friend':'Invite an explorer'}</Text><Ionicons name="arrow-forward" size={16} color={C.accent}/></Pressable>}{!circle.canPlay&&circle.count>0&&onFeed&&<Pressable cssInterop={false} accessibilityRole="button" onPress={onFeed} style={S.globalAction}><Text style={S.feedText}>See your feed</Text></Pressable>}</View>

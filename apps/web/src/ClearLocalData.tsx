@@ -19,7 +19,7 @@ export function ClearLocalData({onClear}:{onClear:()=>void|Promise<void>}) {
   return <>
     <button type="button" className="profile-clear-data" onClick={()=>{setError('');setOpen(true);}}><Icon name="trash"/><span>Clear local data</span><Icon name="arrow" size={18}/></button>
     {createPortal(<dialog ref={dialog} className="clear-data-dialog" aria-labelledby={title} aria-describedby={description} onCancel={event=>{event.preventDefault();dismiss();}} onClose={()=>{if(!locked.current)setOpen(false);}} onClick={event=>{if(event.target===event.currentTarget)dismiss();}}>
-      {open&&<><h2 id={title}>Clear local data?</h2><p id={description}>Your profile, roamies, saved places, and progress will be deleted.</p>{error&&<p className="clear-data-error" role="alert">{error}</p>}<button className="clear-data-cancel" autoFocus disabled={busy} onClick={dismiss}>Cancel</button><button className="clear-data-confirm" disabled={busy} onClick={()=>void clear()}>{busy?'Clearing…':'Clear data'}</button></>}
+      {open&&<><h2 className="page-heading" id={title}>Clear local data?</h2><p id={description}>Your profile, roamies, saved places, and progress will be deleted.</p>{error&&<p className="clear-data-error" role="alert">{error}</p>}<button className="clear-data-cancel" autoFocus disabled={busy} onClick={dismiss}>Cancel</button><button className="clear-data-confirm" disabled={busy} onClick={()=>void clear()}>{busy?'Clearing…':'Clear data'}</button></>}
     </dialog>,document.body)}
   </>;
 }

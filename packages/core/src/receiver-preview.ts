@@ -22,7 +22,7 @@ export function receiverPreviewProfile(state:PreviewState,invite:FriendInvite):P
 }
 export function receiverPreviewReply(state:PreviewState,invite:FriendInvite):FriendReply|undefined {
  const guest=receiverPreviewProfile(state,invite);
- return state.launch?.postcards.find(r=>r.invite.id===invite.id&&r.person.name===guest.name);
+ return state.launch?.postcards.slice().reverse().find(r=>r.invite.id===invite.id&&r.person.name===guest.name);
 }
 
 /** Local illustrated updates for the invited circle. These are independent of

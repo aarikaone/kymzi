@@ -1,3 +1,4 @@
+import {PageHeading} from './Typography';
 import {NIGHT_THEME} from './theme';
 import React,{useState} from 'react';
 import {Image,Pressable,ScrollView,Text,View} from 'react-native';
@@ -9,7 +10,7 @@ import {VisitDateField} from './VisitDateField';
 const BG='#090C0A',INK='#F1F5EB',MUTED='#B1BCA8',ACCENT='#D5F88F',LINE='#3E5140';
 type Glyph=React.ComponentProps<typeof Ionicons>['name'];
 const Icon=({name,size=23}:{name:Glyph;size?:number})=><Ionicons name={name} size={size} color={ACCENT}/>;
-const Title=({children}:{children:React.ReactNode})=><Text accessibilityRole="header" style={{fontSize:35,lineHeight:40,fontWeight:'600',letterSpacing:-1,color:INK}}>{children}</Text>;
+const Title=({children}:{children:React.ReactNode})=><PageHeading accessibilityRole="header" style={{fontSize:35,lineHeight:40,fontWeight:'600',letterSpacing:-1,color:INK}}>{children}</PageHeading>;
 const Note=({children}:{children:React.ReactNode})=><Text style={{fontSize:17,lineHeight:24,color:MUTED}}>{children}</Text>;
 function Frame({children}:{children:React.ReactNode}){const insets=useSafeAreaInsets();return <ScrollView style={{flex:1,backgroundColor:BG}} contentContainerStyle={{flexGrow:1,padding:22,paddingBottom:Math.max(20,insets.bottom),gap:18}} keyboardShouldPersistTaps="handled">{children}</ScrollView>;}
 function Action({label,onPress,quiet=false,disabled=false}:{label:string;onPress:()=>void;quiet?:boolean;disabled?:boolean}){return <Pressable accessibilityRole="button" disabled={disabled} onPress={onPress} style={{minHeight:quiet?45:57,padding:13,borderRadius:17,alignItems:'center',justifyContent:'center',backgroundColor:quiet?'transparent':NIGHT_THEME.primary,opacity:disabled?.4:1}}><Text style={{fontSize:quiet?17:20,fontWeight:'600',color:quiet?ACCENT:NIGHT_THEME.primaryInk}}>{label}</Text></Pressable>;}

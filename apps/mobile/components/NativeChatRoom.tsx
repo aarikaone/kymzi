@@ -6,7 +6,7 @@ import {Ionicons} from '@expo/vector-icons';
 import Svg,{Circle} from 'react-native-svg';
 import type {AvatarId} from '@rymzi/core';
 import {avatarImages} from './avatarAssets';
-import {Hand} from './Typography';
+import {Hand,PageHeading} from './Typography';
 
 type Message={id:string;from:'you'|'pal';text:string;at:string};
 type Props={
@@ -23,7 +23,7 @@ export function NativeChatRoom({alias,avatar,yourAvatar,city,mode,messages,draft
  return <KeyboardAvoidingView behavior={Platform.OS==='ios'?'padding':undefined} keyboardVerticalOffset={95} style={[S.room,{paddingBottom:Math.max(10,insets.bottom)}]}>
   <View style={S.header}>
    <View style={S.avatar}><Image source={avatarImages[avatar]} accessibilityLabel={`${alias}’s chosen character`} style={S.avatarImage}/><View style={S.avatarBadge}><Ionicons name="sparkles-outline" size={11} color="#211C2B"/></View></View>
-   <View style={S.identity}><Text accessibilityRole="header" style={S.alias}>{alias}</Text><View style={S.city}><Ionicons name="location-outline" size={13} color="#ABA8BD"/><Text style={S.cityText}>{city}</Text></View></View>
+   <View style={S.identity}><PageHeading accessibilityRole="header" style={S.alias}>{alias}</PageHeading><View style={S.city}><Ionicons name="location-outline" size={13} color="#ABA8BD"/><Text style={S.cityText}>{city}</Text></View></View>
    {remaining!==undefined?<View accessible accessibilityLabel={`${remaining} minutes of shared check-in left`} style={S.timer}><Svg width={48} height={48} viewBox="0 0 48 48" style={StyleSheet.absoluteFill} rotation={-90}><Circle cx={24} cy={24} r={21} stroke="#3C374C" strokeWidth={2} fill="none"/><Circle cx={24} cy={24} r={21} stroke="#C8BEFF" strokeWidth={2} fill="none" strokeLinecap="round" strokeDasharray={`${Math.max(0,Math.min(1,remaining/60))*132} 132`}/></Svg><Text style={S.timerValue}>{remaining}<Text style={S.timerUnit}>min</Text></Text></View>:<View accessibilityLabel="Five matches together" style={S.matchMark}><Text style={S.matchNumber}>5</Text><Ionicons name="sparkles-outline" size={13} color="#D5F88F"/></View>}
   </View>
   <View style={S.status}><View style={S.dot}/><Text style={S.statusText}>{status}</Text>{previewLabel&&<Text style={S.previewLabel}>{previewLabel}</Text>}</View>

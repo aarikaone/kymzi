@@ -1,3 +1,4 @@
+import {PageHeading} from './Typography';
 import {NativeImage as Image} from './NativeImage';
 import React from 'react';
 import {Pressable,Text,useWindowDimensions,View} from 'react-native';
@@ -11,7 +12,7 @@ export function NativeProfileSetup({profile,editing,busy,error,onAvatar,onSave}:
  const viewport=useWindowDimensions(),insets=useSafeAreaInsets(),available=viewport.height-insets.top-insets.bottom-104;
  const short=available<570,size=Math.min(viewport.width-64,short?220:280),character=AVATARS.find(a=>a.id===profile.avatar)!;
  return <View style={{flex:1,minHeight:short?400:460,gap:short?16:22}}>
-  <View style={{gap:7}}><Text accessibilityRole="header" style={{fontSize:short?32:36,lineHeight:short?38:42,fontWeight:'600',letterSpacing:-1.4,color:C.ink}}>{PROFILE_SETUP_COPY.title}</Text><View style={{flexDirection:'row',alignItems:'center',gap:11}}><Text style={{fontSize:13,lineHeight:22,color:C.muted}}>Your ID</Text><Text accessibilityLabel="Your assigned nickname" style={{fontSize:18,lineHeight:22,fontWeight:'500',fontVariant:['tabular-nums'],letterSpacing:1,color:C.accent}}>#{profile.name}</Text></View></View>
+  <View style={{gap:7}}><PageHeading accessibilityRole="header" style={{fontSize:short?32:36,lineHeight:short?38:42,fontWeight:'600',letterSpacing:-1.4,color:C.ink}}>{PROFILE_SETUP_COPY.title}</PageHeading><View style={{flexDirection:'row',alignItems:'center',gap:11}}><Text style={{fontSize:13,lineHeight:22,color:C.muted}}>Your ID</Text><Text accessibilityLabel="Your assigned nickname" style={{fontSize:18,lineHeight:22,fontWeight:'500',fontVariant:['tabular-nums'],letterSpacing:1,color:C.accent}}>#{profile.name}</Text></View></View>
   <View style={{flex:1,minHeight:size+54,alignItems:'center',justifyContent:'center'}}><Pressable cssInterop={false} accessibilityRole="button" accessibilityLabel="Change character" disabled={busy} onPress={onAvatar} style={{width:size+2,borderWidth:1,borderColor:'#526E44',borderRadius:short?30:38,backgroundColor:'#1C2A1B',overflow:'hidden',opacity:busy?.5:1}}>
    <Image source={avatarImages[profile.avatar]} accessibilityLabel={`${character.name} avatar`} style={{width:size,height:size,resizeMode:'contain'}}/>
    <View style={{minHeight:54,flexDirection:'row',alignItems:'center',justifyContent:'center',gap:10,padding:12,backgroundColor:'#223021'}}><Ionicons name="color-palette-outline" size={20} color={C.accent}/><Text style={{fontSize:18,fontWeight:'500',color:C.accent}}>Choose avatar</Text><Ionicons name="arrow-forward" size={18} color={C.accent}/></View>

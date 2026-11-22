@@ -1,8 +1,10 @@
 import {TRAVEL_CITIES,travelCityById,travelCityDistanceKm,type TravelCityId} from './world-catalogue.ts';
+import {readWishFulfillments,type WishFulfillment} from './wish-fulfillment.ts';
+import {readVisitedPhotos,type VisitedPhoto} from './visited-photos.ts';
 import type {PreviewState} from './preview.ts';
 export type CitySelection={cityId:TravelCityId;attractionIds:string[]};
 export type CityArrival={id:string;cityId:TravelCityId;at:string;source:'device'|'demo';wishFulfilled:boolean};
-export type TravelProfile={version:1;visited:CitySelection[];wishlist:CitySelection[];arrivals:CityArrival[];completedAt?:string};
+export type TravelProfile={version:1;visited:CitySelection[];wishlist:CitySelection[];arrivals:CityArrival[];memories?:VisitedPhoto[];wishFulfillments?:WishFulfillment[];completedAt?:string};
 export type SharedTravel={visited:TravelCityId[];wishlist:TravelCityId[];fulfilled:{cityId:TravelCityId;source:'device'|'demo';at:string}[]};
 export type CityEvidence={source:'device'|'demo';latitude:number;longitude:number;observedAt:number;accuracy:number};
 export const emptyTravel=():TravelProfile=>({version:1,visited:[],wishlist:[],arrivals:[]});
@@ -14,20 +16,22 @@ const selections=(value:unknown,max:number)=>{const out:CitySelection[]=[];for(c
 export function readTravelProfile(value:unknown):TravelProfile {
  const p=value as Partial<TravelProfile>|null,s=emptyTravel();if(!p)return s;
  s.visited=selections(p.visited,TRAVEL_CITIES.length);s.wishlist=selections(p.wishlist,TRAVEL_CITIES.length);
+ const memories=readVisitedPhotos(p.memories,s.visited);if(memories.length)s.memories=memories;
+ const fulfilled=readWishFulfillments(p.wishFulfillments,s.visited);if(fulfilled.length)s.wishFulfillments=fulfilled;
  if(typeof p.completedAt==='string'&&Number.isFinite(Date.parse(p.completedAt)))s.completedAt=p.completedAt;
  for(const a of Array.isArray(p.arrivals)?p.arrivals:[]){if(!a||!travelCityById(a.cityId)||!['device','demo'].includes(a.source)||!Number.isFinite(Date.parse(a.at))||s.arrivals.some(e=>e.cityId===a.cityId))continue;s.arrivals.push({id:`arrival:${a.cityId}:${a.source}:${a.at}`,cityId:a.cityId,at:a.at,source:a.source,wishFulfilled:a.wishFulfilled===true});}
  return s;
 }
 export function travelWishCount(value:unknown):number {return readTravelProfile(value).wishlist.reduce((total,city)=>total+city.attractionIds.length,0);}
 export function completeTravelProfile(value:unknown,now=new Date()):TravelProfile {
- const s=readTravelProfile(value);if(travelWishCount(s)<3)throw new Error('Pick at least three wishlist places.');return {...s,completedAt:s.completedAt??now.toISOString()};
+ const s=readTravelProfile(value);if(travelWishCount(s)+(s.wishFulfillments?.length??0)<3)throw new Error('Pick at least three wishlist places.');return {...s,completedAt:s.completedAt??now.toISOString()};
 }
 export function setTravelCity(travel:TravelProfile,kind:'visited'|'wishlist',selection:CitySelection):TravelProfile {
  const city=cleanCitySelection(selection);if(!city)throw new Error('Choose a city.');
  const items=travel[kind];
- return {...travel,[kind]:items.some(c=>c.cityId===city.cityId)?items.map(c=>c.cityId===city.cityId?city:c):[...items,city]};
+ return readTravelProfile({...travel,[kind]:items.some(c=>c.cityId===city.cityId)?items.map(c=>c.cityId===city.cityId?city:c):[...items,city]});
 }
-export function removeTravelCity(travel:TravelProfile,kind:'visited'|'wishlist',id:TravelCityId):TravelProfile{return {...travel,[kind]:travel[kind].filter(c=>c.cityId!==id)};}
+export function removeTravelCity(travel:TravelProfile,kind:'visited'|'wishlist',id:TravelCityId):TravelProfile{return readTravelProfile({...travel,[kind]:travel[kind].filter(c=>c.cityId!==id)});}
 export function sharedTravel(value:unknown):SharedTravel|undefined {
  if(!value)return;const s=readTravelProfile(value);return {visited:s.visited.map(c=>c.cityId).slice(0,26),wishlist:s.wishlist.map(c=>c.cityId).slice(0,26),fulfilled:s.arrivals.filter(a=>a.wishFulfilled).map(a=>({cityId:a.cityId,source:a.source,at:a.at})).slice(-3)};
 }

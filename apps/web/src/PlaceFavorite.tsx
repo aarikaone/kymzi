@@ -19,7 +19,7 @@ export function PlaceFavoriteButton({id,name,saved,onFavorite,onSaved,variant='i
   <dialog ref={dialog} className="place-unfavorite-sheet" aria-labelledby={titleId} aria-describedby={nameId} onCancel={e=>{e.preventDefault();e.stopPropagation();dismiss();}} onClose={dismiss} onClick={e=>{if(e.target===e.currentTarget)dismiss();}}>
    {open&&<><div className="place-unfavorite-handle"/>
    <span className="place-unfavorite-symbol" aria-hidden="true"><Icon name="heart" size={30}/></span>
-   <h2 id={titleId}>Remove from Favs?</h2><p id={nameId}>{name}</p>
+   <h2 className="page-heading" id={titleId}>Remove from Favs?</h2><p id={nameId}>{name}</p>
    {error&&<p role="alert" className="place-favorite-error">{error}</p>}
    <button type="button" className="place-primary" autoFocus onClick={dismiss}>Keep saved</button>
    <button type="button" className="place-unfavorite-confirm" onClick={remove}>Yes, unfavourite</button></>}

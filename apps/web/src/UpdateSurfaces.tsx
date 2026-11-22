@@ -20,10 +20,10 @@ export function HomePalPreview({state,now,onOpen}:{state:PreviewState;now:Date;o
 
 export function PalUpdatesInbox({state,now,onOpen,onRead}:{state:PreviewState;now:Date;onOpen:(n:PalUpdate)=>void;onRead:()=>void}){
   const [tab,setTab]=useState('all'),notes=palUpdates(state,now),visible=notes.filter(n=>tab==='all'||(tab==='photos'?(n.kind==='place'||n.kind==='photo'):(n.kind!=='place'&&n.kind!=='photo')));
-  return <div className="roamie-inbox update-inbox"><div className="explore-heading"><h1 tabIndex={-1}>City updates.</h1>{notes.some(n=>!n.read)&&<button className="inbox-read" onClick={onRead}><Icon name="check" size={15}/><span>Mark all read</span></button>}</div>
+  return <div className="roamie-inbox update-inbox"><div className="explore-heading"><h1 className="page-heading" tabIndex={-1}>City updates.</h1>{notes.some(n=>!n.read)&&<button className="inbox-read" onClick={onRead}><Icon name="check" size={15}/><span>Mark all read</span></button>}</div>
     <div className="update-filters" role="group" aria-label="Update filters">{[{id:'all',name:'All',icon:'bell'},{id:'photos',name:'Places',icon:'camera'},...(isAdult(state.profile!.ageBand)?[{id:'visits',name:'Visits',icon:'plane'}]:[])].map(t=><button key={t.id} aria-pressed={tab===t.id} onClick={()=>setTab(t.id)}><Icon name={t.icon} size={16}/>{t.name}</button>)}</div>
     <div className="pal-inbox-list">{visible.map(note=><button key={note.id} className={`roamie-update-item update-message-card ${note.read?'':'unread'}`} onClick={()=>onOpen(note)} aria-label={`Open update: ${note.title}`}>
       <UpdateArt note={note}/><span className="pal-update-text"><small className="update-message-kind">{kindName(note)} </small><strong>{note.title}</strong><span className="update-message-city">{countryById(note.countryId)!.flag} {countryById(note.countryId)!.city}</span><span className="update-message-detail">{note.detail}</span></span>{!note.read&&<i className="pal-unread-dot"/>}<span className="update-message-arrow"><Icon name="arrow" size={16}/></span>
-    </button>)}{!visible.length&&<div className="visits-empty"><Icon name="bell" size={53}/><h2>You’re up to date.</h2></div>}</div><p className="small center">Updates stay on this device</p>
+    </button>)}{!visible.length&&<div className="visits-empty"><Icon name="bell" size={53}/><h2 className="page-heading">You’re up to date.</h2></div>}</div><p className="small center">Updates stay on this device</p>
   </div>;
 }

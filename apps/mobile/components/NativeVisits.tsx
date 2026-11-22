@@ -1,3 +1,4 @@
+import {PageHeading} from './Typography';
 import {NativeCityGuideDoor} from './NativeWorldLibrary';
 import {NativeImage as Image} from './NativeImage';
 import {NativeDetails} from './NativeDetails';
@@ -18,7 +19,7 @@ const BG='#090C0A',INK='#F1F5EB',MUTED='#B1BCA8',ACCENT='#D5F88F',SURFACE='#151B
 type Glyph=React.ComponentProps<typeof Ionicons>['name'];
 function Icon({name,size=23}:{name:Glyph;size?:number}){return <Ionicons name={name} size={size} color={ACCENT}/>;}
 function Frame({children}:{children:React.ReactNode}){const insets=useSafeAreaInsets();return <ScrollView style={{flex:1,backgroundColor:BG}} contentContainerStyle={{flexGrow:1,padding:22,paddingBottom:Math.max(20,insets.bottom),gap:18}} keyboardShouldPersistTaps="handled">{children}</ScrollView>;}
-function Title({children}:{children:React.ReactNode}){return <Text accessibilityRole="header" style={{fontSize:35,lineHeight:40,fontWeight:'600',letterSpacing:-1,color:INK}}>{children}</Text>;}
+function Title({children}:{children:React.ReactNode}){return <PageHeading accessibilityRole="header" style={{fontSize:35,lineHeight:40,fontWeight:'600',letterSpacing:-1,color:INK}}>{children}</PageHeading>;}
 function Note({children}:{children:React.ReactNode}){return <Text style={{fontSize:16,lineHeight:23,color:MUTED}}>{children}</Text>;}
 function Action({label,onPress,quiet=false,disabled=false}:{label:string;onPress:()=>void;quiet?:boolean;disabled?:boolean}){return <Pressable cssInterop={false} accessibilityRole="button" disabled={disabled} onPress={onPress} style={({pressed})=>({minHeight:quiet?48:58,padding:14,borderRadius:17,backgroundColor:quiet?'transparent':NIGHT_THEME.primary,alignItems:'center',justifyContent:'center',opacity:disabled?0.4:pressed?0.8:1})}><Text style={{fontSize:quiet?17:20,fontWeight:'600',color:quiet?ACCENT:NIGHT_THEME.primaryInk,textAlign:'center'}}>{label}</Text></Pressable>;}
 function Footer({children}:{children:React.ReactNode}){return <View style={{marginTop:'auto',gap:5,paddingTop:7}}>{children}</View>;}

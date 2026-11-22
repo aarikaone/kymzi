@@ -5,7 +5,7 @@ type Props={profile:Profile;editing:boolean;busy:boolean;error:string;onAvatar:(
 export function ProfileSetup({profile,editing,busy,error,onAvatar,onSave}:Props){
  const character=AVATARS.find(a=>a.id===profile.avatar)!;
  return <div className="profile-setup">
-  <div className="setup-heading"><h1 tabIndex={-1}>{PROFILE_SETUP_COPY.title}</h1><p>Your ID <strong aria-label="Your assigned nickname">#{profile.name}</strong></p></div>
+  <div className="setup-heading"><h1 className="page-heading" tabIndex={-1}>{PROFILE_SETUP_COPY.title}</h1><p>Your ID <strong aria-label="Your assigned nickname">#{profile.name}</strong></p></div>
   <div className="setup-avatar-selection"><button type="button" className="setup-avatar-card" aria-label="Change character" onClick={onAvatar} disabled={busy}>
    <span className="setup-avatar-art"><img src={publicCdnImage(`/avatars/${profile.avatar}.webp`)} alt={`${character.name} avatar`} draggable="false"/></span>
    <span className="setup-avatar-action"><Icon name="palette" size={20}/>Choose avatar<Icon name="arrow" size={18}/></span><span className="visually-hidden">{character.name}</span>

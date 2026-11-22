@@ -35,7 +35,7 @@ it('starts fresh when the URL changes and ignores events from the previous bitma
 
 it('requests visited-city thumbnails even when the visibility observer never fires',()=>{
  vi.stubGlobal('IntersectionObserver',class{observe(){}disconnect(){}});
- render(<TravelSetup onOpenCities={()=>{}} onOpenCity={()=>{}} onSelectionDone={()=>{}} onComplete={vi.fn()} onBack={vi.fn()}/>);
+ render(<TravelSetup page="cities" onOpenCities={()=>{}} onOpenCity={()=>{}} onSelectionDone={()=>{}} onComplete={vi.fn()} onBack={vi.fn()}/>);
  const frame=screen.getByRole('img',{name:'Tokyo guide illustration'}),image=frame.querySelector('img');expect(image).toBeTruthy();expect(image?.getAttribute('loading')).toBe('eager');expect(image?.getAttribute('src')).toContain('/images/places/jp-1-');fireEvent.load(image!);expect(frame.getAttribute('aria-busy')).toBe('false');
 });
 it('shows a completed decode without waiting for a missing load event',async()=>{

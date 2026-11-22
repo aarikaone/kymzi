@@ -1,0 +1,40 @@
+import {WishFulfilledFeed} from './WishFulfilledFeed';
+import {useEffect,useRef,useState} from 'react';
+import {addVisitedPhoto,removeVisitedPhoto,visitedPhotoAlbums,cleanCityJpeg,MAX_CITY_PHOTO_LENGTH,MAX_VISITED_PHOTOS,travelCityById,publicCdnImage,type TravelProfile,type TravelCityId,type PreviewState,type VisitedAlbum} from '@rymzi/core';
+import {RemoteImage} from './RemoteImage';
+import {useCityPlaces} from './useCityPlaces';
+import {Icon} from './icons';
+import './visited-photos.css';
+
+export async function prepareVisitedPhoto(file:File):Promise<string>{
+ if(!/^image\/(jpeg|png|webp|avif|heic|heif)$/i.test(file.type))throw new Error('Choose a JPG, PNG, WebP or HEIC photo.');
+ if(file.size>15*1024*1024)throw new Error('Choose a photo under 15 MB.');
+ const url=URL.createObjectURL(file);
+ try{
+  const image=await new Promise<HTMLImageElement>((resolve,reject)=>{const img=new Image(),timeout=setTimeout(()=>{img.src='';reject(new Error('Couldn’t open this photo. Try a JPG or PNG.'));},15000);img.onload=()=>{clearTimeout(timeout);resolve(img);};img.onerror=()=>{clearTimeout(timeout);reject(new Error('Couldn’t open this photo. Try a JPG or PNG.'));};img.src=url;});
+  if(!image.naturalWidth||!image.naturalHeight)throw new Error('Choose another photo.');
+  for(const size of [900,640,420]){
+   const scale=Math.min(1,size/Math.max(image.naturalWidth,image.naturalHeight)),canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(image.naturalWidth*scale));canvas.height=Math.max(1,Math.round(image.naturalHeight*scale));
+   const ctx=canvas.getContext('2d');if(!ctx)throw new Error('Photo editing is unavailable in this browser.');ctx.fillStyle='#090C0A';ctx.fillRect(0,0,canvas.width,canvas.height);ctx.drawImage(image,0,0,canvas.width,canvas.height);
+   for(const quality of [.75,.5,.3]){const jpeg=canvas.toDataURL('image/jpeg',quality);if(jpeg.length<=MAX_CITY_PHOTO_LENGTH)return cleanCityJpeg(jpeg);}
+  }
+  throw new Error('Choose a smaller photo.');
+ }finally{URL.revokeObjectURL(url);}
+}
+export function VisitedPhotoEditor({travel,cityId,placeId,label,onChange,onBusy,disabled=false,prominent=false}:{travel:TravelProfile;cityId:TravelCityId;placeId?:string;label:string;onChange:(t:TravelProfile)=>void;onBusy:(busy:boolean)=>void;disabled?:boolean;prominent?:boolean}){
+ const input=useRef<HTMLInputElement>(null),[busy,setBusy]=useState(false),[error,setError]=useState(''),alive=useRef(true),latest=useRef(travel);latest.current=travel;
+ useEffect(()=>{alive.current=true;return()=>{alive.current=false;onBusy(false);};},[]);
+ const photos=(travel.memories??[]).filter(p=>p.cityId===cityId&&p.placeId===placeId);
+ async function pick(file?:File){if(!file||busy)return;setBusy(true);onBusy(true);setError('');try{const image=await prepareVisitedPhoto(file);if(alive.current)onChange(addVisitedPhoto(latest.current,cityId,image,placeId));}catch(e){if(alive.current)setError((e as Error).message);}finally{if(alive.current){setBusy(false);onBusy(false);}}}
+ const add=<button type="button" className={photos.length?'visited-photo-add':`visited-photo-add-compact${prominent?' prominent':''}`} disabled={disabled||busy||(travel.memories?.length??0)>=MAX_VISITED_PHOTOS} aria-label={`Add photo to ${label}`} onClick={()=>input.current?.click()}><Icon name={photos.length?'plus':'camera'} size={17}/><span>{busy?'Preparing…':photos.length?'Add':prominent?'Add your photos':'Add photo'}</span></button>;
+ return <div className={`visited-photo-editor ${photos.length?'has-photos':'is-empty'}`} data-photo-state={photos.length?'filled':'empty'}>{photos.length>0?<><header className="visited-photo-heading"><span>Your photos<small>{photos.length}</small></span>{add}</header><div className="visited-photo-strip" aria-label={`${label} photos`}>{photos.map((p,i)=><div key={p.id} className="visited-photo-thumb"><RemoteImage url={p.image} label={`${label} memory ${i+1}`}/><button type="button" disabled={disabled||busy} aria-label={`Remove ${label} photo ${i+1}`} onClick={()=>onChange(removeVisitedPhoto(travel,p.id))}><Icon name="close" size={14}/></button></div>)}</div></>:add}<input ref={input} type="file" accept="image/jpeg,image/png,image/webp,image/avif,image/heic,image/heif" aria-label={`Photo for ${label}`} hidden disabled={disabled||busy} onChange={event=>{const file=event.currentTarget.files?.[0];event.currentTarget.value='';void pick(file);}}/>{error&&<p role="alert" className="place-error">{error}</p>}</div>;
+}
+export function VisitedPhotoFeed({state,cityFilter='all'}:{state:PreviewState;cityFilter?:string}){
+ const fulfilled=state.profile?.travel?.wishFulfillments??[],albums=visitedPhotoAlbums(state.profile?.travel).filter(a=>!fulfilled.some(w=>w.cityId===a.cityId&&w.placeId===a.placeId)).filter(a=>cityFilter==='all'||travelCityById(a.cityId)?.city===cityFilter);
+ if(!albums.length&&!fulfilled.some(w=>cityFilter==='all'||travelCityById(w.cityId)?.city===cityFilter))return null;
+ return <section className="visited-memories" aria-label="Your visited photo feed"><WishFulfilledFeed state={state} cityFilter={cityFilter}/>{albums.map(album=><MemoryCard key={album.id} album={album} avatar={state.profile!.avatar}/>)}</section>;
+}
+function MemoryCard({album,avatar}:{album:VisitedAlbum;avatar:string}){
+ const city=travelCityById(album.cityId)!,guide=useCityPlaces(album.cityId),place=guide.places.find(p=>p.id===album.placeId),[active,setActive]=useState(0);
+ return <article className="memory-card" data-feed-kind="visited-photo"><header><img src={publicCdnImage(`/avatars/${avatar}.webp`)} alt=""/><span><strong>Your memories</strong><small>{city.flag} {city.city}</small></span><span className="memory-count">{active+1} / {album.photos.length}</span></header><div className="memory-carousel" tabIndex={0} aria-label={`${city.city} photo album`} onScroll={event=>{const el=event.currentTarget;setActive(Math.min(album.photos.length-1,Math.round(el.scrollLeft/(el.clientWidth||1))));}}>{album.photos.map((photo,i)=><RemoteImage key={photo.id} url={photo.image} label={`${place?.name??city.city} — your photo ${i+1}`} className="memory-image"/>)}</div><footer><span className="memory-dot"/><div><strong>{place?.name??city.city}</strong><small>{new Date(album.photos[0].addedAt).toLocaleDateString('en',{day:'numeric',month:'short'})} · Saved on this device</small></div>{album.photos.length>1&&<span className="memory-dots" aria-hidden="true">{album.photos.map((p,i)=><i key={p.id} data-active={i===active}/>)}</span>}</footer></article>;
+}

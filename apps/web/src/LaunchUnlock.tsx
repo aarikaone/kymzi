@@ -22,7 +22,7 @@ export function LaunchUnlock({state,now,onPrepare,onInvite,onPlay,onExplore,onCo
  function reset(){try{onResetPreview();setPhase('idle');setStep(0);}catch(e){setError((e as Error).message);}}
  const previewing=phase!=='idle'||p.simulated,complete=phase==='complete',count=complete?5:step;
  if(previewing)return <div className={`launch-page unlock-page unlock-preview ${complete?'is-unlocked':''}`} key={run}>
-  <header><span className="launch-eyebrow">UNLOCK PREVIEW</span><h1 tabIndex={-1}>{complete?'Your world.':'Five friends.'}<br/><em>{complete?'Unlocked.':'A whole world.'}</em></h1></header>
+  <header><h1 className="page-heading" tabIndex={-1}>{complete?'Your world.':'Five friends.'}{' '}<em>{complete?'Unlocked.':'A whole world.'}</em></h1></header>
   <div className="unlock-scene">
    {complete&&<div className="unlock-confetti" aria-hidden="true">{Array.from({length:20},(_,i)=><i key={i} style={{'--x':`${Math.cos(i*2.399)*140}px`,'--y':`${Math.sin(i*2.399)*140}px`,'--r':`${i*57}deg`,'--delay':`${i%4*35}ms`} as React.CSSProperties}/>)}</div>}
    <div className="unlock-orb" role="progressbar" aria-label="Simulated friend unlock progress" aria-valuemin={0} aria-valuemax={5} aria-valuenow={count} aria-valuetext={complete?'Global play unlocked':`${count} of 5 simulated friends added`}>
@@ -31,7 +31,7 @@ export function LaunchUnlock({state,now,onPrepare,onInvite,onPlay,onExplore,onCo
    </div>
    <div className="unlock-friends preview-friends" aria-hidden="true">{UNLOCK_PREVIEW_AVATARS.map((avatar,i)=><div className={i<count?'complete':''} key={avatar}>{i<count?<img key={`${run}-${i}`} src={publicCdnImage(`/avatars/${avatar}.webp`)} alt=""/>:<Icon name="user" size={27}/>}<span>{i<count?<Icon name="check" size={12}/>:i+1}</span></div>)}</div>
   </div>
-  <div className="unlock-copy" role="status" aria-live="polite"><h2>{complete?'Global play is on.':count===5?'You’re all set.':count?`${count} down. ${5-count} to go.`:'Your world starts with five.'}</h2><p>{complete?'3 answers. Someone new. Anywhere.':'Watch your first five join.'}</p><span className="unlock-simulation-note">Simulated friends · No invites sent</span></div>
+  <div className="unlock-copy" role="status" aria-live="polite"><h2 className="page-heading">{complete?'Global play is on.':count===5?'You’re all set.':count?`${count} down. ${5-count} to go.`:'Your world starts with five.'}</h2><p>{complete?'3 answers. Someone new. Anywhere.':'Watch your first five join.'}</p><span className="unlock-simulation-note">Simulated friends · No invites sent</span></div>
   {error&&<p role="alert" className="launch-note">{error}</p>}
   <div className="launch-bottom"><button className="button" disabled={!complete||waiting} onClick={onPlay}>{complete?(waiting?'Next play at your daily time':'Find my roamie'):phase==='unlocking'?'Unlocking…':'Adding friends…'}<Icon name={complete?'arrow':'globe'}/></button><div className="unlock-links">{phase==='adding'?<button className="text-button" onClick={()=>{setStep(5);void finish();}}>Skip animation</button>:complete?<button className="text-button" onClick={preview}>Replay animation</button>:null}<button className="text-button" disabled={phase==='unlocking'} onClick={reset}>{complete?'Explore':'Cancel'}</button></div></div>
  </div>;

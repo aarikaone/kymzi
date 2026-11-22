@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
-import {travelQuestionBank,TRAVEL_COLLECTIONS,questionById,attractionById,travelQuestionsForDay,beginDayCard,hasDayCard,founderJourney,perfectDayPicks,emptyPreview,emptyLaunch,beginInvitePreparation,answerInvitePreparation,submitInvitePreparation,finishInvitePreparation,invitePreparationIndex,beginPerfectDayPlay,simulatePalUnlock,answerDaily,submitDaily,finishLaunchPlay,readPreview,palSummaries,makeFriendInvite,rememberInvite,answerFriendInvite,collectPostcard,friendScore,challengeURL,palFindingProgress,type PreviewState,type ChallengeCrypto} from './index.ts';
+import {travelQuestionBank,TRAVEL_COLLECTIONS,questionById,attractionById,travelQuestionsForDay,beginDayCard,hasDayCard,founderJourney,perfectDayPicks,emptyPreview,emptyLaunch,beginInvitePreparation,answerInvitePreparation,submitInvitePreparation,finishInvitePreparation,invitePreparationIndex,beginPerfectDayPlay,simulatePalUnlock,answerDaily,submitDaily,finishLaunchPlay,readPreview,palSummaries,makeFriendInvite,rememberInvite,answerFriendInvite,collectPostcard,friendScore,senderPostcardPicks,openFriendPostcard,inviteQuestions,challengeURL,palFindingProgress,type PreviewState,type ChallengeCrypto} from './index.ts';
 const now=new Date('2026-11-20T05:00:00Z');
 const seed=():PreviewState=>({...emptyPreview(now),profile:{name:'123456',avatar:'cloud',ageBand:'25-30',city:'Bengaluru',country:'India'},launch:emptyLaunch(now)});
 const crypto:ChallengeCrypto={nonce:()=> 'a'.repeat(32),digest:async v=>createHash('sha256').update(v).digest('hex')};
@@ -42,4 +42,41 @@ test('five distinct completed friend cards open global play; sharing and duplica
 });
 test('younger explorers keep a private travel game without referral invitations or social matches',()=>{
  const s={...seed(),profile:{...seed().profile!,ageBand:'10-12' as const}};assert.throws(()=>beginDayCard(s,now));const played=finish(beginPerfectDayPlay(s,now,undefined,'animals'));assert.equal(played.social.proofs.length,0);assert.equal(played.daily.playsToday,1);
+});
+
+test('travel invitations connect at 50% or above and lower matches never credit the global gate',async()=>{
+ let state=prepare();const answers=state.launch!.tickets[0].answers,invite=await makeFriendInvite(state,crypto,now);state=rememberInvite(state,invite,now);
+ for(let shared=0;shared<=3;shared++){
+  const picks=answers.map((value,i)=>i<shared?value:questionById(invite.ids[i])!.choices!.find(c=>c.label!==value)!.label),guest={...state.profile!,name:String(800000+shared)};
+  const reply=await answerFriendInvite(invite,guest,picks,{...crypto,nonce:()=>String(shared+1).repeat(32)},now),score=friendScore(reply),result=collectPostcard(state,reply,now);
+  assert.equal(score.shared,shared);assert.equal(score.percentage,[0,33,67,100][shared]);assert.equal(score.connects,shared>=2);
+  assert.equal(result.launch!.postcards.length,1);assert.equal(palFindingProgress(result).count,shared>=2?1:0);assert.equal(result.social.proofs.length,0);assert.deepEqual(result.daily,state.daily);
+  assert.equal(palFindingProgress(readPreview(JSON.parse(JSON.stringify(result)),now)).count,shared>=2?1:0);
+ }
+ const guest={...state.profile!,name:'899999'},miss=answers.map((v,i)=>questionById(invite.ids[i])!.choices!.find(c=>c.label!==v)!.label);
+ state=collectPostcard(state,await answerFriendInvite(invite,guest,miss,{...crypto,nonce:()=> 'b'.repeat(32)},now),now);
+ assert.equal(palFindingProgress(state).count,0);
+ state=collectPostcard(state,await answerFriendInvite(invite,guest,answers,{...crypto,nonce:()=> 'c'.repeat(32)},now),now);
+ assert.equal(palFindingProgress(state).count,1);assert.equal(state.launch!.friendCredits.length,1);
+});
+
+test('a sealed postcard opens only at two matches and reveals the sender’s original day',async()=>{
+ const state=prepare(),answers=state.launch!.tickets[0].answers,invite=await makeFriendInvite(state,crypto,now),guest={...state.profile!,name:'654321'};
+ assert.deepEqual(inviteQuestions(invite).map(q=>q.id),invite.ids);
+ for(let shared=0;shared<=3;shared++){
+  const picks=answers.map((answer,i)=>i<shared?answer:questionById(invite.ids[i])!.choices!.find(c=>c.label!==answer)!.label),reply=await answerFriendInvite(invite,guest,picks,{...crypto,nonce:()=>String(shared+1).repeat(32)},now);
+  let calls=0;const revealCrypto={digest:async(value:string)=>{calls++;return crypto.digest(value);}};
+  if(shared<2){await assert.rejects(openFriendPostcard(reply,revealCrypto),/Match at least 2/);assert.equal(calls,0);}
+  else{const card=await openFriendPostcard(reply,revealCrypto);assert.deepEqual(card.map(p=>p.label),answers);assert.deepEqual(card.map(p=>p.id),invite.ids);assert.ok(card.every(p=>!!attractionById(p.artworkId)));if(shared===2)assert.notEqual(card[2].label,picks[2]);}
+ }
+});
+
+test('sender preview verifies the exact shared invite instead of displaying a newer travel day',async()=>{
+ const state=prepare(),original=state.launch!.tickets[0],invite=await makeFriendInvite(state,crypto,now),later={...original,id:'newer-day',answers:original.ids.map(id=>questionById(id)!.choices![1].label)},changed={...state,launch:{...state.launch!,tickets:[original,later]}};
+ const before=JSON.stringify(changed),picks=await senderPostcardPicks(changed,invite,crypto);assert.deepEqual(picks.map(p=>p.label),original.answers);assert.deepEqual(picks.map(p=>p.id),invite.ids);assert.notDeepEqual(picks.map(p=>p.label),later.answers);assert.equal(JSON.stringify(changed),before);
+ const missing={...state,launch:{...state.launch!,tickets:[later]}};assert.deepEqual(await senderPostcardPicks(missing,invite,crypto),[]);
+});
+test('a sender preview never shows saved answers for a different owner',async()=>{
+ const state=prepare(),invite=await makeFriendInvite(state,crypto,now);let calls=0;const digest=async(value:string)=>{calls++;return crypto.digest(value);};
+ assert.deepEqual(await senderPostcardPicks({...state,profile:{...state.profile!,name:'654321'}},invite,{digest}),[]);assert.equal(calls,0);
 });

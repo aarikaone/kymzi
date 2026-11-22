@@ -31,17 +31,17 @@ export function RoamieReveal({state,onPal,onCountry,onAttraction,onPhotos,onPlan
     <div className="reveal-body">
       <header className="reveal-heading">
         <span className="reveal-status"><Icon name={privateOnly?'globe':'check'} size={14}/>{privateOnly?'Virtual city':'3/3 answers matched'}</span>
-        <h1 tabIndex={-1}>{privateOnly?`${country.city}.`:'You found a roamie.'}</h1>
+        <h1 className="page-heading" tabIndex={-1}>{privateOnly?`${country.city}.`:'You found a roamie.'}</h1>
       </header>
 
       {!privateOnly&&<section className="reveal-person" aria-label="Your new roamie">
         <span className="reveal-character"><img src={publicCdnImage(`/avatars/${pal?.imageAvatar??'cloud'}.webp`)} alt="Your roamie’s character"/></span>
-        <div><small>A NEW CONNECTION</small><h2>{pal?.alias??'Your roamie'}</h2><span className="reveal-private"><Icon name="lock" size={13}/>Identity private</span></div>
+        <div><small>A NEW CONNECTION</small><h2 className="page-heading">{pal?.alias??'Your roamie'}</h2><span className="reveal-private"><Icon name="lock" size={13}/>Identity private</span></div>
         <Icon name="spark" size={20} className="reveal-person-spark"/>
       </section>}
 
       {picks.length===3&&<section className="reveal-common" aria-label={privateOnly?'Your kind of day':'Your shared kind of day'}>
-        <h2>{privateOnly?'Your kind of day':'You both picked'}</h2>
+        <h2 className="page-heading">{privateOnly?'Your kind of day':'You both picked'}</h2>
         <ul>{picks.map(p=><li key={p.id}><Icon name="check" size={12}/>{p.label}</li>)}</ul>
       </section>}
 

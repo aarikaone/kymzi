@@ -13,6 +13,25 @@ service cloud.firestore {
         allow write: if false;
       }
     }
+    // A small public suggestion box. The catalogue remains read-only.
+    match /citySuggestions/{suggestionId} {
+      function validFields(data) {
+        return data.keys().hasAll(['key', 'city', 'country', 'status', 'createdAt'])
+          && data.keys().hasOnly(['key', 'city', 'country', 'status', 'createdAt'])
+          && data.key is string && data.key.matches('[a-f0-9]{64}')
+          && data.key == suggestionId
+          && data.city is string && data.city.size() >= 2 && data.city.size() <= 80
+          && data.country is string && data.country.size() >= 2 && data.country.size() <= 80
+          && data.city.matches('[^<>\\n\\r]{2,80}')
+          && data.country.matches('[^<>\\n\\r]{2,80}')
+          && data.status == 'pending' && data.createdAt is timestamp;
+      }
+      allow get: if !exists(/databases/$(database)/documents/citySuggestions/$(suggestionId))
+        || validFields(resource.data);
+      allow create: if validFields(request.resource.data)
+        && request.resource.data.createdAt == request.time;
+      allow list, update, delete: if false;
+    }
     match /{document=**} {
       allow read, write: if false;
     }

@@ -1,5 +1,5 @@
 import {readSharedTravel,sharedTravel,type SharedTravel} from './travel-profile.ts';
-import {questionById,TRAVEL_INVITE_SETS,validQuestionChoice} from './question-library.ts';
+import {questionById,questionChoices,dayCardPicks,TRAVEL_INVITE_SETS,validQuestionChoice} from './question-library.ts';
 import {readGlobalPals,type GlobalPalsPreview} from './global-pals.ts';
 import {AVATARS,normalizeAnswer,questionBank,demoPeers} from './index.ts';
 import {beginDaily,completeDaily,dailyStatus,hasDailyProgress,localDay,scheduleDaily,type DailyGame} from './daily.ts';
@@ -74,18 +74,38 @@ export function challengeURL(base:string,value:FriendInvite|FriendReply):string{
 }
 function publicPerson(profile:Profile):Person{return person({name:profile.name,avatar:profile.avatar,...(profile.travel?{travel:sharedTravel(profile.travel)}:{})});}
 function cleanAnswers(values:string[]):string[]{if(values.length!==3||values.some(v=>typeof v!=='string'||!v.trim()||v.length>40))throw new Error('Answer all 3 questions first.');return values.map(v=>normalizeAnswer(v));}
-async function commitments(id:string,ids:string[],answers:string[],crypto:ChallengeCrypto){const values=cleanAnswers(answers);const result=await Promise.all(ids.map((q,i)=>crypto.digest(`kymzi-friend-v1:${id}:${q}:${values[i]}`)));return hashes(result);}
+async function commitments(id:string,ids:string[],answers:string[],crypto:Pick<ChallengeCrypto,'digest'>){const values=cleanAnswers(answers);const result=await Promise.all(ids.map((q,i)=>crypto.digest(`kymzi-friend-v1:${id}:${q}:${values[i]}`)));return hashes(result);}
 export async function makeFriendInvite(state:PreviewState,crypto:ChallengeCrypto,now=new Date()):Promise<FriendInvite>{
  const ticket=state.launch?.tickets.slice().reverse().find(t=>validSet(t.ids));if(!state.profile||state.profile.ageBand==='10-12'||!ticket)throw new Error('Create your 3-question invite first.');
  const id=crypto.nonce();if(!HEX.test(id))throw new Error('Could not create a challenge. Try again.');
  return readFriendInvite({version:1,id,createdAt:now.toISOString(),person:publicPerson(state.profile),ids:ticket.ids,hashes:await commitments(id,ticket.ids,ticket.answers,crypto)},now);
+}
+/** Preview only the owner's saved answers whose commitments match this exact invite. */
+export async function senderPostcardPicks(state:PreviewState,invite:FriendInvite,crypto:Pick<ChallengeCrypto,'digest'>){
+ if(state.profile?.name!==invite.person.name)return [];
+ const tickets=state.launch?.tickets.slice().reverse().filter(t=>t.ids.join('.')===invite.ids.join('.'))??[];
+ for(const ticket of tickets){const values=await commitments(invite.id,ticket.ids,ticket.answers,crypto);if(values.every((value,i)=>value===invite.hashes[i]))return dayCardPicks(ticket.ids,ticket.answers);}
+ return [];
 }
 export function hasInviteAnswers(state:PreviewState){return !!state.launch?.tickets.some(t=>validSet(t.ids));}
 export async function answerFriendInvite(invite:FriendInvite,profile:Profile,answers:string[],crypto:ChallengeCrypto,now=new Date()):Promise<FriendReply>{
  invite=readFriendInvite(invite,now);if(invite.ids.some((id,i)=>{const q=questionById(id);return q&&!validQuestionChoice(q,answers[i]);}))throw new Error('Pick one of the six choices.');if(profile.ageBand==='10-12')throw new Error('Your city journey stays private.');if(profile.name===invite.person.name)throw new Error('Open this link with a friend to compare your answers.');
  return readFriendReply({version:1,invite,id:crypto.nonce(),completedAt:now.toISOString(),person:publicPerson(profile),hashes:await commitments(invite.id,invite.ids,answers,crypto)},now);
 }
-export function friendScore(reply:FriendReply){const matched=reply.invite.hashes.map((h,i)=>h===reply.hashes[i]);return {matched,shared:matched.filter(Boolean).length,total:3 as const};}
+export function friendScore(reply:FriendReply){const matched=reply.invite.hashes.map((h,i)=>h===reply.hashes[i]),shared=matched.filter(Boolean).length;return {matched,shared,total:3 as const,percentage:Math.round(shared/3*100),connects:shared/3>=.5};}
+/** Open the sender's illustrated travel day only after two answers match.
+ * Resolve the six reviewed choices locally; no network or billed generation is used. */
+export async function openFriendPostcard(raw:FriendReply,crypto:Pick<ChallengeCrypto,'digest'>){
+ const reply=readFriendReply(raw);
+ if(!friendScore(reply).connects)throw new Error('Match at least 2 of 3 answers to open this postcard.');
+ const answers=await Promise.all(reply.invite.ids.map(async(id,i)=>{
+  const question=questionById(id);if(!question)throw new Error('This postcard is unavailable. Ask for a new one.');
+  const options=questionChoices(question),hashes=await Promise.all(options.map(choice=>crypto.digest('kymzi-friend-v1:'+reply.invite.id+':'+id+':'+normalizeAnswer(choice.label)))),picked=options.find((_,j)=>hashes[j]===reply.invite.hashes[i]);
+  if(!picked)throw new Error('This older postcard has no travel artwork. Ask for a new postcard.');
+  return picked.label;
+ }));
+ return dayCardPicks(reply.invite.ids,answers);
+}
 export function rememberInvite(state:PreviewState,invite:FriendInvite,now=new Date()):PreviewState{
  invite=readFriendInvite(invite,now);if(!state.profile||state.profile.ageBand==='10-12'||invite.person.name!==state.profile.name)throw new Error('This is not your challenge.');
  const launch=state.launch??emptyLaunch(now);return {...state,launch:{...launch,invites:[...launch.invites.filter(i=>i.id!==invite.id),invite].slice(-30)}};
@@ -103,11 +123,11 @@ export function collectPostcard(state:PreviewState,reply:FriendReply,now=new Dat
 export const PAL_FINDING_FRIEND_GOAL=5;
 export const UNLOCK_PREVIEW_AVATARS:AvatarId[]=['cloud','sprout','boba','miso','astro'];
 function ownsReturnedInvite(launch:LaunchState,reply:FriendReply){return launch.invites.some(i=>i.id===reply.invite.id&&challengeToken(i)===challengeToken(reply.invite));}
-/** Counts completed, returned challenges from distinct anonymous friends, not shares.
+/** Counts returned challenges with a 50%+ match from distinct anonymous friends, not shares.
  * Credits are local prototype records, not authenticated user registrations. */
 export function palFindingProgress(state:PreviewState){
  const owner=state.profile?.name,eligible=!!state.profile&&state.profile.ageBand!=='10-12',friends:FriendReply[]=[],seen=new Set<string>();
- const add=(reply:FriendReply)=>{if(!owner||reply.invite.person.name!==owner||reply.person.name===owner||seen.has(reply.person.name))return;seen.add(reply.person.name);friends.push(reply);};
+ const add=(reply:FriendReply)=>{if(!owner||reply.invite.person.name!==owner||reply.person.name===owner||!friendScore(reply).connects||seen.has(reply.person.name))return;seen.add(reply.person.name);friends.push(reply);};
  if(eligible&&state.launch){for(const reply of state.launch.friendCredits??[]){add(reply);if(friends.length===PAL_FINDING_FRIEND_GOAL)break;}for(const reply of state.launch.postcards){if(friends.length===PAL_FINDING_FRIEND_GOAL)break;if(ownsReturnedInvite(state.launch,reply))add(reply);}}
  const count=Math.min(PAL_FINDING_FRIEND_GOAL,friends.length);
  const unlocked=eligible&&count>=PAL_FINDING_FRIEND_GOAL,activated=eligible&&!!state.launch?.globalPlay,simulated=activated&&state.launch?.globalPlay?.source==='simulation';

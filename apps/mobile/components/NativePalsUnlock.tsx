@@ -1,5 +1,7 @@
+import {HeaderScrollView as ScrollView} from './NativeHeaderGlass';
+import {PageHeading} from './Typography';
 import React,{type ReactNode} from 'react';
-import {Pressable,ScrollView,StyleSheet,Text,useWindowDimensions,View} from 'react-native';
+import {Pressable,StyleSheet,Text,useWindowDimensions,View} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
 import {palFindingProgress,type PreviewState} from '@rymzi/core';
 import {NativeImage} from './NativeImage';
@@ -11,11 +13,11 @@ export function NativePalsUnlock({state,onInvite,onFriend,children}:{state:Previ
  return <ScrollView style={{flex:1,backgroundColor:C.ground}} contentContainerStyle={S.page} showsVerticalScrollIndicator={false}>
   {children}
   <View accessibilityLabel="Unlock Global Roamies" style={S.global}>
-   <View style={S.row}><View style={S.globe}><Ionicons name="globe-outline" size={30} color={C.accent}/></View><Text accessibilityRole="header" style={S.globalTitle}>Global Roamies</Text><View style={S.off}><Ionicons name="lock-closed-outline" size={11} color={C.lavender}/><Text style={S.offText}>OFF</Text></View></View>
+   <View style={S.row}><View style={S.globe}><Ionicons name="globe-outline" size={30} color={C.accent}/></View><PageHeading accessibilityRole="header" style={S.globalTitle}>Global Roamies</PageHeading><View style={S.off}><Ionicons name="lock-closed-outline" size={11} color={C.lavender}/><Text style={S.offText}>OFF</Text></View></View>
    <View style={{flexDirection:'row',justifyContent:'space-between',gap:10,paddingTop:3}}>{Array.from({length:5},(_,i)=>{const reply=friends[i];return reply?<Pressable cssInterop={false} key={reply.person.name} accessibilityRole="button" accessibilityLabel={`View friend ${reply.person.name}`} onPress={onFriend} style={[S.friend,{width:faceSize,height:faceSize}]}><NativeImage source={avatarImages[reply.person.avatar]} style={{width:faceSize-2,height:faceSize-2,resizeMode:'contain'}}/><View style={S.joined}><Ionicons name="checkmark" size={11} color={C.primaryInk}/></View></Pressable>:<View key={i} accessibilityLabel="Friend slot available" style={[S.friend,S.empty,{width:faceSize,height:faceSize}]}><Text style={{fontSize:16,color:'#8F9C80'}}>{i+1}</Text></View>;})}</View>
    <View accessibilityRole="progressbar" accessibilityLabel="Global unlock progress" accessibilityValue={{min:0,max:5,now:count,text:`${count} friends connected, ${remaining} more to unlock Global Roamies`}} style={{flexDirection:'row',gap:6,paddingTop:3}}>{Array.from({length:5},(_,i)=><View key={i} style={[S.bar,i<count&&{backgroundColor:C.accent,borderColor:C.accent}]}/>)}</View>
    <View style={[S.row,{marginTop:-7,justifyContent:'flex-start',gap:12}]}><Text style={S.count}>{remaining}</Text><Text style={{fontSize:21,lineHeight:26,color:C.ink}}>{remaining===1?'friend':'friends'} to go</Text></View>
-   <Text style={{fontSize:15,lineHeight:22,color:C.muted,marginTop:-8}}>Bring 5 friends. Meet new Roamies around the world.</Text>
+   <Text style={{fontSize:15,lineHeight:22,color:C.muted,marginTop:-8}}>Connect 5 Roamies. Open global play.</Text>
    <Pressable cssInterop={false} accessibilityRole="button" onPress={onInvite} style={S.invite}><Text style={S.inviteTitle}>Invite a friend</Text><Ionicons name="arrow-forward" size={20} color={C.primaryInk}/></Pressable>
   </View>
  </ScrollView>;

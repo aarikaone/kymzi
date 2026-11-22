@@ -23,7 +23,7 @@ export function ChatRoom({alias,avatar,yourAvatar,city,mode,messages,draft,onDra
  return <div className="chat-room">
   <header className="room-header">
    <div className="room-avatar"><img src={publicCdnImage(`/avatars/${avatar}.webp`)} alt={`${alias}’s chosen character`}/><i aria-hidden="true"><Icon name="spark" size={12}/></i></div>
-   <div className="room-identity"><span>YOUR PAL, A NEW STORY</span><h1 tabIndex={-1}>{alias}</h1><p><Icon name="pin" size={13}/>{city}</p></div>
+   <div className="room-identity"><span>YOUR PAL, A NEW STORY</span><h1 className="page-heading" tabIndex={-1}>{alias}</h1><p><Icon name="pin" size={13}/>{city}</p></div>
    {remaining!==undefined?<div className="room-timer" aria-label={`${remaining} minutes of shared check-in left`}><svg viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="24" r="21"/><circle cx="24" cy="24" r="21" strokeDasharray={`${Math.max(0,Math.min(1,remaining/60))*132} 132`}/></svg><strong>{remaining}<small>min</small></strong></div>:<span className="room-match-mark" aria-label="Five matches together">5<Icon name="spark" size={13}/></span>}
   </header>
   <div className="room-status"><span aria-hidden="true"/><p>{status}</p>{previewLabel&&<small>{previewLabel}</small>}</div>

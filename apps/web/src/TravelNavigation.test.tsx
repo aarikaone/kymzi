@@ -35,7 +35,7 @@ it('pushes city editing from Profile, keeps drafts across sections, and saves on
  const before=seed('/profile'),u=userEvent.setup();render(<App/>);
  await u.click(screen.getByRole('button',{name:'My travel list'}));
  expect(screen.getByRole('tab',{name:'Visited 1'}).getAttribute('aria-selected')).toBe('true');
- await u.click(screen.getByRole('button',{name:'Choose Barcelona'}));
+ await u.click(screen.getByRole('button',{name:'Add visited places'}));await u.click(screen.getByRole('button',{name:'Choose Barcelona'}));
  let sheet=screen.getByRole('region',{name:'Barcelona'});
  await u.click(await within(sheet).findByRole('button',{name:'Select Sagrada Família'},{timeout:5000}));
  await u.click(screen.getByRole('button',{name:'Go back'}));await screen.findByRole('button',{name:'Choose Barcelona'});
@@ -47,7 +47,7 @@ it('pushes city editing from Profile, keeps drafts across sections, and saves on
  await u.click(within(sheet).getByRole('button',{name:'Add visited city'}));
  await u.click(await screen.findByRole('tab',{name:'Wishlist 6'}));
  await u.click(screen.getByRole('tab',{name:'Visited 2'}));
- expect(screen.getByRole('button',{name:'Choose Barcelona'}).getAttribute('aria-pressed')).toBe('true');
+ expect(await screen.findByRole('button',{name:'Edit Sagrada Família visit'})).toBeTruthy();
  expect(stored().profile).toEqual(before.profile);
  await u.click(screen.getByRole('button',{name:'Save changes'}));
  await waitFor(()=>expect(window.location.hash).toBe('#/profile'));
@@ -59,13 +59,13 @@ it.each(['app Back','browser Back'])('returns to visited cities with %s during o
  window.history.replaceState(null,'','/#/welcome');const u=userEvent.setup();render(<App/>);
  await u.click(screen.getByRole('button',{name:'Get started'}));await u.click(await screen.findByRole('button',{name:'Next'}));
  expect(screen.getAllByRole('button',{name:'Go back'})).toHaveLength(1);
- await u.click(screen.getByRole('button',{name:'Choose London'}));
+ await u.click(screen.getByRole('button',{name:'Add visited places'}));await u.click(screen.getByRole('button',{name:'Choose London'}));
  await u.click(within(screen.getByRole('region',{name:'London'})).getByRole('button',{name:'Add visited city'}));
  await u.click(await screen.findByRole('button',{name:'Next'}));
  expect(screen.getByRole('heading',{name:/Your someday\s+list\./})).toBeTruthy();
  if(kind==='app Back')await u.click(screen.getByRole('button',{name:'Go back'}));else await act(async()=>{window.history.back();});
- await waitFor(()=>expect(screen.getByRole('heading',{name:/Where have\s+you been\?/})).toBeTruthy());
- expect(screen.getByRole('button',{name:'Choose London'}).getAttribute('aria-pressed')).toBe('true');
+ await waitFor(()=>expect(screen.getByRole('heading',{name:/Your memories\./})).toBeTruthy());
+ expect(await screen.findByRole('button',{name:'Edit London visit'})).toBeTruthy();
  expect(stored().profile).toBeNull();
 });
 
@@ -82,16 +82,16 @@ it('keeps the editor open when saving fails, then retries without changing play 
 
 it('makes room for city results during search and opens a city without an extra dismissal tap',async()=>{
  seed('/profile');const user=userEvent.setup();render(<App/>);await user.click(screen.getByRole('button',{name:'My travel list'}));
- const field=screen.getByRole('textbox',{name:'Find a city'});await user.click(field);
- expect(screen.queryByRole('heading',{name:/Where have\s+you been/})).toBeNull();expect(screen.queryByRole('button',{name:'Save changes'})).toBeNull();
+ await user.click(screen.getByRole('button',{name:'Add visited places'}));const field=screen.getByRole('textbox',{name:'Find a city'});await user.click(field);
+ expect(screen.queryByRole('heading',{name:/Your memories/})).toBeNull();expect(screen.queryByRole('button',{name:'Save changes'})).toBeNull();
  await user.type(field,'Munnar');expect(screen.getAllByRole('button',{name:/^Choose /})).toHaveLength(1);
- await user.click(screen.getByRole('button',{name:'Done'}));expect(screen.getByRole('heading',{name:/Where have\s+you been/})).toBeTruthy();expect(screen.getByRole('button',{name:'Save changes'})).toBeTruthy();expect((field as HTMLInputElement).value).toBe('Munnar');
+ await user.click(screen.getByRole('button',{name:'Done'}));expect(screen.getByRole('heading',{name:/Find your\s+places/})).toBeTruthy();expect(screen.queryByRole('button',{name:'Save changes'})).toBeNull();expect((field as HTMLInputElement).value).toBe('Munnar');
  await user.click(field);await user.click(screen.getByRole('button',{name:/^Choose Munnar/}));expect(await screen.findByRole('heading',{name:'Munnar'})).toBeTruthy();expect(screen.queryByRole('dialog')).toBeNull();expect(await screen.findByRole('button',{name:'Select Anamudi'})).toBeTruthy();
 });
 
 it.each(['viewer Back','browser Back'])('browses London attraction images on a full page and keeps picks after %s',async(backKind)=>{
  const before=seed('/profile');before.profile!.travel!.visited=[];localStorage.setItem(KEY,JSON.stringify(before));const user=userEvent.setup();render(<App/>);
- await user.click(screen.getByRole('button',{name:'My travel list'}));await user.click(screen.getByRole('button',{name:'Choose London'}));
+ await user.click(screen.getByRole('button',{name:'My travel list'}));await user.click(screen.getByRole('button',{name:'Add visited places'}));await user.click(screen.getByRole('button',{name:'Choose London'}));
  await user.click(await screen.findByRole('button',{name:'Explore Tower Bridge'}));const feed=await screen.findByRole('feed',{name:'London attractions feed'});
  expect(screen.queryByRole('dialog')).toBeNull();expect(within(feed).getByRole('heading',{name:'Tower Bridge'})).toBeTruthy();expect(screen.getByRole('button',{name:'Select Tower Bridge'}).getAttribute('aria-pressed')).toBe('false');
  await user.click(screen.getByRole('button',{name:'Select Tower Bridge'}));await user.click(screen.getByRole('button',{name:'Next attraction'}));expect(screen.getByRole('heading',{name:'British Museum'})).toBeTruthy();await user.click(screen.getByRole('button',{name:'Select British Museum'}));expect(stored().profile).toEqual(before.profile);

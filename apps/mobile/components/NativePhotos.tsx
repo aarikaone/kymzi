@@ -1,3 +1,4 @@
+import {PageHeading} from './Typography';
 import {NativeImage as Image} from './NativeImage';
 import {NIGHT_THEME} from './theme';
 import React,{useEffect,useRef,useState} from 'react';
@@ -13,7 +14,7 @@ const BG='#090C0A',INK='#F1F5EB',MUTED='#B1BCA8',ACCENT='#D5F88F',LINE='#3E5140'
 type Glyph=React.ComponentProps<typeof Ionicons>['name'];
 function Icon({name,size=23}:{name:Glyph;size?:number}){return <Ionicons name={name} size={size} color={ACCENT}/>;}
 function Frame({children}:{children:React.ReactNode}){const v=useWindowDimensions(),insets=useSafeAreaInsets(),style={flexGrow:1,padding:22,paddingBottom:Math.max(insets.bottom,20),gap:16};return v.height<730||v.fontScale>1.2?<ScrollView style={{flex:1,backgroundColor:BG}} contentContainerStyle={style} keyboardShouldPersistTaps="handled">{children}</ScrollView>:<View style={{flex:1,backgroundColor:BG,...style}}>{children}</View>;}
-function Title({children}:{children:React.ReactNode}){return <Text accessibilityRole="header" style={{fontSize:35,lineHeight:40,letterSpacing:-1,fontWeight:'600',color:INK}}>{children}</Text>;}
+function Title({children}:{children:React.ReactNode}){return <PageHeading accessibilityRole="header" style={{fontSize:35,lineHeight:40,letterSpacing:-1,fontWeight:'600',color:INK}}>{children}</PageHeading>;}
 function Note({children}:{children:React.ReactNode}){return <Text style={{fontSize:16,lineHeight:22,color:MUTED}}>{children}</Text>;}
 function Action({label,onPress,disabled=false,quiet=false}:{label:string;onPress:()=>void;disabled?:boolean;quiet?:boolean}){return <Pressable accessibilityRole="button" disabled={disabled} onPress={onPress} style={{minHeight:quiet?45:57,borderRadius:17,padding:13,alignItems:'center',justifyContent:'center',backgroundColor:quiet?'transparent':NIGHT_THEME.primary,opacity:disabled?.4:1}}><Text style={{fontSize:quiet?17:20,color:quiet?ACCENT:NIGHT_THEME.primaryInk,fontWeight:'600'}}>{label}</Text></Pressable>;}
 function Empty({children}:{children:React.ReactNode}){return <View style={{flex:1,minHeight:150,alignItems:'center',justifyContent:'center',gap:18}}><Icon name="camera-outline" size={58}/><Text style={{fontSize:27,color:INK,textAlign:'center'}}>{children}</Text></View>;}

@@ -8,7 +8,7 @@ import Svg,{Defs,LinearGradient,Rect,Stop} from 'react-native-svg';
 import {JOURNEY_COPY} from '@rymzi/core';
 import {NIGHT_THEME as C} from './theme';
 import {Brand} from './Brand';
-import {Hand} from './Typography';
+import {Hand,PageHeading} from './Typography';
 
 export function NativeWelcome({onStart}:{onStart:()=>void}){
  const viewport=useWindowDimensions(),insets=useSafeAreaInsets();
@@ -32,9 +32,9 @@ export function NativeWelcome({onStart}:{onStart:()=>void}){
    </View>
    <View style={{height:48,justifyContent:'center'}}><Brand dark/></View>
    <View style={{gap:compact?12:14,marginTop:'auto'}}>
-    <Text accessibilityRole="header" style={{fontSize:titleSize,lineHeight:titleSize*1.05,fontWeight:'600',letterSpacing:-1.6,color:C.ink}}>
+    <PageHeading accessibilityRole="header" style={{fontSize:titleSize,lineHeight:titleSize*1.05,fontWeight:'600',letterSpacing:-1.6,color:C.ink}}>
      {JOURNEY_COPY.title}{'\n'}<Hand style={{fontSize:titleSize*1.18,lineHeight:titleSize*1.22,color:C.accent}}>{JOURNEY_COPY.titleAccent}</Hand>
-    </Text>
+    </PageHeading>
     <Text style={{maxWidth:330,fontSize:compact?16:17,lineHeight:compact?23:25,color:C.muted}}>5 friends unlock your next roamie.</Text>
    </View>
    <Pressable cssInterop={false} accessibilityRole="button" onPress={onStart} style={({pressed})=>({

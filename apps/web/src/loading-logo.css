@@ -1,0 +1,5 @@
+.kymzi-loading-logo{display:flex;flex-direction:column;align-items:center;justify-content:center;width:112px;min-height:112px;gap:20px;padding:8px 0;box-sizing:border-box;flex-shrink:0}
+.kymzi-loading-logo>svg{display:block;width:96px;height:96px;flex-shrink:0}
+.kymzi-loading-spinner{display:block;width:24px;height:24px;box-sizing:border-box;flex-shrink:0;border:2px solid #D5F88F26;border-top-color:#D5F88F;border-radius:50%;animation:kymzi-spinner-turn .8s linear infinite}
+@keyframes kymzi-spinner-turn{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.kymzi-loading-spinner{animation:none;border-color:#D5F88F66;border-top-color:#D5F88F}}

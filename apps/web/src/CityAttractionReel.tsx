@@ -1,4 +1,6 @@
 import {useContext,useEffect,useLayoutEffect,useRef,useState,type KeyboardEvent} from 'react';
+import {usePlaceAddFeedback} from '../../../packages/shared/usePlaceAddFeedback';
+import {PlaceStack,PlaceStackContext} from './PlaceStack';
 import type {TravelCity,TravelPlace} from '@rymzi/core';
 import {GuidePlaceArt} from './TravelArt';
 import {Icon} from './icons';
@@ -14,9 +16,11 @@ const reduceMotion=()=>typeof window.matchMedia!=='function'||window.matchMedia(
 
 /** One city, one full-screen place at a time. Only nearby images are mounted. */
 export function CityAttractionReel({city,places,initialId,origin,selected,onToggle,onBack,onPlayExit,closing=false}:Props){
- const playContext=useContext(CityPlayContext);
+ const playContext=useContext(CityPlayContext),stack=useContext(PlaceStackContext);
  const start=Math.max(0,places.findIndex(place=>place.id===initialId));
  const [index,setIndex]=useState(start),[shared,setShared]=useState(''),[moved,setMoved]=useState(false),[details,setDetails]=useState(false),[barHeight,setBarHeight]=useState(76);
+ const picked=onToggle?selected:playContext?.savedPlaces??[],feedback=usePlaceAddFeedback(picked,!details),hasStack=feedback.ids.length>0;
+ function toggle(id:string){const adding=!picked.includes(id);onToggle?.(id);if(adding)feedback.added(id);}
  const viewport=useRef<HTMLDivElement>(null),back=useRef<HTMLButtonElement>(null),hero=useRef<HTMLDivElement>(null),current=useRef(start),shareTimer=useRef<ReturnType<typeof setTimeout>|null>(null);
  const place=places[index];
  useLayoutEffect(()=>{
@@ -52,14 +56,14 @@ export function CityAttractionReel({city,places,initialId,origin,selected,onTogg
   if(shareTimer.current)clearTimeout(shareTimer.current);shareTimer.current=setTimeout(()=>setShared(''),2400);
  }
  if(!place)return null;
- return <section className={`city-reel${playContext?.profileReady?' has-play-cards':''}`} data-closing={closing||undefined} aria-label={`Explore ${city.city} places`} onKeyDown={keys}>
+ return <section className={`city-reel${playContext?.profileReady?' has-play-cards':''}${hasStack?' has-place-stack':''}`} data-closing={closing||undefined} aria-label={`Explore ${city.city} places`} onKeyDown={keys}>
   <div className="city-reel-viewport" style={{top:barHeight}} ref={viewport} role="feed" aria-label={`${city.city} attractions feed`} onScroll={event=>{const el=event.currentTarget;if(!el.clientHeight)return;const next=Math.max(0,Math.min(places.length-1,Math.round(el.scrollTop/el.clientHeight)));if(next!==current.current){current.current=next;setIndex(next);setMoved(true);setShared('');}}}>
    {places.map((item,i)=><article key={item.id} className="city-reel-card" aria-label={`${item.name}, place ${i+1} of ${places.length}`} aria-posinset={i+1} aria-setsize={places.length} aria-hidden={i!==index} inert={i!==index} data-active={i===index||undefined}>
     <div className="city-reel-art" ref={i===start?hero:undefined}>{Math.abs(i-index)<=1&&<GuidePlaceArt place={item} eager/>}</div>
     <div className="city-reel-shade"/>
-    <div className="city-reel-copy"><span className="city-reel-kind">{item.kind}</span><h2>{item.name}</h2><p>{item.details?.description||item.fact}</p>
+    <div className="city-reel-copy"><span className="city-reel-kind">{item.kind}</span><h2 className="page-heading">{item.name}</h2><p>{item.details?.description||item.fact}</p>
      {Math.abs(i-index)<=1&&<CityPlayCards category={item.categoryId} onStart={onPlayExit??onBack} onExplore={onBack}/> }
-     <div className="city-reel-actions">{onToggle&&<button className="city-reel-primary" aria-label={`Select ${item.name}`} aria-pressed={selected.includes(item.id)} onClick={()=>onToggle(item.id)}><Icon name={selected.includes(item.id)?'check':'plus'} size={20}/>{selected.includes(item.id)?'Added':'Add place'}</button>}{!onToggle&&playContext?.onTogglePlace&&<PlaceFavoriteButton id={item.id} name={item.name} saved={playContext.savedPlaces?.includes(item.id)??false} onFavorite={playContext.onTogglePlace} variant="primary" glyph="plus" compact className="city-reel-primary" accessibleLabel={`Select ${item.name}`}/>}
+     <div className="city-reel-actions">{onToggle&&<button className="city-reel-primary" aria-label={`Select ${item.name}`} aria-pressed={selected.includes(item.id)} onClick={()=>toggle(item.id)}><Icon name={selected.includes(item.id)?'check':'plus'} size={20}/>{selected.includes(item.id)?'Added':'Add place'}</button>}{!onToggle&&playContext?.onTogglePlace&&<PlaceFavoriteButton id={item.id} name={item.name} saved={playContext.savedPlaces?.includes(item.id)??false} onFavorite={playContext.onTogglePlace} onSaved={()=>feedback.added(item.id)} variant="primary" glyph="plus" compact className="city-reel-primary" accessibleLabel={`Select ${item.name}`}/>}
       <button className="city-reel-more" aria-label={`About ${item.name}`} onClick={()=>setDetails(true)}>Read more<Icon name="arrow" size={16}/></button>
       <button className="city-reel-circle" aria-label={`Share ${item.name}`} onClick={()=>void share()}><Icon name="share" size={21}/></button>
      </div>
@@ -70,6 +74,7 @@ export function CityAttractionReel({city,places,initialId,origin,selected,onTogg
   <nav className="city-reel-paging" aria-label="Browse city attractions"><button aria-label="Previous attraction" disabled={index===0} onClick={()=>go(index-1)}><Icon name="back" size={19} style={{transform:'rotate(90deg)'}}/></button><span><i style={{height:`${(index+1)/places.length*100}%`}}/></span><button aria-label="Next attraction" disabled={index===places.length-1} onClick={()=>go(index+1)}><Icon name="back" size={19} style={{transform:'rotate(-90deg)'}}/></button></nav>
   {!moved&&<span className="city-reel-hint"><Icon name="arrow" size={14} style={{transform:'rotate(-90deg)'}}/>Swipe up. Stay curious.</span>}
   <span role="status" aria-live="polite" className={shared?'city-reel-toast':'visually-hidden'}>{shared||`${place.name}. ${index+1} of ${places.length}.`}</span>
+  {feedback.visible&&<PlaceStack bottom={14} fading={feedback.fading} onOpenChange={feedback.setPaused} selection={{ids:feedback.ids,kind:stack?.kind??(onToggle?'visited':'saved'),onRemove:id=>onToggle?onToggle(id):stack?stack.onRemove(id):playContext?.onTogglePlace?.(id)}}/>}
   {details&&<CityPlaceDetails place={place} city={city} onClose={()=>setDetails(false)}/>}
  </section>;
 }

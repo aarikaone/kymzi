@@ -1,3 +1,4 @@
+import {PageHeading} from './Typography';
 import React from 'react';
 import {Pressable,ScrollView,StyleSheet,Text,View} from 'react-native';
 import {Ionicons} from '@expo/vector-icons';
@@ -36,17 +37,17 @@ export function NativeRoamieReveal({state,onPal,onCountry,onAttraction,onPhotos,
     <ScrollView style={{flex:1}} contentContainerStyle={S.body} keyboardShouldPersistTaps="handled">
       <View style={S.heading}>
         <View style={S.status}><Ionicons name={privateOnly?'globe-outline':'checkmark'} size={14} color={C.accent}/><Text style={S.statusText}>{privateOnly?'Virtual city':'3/3 answers matched'}</Text></View>
-        <Text accessibilityRole="header" style={S.title}>{privateOnly?`${country.city}.`:'You found a roamie.'}</Text>
+        <PageHeading accessibilityRole="header" style={S.title}>{privateOnly?`${country.city}.`:'You found a roamie.'}</PageHeading>
       </View>
 
       {!privateOnly&&<View style={S.person} accessibilityLabel="Your new roamie">
         <View style={S.character}><NativeImage showLoader source={avatarImages[pal?.imageAvatar??'cloud']} accessibilityLabel="Your roamie’s character" style={S.avatar}/></View>
-        <View style={S.personCopy}><Text style={S.personKicker}>A NEW CONNECTION</Text><Text accessibilityRole="header" style={S.alias}>{pal?.alias??'Your roamie'}</Text><View style={S.private}><Ionicons name="lock-closed-outline" size={13} color="#D0C4DE"/><Text style={S.privateText}>Identity private</Text></View></View>
+        <View style={S.personCopy}><Text style={S.personKicker}>A NEW CONNECTION</Text><PageHeading accessibilityRole="header" style={S.alias}>{pal?.alias??'Your roamie'}</PageHeading><View style={S.private}><Ionicons name="lock-closed-outline" size={13} color="#D0C4DE"/><Text style={S.privateText}>Identity private</Text></View></View>
         <Ionicons name="sparkles-outline" size={20} color={C.lavender} style={S.spark}/>
       </View>}
 
       {picks.length===3&&<View style={S.common} accessibilityLabel={privateOnly?'Your kind of day':'Your shared kind of day'}>
-        <Text accessibilityRole="header" style={S.commonTitle}>{privateOnly?'Your kind of day':'You both picked'}</Text>
+        <PageHeading accessibilityRole="header" style={S.commonTitle}>{privateOnly?'Your kind of day':'You both picked'}</PageHeading>
         <View style={S.picks}>{picks.map(p=><View key={p.id} style={S.pick}><Ionicons name="checkmark" size={12} color={C.accent}/><Text style={S.pickText}>{p.label}</Text></View>)}</View>
       </View>}
 

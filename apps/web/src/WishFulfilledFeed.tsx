@@ -1,0 +1,16 @@
+import {useState} from 'react';
+import {wishFulfillmentPosts,travelCityById,publicCdnImage,type PreviewState} from '@rymzi/core';
+import {GuidePlaceArt,TravelCityArt} from './TravelArt';
+import {RemoteImage} from './RemoteImage';
+import {useCityPlaces} from './useCityPlaces';
+import {Icon} from './icons';
+import './wish-fulfillment.css';
+type Post=ReturnType<typeof wishFulfillmentPosts>[number];
+export function WishFulfilledFeed({state,cityFilter='all'}:{state:PreviewState;cityFilter?:string}){
+ return <>{wishFulfillmentPosts(state).filter(p=>cityFilter==='all'||travelCityById(p.cityId)?.city===cityFilter).map(post=><WishPost key={post.id} state={state} post={post}/>)}</>;
+}
+function WishPost({state,post}:{state:PreviewState;post:Post}){
+ const city=travelCityById(post.cityId)!,guide=useCityPlaces(post.cityId),place=guide.places.find(p=>p.id===post.placeId),name=place?.name??city.city,[index,setIndex]=useState(0),[asRoamie,setAsRoamie]=useState(false),recipient=post.connections[0],projection=asRoamie&&recipient?wishFulfillmentPosts(state,recipient.id).find(p=>p.id===post.id):post;
+ if(!projection)return null;
+ return <article className="wish-memory-card" data-feed-kind="wish-fulfilled" aria-label={`${name} wish fulfilled`} data-viewer={asRoamie?'roamie':'you'}><header><img src={publicCdnImage(`/avatars/${post.ownerAvatar}.webp`)} alt=""/><span><strong>{asRoamie?`#${post.ownerName} made it`:'Your wish, fulfilled'}</strong><small>{city.flag} {city.city}</small></span><span className="wish-memory-seal"><Icon name="check" size={17}/></span></header>{asRoamie&&<div className="wish-memory-preview" role="status">Roamies’ feed preview</div>}<div className="wish-memory-hero">{post.photos.length?<div className="memory-carousel" tabIndex={0} aria-label={`${name} fulfilled wish photos`} onScroll={event=>{const el=event.currentTarget;setIndex(Math.min(post.photos.length-1,Math.round(el.scrollLeft/(el.clientWidth||1))));}}>{projection.photos.map((photo,i)=><RemoteImage key={photo.id} url={photo.image} label={`${name} fulfilled wish photo ${i+1}`} className="memory-image"/>)}</div>:<div className="wish-memory-art">{place?<GuidePlaceArt place={place}/>:<TravelCityArt cityId={city.id}/>}</div>}<span className="wish-memory-stamp"><Icon name="spark" size={13}/>WISH FULFILLED</span>{post.photos.length>1&&<span className="wish-memory-photo-count">{index+1}/{post.photos.length}</span>}</div><div className="wish-memory-story"><span>Someday <Icon name="arrow" size={13}/> Today</span><h2>{name}</h2><small>{new Date(post.at).toLocaleDateString('en',{day:'numeric',month:'short'})}{!post.photos.length?' · Place illustration':''}</small></div><footer>{post.audience==='private'?<small>Private memory</small>:<><span className="wish-memory-audience"><span>{post.connections.slice(0,3).map(r=><img key={r.id} src={publicCdnImage(`/avatars/${r.avatar}.webp`)} alt=""/>)}</span><small>{post.connections.length?`${post.connections.length} connected Roamies`:'Connect a Roamie to share'}</small></span><button disabled={!recipient} aria-label={asRoamie?'Return to my wish feed':`Preview ${name} in my Roamies’ feed`} onClick={()=>setAsRoamie(!asRoamie)}>{asRoamie?'My view':'Roamies’ view'}<Icon name="arrow" size={13}/></button></>}</footer></article>;
+}

@@ -1,3 +1,4 @@
+import {PageHeading} from './Typography';
 import React from 'react';
 import {Pressable,ScrollView,StyleSheet,Text,View} from 'react-native';
 import {palsForPlace,type PlaceFeedItem,type PreviewState} from '@rymzi/core';
@@ -10,7 +11,7 @@ export function NativePlacePals({state,place,onPal}:Props) {
   if(state.profile?.ageBand==='10-12')return null;
   const pals=palsForPlace(state,place);
   return <View accessibilityLabel={`Roamies in ${place.location.city}`} style={S.section}>
-    <View style={S.heading}><Text accessibilityRole="header" style={S.title}>Roamies in {place.location.city}</Text><Text style={S.count}>{pals.length}</Text></View>
+    <View style={S.heading}><PageHeading accessibilityRole="header" style={S.title}>Roamies in {place.location.city}</PageHeading><Text style={S.count}>{pals.length}</Text></View>
     {pals.length?<ScrollView horizontal nestedScrollEnabled showsHorizontalScrollIndicator={false} style={S.rail} contentContainerStyle={S.people}>
       {pals.map(pal=><Pressable key={pal.id} accessibilityRole="button" accessibilityLabel={`Open ${pal.alias} in ${pal.city}`} onPress={()=>onPal(pal.id)} style={S.person}>
         <View style={[S.avatar,pal.id===place.peerId&&{borderColor:C.lavender}]}><NativeImage source={avatarImages[pal.imageAvatar]} accessible={false} style={S.character}/></View>

@@ -1,3 +1,4 @@
+import {PageHeading} from './Typography';
 import React,{useEffect,useRef,useState} from 'react';
 import {AccessibilityInfo,Animated,Easing,Modal,Pressable,StyleSheet,Text,View,type StyleProp,type ViewStyle} from 'react-native';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
@@ -17,7 +18,7 @@ export function NativePlaceFavoriteButton({id,name,saved,onFavorite,onSaved,vari
   {!open&&!!error&&<Text accessibilityRole="alert" style={S.error}>{error}</Text>}
   <Modal visible={open} transparent animationType="fade" onRequestClose={dismiss}>
    <View style={S.backdrop}><Pressable accessibilityRole="button" accessibilityLabel="Keep saved and close" onPress={dismiss} style={StyleSheet.absoluteFill}/><View accessibilityViewIsModal style={[S.sheet,{paddingBottom:Math.max(18,insets.bottom)}]}>
-    <View style={S.handle}/><View style={S.symbol}><Ionicons name="heart-outline" size={30} color={C.lavender}/></View><Text accessibilityRole="header" style={S.title}>Remove from Favs?</Text><Text style={S.name}>{name}</Text>{!!error&&<Text accessibilityRole="alert" style={S.error}>{error}</Text>}
+    <View style={S.handle}/><View style={S.symbol}><Ionicons name="heart-outline" size={30} color={C.lavender}/></View><PageHeading accessibilityRole="header" style={S.title}>Remove from Favs?</PageHeading><Text style={S.name}>{name}</Text>{!!error&&<Text accessibilityRole="alert" style={S.error}>{error}</Text>}
     <Pressable cssInterop={false} accessibilityRole="button" onPress={dismiss} style={S.keep}><Text style={S.keepText}>Keep saved</Text></Pressable><Pressable cssInterop={false} accessibilityRole="button" onPress={remove} style={S.remove}><Text style={S.removeText}>Yes, unfavourite</Text></Pressable>
    </View></View>
   </Modal>

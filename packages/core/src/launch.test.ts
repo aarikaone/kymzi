@@ -9,7 +9,7 @@ const guest={name:'654321',avatar:'sprout' as const,ageBand:'16-17' as const};
 function seed():PreviewState{return {...emptyPreview(NOW),profile:owner,launch:emptyLaunch(NOW)};}
 function unlocked():PreviewState{
  let s=seed();const invite:FriendInvite={version:1,id:'0'.repeat(32),createdAt:NOW.toISOString(),person:{name:owner.name,avatar:owner.avatar},ids:[...LAUNCH_SETS[0]],hashes:Array(3).fill('0'.repeat(64))};s=rememberInvite(s,invite,NOW);
- for(let i=1;i<=5;i++){const reply:FriendReply={version:1,id:String(i).repeat(32),completedAt:NOW.toISOString(),invite,person:{name:String(700000+i),avatar:'sprout'},hashes:Array(3).fill('1'.repeat(64))};s=collectPostcard(s,reply,NOW);}
+ for(let i=1;i<=5;i++){const reply:FriendReply={version:1,id:String(i).repeat(32),completedAt:NOW.toISOString(),invite,person:{name:String(700000+i),avatar:'sprout'},hashes:Array(3).fill('0'.repeat(64))};s=collectPostcard(s,reply,NOW);}
  return {...s,launch:{...s.launch!,invites:[],postcards:[]}};
 }
 function prepared(){let s=beginInvitePreparation(seed(),NOW);for(let i=0;i<3;i++){s=answerInvitePreparation(s,i,['Mango','Cats','French fries'][i]);if(i<2)s=submitInvitePreparation(s,i);}return finishInvitePreparation(s,NOW);}
@@ -65,7 +65,7 @@ test('roamie finding requires five distinct completed friends, not shares, dupli
  let s=prepared();assert.equal(palFindingProgress(s).count,0);assert.throws(()=>beginLaunchPlay(s,NOW),/5 friends/);
  const invite=await makeFriendInvite(s,crypto,NOW);s=rememberInvite(s,invite,NOW);assert.equal(palFindingProgress(s).count,0);
  for(let i=1;i<=5;i++){
-  const friend={...guest,name:String(600000+i)},reply=await answerFriendInvite(invite,friend,['x','y','z'],{...crypto,nonce:()=>String(i).repeat(32)},NOW);
+  const friend={...guest,name:String(600000+i)},reply=await answerFriendInvite(invite,friend,['Mango','Cats','Different'],{...crypto,nonce:()=>String(i).repeat(32)},NOW);
   s=collectPostcard(s,reply,NOW);assert.equal(palFindingProgress(s).count,i);assert.equal(palFindingProgress(s).unlocked,i===5);
   const repeat=await answerFriendInvite(invite,friend,['a','b','c'],{...crypto,nonce:()=>(i+5).toString(16).repeat(32)},NOW);s=collectPostcard(s,repeat,NOW);assert.equal(palFindingProgress(s).count,i);
   if(i<5)assert.throws(()=>beginLaunchPlay(s,NOW));
