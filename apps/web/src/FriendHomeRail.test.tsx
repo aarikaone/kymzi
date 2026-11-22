@@ -30,3 +30,36 @@ it('shows one friend left at four and restores the normal global flow only once 
 it('keeps the connected avatar row after reload and lets an avatar open the friend postcards',async()=>{
  const state=await seed(1),u=userEvent.setup(),friend=palFindingProgress(state).friends[0];let view=render(<App/>);view.unmount();view=render(<App/>);await u.click(screen.getByRole('button',{name:'View friend '+friend.person.name}));expect(window.location.hash).toBe('#/launch/postcards');expect(screen.getByRole('button',{name:'Open 3 of 3 postcard'}).textContent).toContain('#'+friend.person.name);expect(palFindingProgress(saved()).count).toBe(1);
 });
+
+it('Add all immediately enables global Roamies and persists it without spending a play',async()=>{
+ const before=await seed(1),u=userEvent.setup();let view=render(<App/>);
+ await u.click(screen.getByRole('button',{name:'Unlock global play'}));
+ await u.click(within(screen.getByRole('dialog',{name:'Unlock global play'})).getByRole('button',{name:'Add all'}));
+ expect(screen.queryByRole('dialog')).toBeNull();
+ expect(screen.getByRole('button',{name:'Find my roamie'})).toBeTruthy();
+ expect(palFindingProgress(saved()).canPlay).toBe(true);
+ expect(saved().launch!.globalPlay!.source).toBe('simulation');
+ expect(palFindingProgress(saved()).count).toBe(1);
+ expect(saved().daily).toEqual(before.daily);
+ expect(saved().profile).toEqual(before.profile);
+ view.unmount();view=render(<App/>);
+ expect(screen.queryByRole('button',{name:'Unlock global play'})).toBeNull();
+ expect(screen.getByRole('button',{name:'Find my roamie'})).toBeTruthy();
+ await u.click(screen.getByRole('button',{name:'Find my roamie'}));
+ expect(screen.getByRole('button',{name:'Let’s play'})).toBeTruthy();
+ await u.click(screen.getByRole('button',{name:'Let’s play'}));
+ expect(screen.getByRole('heading',{name:'Pick your day.'})).toBeTruthy();
+});
+it('keeps the unlock sheet open on a storage error and allows Add all to retry',async()=>{
+ await seed(4);const u=userEvent.setup();render(<App/>);
+ await u.click(screen.getByRole('button',{name:'Unlock global play'}));
+ const fail=vi.spyOn(Storage.prototype,'setItem').mockImplementationOnce(()=>{throw new Error('Storage full');});
+ await u.click(screen.getByRole('button',{name:'Add all'}));
+ expect(screen.getByRole('alert').textContent).toContain('Couldn’t save.');
+ expect(palFindingProgress(saved()).canPlay).toBe(false);
+ expect(screen.getByRole('dialog',{name:'Unlock global play'})).toBeTruthy();
+ fail.mockRestore();
+ await u.click(screen.getByRole('button',{name:'Add all'}));
+ expect(screen.queryByRole('dialog')).toBeNull();
+ expect(palFindingProgress(saved()).canPlay).toBe(true);
+});
