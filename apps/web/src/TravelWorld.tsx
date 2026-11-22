@@ -30,7 +30,20 @@ export function WishMilestones({state,cityFilter='all'}:{state:PreviewState;city
 }
 function WishfulStopCard({event,onOpen}:{event:RoamieWishStop;onOpen:()=>void}){
  const city=travelCityById(event.cityId)!,guide=useCityPlaces(event.placeId?city.id:null),place=guide.places.find(p=>p.id===event.placeId),title=place?.name??city.city;
- return <article className="feed-wish" data-feed-kind="wish" aria-label={`${event.name}’s wish in ${city.city}`}><button className="feed-wish-main" aria-label={`Explore ${event.name}’s wish in ${city.city}`} onClick={onOpen}><span className="feed-wish-label"><Icon name="spark" size={15}/>WISHFUL STOP</span><span className="feed-wish-scene"><span className="feed-wish-copy"><strong>{title}</strong><em>{place&&city.city+' · '}{city.flag} {city.name}</em></span><span className="feed-wish-portal">{place?<GuidePlaceArt place={place}/>:<TravelCityArt cityId={city.id}/>}<i><Icon name="bookmark" size={17}/></i></span></span><span className="feed-wish-footer"><img src={publicCdnImage(`/avatars/${event.avatar}.webp`)} alt=""/><span><strong>{event.name} made this wish.</strong></span><Icon name="arrow" size={18}/></span></button></article>;
+ return <article className="feed-wish" data-feed-kind="wish" aria-label={`${event.name}’s wish in ${city.city}`}>
+  <button className="feed-wish-main" aria-label={`Explore ${event.name}’s wish in ${city.city}`} onClick={onOpen}>
+   <span className="feed-wish-scene">
+    <span className="feed-wish-image">{place?<GuidePlaceArt place={place}/>:<TravelCityArt cityId={city.id}/>}</span>
+    <span className="feed-wish-label"><Icon name="bookmark" size={13}/>WISHFUL STOP</span>
+    <span className="feed-wish-copy"><strong>{title}</strong><em>{place?city.city+' · ':''}{city.name}</em></span>
+   </span>
+   <span className="feed-wish-footer">
+    <span className="feed-wish-avatar"><img src={publicCdnImage(`/avatars/${event.avatar}.webp`)} alt=""/></span>
+    <span className="feed-wish-byline"><strong>{event.name} made this wish.</strong></span>
+    <span className="feed-wish-arrow" aria-hidden="true"><Icon name="arrow" size={19}/></span>
+   </span>
+  </button>
+ </article>;
 }
 
 export function TravelFootprints({state,onEdit}:{state:PreviewState;onEdit?:()=>void}){const travel=readTravelProfile(state.profile?.travel),[city,setCity]=useState<TravelCityId|null>(null);if(!travel.visited.length)return null;return <section className="travel-footprints"><header><h2 className="page-heading">Been there</h2>{onEdit&&<button aria-label="Edit visited cities" onClick={onEdit}>Edit<Icon name="arrow" size={14}/></button>}</header><div>{travel.visited.map(v=><button key={v.cityId} onClick={()=>setCity(v.cityId)}>{travelCityById(v.cityId)!.flag} {travelCityById(v.cityId)!.city}</button>)}</div><CitySheet cityId={city} selected={travel.visited.find(v=>v.cityId===city)?.attractionIds} onClose={()=>setCity(null)}/></section>;}
