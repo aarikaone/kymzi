@@ -36,13 +36,13 @@ test('own saves never score; eligible received favourites are idempotent and rev
  s=recordReceivedPlaceFav(s,'p1',p.id,false,now);assert.equal(receivedPlaceFavs(s),0);assert.equal(placeShareLeaderboard(s).length,0);
  assert.throws(()=>recordReceivedPlaceFav(s,'missing',p.id,true,now));assert.throws(()=>recordReceivedPlaceFav(s,'p1','you',true,now));
 });
-test('favouriting a roamie scores the roamie, while received favs rank you higher',()=>{
+test('favouriting a Roamie scores the Roamie, while received favs rank you higher',()=>{
  let s=publishMapsPlace(seed(),draft(),now);const pals=palSummaries(s),place=placeCheckInFeed(s,undefined,now).find(p=>p.peerId===pals[0].id)!;
  s=togglePlaceFavorite(s,place.id,now);assert.equal(placeShareLeaderboard(s)[0].id,pals[0].id);
  s=recordReceivedPlaceFav(s,'p1',pals[0].id,true,now);assert.equal(placeShareLeaderboard(s).find(r=>r.you)!.rank,1);
  s=recordReceivedPlaceFav(s,'p1',pals[1].id,true,now);assert.equal(placeShareLeaderboard(s)[0].id,'you');assert.equal(placeShareLeaderboard(s)[1].rank,2);
 });
-test('sharing, scores and Maps metadata survive restart; blocked roamies and children do not score',()=>{
+test('sharing, scores and Maps metadata survive restart; blocked Roamies and children do not score',()=>{
  let s=publishMapsPlace(seed(),draft(),now);const p=palSummaries(s)[0];s=recordReceivedPlaceFav(s,'p1',p.id,true,now);
  const restored=readPreview(JSON.parse(JSON.stringify(s)),now);assert.equal(shareTaskProgress(restored,now).count,1);assert.equal(receivedPlaceFavs(restored),1);assert.equal(sharedMapPlaces(restored)[0].maps!.identity,draft().maps!.identity);
  const blocked={...restored,blocked:[p.id]};assert.equal(receivedPlaceFavs(blocked),0);assert.throws(()=>recordReceivedPlaceFav(blocked,'p1',p.id,true,now));

@@ -1,3 +1,4 @@
+import {normalizeUsername} from './profile-identity.ts';
 import {COUNTRIES} from './countries.ts';
 import { questionBank } from './questions.ts';
 import type { AgeBand, AvatarId, DemoPeer, Match, Question } from './types.ts';
@@ -39,7 +40,7 @@ export const AVATARS:{id:AvatarId;name:string;tag:string;color:string;family:str
   {"id": "fenn", "name": "Fenn", "tag": "Ears open, world ready", "color": "#A1CDE3", "family": "Critters"},
   {"id": "otto", "name": "Otto", "tag": "Eight ways to explore", "color": "#C3A2E3", "family": "Critters"},
   {"id": "puddle", "name": "Puddle", "tag": "Just go with the flow", "color": "#A2C8EE", "family": "Oddballs"},
-  {"id": "flint", "name": "Flint", "tag": "Solid travel buddy", "color": "#A3ACC7", "family": "Oddballs"},
+  {"id": "flint", "name": "Flint", "tag": "Solid Roamie", "color": "#A3ACC7", "family": "Oddballs"},
   {"id": "halo", "name": "Halo", "tag": "Orbiting good things", "color": "#B2A6E3", "family": "Cosmic"},
   {"id": "loop", "name": "Loop", "tag": "Always another way", "color": "#C9A0D8", "family": "Fuzzy"},
   {"id": "bumble", "name": "Bumble", "tag": "Buzzing for the next stop", "color": "#E7D096", "family": "Critters"},
@@ -72,7 +73,7 @@ const seededAnswers=(archetype:number)=>({...Object.fromEntries(Object.entries(c
 export const demoPeers:DemoPeer[]=AGE_BANDS.filter(b=>b!=='10-12').flatMap(ageBand=>[
  ...peerTemplates.map((peer,i)=>({...peer,answers:seededAnswers(i),id:`${ageBand}-${i}`,ageBand})),
  ...COUNTRIES.flatMap((country,countryIndex)=>Array.from({length:5},(_,slot)=>({country,countryIndex,slot})).filter(x=>x.countryIndex>=6||x.slot!==0).map(({country,countryIndex,slot})=>({id:`${ageBand}-${country.id.toLowerCase()}-${slot}`,ageBand,name:country.names[slot],avatar:AVATARS[(countryIndex+slot)%4].id,country:country.name,flag:country.flag,bio:'Collecting little same-brain moments.',answers:seededAnswers((countryIndex+slot)%6),bonus:slot%2?'Ocean':'Space'}))),
-]);
+]).map(peer=>({...peer,username:(normalizeUsername(peer.name).replace(/[^a-z0-9_]/g,'')+'_'+(COUNTRIES.find(c=>c.name===peer.country)?.id.toLowerCase()??'world')).slice(0,20)}));
 export function rankMatches(answers:Record<string,string>,band:AgeBand,ids:string[]=DAILY_IDS,blocked:string[]=[],rosterIds?:readonly string[]):Match[]{
   const answered=ids.filter(id=>normalizeAnswer(answers[id]??''));
   if(answered.length!==ids.length||!ids.length)return [];
@@ -189,3 +190,7 @@ export * from './postcard-drift.ts';
 export * from './daily-bottles.ts';
 
 export * from './bottle-travel-story.ts';
+
+export * from './profile-identity.ts';
+
+export * from './gem-place-search.ts';

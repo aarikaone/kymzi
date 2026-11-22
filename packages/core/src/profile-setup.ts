@@ -2,7 +2,7 @@ import {AVATARS} from './index.ts';
 import {PAL_PHOTO_MATCHES} from './profile-photo.ts';
 import type {Profile} from './types.ts';
 
-/** A local display nickname, not an account ID or a globally unique identifier. */
+/** Stable local identity for connection keys; the chosen username is the public label. */
 export function createSetupProfile(previous?:Profile|null,random:()=>number=Math.random):Profile{
  const name=previous?.name&&/^[1-9]\d{5}$/.test(previous.name)?previous.name:String(100000+Math.floor(random()*900000));
  const avatar=previous?.avatar??AVATARS[Math.floor(random()*AVATARS.length)].id;
@@ -19,7 +19,7 @@ export function readProfileLocation(value:unknown):Pick<Profile,'city'|'country'
 }
 
 export const PROFILE_SETUP_COPY={
- title:'Pick your avatar.',
+ title:'Make it you.',
  revealTitle:`Photo unlocks after ${PAL_PHOTO_MATCHES} full matches.`,
- revealDetail:'Same pal. All 3 answers, each time.',
+ revealDetail:'Same Roamie. All 3 answers, each time.',
 } as const;

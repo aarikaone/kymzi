@@ -1,7 +1,9 @@
-import test from 'node:test';
+import test,{before,after,mock} from 'node:test';
 import assert from 'node:assert/strict';
 import {emptyPreview,emptyLaunch,simulatePalUnlock,seedGlobalPals,cityPhotoFeed,toggleCityPhotoSaved,favoritePhotos,isPhotoFavorite,togglePhotoFavorite,cameraFavoriteId,addHomeMoment,removeLaunchMoment,photoMonthProgress,readPreview,hideCityPhoto,palSummaries,type PreviewState} from './index.ts';
 const NOW=new Date('2026-11-19T05:00:00Z');
+before(()=>mock.timers.enable({apis:['Date'],now:NOW}));
+after(()=>mock.timers.reset());
 const JPEG="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAsICAoIBwsKCQoNDAsNERwSEQ8PESIZGhQcKSQrKigkJyctMkA3LTA9MCcnOEw5PUNFSElIKzZPVU5GVEBHSEX/2wBDAQwNDREPESESEiFFLicuRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUX/wAARCAAIAAgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDQooor0TU//9k=";
 function seed():PreviewState{return seedGlobalPals(simulatePalUnlock({...emptyPreview(NOW),profile:{name:'123456',avatar:'cloud',ageBand:'25-30',city:'Bengaluru',country:'India'},launch:emptyLaunch(NOW)},NOW),NOW,'Asia/Kolkata');}
 test('existing photo saves become favorites, persist across weekly photo rotation, and toggle without spending plays or earning task credit',()=>{
@@ -10,6 +12,6 @@ test('existing photo saves become favorites, persist across weekly photo rotatio
 test('own camera favorites retain their real city, respect cohort privacy, and disappear when the source is removed',()=>{
  let s=seed();s=addHomeMoment(s,{captureId:'home-fav-1',image:JPEG,capturedAt:NOW.toISOString()},true,NOW);const id=cameraFavoriteId(s,'home-fav-1'),before=s;s=togglePhotoFavorite(s,id,NOW);assert.equal(favoritePhotos(s,NOW)[0].city,'Bengaluru');assert.equal(favoritePhotos(s,NOW)[0].image,JPEG);assert.deepEqual(s.launch,before.launch);assert.equal(photoMonthProgress(s,NOW).count,1);const restored=readPreview(JSON.parse(JSON.stringify(s)),NOW);assert.equal(favoritePhotos(restored,NOW).length,1);assert.equal(favoritePhotos({...restored,profile:{...restored.profile!,ageBand:'16-17'}},NOW).length,0);assert.equal(favoritePhotos(removeLaunchMoment(restored,'home-fav-1'),NOW).length,0);assert.throws(()=>togglePhotoFavorite(s,'unknown',NOW));
 });
-test('hidden moments, blocked roamies and child profiles cannot be exposed by the favorites collection',()=>{
+test('hidden moments, blocked Roamies and child profiles cannot be exposed by the favorites collection',()=>{
  let s=seed();const photo=cityPhotoFeed(s,undefined,NOW)[0];s=togglePhotoFavorite(s,photo.id,NOW);assert.equal(favoritePhotos({...s,photos:hideCityPhoto(s,photo.id)},NOW).length,0);assert.equal(favoritePhotos({...s,blocked:palSummaries(s).map(p=>p.id)},NOW).length,0);assert.equal(favoritePhotos({...s,profile:{...s.profile!,ageBand:'10-12'}},NOW).length,0);
 });

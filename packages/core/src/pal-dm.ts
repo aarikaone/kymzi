@@ -30,13 +30,13 @@ export function palDMUnread(state:PreviewState,id:string){const seen=new Set(sta
 export function palConversations(state:PreviewState){return palSummaries(state).map(pal=>{const messages=palDMMessages(state,pal.id),last=messages.at(-1);return {pal,messages,last,unread:palDMUnread(state,pal.id)};}).sort((a,b)=>Number(b.unread>0)-Number(a.unread>0)||(Date.parse(b.last?.at??'')||0)-(Date.parse(a.last?.at??'')||0));}
 export function pendingPalMessages(state:PreviewState){return palConversations(state).reduce((sum,c)=>sum+c.unread,0);}
 export function markPalDMRead(state:PreviewState,id:string):PreviewState{
- const pal=palFor(state,id);if(!pal)throw new Error('This pal is unavailable.');
+ const pal=palFor(state,id);if(!pal)throw new Error('This Roamie is unavailable.');
  const messages=palDMMessages(state,id),seen=messages.filter(m=>m.from==='demo').map(m=>m.id).slice(-300),thread=state.social.threads[id];
  if(thread?.active&&JSON.stringify(seen)===JSON.stringify(state.social.dmReadIds?.[id]??[]))return state;
  return {...state,social:{...state.social,threads:{...state.social.threads,[id]:{peerId:id,active:true,messages}},dmReadIds:{...state.social.dmReadIds,[id]:seen}}};
 }
 export function sendPalDM(state:PreviewState,id:string,body:string,now=new Date()):PreviewState{
- const pal=palFor(state,id);if(!pal)throw new Error('This pal is unavailable.');
+ const pal=palFor(state,id);if(!pal)throw new Error('This Roamie is unavailable.');
  const text=body.trim();if(!text||text.length>280)throw new Error('Write a message of 1–280 characters.');
  const current=markPalDMRead(state,id),thread=current.social.threads[id],sequence=thread.messages.length;
  const messages:ChatMessage[]=[...thread.messages,{id:`dm:${now.getTime()}:${sequence}:you`,from:'you',body:text,at:now.toISOString()}];

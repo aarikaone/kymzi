@@ -1,3 +1,4 @@
+import {peerUsername,profileDisplayName} from './profile-identity.ts';
 import {demoPeers} from './index.ts';
 import {COUNTRIES,type CountryId} from './countries.ts';
 import {travelCityById,type TravelCityId} from './world-catalogue.ts';
@@ -22,11 +23,11 @@ export function myPostcardSignal(state:PreviewState){const wishes=travelWishCoun
 function previewCards(band:AgeBand,blocked:string[]=[]):DiscoveryCard[]{
  if(band==='10-12')return [];
  const order:CountryId[]=['JP','FR','BR','GB','IT','KR','KE','TH','ES','PT','SG','AU'];
- return order.flatMap((id,i)=>{const country=COUNTRIES.find(c=>c.id===id),city=travelCityById(id),peer=demoPeers.find(p=>p.ageBand===band&&p.country===country?.name);if(!peer||blocked.includes(peer.id)||!city?.placeIds.length)return [];const seed=hash(peer.id),questionIds=[...TRAVEL_INVITE_SETS[i%TRAVEL_INVITE_SETS.length]],wishes=3+seed%32,gems=(seed>>>5)%17;return [{id:`world-card:${band}:${id}`,cityId:id,placeId:city.placeIds[i%Math.min(4,city.placeIds.length)],ownerId:peer.id,ownerName:String(100000+seed%900000),avatar:peer.avatar,wishes,gems,signal:postcardSignal(wishes,gems),questionIds,picks:questionIds.map((q,j)=>questionById(q)!.choices![(seed+j*7)%6].label),you:false,preview:true}];});
+ return order.flatMap((id,i)=>{const country=COUNTRIES.find(c=>c.id===id),city=travelCityById(id),peer=demoPeers.find(p=>p.ageBand===band&&p.country===country?.name);if(!peer||blocked.includes(peer.id)||!city?.placeIds.length)return [];const seed=hash(peer.id),questionIds=[...TRAVEL_INVITE_SETS[i%TRAVEL_INVITE_SETS.length]],wishes=3+seed%32,gems=(seed>>>5)%17;return [{id:`world-card:${band}:${id}`,cityId:id,placeId:city.placeIds[i%Math.min(4,city.placeIds.length)],ownerId:peer.id,ownerName:'@'+peerUsername(peer),avatar:peer.avatar,wishes,gems,signal:postcardSignal(wishes,gems),questionIds,picks:questionIds.map((q,j)=>questionById(q)!.choices![(seed+j*7)%6].label),you:false,preview:true}];});
 }
 export function discoveryPostcards(state:PreviewState):DiscoveryCard[]{
  if(!state.profile||state.profile.ageBand==='10-12')return [];
- const own=myPostcardSignal(state),mine=[activePlacePostcard(state)].filter((p):p is NonNullable<typeof p>=>!!p).map(p=>{const invite=state.launch!.invites.find(i=>i.id===p.inviteId)!;return {id:`mine:${p.id}`,cityId:p.cityId,placeId:p.placeId,ownerId:'you',ownerName:state.profile!.name,avatar:state.profile!.avatar,...own,questionIds:invite.ids,picks:[],you:true,preview:false};});
+ const own=myPostcardSignal(state),mine=[activePlacePostcard(state)].filter((p):p is NonNullable<typeof p>=>!!p).map(p=>{const invite=state.launch!.invites.find(i=>i.id===p.inviteId)!;return {id:`mine:${p.id}`,cityId:p.cityId,placeId:p.placeId,ownerId:'you',ownerName:profileDisplayName(state.profile!),avatar:state.profile!.avatar,...own,questionIds:invite.ids,picks:[],you:true,preview:false};});
  return [...previewCards(state.profile.ageBand,state.blocked),...mine].sort((a,b)=>b.signal-a.signal||a.id.localeCompare(b.id));
 }
 export function discoveryCard(state:PreviewState,id:string){return dailyBottleCard(state.profile,id,state.blocked)??discoveryPostcards(state).find(c=>c.id===id);}
@@ -49,7 +50,7 @@ export function beginPostcardPlay(state:PreviewState,id:string,now=new Date()):P
  const previous=state.postcardDiscovery;
  if(previous?.results.some(r=>r.cardId===id))return state;
  if(previous?.active?.chargedAt)return state;
- if(!palFindingProgress(state).canPlay)throw new Error('Connect five friends to open global play.');
+ if(!palFindingProgress(state).canPlay)throw new Error('Connect five friends to open worldwide matching.');
  const prepared=prepareDailyBottles(state,now),d=prepared.postcardDiscovery!;
  if(!dailyBottleCards(prepared,now).some(c=>c.id===id)||d.drop?.openedIds.includes(id)||connectionFor(state.social,card.ownerId,state.profile!.ageBand,state.blocked))throw new Error('Choose an unopened bottle from today.');
  if(d.active?.cardId===id)return prepared;

@@ -4,7 +4,7 @@ import {normalizedPlaceText} from './map-links.ts';
 import {palFor} from './pal-loop.ts';
 import type {PreviewState} from './preview.ts';
 export function publishPlaceToPal(state:PreviewState,draft:PlaceDraft,palId:string,now=new Date()){
- if(!palFor(state,palId))throw new Error('This pal is unavailable.');
+ if(!palFor(state,palId))throw new Error('This Roamie is unavailable.');
  if(!draft.maps)throw new Error('Add a place link from Maps.');
  const key=(p:PlaceDraft)=>[p.name,p.location.city,p.location.country].map(normalizedPlaceText).join('|');
  const existing=sharedMapPlaces(state).find(p=>p.maps?.identity===draft.maps?.identity||key(p)===key(draft));

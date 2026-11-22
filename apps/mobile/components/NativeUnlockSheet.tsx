@@ -8,14 +8,14 @@ import {NIGHT_THEME as C} from './theme';
 type Props={visible:boolean;state:PreviewState;now:Date;onClose:()=>void;onStart:()=>void};
 export function NativeUnlockSheet({visible,state,now,onClose,onStart}:Props){
  const insets=useSafeAreaInsets(),{height}=useWindowDimensions(),startOnDismiss=useRef(false),resume=hasDailyProgress(state.daily),status=dailyStatus(state.daily,now),wait=countdownParts(status.remainingMs),waiting=!resume&&(status.kind==='waiting'||remainingDailyPlays(state.daily,now)===0),privateOnly=state.profile?.ageBand==='10-12';
- const steps=privateOnly?[['Pick your perfect day','Six choices. Just tap.'],['Uncover a surprise city','Somewhere you haven’t explored.'],['Make a little discovery','Explore its places privately.']]:[['Pick your perfect day','Six choices. Just tap.'],['Find your kind of roamie','Three shared picks. A surprise city.'],['Uncover their city','Say hello. Explore their places.']];
+ const steps=privateOnly?[['Answer 3 travel questions','Six choices. Just tap.'],['Uncover a surprise city','Somewhere you haven’t explored.'],['Make a little discovery','Explore its places privately.']]:[['Answer 3 travel questions','Six choices. Just tap.'],['Find your kind of Roamie','Match 2 of 3 answers to connect.'],['Uncover their city','Say hello. Explore their places.']];
  function close(){startOnDismiss.current=false;onClose();}
  function start(){if(waiting||startOnDismiss.current)return;startOnDismiss.current=true;onClose();if(Platform.OS!=='ios'){startOnDismiss.current=false;onStart();}}
  return <Modal visible={visible} transparent animationType="slide" onRequestClose={close} onDismiss={()=>{if(startOnDismiss.current){startOnDismiss.current=false;onStart();}}}>
   <View style={S.backdrop}><Pressable accessible={false} onPress={close} style={StyleSheet.absoluteFill}/><View accessibilityViewIsModal style={[S.sheet,{height:Math.min(height*.88,650),paddingBottom:Math.max(18,insets.bottom)}]}>
    <View style={S.handle}/><View style={S.top}><Pressable accessibilityRole="button" accessibilityLabel="Close unlock" onPress={close} style={S.close}><Ionicons name="close" size={23} color={C.ink}/></Pressable></View>
    <ScrollView style={{flex:1,minHeight:0}} contentContainerStyle={S.content} showsVerticalScrollIndicator={false}>
-    <PageHeading accessibilityRole="header" style={S.title}>3 picks.<Text style={{color:C.accent}}>{'\n'}A surprise city.</Text></PageHeading><Text style={S.copy}>{privateOnly?'A little curiosity takes you somewhere new.':'Your next roamie could be anywhere.'}</Text>
+    <PageHeading accessibilityRole="header" style={S.title}>3 picks.<Text style={{color:C.accent}}>{'\n'}A surprise city.</Text></PageHeading><Text style={S.copy}>{privateOnly?'A little curiosity takes you somewhere new.':'Your next Roamie could be anywhere.'}</Text>
     <View style={S.example}><Text style={S.exampleLabel}>YOUR KIND OF DAY</Text><View style={S.words}>{['Coffee','Beach','Music'].map(word=><View key={word} style={S.word}><Text style={S.wordText}>{word}</Text></View>)}</View></View>
     <View style={S.steps}>{steps.map(([title,detail],i)=><View key={title} style={S.step}><View style={S.number}><Text style={S.numberText}>{i+1}</Text></View><View style={{flex:1,gap:4}}><Text style={S.stepTitle}>{title}</Text><Text style={S.stepDetail}>{detail}</Text></View></View>)}</View>
    </ScrollView>

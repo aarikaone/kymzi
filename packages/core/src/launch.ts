@@ -1,3 +1,4 @@
+import {readUsername} from './profile-identity.ts';
 import {readPlacePostcards,type PlacePostcard} from './place-postcards.ts';
 import {readSharedTravel,sharedTravel,type SharedTravel} from './travel-profile.ts';
 import {questionById,questionChoices,dayCardPicks,TRAVEL_INVITE_SETS,validQuestionChoice,isPostcardQuestionSet} from './question-library.ts';
@@ -18,8 +19,8 @@ import type {AgeBand,AvatarId,Profile} from './types.ts';
 export const LAUNCH_SETS=[['K0001','K0002','K0003'],['K0101','K0102','K0103'],['K0301','K0302','K0303'],['K0201','K0202','K0203'],['K0601','K0602','K0603']] as const;
 export const LAUNCH_GUIDES:CountryId[]=['JP','FR','BR','KR','IT'];
 const TTL=7*86400000,HEX=/^[a-f0-9]{32}$/,HASH=/^[a-f0-9]{64}$/;
-type Person={name:string;avatar:AvatarId;city?:string;country?:string;travel?:SharedTravel};
-export type FriendInvite={kind?:'bottle';version:1;id:string;createdAt:string;person:Person;ids:string[];hashes:string[]};
+type Person={username?:string;name:string;avatar:AvatarId;city?:string;country?:string;travel?:SharedTravel};
+export type FriendInvite={kind?:'bottle'|'friend';version:1;id:string;createdAt:string;person:Person;ids:string[];hashes:string[]};
 export type FriendReply={playCityId?:TravelCityId;version:1;invite:FriendInvite;id:string;completedAt:string;person:Person;hashes:string[]};
 export type LaunchTicket={id:string;createdAt:string;ids:string[];answers:string[]};
 export type InvitePreparation={ids:string[];answers:string[];submitted:number;startedAt:string};
@@ -40,20 +41,22 @@ const knownSet=(ids:unknown):ids is string[]=>Array.isArray(ids)&&ids.length===3
 function person(raw:unknown):Person{
  const p=raw as Partial<Person>|null;
  if(!p||typeof p.name!=='string'||!/^[1-9]\d{5}$/.test(p.name)||!AVATARS.some(a=>a.id===p.avatar))throw new Error('This challenge could not be opened.');
- return {name:p.name,avatar:p.avatar!,...readProfileLocation(p),...(p.travel?{travel:readSharedTravel(p.travel)}:{})};
+ return {name:p.name,avatar:p.avatar!,...(readUsername(p.username)?{username:readUsername(p.username)}:{}),...readProfileLocation(p),...(p.travel?{travel:readSharedTravel(p.travel)}:{})};
 }
 function hashes(raw:unknown):string[]{if(!Array.isArray(raw)||raw.length!==3||raw.some(h=>typeof h!=='string'||!HASH.test(h)))throw new Error('This challenge could not be opened.');return [...raw];}
 export function readFriendInvite(raw:unknown,now=new Date()):FriendInvite{
  const p=raw as Partial<FriendInvite>|null;
- if(!p||p.version!==1||typeof p.id!=='string'||!HEX.test(p.id)||!validDate(p.createdAt)||Date.parse(p.createdAt)>now.getTime()+300000||(p.kind!=='bottle'&&now.getTime()-Date.parse(p.createdAt)>TTL)||(p.kind==='bottle'?!isPostcardQuestionSet(p.ids):!validSet(p.ids))||(p.kind!==undefined&&p.kind!=='bottle'))throw new Error('This challenge has expired or is incomplete. Ask for a new link.');
- return {...(p.kind==='bottle'?{kind:'bottle' as const}:{}),version:1,id:p.id,createdAt:p.createdAt,person:person(p.person),ids:[...p.ids!],hashes:hashes(p.hashes)};
+ if(!p||p.version!==1||typeof p.id!=='string'||!HEX.test(p.id)||!validDate(p.createdAt)||Date.parse(p.createdAt)>now.getTime()+300000||(p.kind!=='bottle'&&now.getTime()-Date.parse(p.createdAt)>TTL)||(p.kind!==undefined&&p.kind!=='bottle'&&p.kind!=='friend'))throw new Error('This invite has expired or is incomplete. Ask for a new link.');
+ const direct=p.kind==='friend';
+ if(direct?(!Array.isArray(p.ids)||p.ids.length!==0||!Array.isArray(p.hashes)||p.hashes.length!==0):(p.kind==='bottle'?!isPostcardQuestionSet(p.ids):!validSet(p.ids)))throw new Error('This invite is incomplete. Ask for a new link.');
+ return {...(p.kind?{kind:p.kind}:{}),version:1,id:p.id,createdAt:p.createdAt,person:person(p.person),ids:[...p.ids!],hashes:direct?[]:hashes(p.hashes)};
 }
 export function readFriendReply(raw:unknown,now=new Date()):FriendReply{
  const p=raw as Partial<FriendReply>|null;
  if(!p||p.version!==1||typeof p.id!=='string'||!HEX.test(p.id)||!validDate(p.completedAt)||Date.parse(p.completedAt)>now.getTime()+300000)throw new Error('This postcard could not be opened.');
  const invite=readFriendInvite(p.invite,new Date(p.completedAt));
- if(Date.parse(p.completedAt)<Date.parse(invite.createdAt)-300000)throw new Error('This postcard could not be opened.');
- return {version:1,invite,id:p.id,completedAt:p.completedAt,person:person(p.person),hashes:hashes(p.hashes),...(travelCityById(p.playCityId)?{playCityId:p.playCityId}:{})};
+ if(Date.parse(p.completedAt)<Date.parse(invite.createdAt)-300000||invite.kind==='friend'&&(!Array.isArray(p.hashes)||p.hashes.length!==0))throw new Error('This postcard could not be opened.');
+ return {version:1,invite,id:p.id,completedAt:p.completedAt,person:person(p.person),hashes:invite.kind==='friend'?[]:hashes(p.hashes),...(travelCityById(p.playCityId)?{playCityId:p.playCityId}:{})};
 }
 const alphabet='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
 /** URL data contains answer commitments, never answer text or either real photo. */
@@ -71,9 +74,20 @@ export const inviteFromToken=(token:string,now=new Date())=>readFriendInvite(tok
 export const replyFromToken=(token:string,now=new Date())=>readFriendReply(tokenJSON(token),now);
 export function challengeURL(base:string,value:FriendInvite|FriendReply):string{
  const url=new URL(base);if(!['https:','http:'].includes(url.protocol)||url.username||url.password)throw new Error('A web address is needed to share this challenge.');
- url.hash=`/challenge/${'invite' in value?'result/':''}${challengeToken(value)}`;return url.toString();
+ url.hash=`/${('invite' in value?value.invite:value).kind==='friend'?'join':'challenge'}/${'invite' in value?'result/':''}${challengeToken(value)}`;return url.toString();
 }
-function publicPerson(profile:Profile):Person{return person({name:profile.name,avatar:profile.avatar,...(profile.travel?{travel:sharedTravel(profile.travel)}:{})});}
+function publicPerson(profile:Profile):Person{return person({name:profile.name,avatar:profile.avatar,...(profile.username?{username:profile.username}:{}),...(profile.travel?{travel:sharedTravel(profile.travel)}:{})});}
+/** A direct invitation: no questions, answers, or manufactured match score. */
+export function makeJoinInvite(state:PreviewState,crypto:Pick<ChallengeCrypto,'nonce'>,now=new Date()):FriendInvite{
+ if(!state.profile||state.profile.ageBand==='10-12')throw new Error('Create your profile to invite friends.');
+ return readFriendInvite({kind:'friend',version:1,id:crypto.nonce(),createdAt:now.toISOString(),person:publicPerson(state.profile),ids:[],hashes:[]},now);
+}
+export function acceptJoinInvite(invite:FriendInvite,profile:Profile,crypto:Pick<ChallengeCrypto,'nonce'>,now=new Date()):FriendReply{
+ invite=readFriendInvite(invite,now);if(invite.kind!=='friend')throw new Error('This postcard needs its matching game.');
+ if(profile.ageBand==='10-12')throw new Error('Your city journey stays private.');
+ if(profile.name===invite.person.name)throw new Error('Send this invite to a friend.');
+ return readFriendReply({version:1,invite,id:crypto.nonce(),completedAt:now.toISOString(),person:publicPerson(profile),hashes:[]},now);
+}
 function cleanAnswers(values:string[]):string[]{if(values.length!==3||values.some(v=>typeof v!=='string'||!v.trim()||v.length>40))throw new Error('Answer all 3 questions first.');return values.map(v=>normalizeAnswer(v));}
 async function commitments(id:string,ids:string[],answers:string[],crypto:Pick<ChallengeCrypto,'digest'>){const values=cleanAnswers(answers);const result=await Promise.all(ids.map((q,i)=>crypto.digest(`kymzi-friend-v1:${id}:${q}:${values[i]}`)));return hashes(result);}
 export async function makeFriendInvite(state:PreviewState,crypto:ChallengeCrypto,now=new Date()):Promise<FriendInvite>{
@@ -96,14 +110,15 @@ export async function senderPostcardPicks(state:PreviewState,invite:FriendInvite
 }
 export function hasInviteAnswers(state:PreviewState){return !!state.launch?.tickets.some(t=>validSet(t.ids));}
 export async function answerFriendInvite(invite:FriendInvite,profile:Profile,answers:string[],crypto:ChallengeCrypto,now=new Date(),playCityId?:TravelCityId):Promise<FriendReply>{
- invite=readFriendInvite(invite,now);if(invite.ids.some((id,i)=>{const q=questionById(id);return q&&!validQuestionChoice(q,answers[i]);}))throw new Error('Pick one of the six choices.');if(profile.ageBand==='10-12')throw new Error('Your city journey stays private.');if(profile.name===invite.person.name)throw new Error('Open this link with a friend to compare your answers.');
+ invite=readFriendInvite(invite,now);if(invite.kind==='friend')throw new Error('Join this friend directly. No game is needed.');if(invite.ids.some((id,i)=>{const q=questionById(id);return q&&!validQuestionChoice(q,answers[i]);}))throw new Error('Pick one of the six choices.');if(profile.ageBand==='10-12')throw new Error('Your city journey stays private.');if(profile.name===invite.person.name)throw new Error('Open this link with a friend to compare your answers.');
  return readFriendReply({version:1,invite,id:crypto.nonce(),completedAt:now.toISOString(),playCityId,person:publicPerson(profile),hashes:await commitments(invite.id,invite.ids,answers,crypto)},now);
 }
-export function friendScore(reply:FriendReply){const matched=reply.invite.hashes.map((h,i)=>h===reply.hashes[i]),shared=matched.filter(Boolean).length;return {matched,shared,total:3 as const,percentage:Math.round(shared/3*100),connects:shared/3>=.5};}
+export function friendScore(reply:FriendReply){if(reply.invite.kind==='friend')return {matched:[] as boolean[],shared:0,total:0 as const,percentage:0,connects:reply.person.name!==reply.invite.person.name};const matched=reply.invite.hashes.map((h,i)=>h===reply.hashes[i]),shared=matched.filter(Boolean).length;return {matched,shared,total:3 as const,percentage:Math.round(shared/3*100),connects:shared/3>=.5};}
 /** Open the sender's illustrated travel day only after two answers match.
  * Resolve the six reviewed choices locally; no network or billed generation is used. */
 export async function openFriendPostcard(raw:FriendReply,crypto:Pick<ChallengeCrypto,'digest'>){
  const reply=readFriendReply(raw);
+ if(reply.invite.kind==='friend')throw new Error('This friend invitation opens without playing.');
  if(!friendScore(reply).connects)throw new Error('Match at least 2 of 3 answers to open this postcard.');
  const answers=await Promise.all(reply.invite.ids.map(async(id,i)=>{
   const question=questionById(id);if(!question)throw new Error('This postcard is unavailable. Ask for a new one.');
@@ -130,7 +145,7 @@ export function collectPostcard(state:PreviewState,reply:FriendReply,now=new Dat
 export const PAL_FINDING_FRIEND_GOAL=5;
 export const UNLOCK_PREVIEW_AVATARS:AvatarId[]=['cloud','sprout','boba','miso','astro'];
 function ownsReturnedInvite(launch:LaunchState,reply:FriendReply){return launch.invites.some(i=>i.id===reply.invite.id&&challengeToken(i)===challengeToken(reply.invite));}
-/** Counts returned challenges with a 50%+ match from distinct anonymous friends, not shares.
+/** Counts distinct friends who joined, or legacy matched invitations; never shares alone.
  * Credits are local prototype records, not authenticated user registrations. */
 export function palFindingProgress(state:PreviewState){
  const owner=state.profile?.name,eligible=!!state.profile&&state.profile.ageBand!=='10-12',friends:FriendReply[]=[],seen=new Set<string>();
@@ -139,6 +154,12 @@ export function palFindingProgress(state:PreviewState){
  const count=Math.min(PAL_FINDING_FRIEND_GOAL,friends.length);
  const unlocked=eligible&&count>=PAL_FINDING_FRIEND_GOAL,activated=eligible&&!!state.launch?.globalPlay,simulated=activated&&state.launch?.globalPlay?.source==='simulation';
  return {count,goal:PAL_FINDING_FRIEND_GOAL,remaining:PAL_FINDING_FRIEND_GOAL-count,eligible,unlocked,activated,simulated,canPlay:unlocked||activated,friends};
+}
+/** Both sides see a joined friend. Referral progress still counts only the inviter's joins. */
+export function invitedFriends(state:PreviewState):Array<FriendReply&{relationship:'friend'}>{
+ const owner=state.profile?.name;if(!owner||state.profile?.ageBand==='10-12')return [];
+ const rows=[...palFindingProgress(state).friends,...(state.launch?.postcards??[]).filter(r=>r.invite.kind==='friend'&&(r.invite.person.name===owner||r.person.name===owner))],seen=new Set<string>();
+ return rows.flatMap(reply=>{const other=reply.person.name===owner?reply.invite.person:reply.person;if(other.name===owner||seen.has(other.name))return [];seen.add(other.name);return [{...reply,person:other,relationship:'friend' as const}];});
 }
 /** The requested simulation permanently activates the local global-play experience.
  * It never fabricates referral credits or changes an existing game/time/quota. */
@@ -183,7 +204,7 @@ export function finishInvitePreparation(state:PreviewState,now=new Date()):Previ
  * An answered/paid draft is retained; an untouched start can choose a new topic. */
 export function prepareLaunchTopics(state:PreviewState,now=new Date()):PreviewState{
  if(!state.profile)throw new Error('Create your passport first.');
- if(state.profile.ageBand!=='10-12'&&!palFindingProgress(state).canPlay)throw new Error('Bring 5 friends to unlock pal finding.');
+ if(state.profile.ageBand!=='10-12'&&!palFindingProgress(state).canPlay)throw new Error('Bring 5 friends to unlock Roamie finding.');
  let daily=state.daily;if(dailyStatus(daily,now).kind==='choose-time')daily=scheduleDaily(daily,daily.playTime??'19:00',now);
  if(dailyStatus(daily,now).kind!=='ready')throw new Error('Your next play opens at your saved daily time.');
  if(!hasDailyProgress(daily)&&daily.active)daily={...daily,active:null};
@@ -197,16 +218,16 @@ export function beginLaunchPlay(state:PreviewState,now=new Date(),peerId?:string
  if(categoryId&&!availableCategories(profile.ageBand).some(c=>c.id===categoryId))throw new Error('Choose one of the available topics.');
  const slot=daily.usageDay===localDay(now)?daily.playsToday:0,day=Math.floor(now.getTime()/86400000),ids=[...LAUNCH_SETS[(day+slot)%LAUNCH_SETS.length]];
  const known=connections(state.social,profile.ageBand,state.blocked),target=peerId?known.find(p=>p.peer.id===peerId):undefined;
- if(peerId&&(!target||target.matches>=5))throw new Error('This pal’s five games are complete or unavailable.');
+ if(peerId&&(!target||target.matches>=5))throw new Error('This Roamie’s five games are complete or unavailable.');
  const eligible=COUNTRIES.filter(c=>demoPeers.some(p=>p.ageBand===profile.ageBand&&p.country===c.name&&!state.blocked.includes(p.id)&&(known.find(k=>k.peer.id===p.id)?.matches??0)<5));
  const countryId=profile.ageBand==='10-12'?COUNTRIES[daily.played%COUNTRIES.length].id:target?.countryId??eligible[Math.floor(Math.random()*eligible.length)]?.id;
- if(!countryId)throw new Error('No new preview pals are available.');
+ if(!countryId)throw new Error('No new preview Roamies are available.');
  if(categoryId){const selected=beginDaily(daily,profile.ageBand,now,categoryId,countryId);return {...state,daily:{...selected,active:{...selected.active!,...(target?{peerId:target.peer.id}:{})}}};}
  return {...state,daily:{...daily,active:{ids,answers:{},countryId,...(target?{peerId:target.peer.id}:{}),startedAt:now.toISOString(),submittedIds:[],countedAt:null}}};
 }
 export function finishLaunchPlay(state:PreviewState,now=new Date()):PreviewState{
  if(!state.profile||!state.daily.active||!knownSet(state.daily.active.ids))throw new Error('Start your 3 answers first.');
- if(state.profile.ageBand!=='10-12'&&!palFindingProgress(state).canPlay)throw new Error('Bring 5 friends to unlock pal finding.');
+ if(state.profile.ageBand!=='10-12'&&!palFindingProgress(state).canPlay)throw new Error('Bring 5 friends to unlock Roamie finding.');
  const ids=[...state.daily.active.ids],answers=ids.map(id=>(state.daily.active!.answers[id]??'').trim());cleanAnswers(answers);
  const next=state.profile.ageBand==='10-12'?{...state,daily:completeDaily(state.daily,now)}:completeDemoPlay(simulatePalUnlock(state,now),now),launch=next.launch??emptyLaunch(now),ticket={id:`answers:${next.daily.played}:${now.toISOString()}`,createdAt:now.toISOString(),ids,answers};
  return {...next,launch:{...launch,tickets:[...launch.tickets,ticket].slice(-25)}};

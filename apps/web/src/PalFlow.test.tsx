@@ -11,16 +11,16 @@ function data(){return JSON.parse(localStorage.getItem(KEY)!) as PreviewState;}
 function seed(){return save({...emptyPreview(NOW),profile:{name:'PrivateNova',avatar:'cloud',ageBand:'18-20'}});}
 beforeEach(()=>{vi.useFakeTimers({toFake:['Date']});vi.setSystemTime(NOW);vi.spyOn(Math,'random').mockReturnValue(0);});
 afterEach(()=>{vi.useRealTimers();vi.restoreAllMocks();});
-it('connects arbitrary answers to an unknown roamie, their moments, places, visit plan and explicit public meetup',async()=>{
+it('connects arbitrary answers to an unknown Roamie, their moments, places, visit plan and explicit public meetup',async()=>{
  seed();const user=userEvent.setup();render(<App/>);
- await user.click(screen.getByRole('button',{name:'Find my roamie'}));await confirmUnlock(user);await user.click(screen.getByRole('button',{name:'Choose Little stops'}));
+ await user.click(screen.getByRole('button',{name:'Find a Roamie'}));await confirmUnlock(user);await user.click(screen.getByRole('button',{name:'Choose Little stops'}));
  for(const [i,answer] of ['flying noodles','the 98th moon','a surprise thought'].entries()){
   await chooseTravelAnswer(user,answer);
-  await user.click(screen.getByRole('button',{name:i===2?'Find my roamie':'Next'}));
+  await user.click(screen.getByRole('button',{name:i===2?'Find a Roamie':'Next'}));
  }
- expect(screen.getByRole('heading',{name:'You found a roamie.'})).toBeTruthy();
- await user.click(screen.getByRole('button',{name:'Meet my roamie'}));
- expect(screen.getByRole('heading',{name:'Roamie 01'})).toBeTruthy();await user.click(screen.getByRole('tab',{name:/^Hidden gems/}));expect(screen.queryByText('Our place swap')).toBeNull();await user.click((await screen.findAllByRole('button',{name:/^Open Roamie 01’s hidden gem /}))[0]);expect(screen.getByText('Illustrated preview')).toBeTruthy();
+ expect(screen.getByRole('heading',{name:'You found a Roamie.'})).toBeTruthy();
+ await user.click(screen.getByRole('button',{name:'View Roamie'}));
+ expect(screen.getByRole('heading',{name:'@luna_jp'})).toBeTruthy();await user.click(screen.getByRole('tab',{name:/^Hidden gems/}));expect(screen.queryByText('Our place swap')).toBeNull();await user.click((await screen.findAllByRole('button',{name:/^Open @luna_jp’s hidden gem /}))[0]);expect(screen.getByText('Illustrated preview')).toBeTruthy();
  expect(screen.queryByText('PrivateNova')).toBeNull();expect(screen.queryByRole('button',{name:/Chat|Reveal.*photo/})).toBeNull();
  expect(screen.getByRole('button',{name:'Plan visit to Tokyo'})).toBeTruthy();
  await user.click(screen.getByRole('button',{name:'Explore their city'}));
@@ -43,21 +43,21 @@ it('connects arbitrary answers to an unknown roamie, their moments, places, visi
  expect(screen.getByText('Both agreed')).toBeTruthy();expect(screen.getByText('Local preview · No invitation sent')).toBeTruthy();
  expect(data().daily.playsToday).toBe(1);
 });
-it('returns connected users to roamie moments while keeping their own camera collection under You',async()=>{
+it('returns connected users to Roamie moments while keeping their own camera collection under You',async()=>{
  let s=seed(),daily=beginDaily(s.daily,'18-20',NOW,'food','JP');
  for(const id of daily.active!.ids)daily=answerDaily(daily,id,'my answer',NOW);
  s=completeDemoPlay({...s,daily},NOW);
  s={...s,photos:addCameraMoment(s,{captureId:'my-own-lens',countryId:'JP',image:CAMERA_IMAGE,capturedAt:NOW.toISOString()},true,NOW)};save(s);
  const user=userEvent.setup();render(<App/>);
  expect(screen.getByRole('button',{name:'Home'}).getAttribute('aria-current')).toBe('page');
- expect(document.querySelectorAll('.feed-gem,.feed-checkin')).toHaveLength(1);expect(screen.getAllByRole('article')[0].getAttribute('aria-label')).toContain('Roamie 01');
+ expect(document.querySelectorAll('.feed-gem,.feed-checkin')).toHaveLength(1);expect(screen.getAllByRole('article')[0].getAttribute('aria-label')).toContain('@luna_jp');
  expect(screen.queryByRole('button',{name:'Next photo'})).toBeNull();expect(screen.queryByRole('button',{name:'Delete my photo'})).toBeNull();
 
 
  await user.click(screen.getByRole('button',{name:'Profile'}));await user.click(screen.getByRole('button',{name:'My shared places'}));
  expect(screen.getByRole('heading',{name:'My gems'})).toBeTruthy();
- expect(screen.queryByRole('button',{name:'Delete my photo'})).toBeNull();expect(screen.queryByText('Roamie 01')).toBeNull();
- expect(screen.queryByRole('button',{name:'Your roamies'})).toBeNull();expect(data().daily.playsToday).toBe(1);expect(data().photos.credits).toHaveLength(1);
+ expect(screen.queryByRole('button',{name:'Delete my photo'})).toBeNull();expect(screen.queryByText('@luna_jp')).toBeNull();
+ expect(screen.queryByRole('button',{name:'Your Roamies'})).toBeNull();expect(data().daily.playsToday).toBe(1);expect(data().photos.credits).toHaveLength(1);
 });
 
 async function confirmUnlock(user:ReturnType<typeof userEvent.setup>){const start=screen.queryByRole('button',{name:/^(Let’s play|Continue my answers)$/});if(start)await user.click(start);}

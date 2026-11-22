@@ -1,3 +1,4 @@
+import {peerUsername,profileDisplayName} from './profile-identity.ts';
 import {demoPeers} from './index.ts';
 import {COUNTRIES} from './countries.ts';
 import {travelCityById} from './world-catalogue.ts';
@@ -23,7 +24,7 @@ export function dailyBottleCard(profile:PreviewState['profile'],id:string,blocke
  const seed=hash(id),questions=postcardQuestions('',band),questionIds:Array<string>=[];
  for(let i=0;i<3;i++){const pool=questions.filter(q=>!questionIds.includes(q.id)&&(!q.phase||q.phase===['start','wander','afterglow'][i]));const available=pool.length?pool:questions.filter(q=>!questionIds.includes(q.id));if(!available.length)return;questionIds.push(available[hash(id+':question:'+i)%available.length].id);}
  const wishes=3+seed%32,gems=(seed>>>5)%17;
- const card:DiscoveryCard={id,cityId:city.id,placeId:city.placeIds[seed%Math.min(4,city.placeIds.length)],ownerId:peer.id,ownerName:String(100000+hash(peer.id)%900000),avatar:peer.avatar,wishes,gems,signal:Math.min(100,10+wishes+gems*3),questionIds,picks:questionIds.map((q,i)=>questionById(q)!.choices![hash(id+':pick:'+i)%6].label),you:false,preview:true};if(cardCache.size>2000)cardCache.clear();cardCache.set(id,card);return card;
+ const card:DiscoveryCard={id,cityId:city.id,placeId:city.placeIds[seed%Math.min(4,city.placeIds.length)],ownerId:peer.id,ownerName:'@'+peerUsername(peer),avatar:peer.avatar,wishes,gems,signal:Math.min(100,10+wishes+gems*3),questionIds,picks:questionIds.map((q,i)=>questionById(q)!.choices![hash(id+':pick:'+i)%6].label),you:false,preview:true};if(cardCache.size>2000)cardCache.clear();cardCache.set(id,card);return card;
 }
 export function readDailyBottleDrop(value:unknown,profile:PreviewState['profile'],blocked:string[]=[]):DailyBottleDrop|undefined{
  if(!profile||profile.ageBand==='10-12'||!value||typeof value!=='object')return;

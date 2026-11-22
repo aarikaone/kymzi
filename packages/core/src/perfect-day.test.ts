@@ -27,13 +27,13 @@ test('global picks stay free until first submission, resume on reload, and prese
  s={...s,daily:answerDaily(s.daily,id,questionById(id)!.choices![0].label,now)};assert.equal(s.daily.playsToday,0);s={...s,daily:submitDaily(s.daily,id,now)};assert.equal(s.daily.playsToday,1);
  const active=s.daily.active;s=readPreview(JSON.parse(JSON.stringify(s)),now);s=beginPerfectDayPlay(s,now,undefined,'animals');assert.deepEqual(s.daily.active,active);s=finish(s);const copy=readPreview(JSON.parse(JSON.stringify(s)),now);assert.deepEqual(copy.social.proofs,s.social.proofs);assert.deepEqual(copy.daily,s.daily);assert.equal(s.daily.playsToday,1);assert.ok(s.daily.lastQuestionIds.every(id=>id.startsWith('T')));
 });
-test('global travel play retains five daily plays and the five-match roamie limit',()=>{
+test('global travel play retains five daily plays and the five-match Roamie limit',()=>{
  let s=simulatePalUnlock(prepare(),now);s=finish(beginPerfectDayPlay(s,now,undefined,'food'));const pal=palSummaries(s).find(p=>p.id===s.social.proofs.at(-1)!.peerId)!;
  for(let i=1;i<5;i++)s=finish(beginPerfectDayPlay(s,now,pal.id,'food'));
  assert.equal(palSummaries(s).find(p=>p.id===pal.id)!.matches,5);assert.throws(()=>beginPerfectDayPlay(s,now,pal.id,'food'));
  assert.equal(s.daily.playsToday,5);assert.throws(()=>beginPerfectDayPlay(s,now));
 });
-test('five distinct completed friend cards open global play; sharing and duplicate replies never grant credit',async()=>{
+test('five distinct completed friend cards open worldwide matching; sharing and duplicate replies never grant credit',async()=>{
  let s=prepare();assert.throws(()=>beginPerfectDayPlay(s,now));const answers=s.launch!.tickets[0].answers,invite=await makeFriendInvite(s,crypto,now);s=rememberInvite(s,invite,now);assert.equal(palFindingProgress(s).count,0);assert.ok(challengeURL('http://localhost:4178',invite).startsWith('http://localhost:4178/#/challenge/'));for(const a of answers)assert.equal(JSON.stringify(invite).includes(a),false);
  await assert.rejects(answerFriendInvite(invite,{...s.profile!,name:'654321'},['typed','invalid','answers'],crypto,now),/six choices/);
  for(let i=1;i<=5;i++){const guest={...s.profile!,name:String(600000+i)},opts=[...answers];if(i===1)opts[2]=questionById(invite.ids[2])!.choices!.find(c=>c.label!==opts[2])!.label;

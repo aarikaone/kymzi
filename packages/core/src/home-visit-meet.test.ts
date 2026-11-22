@@ -5,7 +5,7 @@ const NOW=new Date('2026-11-19T05:00:00Z');
 function seed():PreviewState{return seedGlobalPals(simulatePalUnlock({...emptyPreview(NOW),profile:{name:'123456',avatar:'cloud',ageBand:'16-17',city:'Bengaluru',country:'India'},launch:emptyLaunch(NOW)},NOW),NOW,'Asia/Kolkata');}
 function own(){const s=seed(),id=comingHomeVisit(s,NOW)!.peerId;return {id,s:checkInHomeVisit(s,id,{city:'Bengaluru',country:'India',placeId:'park',placeName:'Public park entrance'},NOW)};}
 function ready(){const {id,s}=own();return {id,s:previewHomePalCheckIn(s,id,{city:'Bengaluru',country:'India'},NOW)};}
-test('a planned visit alone never opens chat; an explicit public-place check-in still waits for the roamie',()=>{
+test('a planned visit alone never opens chat; an explicit public-place check-in still waits for the Roamie',()=>{
  const original=seed(),id=comingHomeVisit(original,NOW)!.peerId;assert.equal(homeVisitChatGate(original,id,NOW).open,false);assert.throws(()=>startHomeVisitChat(original,id,NOW));assert.throws(()=>previewHomePalCheckIn(original,id,{city:'Bengaluru',country:'India'},NOW),/Check in/);
  const s=checkInHomeVisit(original,id,{city:'Bengaluru',country:'India',placeId:'park'},NOW),gate=homeVisitChatGate(s,id,NOW);assert.equal(gate.reason,'waiting');assert.equal(gate.ownActive,true);assert.equal(gate.peerActive,false);assert.equal(gate.open,false);assert.deepEqual(s.daily,original.daily);assert.deepEqual(s.social,original.social);assert.deepEqual(s.visits,original.visits);assert.equal(palFor(s,id)!.photoUnlocked,false);assert.equal(homeVisitMeet(s,id)!.preview,true);
 });

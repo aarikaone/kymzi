@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
+import {VISITED_JPEGS} from './visited-photo-fixture.ts';
 import {createHash} from 'node:crypto';
-import {emptyPreview,emptyLaunch,beginLaunchPlay,finishLaunchPlay,answerDaily,submitDaily,remainingDailyPlays,completeDemoPlay,makeFriendInvite,answerFriendInvite,rememberInvite,collectPostcard,friendScore,challengeToken,inviteFromToken,replyFromToken,challengeURL,readPreview,toggleGuide,toggleGuidePlace,photoMonthProgress,addHomeMoment,removeHomeMoment,launchMoments,removeLaunchMoment,addCameraMoment,LAUNCH_SETS,palFindingProgress,simulatePalUnlock,resetPalUnlock,beginInvitePreparation,answerInvitePreparation,submitInvitePreparation,finishInvitePreparation,invitePreparationIndex,palSummaries,beginPalPlay,worldPlaces,cityPhotoFeed,type FriendInvite,type FriendReply,type PreviewState,type ChallengeCrypto} from './index.ts';
+import {makeProfilePhoto,emptyPreview,emptyLaunch,beginLaunchPlay,finishLaunchPlay,answerDaily,submitDaily,remainingDailyPlays,completeDemoPlay,makeFriendInvite,answerFriendInvite,rememberInvite,collectPostcard,friendScore,challengeToken,inviteFromToken,replyFromToken,challengeURL,readPreview,toggleGuide,toggleGuidePlace,photoMonthProgress,addHomeMoment,removeHomeMoment,launchMoments,removeLaunchMoment,addCameraMoment,LAUNCH_SETS,palFindingProgress,simulatePalUnlock,resetPalUnlock,beginInvitePreparation,answerInvitePreparation,submitInvitePreparation,finishInvitePreparation,invitePreparationIndex,palSummaries,beginPalPlay,worldPlaces,cityPhotoFeed,type FriendInvite,type FriendReply,type PreviewState,type ChallengeCrypto} from './index.ts';
 const NOW=new Date('2026-11-18T05:00:00Z');
 const crypto:ChallengeCrypto={nonce:()=> 'a'.repeat(32),digest:async value=>createHash('sha256').update(value).digest('hex')};
 const owner={name:'123456',avatar:'cloud' as const,ageBand:'16-17' as const,city:'Chennai',country:'India'};
@@ -14,7 +15,7 @@ function unlocked():PreviewState{
 }
 function prepared(){let s=beginInvitePreparation(seed(),NOW);for(let i=0;i<3;i++){s=answerInvitePreparation(s,i,['Mango','Cats','French fries'][i]);if(i<2)s=submitInvitePreparation(s,i);}return finishInvitePreparation(s,NOW);}
 function played(){let s=beginLaunchPlay(unlocked(),NOW);for(const [i,id]of s.daily.active!.ids.entries())s={...s,daily:answerDaily(s.daily,id,['Mango','Cats','French fries'][i],NOW)};return finishLaunchPlay(s,NOW);}
-test('global play saves answers and a fictional same-cohort roamie with an uncovered city',()=>{
+test('worldwide matching saves answers and a fictional same-cohort Roamie with an uncovered city',()=>{
  const s=played();assert.equal(s.launch!.tickets.length,1);assert.equal(s.daily.playsToday,1);assert.equal(s.social.proofs.length,1);assert.equal(s.social.proofs[0].simulated,true);assert.equal(s.passport.journeys.length,1);assert.equal(s.completed,true);assert.equal(palSummaries(s)[0].photoUnlocked,false);assert.ok(cityPhotoFeed(s).length>0);assert.throws(()=>completeDemoPlay(s,NOW));
  const copy=readPreview(JSON.parse(JSON.stringify(s)),NOW);assert.deepEqual(copy.launch,s.launch);assert.equal(copy.profile!.city,'Chennai');
 });
@@ -36,12 +37,12 @@ test('corrupt, expired and oversized challenge links fail safely and children ca
  const s=played(),invite=await makeFriendInvite(s,crypto,NOW);assert.throws(()=>inviteFromToken(challengeToken(invite),new Date(NOW.getTime()+8*86400000)));assert.throws(()=>inviteFromToken('x'.repeat(6001),NOW));assert.throws(()=>inviteFromToken('not%a%token',NOW));
  await assert.rejects(makeFriendInvite({...s,profile:{...owner,ageBand:'10-12'}},crypto,NOW));assert.throws(()=>challengeURL('javascript:alert(1)',invite));
 });
-test('city guides and saved places work before any roamie and never create a city match',()=>{
+test('city guides and saved places work before any Roamie and never create a city match',()=>{
  const s=toggleGuidePlace(toggleGuide(seed(),'JP',NOW),'jp-1',NOW);assert.deepEqual(s.launch!.guides,['JP']);assert.deepEqual(s.launch!.places,['jp-1']);assert.equal(s.social.proofs.length,0);assert.equal(toggleGuide(s,'JP',NOW).launch!.guides.length,0);assert.equal(photoMonthProgress(s,NOW).count,0);
 });
 
 const JPEG="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAsICAoIBwsKCQoNDAsNERwSEQ8PESIZGhQcKSQrKigkJyctMkA3LTA9MCcnOEw5PUNFSElIKzZPVU5GVEBHSEX/2wBDAQwNDREPESESEiFFLicuRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUVFRUX/wAARCAAIAAgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDQooor0TU//9k=";
-test('a first home photo works without a roamie, credits the month once and keeps its original city',()=>{
+test('a first home photo works without a Roamie, credits the month once and keeps its original city',()=>{
  const initial=seed(),moment={captureId:'home-first',image:JPEG,capturedAt:NOW.toISOString()};
  assert.throws(()=>addHomeMoment(initial,moment,false,NOW));
  const saved=addHomeMoment(initial,moment,true,NOW);assert.equal(saved.launch!.homePhotos[0].city,'Chennai');assert.equal(photoMonthProgress(saved,NOW).count,1);assert.equal(saved.social.proofs.length,0);
@@ -61,7 +62,7 @@ test('adopting launch keeps older camera moments visible and preserves their ear
  const next=removeLaunchMoment(state,'before-launch');assert.equal(launchMoments(next).length,0);assert.equal(photoMonthProgress(next,NOW).count,1);assert.deepEqual(next.social,state.social);
 });
 
-test('roamie finding requires five distinct completed friends, not shares, duplicate replies or received postcards',async()=>{
+test('Roamie finding requires five distinct completed friends, not shares, duplicate replies or received postcards',async()=>{
  let s=prepared();assert.equal(palFindingProgress(s).count,0);assert.throws(()=>beginLaunchPlay(s,NOW),/5 friends/);
  const invite=await makeFriendInvite(s,crypto,NOW);s=rememberInvite(s,invite,NOW);assert.equal(palFindingProgress(s).count,0);
  for(let i=1;i<=5;i++){
@@ -91,13 +92,13 @@ test('activation is durable and never resets the real daily quota, draft, referr
  let playing=beginLaunchPlay(reload,NOW);assert.equal(playing.daily.playsToday,0);for(const id of playing.daily.active!.ids)playing={...playing,daily:answerDaily(playing.daily,id,'Anything I type',NOW)};
  const result=finishLaunchPlay(playing,NOW);assert.equal(result.daily.playsToday,1);assert.equal(result.social.proofs.length,1);assert.equal(result.social.proofs[0].simulated,true);assert.equal(result.launch!.tickets.length,original.launch!.tickets.length+1);assert.equal(palFindingProgress(result).count,0);assert.equal(resetPalUnlock(result),result);assert.equal(palFindingProgress(readPreview(JSON.parse(JSON.stringify(result)),NOW)).canPlay,true);
 });
-test('old already-activated previews migrate to permanent global play without restoring stale quota snapshots',()=>{
+test('old already-activated previews migrate to permanent worldwide matching without restoring stale quota snapshots',()=>{
  const original=seed(),legacy={...original,launch:{...original.launch!,unlockPreview:{originalDaily:{...original.daily,playsToday:5}}}};
  const migrated=readPreview(JSON.parse(JSON.stringify(legacy)),NOW);assert.equal(palFindingProgress(migrated).activated,true);assert.equal(migrated.launch!.globalPlay!.source,'simulation');assert.equal(migrated.launch!.unlockPreview,undefined);assert.equal(migrated.daily.playsToday,0);
  const paid=beginLaunchPlay(migrated,NOW),id=paid.daily.active!.ids[0],draft={...paid,daily:submitDaily(answerDaily(paid.daily,id,'Saved draft',NOW),id,NOW)},reactivated=simulatePalUnlock(draft,NOW);assert.equal(reactivated,draft);assert.equal(beginLaunchPlay(readPreview(JSON.parse(JSON.stringify(draft)),NOW),NOW).daily.active!.answers[id],'Saved draft');assert.equal(reactivated.daily.playsToday,1);
  const waiting={...draft,daily:{...draft.daily,active:null,usageDay:'2026-11-18',playsToday:5,playTime:'19:00',nextUnlockAt:'2026-11-20T19:00:00Z'}};assert.throws(()=>beginLaunchPlay(simulatePalUnlock(waiting,NOW),NOW),/daily time/);assert.deepEqual(simulatePalUnlock(waiting,NOW).daily,waiting.daily);
 });
-test('the same roamie can be replayed to three photo matches and five chat matches, then random world play continues',()=>{
+test('the same Roamie can be replayed to three photo matches and five chat matches, then random world play continues',()=>{
  let s=simulatePalUnlock(seed(),NOW),peerId='';
  for(let i=0;i<5;i++){s=beginLaunchPlay(s,NOW,peerId||undefined);for(const id of s.daily.active!.ids)s={...s,daily:answerDaily(s.daily,id,`Any answer ${i}`,NOW)};s=finishLaunchPlay(s,NOW);const pal=palSummaries(s)[0];peerId=pal.id;assert.equal(pal.matches,i+1);assert.equal(pal.photoUnlocked,i>=2);assert.equal(pal.chatUnlocked,i>=4);assert.equal(s.daily.playsToday,i+1);assert.equal(s.social.proofs.every(p=>p.simulated===true),true);}
  assert.throws(()=>beginLaunchPlay(s,NOW),/daily time/);const tomorrow=new Date(NOW.getTime()+36*3600000);assert.throws(()=>beginLaunchPlay(s,tomorrow,peerId),/five games/);const next=beginLaunchPlay(s,tomorrow);assert.ok(next.daily.active);assert.equal(next.daily.active!.peerId,undefined);assert.equal(palFindingProgress(next).canPlay,true);assert.equal(worldPlaces(s).filter(p=>p.uncovered).length,1);
@@ -111,4 +112,14 @@ test('world guide places survive local storage without unlocking or spending a p
  const original=seed(),saved=toggleGuidePlace(original,'Q836531',NOW),restored=readPreview(JSON.parse(JSON.stringify(saved)),NOW);
  assert.ok(restored.launch!.places.includes('Q836531'));assert.equal(palFindingProgress(restored).canPlay,false);assert.deepEqual(restored.daily,readPreview(JSON.parse(JSON.stringify(original)),NOW).daily);
  assert.deepEqual(toggleGuidePlace(restored,'Q836531',NOW).launch!.places,[]);assert.throws(()=>toggleGuidePlace(original,'Q999999999999999',NOW),/Choose a place/);
+});
+
+
+test('shares chosen usernames while keeping connection IDs stable and local photo bytes out of links',async()=>{
+ const state=prepared();state.profile={...state.profile!,username:'ava_roams',age13Confirmed:true,avatarPhoto:makeProfilePhoto(VISITED_JPEGS[0],owner.ageBand,NOW)};
+ const invite=await makeFriendInvite(state,crypto,NOW);assert.equal(invite.person.username,'ava_roams');assert.equal(invite.person.name,owner.name);
+ const opened=inviteFromToken(challengeToken(invite),NOW);assert.equal(opened.person.username,'ava_roams');
+ const reply=await answerFriendInvite(opened,{...guest,username:'milo_roams',age13Confirmed:true},['Mango','cat','fries'],{...crypto,nonce:()=> 'b'.repeat(32)},NOW);
+ const restored=replyFromToken(challengeToken(reply),NOW);assert.equal(restored.person.username,'milo_roams');assert.equal(restored.person.name,guest.name);
+ const connected=collectPostcard(rememberInvite(state,invite,NOW),restored,NOW);assert.equal(palFindingProgress(connected).count,1);assert.equal(palFindingProgress(connected).friends[0].person.username,'milo_roams');assert.equal(JSON.stringify(invite).includes('data:image'),false);
 });

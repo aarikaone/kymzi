@@ -1,3 +1,5 @@
+import {cleanCityJpeg} from './photos.ts';
+import {profileDisplayName} from './profile-identity.ts';
 import {circleFriends} from './receiver-preview.ts';
 import {parseMapsPlaceLink,type MapsPlaceLink} from './map-links.ts';
 import type {PlaceFavEvent} from './place-contributions.ts';
@@ -8,8 +10,10 @@ import {placeCategory,type PlaceCategoryId} from './place-categories.ts';
 import type {PreviewState} from './preview.ts';
 import type {AgeBand,AvatarId} from './types.ts';
 export const MONTHLY_CHECKIN_GOAL=3;
-export type PlaceLocation={city:string;country:string;area?:string;countryCode?:string;source:'device'|'manual'|'maps'};
-export type PlaceDraft={id:string;name:string;categoryId:PlaceCategoryId;location:PlaceLocation;illustration?:string;sharedWith?:string[];maps?:MapsPlaceLink;tip?:string};
+export const MAX_GEM_PHOTOS=5;
+export type PlacePhoto={id:string;image:string};
+export type PlaceLocation={city:string;country:string;area?:string;address?:string;placePin?:{latitude:number;longitude:number};countryCode?:string;source:'device'|'manual'|'maps'};
+export type PlaceDraft={id:string;name:string;categoryId:PlaceCategoryId;location:PlaceLocation;illustration?:string;photos?:PlacePhoto[];sharedWith?:string[];maps?:MapsPlaceLink;tip?:string};
 export type PlaceCheckIn=PlaceDraft & {checkedInAt:string;ageBand:AgeBand};
 export type PlaceFavoriteAction={placeId:string;ownerId:string;actorId:string;active:boolean;at:string};
 export type PlaceJournal={version:1;startedMonth:string;sharingStartedMonth?:string;receivedFavs?:PlaceFavEvent[];favHistory?:PlaceFavoriteAction[];entries:PlaceCheckIn[];savedIds:string[];seenIds:string[]};
@@ -22,14 +26,18 @@ export function cleanPlaceLocation(value:unknown):PlaceLocation{
  const p=value as Partial<PlaceLocation>|null;
  const city=text(p?.city,80),country=text(p?.country,80),area=text(p?.area,100),countryCode=text(p?.countryCode,2).toUpperCase();
  if(!city||!country)throw new Error('Add the city and country.');
- return {city,country,...(area?{area}:{}),...(/^[A-Z]{2}$/.test(countryCode)?{countryCode}:{}),source:p?.source==='maps'?'maps':p?.source==='device'?'device':'manual'};
+ const address=text(p?.address,180),latitude=p?.placePin?.latitude,longitude=p?.placePin?.longitude;
+ if((latitude!==undefined||longitude!==undefined)&&!(typeof latitude==='number'&&Number.isFinite(latitude)&&Math.abs(latitude)<=90&&typeof longitude==='number'&&Number.isFinite(longitude)&&Math.abs(longitude)<=180))throw new Error('Choose a valid place location.');
+ return {city,country,...(address?{address}:{}),...(latitude!==undefined&&longitude!==undefined?{placePin:{latitude,longitude}}:{}),...(area?{area}:{}),...(/^[A-Z]{2}$/.test(countryCode)?{countryCode}:{}),source:p?.source==='maps'?'maps':p?.source==='device'?'device':'manual'};
 }
 export function cleanPlaceDraft(raw:PlaceDraft):PlaceDraft{
  const id=text(raw.id,100),name=text(raw.name,80),tip=text(raw.tip,160);
  if(!id||!name)throw new Error('What is this place called?');
  if(!placeCategory(raw.categoryId))throw new Error('Choose a place category.');
  const illustration=typeof raw.illustration==='string'&&raw.illustration.length<=2_000_000&&/^data:image\/(png|jpeg|webp);base64,[A-Za-z0-9+/]+={0,2}$/.test(raw.illustration)?raw.illustration:undefined;
- return {id,name,categoryId:raw.categoryId,...(tip?{tip}:{}),...(Array.isArray(raw.sharedWith)?{sharedWith:[...new Set(raw.sharedWith.filter(id=>typeof id==='string'&&id.length<100))].slice(-100)}:{}),location:cleanPlaceLocation(raw.location),...(raw.maps?{maps:parseMapsPlaceLink(raw.maps.url)}:{}),...(illustration?{illustration}:{})};
+ let photos:PlacePhoto[]|undefined;
+ if(raw.photos!==undefined){if(!Array.isArray(raw.photos)||raw.photos.length>MAX_GEM_PHOTOS)throw new Error('Add up to 5 photos.');const ids=new Set<string>();photos=raw.photos.map(photo=>{const photoId=text(photo?.id,100);if(!photoId||ids.has(photoId))throw new Error('Choose another photo.');ids.add(photoId);return {id:photoId,image:cleanCityJpeg(photo.image)};});}
+ return {id,name,categoryId:raw.categoryId,...(photos?.length?{photos}:{}),...(tip?{tip}:{}),...(Array.isArray(raw.sharedWith)?{sharedWith:[...new Set(raw.sharedWith.filter(id=>typeof id==='string'&&id.length<100))].slice(-100)}:{}),location:cleanPlaceLocation(raw.location),...(raw.maps?{maps:parseMapsPlaceLink(raw.maps.url)}:{}),...(illustration?{illustration}:{})};
 }
 function placeKey(p:PlaceDraft){return [p.name,p.location.city,p.location.country].map(x=>x.normalize('NFKC').trim().toLocaleLowerCase().replace(/\s+/g,' ')).join('|');}
 export function readPlaceJournal(value:unknown,now=new Date()):PlaceJournal{
@@ -74,7 +82,7 @@ export function placeCheckInFeed(state:PreviewState,countryId?:CountryId,now=new
  });
  const circle:PlaceFeedItem[]=circleFriends(state).map(friend=>{
   const attraction=attractionsForCountry(friend.countryId)[0];
-  return {id:`circle-place:${state.profile!.ageBand}:${friend.name}:${attraction.id}`,name:attraction.name,categoryId:'attraction',location:{city:friend.city,country:friend.country,countryCode:friend.countryId,source:'manual'},checkedInAt:friend.connectedAt,ageBand:state.profile!.ageBand,alias:`#${friend.name}`,you:false,circleFriendId:friend.id,authorAvatar:friend.avatar,countryId:friend.countryId,artworkId:attraction.id,maps:parseMapsPlaceLink(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(attraction.name+', '+friend.city+', '+friend.country)}`),preview:true};
+  return {id:`circle-place:${state.profile!.ageBand}:${friend.name}:${attraction.id}`,name:attraction.name,categoryId:'attraction',location:{city:friend.city,country:friend.country,countryCode:friend.countryId,source:'manual'},checkedInAt:friend.connectedAt,ageBand:state.profile!.ageBand,alias:profileDisplayName(friend),you:false,circleFriendId:friend.id,authorAvatar:friend.avatar,countryId:friend.countryId,artworkId:attraction.id,maps:parseMapsPlaceLink(`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(attraction.name+', '+friend.city+', '+friend.country)}`),preview:true};
  });
  return [...own,...circle,...examples].filter(p=>!countryId||p.countryId===countryId);
 }

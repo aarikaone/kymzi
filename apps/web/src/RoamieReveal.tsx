@@ -31,12 +31,12 @@ export function RoamieReveal({state,onPal,onCountry,onAttraction,onPhotos,onPlan
     <div className="reveal-body">
       <header className="reveal-heading">
         <span className="reveal-status"><Icon name={privateOnly?'globe':'check'} size={14}/>{privateOnly?'Virtual city':'3/3 answers matched'}</span>
-        <h1 className="page-heading" tabIndex={-1}>{privateOnly?`${country.city}.`:'You found a roamie.'}</h1>
+        <h1 className="page-heading" tabIndex={-1}>{privateOnly?`${country.city}.`:'You found a Roamie.'}</h1>
       </header>
 
-      {!privateOnly&&<section className="reveal-person" aria-label="Your new roamie">
-        <span className="reveal-character"><img src={publicCdnImage(`/avatars/${pal?.imageAvatar??'cloud'}.webp`)} alt="Your roamie’s character"/></span>
-        <div><small>A NEW CONNECTION</small><h2 className="page-heading">{pal?.alias??'Your roamie'}</h2><span className="reveal-private"><Icon name="lock" size={13}/>Identity private</span></div>
+      {!privateOnly&&<section className="reveal-person" aria-label="Your new Roamie">
+        <span className="reveal-character"><img src={publicCdnImage(`/avatars/${pal?.imageAvatar??'cloud'}.webp`)} alt="Your Roamie’s character"/></span>
+        <div><small>A NEW CONNECTION</small><h2 className="page-heading">{pal?.alias??'Your Roamie'}</h2><span className="reveal-private"><Icon name="lock" size={13}/>Username profile</span></div>
         <Icon name="spark" size={20} className="reveal-person-spark"/>
       </section>}
 
@@ -54,7 +54,7 @@ export function RoamieReveal({state,onPal,onCountry,onAttraction,onPhotos,onPlan
     </div>
 
     <footer className="reveal-actions">
-      <button className="reveal-primary" onClick={privateOnly?()=>onCountry(country.id):openPal}>{privateOnly?`Explore ${country.city}`:'Meet my roamie'}<Icon name="arrow" size={21}/></button>
+      <button className="reveal-primary" onClick={privateOnly?()=>onCountry(country.id):openPal}>{privateOnly?`Explore ${country.city}`:'View Roamie'}<Icon name="arrow" size={21}/></button>
       {canUseCityBoard(state,country.id)&&<button className="reveal-plan" onClick={()=>onPlan(country.id)}><Icon name="calendar" size={17}/>Plan a visit</button>}
     </footer>
   </div>;

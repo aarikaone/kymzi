@@ -20,7 +20,7 @@ export function readHomeVisitMeets(raw:unknown,visits:PalHomeVisit[]):HomeVisitM
  }
  return out;
 }
-function context(state:PreviewState,peerId:string){const visit=homeVisitForPal(state,peerId);if(!visit||!state.profile)throw new Error('This roamie’s visit is no longer available.');return {visit,profile:state.profile};}
+function context(state:PreviewState,peerId:string){const visit=homeVisitForPal(state,peerId);if(!visit||!state.profile)throw new Error('This Roamie’s visit is no longer available.');return {visit,profile:state.profile};}
 export function homeVisitMeet(state:PreviewState,peerId:string){const visit=homeVisitForPal(state,peerId);return visit?state.launch?.globalPals?.visitMeets?.find(m=>m.visitId===visit.id&&m.peerId===peerId&&m.owner===state.profile?.name&&m.ageBand===state.profile?.ageBand):undefined;}
 function initial(state:PreviewState,peerId:string,now:Date):HomeVisitMeet{const {visit,profile}=context(state,peerId);return homeVisitMeet(state,peerId)??{version:1,id:`meet:${visit.id}:${profile.name}`,visitId:visit.id,peerId,owner:profile.name,ageBand:visit.ageBand,preview:!isAdult(profile.ageBand),startedAt:now.toISOString(),placeId:null,placeName:'',own:null,peer:null,chatActive:false,messages:[]};}
 function save(state:PreviewState,m:HomeVisitMeet):PreviewState{return {...state,launch:{...state.launch!,globalPals:{...state.launch!.globalPals!,visitMeets:[...(state.launch!.globalPals!.visitMeets??[]).filter(v=>!(v.visitId===m.visitId&&v.owner===m.owner)),m].slice(-8)}}};}
@@ -37,12 +37,12 @@ export function checkInHomeVisit(state:PreviewState,peerId:string,location:{city
 }
 /** Explicitly simulates the fictional visitor consenting and checking in; never inferred from a trip date or GPS. */
 export function previewHomePalCheckIn(state:PreviewState,peerId:string,location:{city:string;country:string},now=new Date()):PreviewState{
- const m=initial(state,peerId,now);if(!homePresenceActive(m.own,now))throw new Error('Check in at a public place first.');if(!text(location.city)||!text(location.country))throw new Error('Choose the roamie’s check-in city.');
+ const m=initial(state,peerId,now);if(!homePresenceActive(m.own,now))throw new Error('Check in at a public place first.');if(!text(location.city)||!text(location.country))throw new Error('Choose the Roamie’s check-in city.');
  return save(state,{...m,peer:{city:location.city.trim(),country:location.country.trim(),at:now.toISOString(),until:new Date(now.getTime()+HOME_MEET_MINUTES*60000).toISOString(),consent:true},chatActive:false});
 }
 export function leaveHomeVisit(state:PreviewState,peerId:string):PreviewState{const m=homeVisitMeet(state,peerId);return m?save(state,{...m,own:null,chatActive:false}):state;}
 export function startHomeVisitChat(state:PreviewState,peerId:string,now=new Date()):PreviewState{
- const gate=homeVisitChatGate(state,peerId,now);if(!gate.open||!gate.meeting)throw new Error('Both roamies must check in to the same city to chat.');const m=gate.meeting;
+ const gate=homeVisitChatGate(state,peerId,now);if(!gate.open||!gate.meeting)throw new Error('Both Roamies must check in to the same city to chat.');const m=gate.meeting;
  return save(state,{...m,chatActive:true,messages:m.messages.length?m.messages:[{id:`hello:${m.id}`,from:'pal',text:`Hey! We’re both in ${m.own!.city}. Shall we choose a public place to meet?`,at:now.toISOString()}]});
 }
 export function sendHomeVisitMessage(state:PreviewState,peerId:string,value:string,now=new Date()):PreviewState{

@@ -37,12 +37,12 @@ export function NativeRoamieReveal({state,onPal,onCountry,onAttraction,onPhotos,
     <ScrollView style={{flex:1}} contentContainerStyle={S.body} keyboardShouldPersistTaps="handled">
       <View style={S.heading}>
         <View style={S.status}><Ionicons name={privateOnly?'globe-outline':'checkmark'} size={14} color={C.accent}/><Text style={S.statusText}>{privateOnly?'Virtual city':'3/3 answers matched'}</Text></View>
-        <PageHeading accessibilityRole="header" style={S.title}>{privateOnly?`${country.city}.`:'You found a roamie.'}</PageHeading>
+        <PageHeading accessibilityRole="header" style={S.title}>{privateOnly?`${country.city}.`:'You found a Roamie.'}</PageHeading>
       </View>
 
-      {!privateOnly&&<View style={S.person} accessibilityLabel="Your new roamie">
-        <View style={S.character}><NativeImage showLoader source={avatarImages[pal?.imageAvatar??'cloud']} accessibilityLabel="Your roamie’s character" style={S.avatar}/></View>
-        <View style={S.personCopy}><Text style={S.personKicker}>A NEW CONNECTION</Text><PageHeading accessibilityRole="header" style={S.alias}>{pal?.alias??'Your roamie'}</PageHeading><View style={S.private}><Ionicons name="lock-closed-outline" size={13} color="#D0C4DE"/><Text style={S.privateText}>Identity private</Text></View></View>
+      {!privateOnly&&<View style={S.person} accessibilityLabel="Your new Roamie">
+        <View style={S.character}><NativeImage showLoader source={avatarImages[pal?.imageAvatar??'cloud']} accessibilityLabel="Your Roamie’s character" style={S.avatar}/></View>
+        <View style={S.personCopy}><Text style={S.personKicker}>A NEW CONNECTION</Text><PageHeading accessibilityRole="header" style={S.alias}>{pal?.alias??'Your Roamie'}</PageHeading><View style={S.private}><Ionicons name="lock-closed-outline" size={13} color="#D0C4DE"/><Text style={S.privateText}>Username profile</Text></View></View>
         <Ionicons name="sparkles-outline" size={20} color={C.lavender} style={S.spark}/>
       </View>}
 
@@ -58,7 +58,7 @@ export function NativeRoamieReveal({state,onPal,onCountry,onAttraction,onPhotos,
     </ScrollView>
 
     <View style={[S.actions,{paddingBottom:Math.max(12,insets.bottom)}]}>
-      <Pressable cssInterop={false} accessibilityRole="button" onPress={privateOnly?()=>onCountry(country.id):openPal} style={({pressed})=>[S.primary,pressed&&{backgroundColor:C.primaryPressed}]}><Text style={S.primaryText}>{privateOnly?`Explore ${country.city}`:'Meet my roamie'}</Text><Ionicons name="arrow-forward" size={21} color={C.primaryInk}/></Pressable>
+      <Pressable cssInterop={false} accessibilityRole="button" onPress={privateOnly?()=>onCountry(country.id):openPal} style={({pressed})=>[S.primary,pressed&&{backgroundColor:C.primaryPressed}]}><Text style={S.primaryText}>{privateOnly?`Explore ${country.city}`:'View Roamie'}</Text><Ionicons name="arrow-forward" size={21} color={C.primaryInk}/></Pressable>
       {canUseCityBoard(state,country.id)&&<Pressable cssInterop={false} accessibilityRole="button" onPress={()=>onPlan(country.id)} style={({pressed})=>[S.plan,pressed&&S.pressed]}><Ionicons name="calendar-outline" size={17} color={C.muted}/><Text style={S.planText}>Plan a visit</Text></Pressable>}
     </View>
   </View>;

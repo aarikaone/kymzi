@@ -1,3 +1,4 @@
+import {fillProfileIdentity} from './test-profile-setup';
 import {afterEach,expect,it,vi} from 'vitest';
 import {act,render,screen,within,waitFor} from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -58,12 +59,12 @@ it('pushes city editing from Profile, keeps drafts across sections, and saves on
 
 it.each(['app Back','browser Back'])('returns to visited cities with %s during onboarding and preserves selected cities',async(kind)=>{
  window.history.replaceState(null,'','/#/welcome');const u=userEvent.setup();render(<App/>);
- await u.click(screen.getByRole('button',{name:'Get started'}));await u.click(await screen.findByRole('button',{name:'Next'}));
+ await u.click(screen.getByRole('button',{name:'Get started'}));await fillProfileIdentity(u);await u.click(await screen.findByRole('button',{name:'Next'}));
  expect(screen.getAllByRole('button',{name:'Go back'})).toHaveLength(1);
  await u.click(screen.getByRole('button',{name:'Add visited places'}));await u.click(screen.getByRole('button',{name:'Choose London'}));
  await u.click(within(screen.getByRole('region',{name:'London'})).getByRole('button',{name:'Add visited city'}));
  await u.click(await screen.findByRole('button',{name:'Next'}));
- expect(screen.getByRole('heading',{name:/Your someday\s+list\./})).toBeTruthy();
+ expect(screen.getByRole('heading',{name:/Your travel wishlist\./})).toBeTruthy();
  if(kind==='app Back')await u.click(screen.getByRole('button',{name:'Go back'}));else await act(async()=>{window.history.back();});
  await waitFor(()=>expect(screen.getByRole('heading',{name:/Your memories\./})).toBeTruthy());
  expect(await screen.findByRole('button',{name:'Edit London visit'})).toBeTruthy();

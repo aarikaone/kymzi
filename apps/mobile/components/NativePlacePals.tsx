@@ -17,7 +17,7 @@ export function NativePlacePals({state,place,onPal}:Props) {
         <View style={[S.avatar,pal.id===place.peerId&&{borderColor:C.lavender}]}><NativeImage source={avatarImages[pal.imageAvatar]} accessible={false} style={S.character}/></View>
         <Text numberOfLines={1} style={S.alias}>{pal.alias}</Text>
       </Pressable>)}
-    </ScrollView>:<Text style={S.empty}>No roamies here yet.</Text>}
+    </ScrollView>:<Text style={S.empty}>No Roamies here yet.</Text>}
   </View>;
 }
 const S=StyleSheet.create({

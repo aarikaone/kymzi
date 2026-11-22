@@ -69,7 +69,7 @@ export function socialStats(social:SocialState,passport:PassportState,band:AgeBa
 export function latestPlayConnections(social:SocialState,game:DailyGame,band:AgeBand,blocked:string[]=[]){const playId=`${game.played}:${game.lastCompletedAt}:${game.lastQuestionIds.join('.')}`;const ids=new Set(social.proofs.filter(p=>p.playId===playId).map(p=>p.peerId));return connections(social,band,blocked).filter(c=>ids.has(c.peer.id));}
 export function canChat(social:SocialState,peerId:string,band:AgeBand,blocked:string[]=[]):boolean{return !!connectionFor(social,peerId,band,blocked)?.chatUnlocked;}
 export function startDemoChat(social:SocialState,peerId:string,band:AgeBand,blocked:string[]=[],now=new Date()):SocialState{
- if(!canChat(social,peerId,band,blocked))throw new Error('Match with this pal five times to chat.');
+ if(!canChat(social,peerId,band,blocked))throw new Error('Match with this Roamie five times to chat.');
  if(social.threads[peerId]?.active)return social;
  const message:ChatMessage={id:`hello:${peerId}`,from:'demo',body:connectionFor(social,peerId,band,blocked)?.simulated?`Hi! Welcome to ${countryById(connectionFor(social,peerId,band,blocked)!.countryId)!.city}. Ask me about a place you’d like to explore.`:'Five matches. A new conversation. ✨',at:now.toISOString()};
  return {...social,threads:{...social.threads,[peerId]:{peerId,active:true,messages:social.threads[peerId]?.messages.length?social.threads[peerId].messages:[message]}}};

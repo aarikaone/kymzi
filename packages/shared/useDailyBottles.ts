@@ -1,6 +1,6 @@
 import {useEffect,useRef,useState} from 'react';
 import {dailyBottleCards,discoveryCard,discoveryAllowance,localDay,palFor,postcardScore,randomPostcard,type PreviewState,type DiscoveryCard} from '@rymzi/core';
-export type DailyBottlesProps={state:PreviewState;now:Date;onPrepare:()=>void|Promise<void>;onPlay:(id:string)=>void|Promise<void>;onInvite:()=>void;onUnlock:()=>void|Promise<void>;onRoamie:(id:string)=>void;onResumeLegacy?:()=>void};
+export type DailyBottlesProps={state:PreviewState;now:Date;onPrepare:()=>void|Promise<void>;onPlay:(id:string)=>void|Promise<void>;onInvite:()=>void;onUnlock:()=>void|Promise<void>;onRoamie:(id:string)=>void;onCreate:()=>void;onResumeLegacy?:()=>void};
 export function useDailyBottles({state,now,onPrepare,onPlay,onRoamie}:DailyBottlesProps){
  const [busy,setBusy]=useState(false),[preparing,setPreparing]=useState(true),[error,setError]=useState(''),[unlock,setUnlock]=useState(false),lock=useRef(false),alive=useRef(true),prepareRef=useRef(onPrepare);prepareRef.current=onPrepare;
  const day=localDay(now),cards=dailyBottleCards(state,now),gate=discoveryAllowance(state,now),active=state.postcardDiscovery?.active,resume=gate.resuming&&active?discoveryCard(state,active.cardId):undefined;

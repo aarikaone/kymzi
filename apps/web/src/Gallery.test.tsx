@@ -87,7 +87,7 @@ it('filters to a city and gives the gallery a clear end without repeating cards'
   expect(screen.getByText('1 / 3')).toBeTruthy();
   const feed=screen.getByRole('region',{name:'City photo feed'});
   fireEvent.keyDown(feed,{key:'End'});
-  expect(screen.getByRole('heading',{name:/Another roamie. Another story/})).toBeTruthy();
+  expect(screen.getByRole('heading',{name:/Another Roamie. Another story/})).toBeTruthy();
   expect(screen.getByRole('button',{name:'Next photo'}).hasAttribute('disabled')).toBe(true);
   expect(feed.querySelectorAll('article')).toHaveLength(3);
   await user.click(screen.getByRole('button',{name:'See the gallery'}));

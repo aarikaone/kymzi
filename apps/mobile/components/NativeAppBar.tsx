@@ -8,7 +8,7 @@ import {KymziSymbol} from './Brand';
 import {NIGHT_THEME as C} from './theme';
 
 export function NativeProfileShortcut({profile,onPress}:{profile:Profile;onPress:()=>void}){
- return <View style={{width:80,height:44,justifyContent:'center'}}><Pressable cssInterop={false} accessibilityRole="button" accessibilityLabel="Your profile" onPress={onPress} style={S.profile}><Image source={avatarImages[profile.avatar]} accessible={false} style={S.character}/></Pressable></View>;
+ return <View style={{width:80,height:44,justifyContent:'center'}}><Pressable cssInterop={false} accessibilityRole="button" accessibilityLabel="Your profile" onPress={onPress} style={S.profile}><Image source={profile.avatarPhoto?{uri:profile.avatarPhoto.image}:avatarImages[profile.avatar]} accessible={false} style={[S.character,profile.avatarPhoto&&{resizeMode:'cover',borderRadius:20}]}/></Pressable></View>;
 }
 
 export function NativeKymziTitle(){
